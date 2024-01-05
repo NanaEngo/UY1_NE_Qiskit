@@ -1,0 +1,73 @@
+converged SCF energy = -241.623913631131
+Excited State energies (eV)
+[5.66391225 6.25174474 6.90907571 7.20434454 7.60485404 8.05495939
+ 8.18570574 8.45233167 8.63425438 8.65019701 8.76724213 8.78967891
+ 8.85876696 9.36345593 9.52478924]
+
+** Singlet excitation energies and oscillator strengths **
+Excited State   1:      5.66391 eV    218.90 nm  f=0.0045
+Excited State   2:      6.25174 eV    198.32 nm  f=0.0599
+Excited State   3:      6.90908 eV    179.45 nm  f=0.0316
+Excited State   4:      7.20434 eV    172.10 nm  f=0.0039
+Excited State   5:      7.60485 eV    163.03 nm  f=0.0004
+Excited State   6:      8.05496 eV    153.92 nm  f=0.0308
+Excited State   7:      8.18571 eV    151.46 nm  f=0.0008
+Excited State   8:      8.45233 eV    146.69 nm  f=0.0001
+Excited State   9:      8.63425 eV    143.60 nm  f=0.1133
+Excited State  10:      8.65020 eV    143.33 nm  f=0.0000
+Excited State  11:      8.76724 eV    141.42 nm  f=0.0333
+Excited State  12:      8.78968 eV    141.06 nm  f=0.1749
+Excited State  13:      8.85877 eV    139.96 nm  f=0.0003
+Excited State  14:      9.36346 eV    132.41 nm  f=0.0000
+Excited State  15:      9.52479 eV    130.17 nm  f=0.0004
+Time for LDA calculations: 60.32
+
+converged SCF energy = -245.753731392922
+Excited State energies (eV)
+[5.79194969 6.20360472 6.88154996 7.37275965 7.63820973 8.18584349
+ 8.26403538 8.59152772 8.65747716 8.68403139 8.82990318 8.97490735
+ 9.08827641 9.5390722  9.66227228]
+
+** Singlet excitation energies and oscillator strengths **
+Excited State   1:      5.79195 eV    214.06 nm  f=0.0046
+Excited State   2:      6.20360 eV    199.86 nm  f=0.0616
+Excited State   3:      6.88155 eV    180.17 nm  f=0.0298
+Excited State   4:      7.37276 eV    168.17 nm  f=0.0033
+Excited State   5:      7.63821 eV    162.32 nm  f=0.0007
+Excited State   6:      8.18584 eV    151.46 nm  f=0.0592
+Excited State   7:      8.26404 eV    150.03 nm  f=0.0008
+Excited State   8:      8.59153 eV    144.31 nm  f=0.0001
+Excited State   9:      8.65748 eV    143.21 nm  f=0.0728
+Excited State  10:      8.68403 eV    142.77 nm  f=0.0000
+Excited State  11:      8.82990 eV    140.41 nm  f=0.2153
+Excited State  12:      8.97491 eV    138.15 nm  f=0.0002
+Excited State  13:      9.08828 eV    136.42 nm  f=0.0158
+Excited State  14:      9.53907 eV    129.98 nm  f=0.0000
+Excited State  15:      9.66227 eV    128.32 nm  f=0.0005
+Time for PBE calculations: 81.68
+
+converged SCF energy = -246.02970847716
+TD-SCF states [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 13, 14] not converged.
+Excited State energies (eV)
+[0.97116405 3.32520515 6.08370055 6.28328095 7.1155306  7.93078887
+ 8.13986411 8.48408337 8.55410514 8.8510784  8.93941533 9.00596987
+ 9.14915588 9.42256141 9.73053289]
+
+** Singlet excitation energies and oscillator strengths **
+Excited State   1:      0.97116 eV   1276.66 nm  f=0.0269
+Excited State   2:      3.32521 eV    372.86 nm  f=0.1707
+Excited State   3:      6.08370 eV    203.80 nm  f=0.0062
+Excited State   4:      6.28328 eV    197.32 nm  f=0.0756
+Excited State   5:      7.11553 eV    174.24 nm  f=0.0226
+Excited State   6:      7.93079 eV    156.33 nm  f=0.0001
+Excited State   7:      8.13986 eV    152.32 nm  f=0.0022
+Excited State   8:      8.48408 eV    146.14 nm  f=0.1366
+Excited State   9:      8.55411 eV    144.94 nm  f=0.0007
+Excited State  10:      8.85108 eV    140.08 nm  f=0.0001
+Excited State  11:      8.93942 eV    138.69 nm  f=0.0000
+Excited State  12:      9.00597 eV    137.67 nm  f=0.0572
+Excited State  13:      9.14916 eV    135.51 nm  f=0.2227
+Excited State  14:      9.42256 eV    131.58 nm  f=0.0050
+Excited State  15:      9.73053 eV    127.42 nm  f=0.1197
+Time for B3LYP calculations: 1539.66
+
