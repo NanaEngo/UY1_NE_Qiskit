@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: ../QISKIT Lab 1 - Quantum States and Operations on 1-qubit 2308.ipynb
+- file: ../QISKIT Lab 2 - Quantum States and Operations on 2-qubit 2305.ipynb
+- file: ../QISKIT Tutorial 1 - Summary Quantum Operations 230412.ipynb
+- file: ../QISKIT Tutorial 2 - Parameter Quantum Circuits 230412.ipynb
+- file: ../QISKIT Lab 4 - Fermionic Hamiltonian 230714.ipynb
+- file: ../Qiskit Lab 5 -  Qubit Hamiltonian 230605.ipynb
+- file: ../QISKIT Lab 6 - VQE H2 230714
+- file: ../Qiskit Tutorial 3 - Qiskit Machine LearningV230413.ipynb
+- file: ../Qiskit Tutorial 4 - Machine LearningV230708.ipynb
