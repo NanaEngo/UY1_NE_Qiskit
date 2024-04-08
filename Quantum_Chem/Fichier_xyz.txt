@@ -91,6 +91,10 @@ Thiophene atom = '''
 
 BODIPY Atom '[B-]1(n2cccc2C=C3[N+]1=CC=C3)(F)F'
 
+Caffeine atom "CN1C=NC2=C1C(=O)N(C(=O)N2C)C"
+
+Quinine atom 'COC1=CC2=C(C=CN=C2C=C1)[C@H]([C@@H]3C[C@@H]4CCN3C[C@@H]4C=C)O'
+
 cafestol_xyz = """51
 cafestol initial structure
 O  -4.5215   -1.3455    0.4926
