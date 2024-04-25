@@ -1,0 +1,271 @@
+converged SCF energy = -108.867618373058
+
+Geometry optimization cycle 1
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N   0.000000   0.000000   0.000000    0.000000  0.000000  0.000000
+   N   1.100000   0.000000   0.000000    0.000000  0.000000  0.000000
+converged SCF energy = -108.867618373058
+Excited State energies (eV)
+[7.55130383 8.59641111 8.59641111 9.18103736 9.18103736]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.3239994768     0.0000000000    -0.0000000000
+1 N    -0.3239994768    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 1: E = -108.530221471  dE = -108.53  norm(grad) = 0.458204
+
+Geometry optimization cycle 2
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.048510  -0.000000   0.000000   -0.048510 -0.000000  0.000000
+   N   1.148510   0.000000  -0.000000    0.048510  0.000000 -0.000000
+converged SCF energy = -108.837287017033
+Excited State energies (eV)
+[5.08151731 6.35986962 6.35986962 7.45013943 7.45013943]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.0672335632     0.0000000000     0.0000000000
+1 N    -0.0672335632    -0.0000000000    -0.0000000000
+----------------------------------------------
+cycle 2: E = -108.563499441  dE = -0.033278  norm(grad) = 0.0950826
+
+Geometry optimization cycle 3
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.061212   0.000000  -0.000000   -0.012702  0.000000 -0.000000
+   N   1.161212  -0.000000   0.000000    0.012702 -0.000000  0.000000
+converged SCF energy = -108.823601408579
+Excited State energies (eV)
+[4.45015296 5.8196726  5.8196726  7.0186512  7.0186512 ]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.0246306537    -0.0000000000    -0.0000000000
+1 N    -0.0246306537     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 3: E = -108.565670732  dE = -0.00217129  norm(grad) = 0.034833
+
+Geometry optimization cycle 4
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.068556   0.000000   0.000000   -0.007344  0.000000  0.000000
+   N   1.168556  -0.000000  -0.000000    0.007344 -0.000000 -0.000000
+converged SCF energy = -108.814954941317
+Excited State energies (eV)
+[4.08117274 5.51386912 5.51386912 6.77284941 6.77284941]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.0036333385    -0.0000000000     0.0000000000
+1 N    -0.0036333385     0.0000000000    -0.0000000000
+----------------------------------------------
+cycle 4: E = -108.566057314  dE = -0.000386582  norm(grad) = 0.00513832
+
+Geometry optimization cycle 5
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.069827   0.000000   0.000000   -0.001271 -0.000000 -0.000000
+   N   1.169827  -0.000000  -0.000000    0.001271  0.000000  0.000000
+converged SCF energy = -108.81341078613
+Excited State energies (eV)
+[4.01676329 5.46137912 5.46137912 6.73057145 6.73057145]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.0002508026    -0.0000000000    -0.0000000000
+1 N    -0.0002508026     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 5: E = -108.566066845  dE = -9.53105e-06  norm(grad) = 0.000354688
+
+Geometry optimization cycle 6
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.069921   0.000000   0.000000   -0.000094  0.000000  0.000000
+   N   1.169921  -0.000000  -0.000000    0.000094 -0.000000 -0.000000
+converged SCF energy = -108.813295758696
+Excited State energies (eV)
+[4.0119803  5.45749248 5.45749248 6.72744298 6.72744298]
+--------- TDHF_Scanner gradients for state 4 ----------
+         x                y                z
+0 N     0.0000024453     0.0000000000    -0.0000000000
+1 N    -0.0000024453    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 6: E = -108.566066787  dE = 5.81474e-08  norm(grad) = 3.45812e-06
+
+Geometry optimization cycle 1
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N   0.000000   0.000000   0.000000    0.000000  0.000000  0.000000
+   N   1.100000   0.000000   0.000000    0.000000  0.000000  0.000000
+converged SCF energy = -108.867618373058
+Excited State energies (eV)
+[2.51801687 5.78622039 5.78622039 7.3301076  7.3301076 ]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.5490366150     0.0000000000    -0.0000000000
+1 N    -0.5490366150    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 1: E = -108.654978694  dE = -108.655  norm(grad) = 0.776455
+
+Geometry optimization cycle 2
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.082203  -0.000000   0.000000   -0.082203 -0.000000  0.000000
+   N   1.182203   0.000000  -0.000000    0.082203  0.000000 -0.000000
+converged SCF energy = -108.797721963472
+Excited State energies (eV)
+[ 3.37500258  4.56798181  4.56798181 15.19007287 15.19007287]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N    -0.0303668076     0.0000000000     0.0000000000
+1 N     0.0303668076    -0.0000000000    -0.0000000000
+----------------------------------------------
+cycle 2: E = -108.629851727  dE = 0.025127  norm(grad) = 0.0429452
+
+Geometry optimization cycle 3
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.077895  -0.000000  -0.000000    0.004308 -0.000000 -0.000000
+   N   1.177895   0.000000   0.000000   -0.004308  0.000000  0.000000
+converged SCF energy = -108.803309110102
+Excited State energies (eV)
+[ 3.60203715  4.70825203  4.70825203 15.56698184 15.56698184]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N    -0.0225425682    -0.0000000000    -0.0000000000
+1 N     0.0225425682     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 3: E = -108.630284038  dE = -0.000432311  norm(grad) = 0.03188
+
+Geometry optimization cycle 4
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.065482   0.000000   0.000000    0.012413  0.000000  0.000000
+   N   1.165482  -0.000000  -0.000000   -0.012413 -0.000000 -0.000000
+converged SCF energy = -108.818633191429
+Excited State energies (eV)
+[0.64198995 0.64198995 4.23620063 5.11328131 5.11328131]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     2.3161232776    -0.0000000000    -0.0000000000
+1 N    -2.3161232776     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 4: E = -108.795040496  dE = -0.164756  norm(grad) = 3.27549
+
+Geometry optimization cycle 5
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.077775   0.000000   0.000000   -0.012293 -0.000000 -0.000000
+   N   1.177775  -0.000000  -0.000000    0.012293  0.000000  0.000000
+converged SCF energy = -108.803462455332
+Excited State energies (eV)
+[ 3.60828722  4.71216732  4.71216732 15.57747882 15.57747882]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N    -0.0223128940     0.0000000000    -0.0000000000
+1 N     0.0223128940    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 5: E = -108.630293499  dE = 0.164747  norm(grad) = 0.0315552
+
+Geometry optimization cycle 6
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.071629   0.000000   0.000000    0.006147  0.000000  0.000000
+   N   1.171629  -0.000000  -0.000000   -0.006147 -0.000000 -0.000000
+converged SCF energy = -108.811198438744
+Excited State energies (eV)
+[ 3.92506607  4.91248468  4.91248468 16.11768427 16.11768427]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N    -0.0095514838     0.0000000000    -0.0000000000
+1 N     0.0095514838    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 6: E = -108.630667955  dE = -0.000374456  norm(grad) = 0.0135078
+
+Geometry optimization cycle 7
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.068555   0.000000   0.000000    0.003073 -0.000000 -0.000000
+   N   1.168555  -0.000000  -0.000000   -0.003073  0.000000  0.000000
+converged SCF energy = -108.814955688081
+Excited State energies (eV)
+[ 4.08119843  5.01281647  5.01281647 10.60657612 10.60657612]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N    -0.0024649238     0.0000000000    -0.0000000000
+1 N     0.0024649238    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 7: E = -108.630738079  dE = -7.0124e-05  norm(grad) = 0.00348593
+
+Geometry optimization cycle 8
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.067019   0.000000   0.000000    0.001537 -0.000000 -0.000000
+   N   1.167019  -0.000000  -0.000000   -0.001537  0.000000  0.000000
+converged SCF energy = -108.816804694422
+Excited State energies (eV)
+[ 4.15882739  5.06303519  5.06303519 10.61733992 10.61733992]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.0012587699    -0.0000000000    -0.0000000000
+1 N    -0.0012587699     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 8: E = -108.630741581  dE = -3.50216e-06  norm(grad) = 0.00178017
+
+Geometry optimization cycle 9
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.066682   0.000000   0.000000    0.000337 -0.000000 -0.000000
+   N   1.166682  -0.000000  -0.000000   -0.000337  0.000000  0.000000
+converged SCF energy = -108.817207042041
+Excited State energies (eV)
+[ 4.17579914  5.07404107  5.07404107 10.61972519 10.61972519]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.0020908391    -0.0000000000    -0.0000000000
+1 N    -0.0020908391     0.0000000000     0.0000000000
+----------------------------------------------
+cycle 9: E = -108.630739471  dE = 2.11083e-06  norm(grad) = 0.00295689
+
+Geometry optimization cycle 10
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.066683   0.000000   0.000000   -0.000001  0.000000  0.000000
+   N   1.166683  -0.000000  -0.000000    0.000001 -0.000000 -0.000000
+converged SCF energy = -108.817205747688
+Excited State energies (eV)
+[ 4.17574514  5.07400769  5.07400769 10.61971898 10.61971901]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.0020880573     0.0000000000    -0.0000000000
+1 N    -0.0020880573    -0.0000000000     0.0000000000
+----------------------------------------------
+cycle 10: E = -108.630739403  dE = 6.7648e-08  norm(grad) = 0.00295296
+
+Geometry optimization cycle 11
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.067497  -0.000000   0.000000   -0.000814 -0.000000  0.000000
+   N   1.167497   0.000000  -0.000000    0.000814  0.000000 -0.000000
+converged SCF energy = -108.816231329568
+Excited State energies (eV)
+[ 4.13469465  5.04740486  5.04740486 10.61397254 10.61397254]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.0000865493     0.0000000000     0.0000000000
+1 N    -0.0000865493    -0.0000000000    -0.0000000000
+----------------------------------------------
+cycle 11: E = -108.630742621  dE = -3.2177e-06  norm(grad) = 0.000122399
+
+Geometry optimization cycle 12
+Cartesian coordinates (Angstrom)
+ Atom        New coordinates             dX        dY        dZ
+   N  -0.067532  -0.000000   0.000000   -0.000035 -0.000000 -0.000000
+   N   1.167532   0.000000  -0.000000    0.000035  0.000000  0.000000
+converged SCF energy = -108.816189064486
+Excited State energies (eV)
+[ 4.13290857  5.04625365  5.04625365 10.6137195  10.6137195 ]
+--------- TDHF_Scanner gradients for state 2 ----------
+         x                y                z
+0 N     0.0000006893    -0.0000000000     0.0000000000
+1 N    -0.0000006893     0.0000000000    -0.0000000000
+----------------------------------------------
+cycle 12: E = -108.630742662  dE = -4.10281e-08  norm(grad) = 9.74763e-07
