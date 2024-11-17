@@ -1,0 +1,67 @@
+# echo input file to output
+echo
+title title  "VEM/TDDFT-B3LYP for Water in Toluene with Dispersion Correction"
+
+memory total 16 gb
+
+# Define the molecular geometry
+geometry units angstroms
+  O     0.000000     0.000000     0.000000
+  H     0.000000     0.000000     0.957840
+  H     0.000000     0.926627    -0.239622
+end
+
+# Basis set
+basis
+  * library 6-31+g*
+end
+
+# DFT calculation with dispersion and solvation
+dft
+  xc b3lyp
+  cosmo
+    do_cosmo_vem 1
+    solvent toluene
+  end
+  maxiter 100
+end
+
+# Ground state optimization
+task dft optimize
+
+# TD-DFT calculation for singlet excited states (S1)
+tddft
+  nroots 5
+  singlet
+  cosmo
+    solvent toluene
+  end
+end
+
+task tddft energy
+
+# TD-DFT calculation for triplet state (T1)
+tddft
+  nroots 3
+  triplet
+  cosmo
+    solvent toluene
+  end
+end
+
+task tddft energy
+
+grad
+  root 1
+  solve_thresh 1d-05
+end
+task tddft gradient
+
+# Calculate the energy difference for fluorescence (S1-S0) and T1-S1
+property
+  difference
+    tddft_singlet_1
+    tddft_triplet_1
+end
+
+task property

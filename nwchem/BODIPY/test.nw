@@ -1,0 +1,98 @@
+echo
+start tddftgrad_water_opt
+title "TDDFT/B3LYP/def2-TZVP/COSMO geometry optimization of Water"
+memory total 16 gb
+
+# Charge of the system
+charge 0
+
+# XYZ coordinates in Angstrom units (default)
+# Automatic symmetry detection enabled (default tol 0.01). Disable with noautosym.
+geometry units angstroms autosym 0.1
+O     0.00000000     0.00000000     0.12982363
+H     0.75933475     0.00000000    -0.46621158
+H    -0.75933475     0.00000000    -0.46621158
+end
+
+#basis spherical
+#* library "def2-svp"
+#end
+basis "ao basis" spherical
+ * library def2-tzvp
+end
+basis "cd basis" # reduces cost from N 4 --> N3
+ * library "Weigend Coulomb Fitting"
+end
+#ecp spherical # Reduces the cost of calculation for heavy elements
+# * library Stuttgart_RSC_1997_ECP
+#end
+
+driver
+  clear
+  maxiter 100
+end
+
+dft
+  xc b3lyp
+  iterations 500
+  grid xfine
+  disp vdw 4
+end
+
+cosmo
+  solvent toluene
+end
+
+# Optimize geometry
+task dft optimize
+
+## Run property calculation after the geometry optimization to
+## create Molden file for plotting molecular orbitals
+property
+  moldenfile
+  molden_norm none
+end
+task dft property
+
+# Calculate numerical frequencies
+# With COSMO, only numerical frequencies are possible
+#task dft freq numerical
+# For analytical hessians
+# Done with in-core algorithm (6.8) -> small systems only!
+# task dft freq
+
+# Final property analysis with MO vector printout
+#dft
+#  print "final vectors analysis"
+#end
+#property
+#  mulliken
+#  dipole
+#end
+#task dft property
+#
+## Calcul du gap HOMO-LUMO
+#set dft:print "HOMO-LUMO Gap"
+#task dft energy
+
+#tddft
+#  nroots 5
+#  notriplet
+#  algorithm 1
+#  target 1
+#  targetsym a
+#  civecs
+#  grad
+#    root 1
+#  end
+#
+#end
+#task tddft gradient
+
+## Calcul des forces d'oscillateur et autres propriétés
+tddft
+  nroots 5
+  notriplet
+end
+#task tddft optimize
+task tddft energy

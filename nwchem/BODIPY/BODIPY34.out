@@ -1,0 +1,564 @@
+ argument  1 = BODIPY3.in
+
+
+
+============================== echo of input deck ==============================
+# echo input file to output
+echo
+title "VEM/TDDFT Calculation of BODIPY in Toluene with Dispersion Correction"
+memory total 16 gb
+scratch_dir /tmp
+
+# Charge of the system
+charge 0
+
+# XYZ coordinates in Angstrom units
+# Automatic symmetry detection enabled (default tol 0.01). Disable with noautosym.
+geometry units angstroms autosym 0.1
+B      0.000001   -1.162957    0.000644
+N      1.246339   -0.240964    0.000674
+C      2.517484   -0.619309    0.001360
+C      3.356788    0.504376    0.001062
+C      2.540488    1.611831   -0.000033
+C      1.205532    1.138202   -0.000109
+C      0.000244    1.821050   -0.000443
+C     -1.205163    1.138396    0.000211
+N     -1.246186   -0.240759    0.001038
+C     -2.517394   -0.618905    0.001979
+C     -3.356516    0.504912    0.001818
+C     -2.540037    1.612241    0.000543
+F      0.000115   -1.949817    1.129932
+F     -0.000242   -1.949247   -1.129045
+H      2.781890   -1.659490    0.002099
+H      4.428486    0.483157    0.001574
+H      2.831001    2.644047   -0.000553
+H      0.000331    2.900662   -0.001206
+H     -2.781963   -1.659043    0.002802
+H     -4.428217    0.483869    0.002536
+H     -2.830387    2.644502    0.000062
+end
+
+dft
+  # Exchange-correlation functional
+  xc b3lyp
+
+  # Semidirect SCF. Cache integrals in memory, but do not use disk
+  # 130 megawords is ~1000 megabytes for 64-bit machines
+  semidirect memsize 130000000 filesize 0
+
+  # For completely direct SCF without caching, use
+  #direct
+
+  # Spin multiplicity 2S + 1, where S = 0, 1/2, 1, 3/2, ...
+  mult 1
+
+  # For open-shell singlet calculation, add
+  #odft
+
+  # Reduce output during geometry optimization
+  noprint "final vectors analysis"
+
+  # Increase the number of SCF iterations
+  iterations 100
+
+  # Dispersion
+  disp vdw 3
+end
+
+# Solvation model
+cosmos
+  solvent toluene
+  do_cosmo_vem 1
+  minbem 3
+  ificos 1
+end
+
+# Basis set definitions
+basis spherical
+  * library def2-tzvp
+end
+ecp
+  Pt library def2-ecp
+end
+
+# Options for the geometry optimizer
+driver
+  # Max 100 optimization steps
+  maxiter 100
+  # Print XYZ coordinates of each step
+  xyz
+end
+
+# Optimize geometry
+task dft optimize
+
+# Run property calculation after the geometry optimization to
+# create Molden file for plotting molecular orbitals
+property
+  moldenfile
+  molden_norm none
+end
+
+task dft property
+
+# Excited state calculation
+tddft
+  nroots 5
+  algorithm 1
+  notriplet
+  target 1
+  targetsym a
+  civecs
+  grad
+    root 1
+  end
+end
+task tddft optimize
+
+================================================================================
+
+
+                                         
+                                         
+
+
+             Northwest Computational Chemistry Package (NWChem) 7.0.2
+             --------------------------------------------------------
+
+
+                    Environmental Molecular Sciences Laboratory
+                       Pacific Northwest National Laboratory
+                                Richland, WA 99352
+
+                              Copyright (c) 1994-2020
+                       Pacific Northwest National Laboratory
+                            Battelle Memorial Institute
+
+             NWChem is an open-source computational chemistry package
+                        distributed under the terms of the
+                      Educational Community License (ECL) 2.0
+             A copy of the license is included with this distribution
+                              in the LICENSE.TXT file
+
+                                  ACKNOWLEDGMENT
+                                  --------------
+
+            This software and its documentation were developed at the
+            EMSL at Pacific Northwest National Laboratory, a multiprogram
+            national laboratory, operated for the U.S. Department of Energy
+            by Battelle under Contract Number DE-AC05-76RL01830. Support
+            for this work was provided by the Department of Energy Office
+            of Biological and Environmental Research, Office of Basic
+            Energy Sciences, and the Office of Advanced Scientific Computing.
+
+
+           Job information
+           ---------------
+
+    hostname        = taamangtchu-Aspire-A515-45
+    program         = nwchem
+    date            = Fri Jun 28 12:06:56 2024
+
+    compiled        = Sat_Apr_09_17:12:10_2022
+    source          = /build/nwchem-f1f4gx/nwchem-7.0.2/build-openmpi
+    nwchem branch   = 7.0.2
+    nwchem revision = N/A
+    ga revision     = 5.8.1
+    use scalapack   = T
+    input           = BODIPY3.in
+    prefix          = BODIPY3.
+    data base       = ./BODIPY3.db
+    status          = restart
+    nproc           =        1
+    time left       =     -1s
+
+
+
+           Memory information
+           ------------------
+
+    heap     =  536870908 doubles =   4096.0 Mbytes
+    stack    =  536870913 doubles =   4096.0 Mbytes
+    global   = 1073741824 doubles =   8192.0 Mbytes (distinct from heap & stack)
+    total    = 2147483645 doubles =  16384.0 Mbytes
+    verify   = yes
+    hardfail = no 
+
+
+           Directory information
+           ---------------------
+
+  0 permanent = .
+  0 scratch   = /tmp
+
+
+           Previous task information
+           -------------------------
+
+    Theory    = dft                             
+    Operation = property                      
+    Status    = ok                            
+    Qmmm      = F
+    Ignore    = F
+
+
+           Geometries in the database
+           --------------------------
+
+       Name                              Natoms  Last Modified
+       --------------------------------  ------  ------------------------
+    1  driverinitial                         21  Fri Jun 28 09:32:14 2024  
+    2  geometry                              21  Fri Jun 28 10:33:33 2024  
+
+  The geometry named "geometry" is the default for restart
+
+
+
+           Basis sets in the database
+           --------------------------
+
+       Name                              Natoms  Last Modified
+        --------------------------------  ------  ------------------------
+    1  ao basis                               0  Fri Jun 28 09:32:14 2024  
+    2  ecp basis                              1  Fri Jun 28 09:32:14 2024  
+
+  The basis set named "ao basis" is the default AO basis for restart
+
+
+
+
+                                NWChem Input Module
+                                -------------------
+
+
+       VEM/TDDFT Calculation of BODIPY in Toluene with Dispersion Correction
+       ---------------------------------------------------------------------
+
+ Scaling coordinates for geometry "geometry" by  1.889725989
+ (inverse scale =  0.529177249)
+
+ C2V symmetry detected
+
+          ------
+          auto-z
+          ------
+  no constraints, skipping    0.0000000000000000     
+  no constraints, skipping    0.0000000000000000     
+
+
+                             Geometry "geometry" -> ""
+                             -------------------------
+
+ Output coordinates in angstroms (scale by  1.889725989 to convert to a.u.)
+
+  No.       Tag          Charge          X              Y              Z
+ ---- ---------------- ---------- -------------- -------------- --------------
+    1 B                    5.0000     0.00000000     0.00000000    -1.20495742
+    2 N                    7.0000    -1.24626252     0.00000000    -0.28286200
+    3 C                    6.0000    -2.51743903     0.00000000    -0.66110770
+    4 C                    6.0000    -3.35665203     0.00000000     0.46264333
+    5 C                    6.0000    -2.54026252     0.00000000     1.57003560
+    6 C                    6.0000    -1.20534751     0.00000000     1.09629866
+    7 C                    6.0000     0.00000000     0.00000000     1.77904977
+    8 C                    6.0000     1.20534751     0.00000000     1.09629866
+    9 N                    7.0000     1.24626252     0.00000000    -0.28286200
+   10 C                    6.0000     2.51743903     0.00000000    -0.66110770
+   11 C                    6.0000     3.35665203     0.00000000     0.46264333
+   12 C                    6.0000     2.54026252     0.00000000     1.57003560
+   13 F                    9.0000     0.00000000     1.12948840    -1.99153234
+   14 F                    9.0000     0.00000000    -1.12948840    -1.99153234
+   15 H                    1.0000    -2.78192653     0.00000000    -1.70126737
+   16 H                    1.0000    -4.42835154     0.00000000     0.44151217
+   17 H                    1.0000    -2.83069403     0.00000000     2.60227420
+   18 H                    1.0000     0.00000000     0.00000000     2.85866193
+   19 H                    1.0000     2.78192653     0.00000000    -1.70126737
+   20 H                    1.0000     4.42835154     0.00000000     0.44151217
+   21 H                    1.0000     2.83069403     0.00000000     2.60227420
+
+      Atomic Mass 
+      ----------- 
+
+      B                 11.009310
+      N                 14.003070
+      C                 12.000000
+      F                 18.998400
+      H                  1.007825
+
+
+ Effective nuclear repulsion energy (a.u.)     866.7103807726
+
+            Nuclear Dipole moment (a.u.) 
+            ----------------------------
+        X                 Y               Z
+ ---------------- ---------------- ----------------
+    -0.0000000000     0.0000000000    -0.0000000000
+
+      Symmetry information
+      --------------------
+
+ Group name             C2v       
+ Group number             16
+ Group order               4
+ No. of unique centers    12
+
+      Symmetry unique atoms
+
+     1    2    3    4    5    6    7   13   15   16   17   18
+
+
+
+                                Z-matrix (autoz)
+                                -------- 
+
+ Units are Angstrom for bonds and degrees for angles
+
+      Type          Name      I     J     K     L     M      Value
+      ----------- --------  ----- ----- ----- ----- ----- ----------
+    1 Stretch                  1     2                       1.55030
+    2 Stretch                  1     9                       1.55030
+    3 Stretch                  1    13                       1.37639
+    4 Stretch                  1    14                       1.37639
+    5 Stretch                  2     3                       1.32626
+    6 Stretch                  2     6                       1.37977
+    7 Stretch                  3     4                       1.40253
+    8 Stretch                  3    15                       1.07326
+    9 Stretch                  4     5                       1.37579
+   10 Stretch                  4    16                       1.07191
+   11 Stretch                  5     6                       1.41648
+   12 Stretch                  5    17                       1.07232
+   13 Stretch                  6     7                       1.38528
+   14 Stretch                  7     8                       1.38528
+   15 Stretch                  7    18                       1.07961
+   16 Stretch                  8     9                       1.37977
+   17 Stretch                  8    12                       1.41648
+   18 Stretch                  9    10                       1.32626
+   19 Stretch                 10    11                       1.40253
+   20 Stretch                 10    19                       1.07326
+   21 Stretch                 11    12                       1.37579
+   22 Stretch                 11    20                       1.07191
+   23 Stretch                 12    21                       1.07232
+   24 Bend                     1     2     3               126.93202
+   25 Bend                     1     2     6               124.79804
+   26 Bend                     1     9     8               124.79804
+   27 Bend                     1     9    10               126.93202
+   28 Bend                     2     1     9               107.00537
+   29 Bend                     2     1    13               109.87117
+   30 Bend                     2     1    14               109.87117
+   31 Bend                     2     3     4               110.18157
+   32 Bend                     2     3    15               120.83726
+   33 Bend                     2     6     5               107.83957
+   34 Bend                     2     6     7               121.22801
+   35 Bend                     3     2     6               108.26994
+   36 Bend                     3     4     5               106.84946
+   37 Bend                     3     4    16               125.62266
+   38 Bend                     4     3    15               128.98118
+   39 Bend                     4     5     6               106.85946
+   40 Bend                     4     5    17               127.88717
+   41 Bend                     5     4    16               127.52789
+   42 Bend                     5     6     7               130.93242
+   43 Bend                     6     5    17               125.25337
+   44 Bend                     6     7     8               120.94253
+   45 Bend                     6     7    18               119.52874
+   46 Bend                     7     8     9               121.22801
+   47 Bend                     7     8    12               130.93242
+   48 Bend                     8     7    18               119.52874
+   49 Bend                     8     9    10               108.26994
+   50 Bend                     8    12    11               106.85946
+   51 Bend                     8    12    21               125.25337
+   52 Bend                     9     1    13               109.87117
+   53 Bend                     9     1    14               109.87117
+   54 Bend                     9     8    12               107.83957
+   55 Bend                     9    10    11               110.18157
+   56 Bend                     9    10    19               120.83726
+   57 Bend                    10    11    12               106.84946
+   58 Bend                    10    11    20               125.62266
+   59 Bend                    11    10    19               128.98118
+   60 Bend                    11    12    21               127.88717
+   61 Bend                    12    11    20               127.52789
+   62 Bend                    13     1    14               110.29335
+   63 Torsion                  1     2     3     4         180.00000
+   64 Torsion                  1     2     3    15           0.00000
+   65 Torsion                  1     2     6     5         180.00000
+   66 Torsion                  1     2     6     7           0.00000
+   67 Torsion                  1     9     8     7           0.00000
+   68 Torsion                  1     9     8    12         180.00000
+   69 Torsion                  1     9    10    11         180.00000
+   70 Torsion                  1     9    10    19           0.00000
+   71 Torsion                  2     1     9     8           0.00000
+   72 Torsion                  2     1     9    10         180.00000
+   73 Torsion                  2     3     4     5           0.00000
+   74 Torsion                  2     3     4    16         180.00000
+   75 Torsion                  2     6     5     4          -0.00000
+   76 Torsion                  2     6     5    17         180.00000
+   77 Torsion                  2     6     7     8           0.00000
+   78 Torsion                  2     6     7    18         180.00000
+   79 Torsion                  3     2     1     9         180.00000
+   80 Torsion                  3     2     1    13          60.75882
+   81 Torsion                  3     2     1    14         -60.75882
+   82 Torsion                  3     2     6     5           0.00000
+   83 Torsion                  3     2     6     7         180.00000
+   84 Torsion                  3     4     5     6           0.00000
+   85 Torsion                  3     4     5    17         180.00000
+   86 Torsion                  4     3     2     6           0.00000
+   87 Torsion                  4     5     6     7         180.00000
+   88 Torsion                  5     4     3    15         180.00000
+   89 Torsion                  5     6     7     8         180.00000
+   90 Torsion                  5     6     7    18           0.00000
+   91 Torsion                  6     2     1     9          -0.00000
+   92 Torsion                  6     2     1    13        -119.24118
+   93 Torsion                  6     2     1    14         119.24118
+   94 Torsion                  6     2     3    15         180.00000
+   95 Torsion                  6     5     4    16         180.00000
+   96 Torsion                  6     7     8     9           0.00000
+   97 Torsion                  6     7     8    12         180.00000
+   98 Torsion                  7     6     5    17           0.00000
+   99 Torsion                  7     8     9    10         180.00000
+  100 Torsion                  7     8    12    11         180.00000
+  101 Torsion                  7     8    12    21           0.00000
+  102 Torsion                  8     9     1    13         119.24118
+  103 Torsion                  8     9     1    14        -119.24118
+  104 Torsion                  8     9    10    11           0.00000
+  105 Torsion                  8     9    10    19         180.00000
+  106 Torsion                  8    12    11    10           0.00000
+  107 Torsion                  8    12    11    20         180.00000
+  108 Torsion                  9     8     7    18         180.00000
+  109 Torsion                  9     8    12    11           0.00000
+  110 Torsion                  9     8    12    21         180.00000
+  111 Torsion                  9    10    11    12           0.00000
+  112 Torsion                  9    10    11    20         180.00000
+  113 Torsion                 10     9     1    13         -60.75882
+  114 Torsion                 10     9     1    14          60.75882
+  115 Torsion                 10     9     8    12           0.00000
+  116 Torsion                 10    11    12    21         180.00000
+  117 Torsion                 12     8     7    18           0.00000
+  118 Torsion                 12    11    10    19         180.00000
+  119 Torsion                 15     3     4    16          -0.00000
+  120 Torsion                 16     4     5    17           0.00000
+  121 Torsion                 19    10    11    20           0.00000
+  122 Torsion                 20    11    12    21           0.00000
+
+
+            XYZ format geometry
+            -------------------
+    21
+ geometry
+ B                     0.00000000     0.00000000    -1.20495742
+ N                    -1.24626252     0.00000000    -0.28286200
+ C                    -2.51743903     0.00000000    -0.66110770
+ C                    -3.35665203     0.00000000     0.46264333
+ C                    -2.54026252     0.00000000     1.57003560
+ C                    -1.20534751     0.00000000     1.09629866
+ C                     0.00000000     0.00000000     1.77904977
+ C                     1.20534751     0.00000000     1.09629866
+ N                     1.24626252     0.00000000    -0.28286200
+ C                     2.51743903     0.00000000    -0.66110770
+ C                     3.35665203     0.00000000     0.46264333
+ C                     2.54026252     0.00000000     1.57003560
+ F                     0.00000000     1.12948840    -1.99153234
+ F                     0.00000000    -1.12948840    -1.99153234
+ H                    -2.78192653     0.00000000    -1.70126737
+ H                    -4.42835154     0.00000000     0.44151217
+ H                    -2.83069403     0.00000000     2.60227420
+ H                     0.00000000     0.00000000     2.85866193
+ H                     2.78192653     0.00000000    -1.70126737
+ H                     4.42835154     0.00000000     0.44151217
+ H                     2.83069403     0.00000000     2.60227420
+
+ ==============================================================================
+                                internuclear distances
+ ------------------------------------------------------------------------------
+       center one      |      center two      | atomic units |  angstroms
+ ------------------------------------------------------------------------------
+    2 N                |   1 B                |     2.92964  |     1.55030
+    3 C                |   2 N                |     2.50626  |     1.32626
+    4 C                |   3 C                |     2.65040  |     1.40253
+    5 C                |   4 C                |     2.59987  |     1.37579
+    6 C                |   2 N                |     2.60738  |     1.37977
+    6 C                |   5 C                |     2.67677  |     1.41648
+    7 C                |   6 C                |     2.61781  |     1.38528
+    8 C                |   7 C                |     2.61781  |     1.38528
+    9 N                |   1 B                |     2.92964  |     1.55030
+    9 N                |   8 C                |     2.60738  |     1.37977
+   10 C                |   9 N                |     2.50626  |     1.32626
+   11 C                |  10 C                |     2.65040  |     1.40253
+   12 C                |   8 C                |     2.67677  |     1.41648
+   12 C                |  11 C                |     2.59987  |     1.37579
+   13 F                |   1 B                |     2.60100  |     1.37639
+   14 F                |   1 B                |     2.60100  |     1.37639
+   15 H                |   3 C                |     2.02817  |     1.07326
+   16 H                |   4 C                |     2.02561  |     1.07191
+   17 H                |   5 C                |     2.02639  |     1.07232
+   18 H                |   7 C                |     2.04017  |     1.07961
+   19 H                |  10 C                |     2.02817  |     1.07326
+   20 H                |  11 C                |     2.02561  |     1.07191
+   21 H                |  12 C                |     2.02639  |     1.07232
+ ------------------------------------------------------------------------------
+                         number of included internuclear distances:         23
+ ==============================================================================
+
+
+
+ ==============================================================================
+                                 internuclear angles
+ ------------------------------------------------------------------------------
+        center 1       |       center 2       |       center 3       |  degrees
+ ------------------------------------------------------------------------------
+    2 N                |   1 B                |   9 N                |   107.01
+    2 N                |   1 B                |  13 F                |   109.87
+    2 N                |   1 B                |  14 F                |   109.87
+    9 N                |   1 B                |  13 F                |   109.87
+    9 N                |   1 B                |  14 F                |   109.87
+   13 F                |   1 B                |  14 F                |   110.29
+    1 B                |   2 N                |   3 C                |   126.93
+    1 B                |   2 N                |   6 C                |   124.80
+    3 C                |   2 N                |   6 C                |   108.27
+    2 N                |   3 C                |   4 C                |   110.18
+    2 N                |   3 C                |  15 H                |   120.84
+    4 C                |   3 C                |  15 H                |   128.98
+    3 C                |   4 C                |   5 C                |   106.85
+    3 C                |   4 C                |  16 H                |   125.62
+    5 C                |   4 C                |  16 H                |   127.53
+    4 C                |   5 C                |   6 C                |   106.86
+    4 C                |   5 C                |  17 H                |   127.89
+    6 C                |   5 C                |  17 H                |   125.25
+    2 N                |   6 C                |   5 C                |   107.84
+    2 N                |   6 C                |   7 C                |   121.23
+    5 C                |   6 C                |   7 C                |   130.93
+    6 C                |   7 C                |   8 C                |   120.94
+    6 C                |   7 C                |  18 H                |   119.53
+    8 C                |   7 C                |  18 H                |   119.53
+    7 C                |   8 C                |   9 N                |   121.23
+    7 C                |   8 C                |  12 C                |   130.93
+    9 N                |   8 C                |  12 C                |   107.84
+    1 B                |   9 N                |   8 C                |   124.80
+    1 B                |   9 N                |  10 C                |   126.93
+    8 C                |   9 N                |  10 C                |   108.27
+    9 N                |  10 C                |  11 C                |   110.18
+    9 N                |  10 C                |  19 H                |   120.84
+   11 C                |  10 C                |  19 H                |   128.98
+   10 C                |  11 C                |  12 C                |   106.85
+   10 C                |  11 C                |  20 H                |   125.62
+   12 C                |  11 C                |  20 H                |   127.53
+    8 C                |  12 C                |  11 C                |   106.86
+    8 C                |  12 C                |  21 H                |   125.25
+   11 C                |  12 C                |  21 H                |   127.89
+ ------------------------------------------------------------------------------
+                            number of included internuclear angles:         39
+ ==============================================================================
+
+
+
+ ------------------------------------------------------------------------
+ input_parse: unknown directive cosmos                                                                                                                                                                                                                                                                            0
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+  current input line : 
+    64: cosmos
+ ------------------------------------------------------------------------
+ ------------------------------------------------------------------------
+ There is an error in the input file
+ ------------------------------------------------------------------------
+ For more information see the NWChem manual at https://github.com/nwchemgit/nwchem/wiki
+
+
+ For further details see manual section:                                                                                                                                                                                                                                                                
