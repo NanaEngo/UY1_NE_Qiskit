@@ -40,6 +40,7 @@ Département de Physique\\ Université de Yaoundé I}
 Novembre 2024
 }%
 %\titlegraphic{\includegraphics{Neo_logo.jpg}}
+
 \begin{document}
 \fancypagestyle{logo}{
 \fancyhf{}
@@ -61,29 +62,29 @@ En chimie quantique, l'équation fondamentale est celle de Schrödinger dépenda
 \begin{equation}
 i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle 
 \end{equation}
-Cette équation décrit comment la fonction d'onde \(|\psi(t)\rangle\) évolue dans le temps sous l'action de l'Hamiltonien \(\hat{H}\). Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
+Cette équation décrit comment la fonction d'onde $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\hat{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
 
 Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
 \begin{equation}
 \hat{H} |\psi\rangle = E |\psi\rangle .
 \end{equation}
-Ici, l’hamiltonien \(\hat{H}\) est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et \(\hbar\) sont égales à 1) (voir la \autoref{fig:interactionqc}):
+Ici, l’hamiltonien $\hat{H}$ est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et $\hbar$ sont égales à 1) (voir la \autoref{fig:interactionqc}):
 ```{=tex}
 \begin{equation}
-\hat{H} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+\hat{H} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
 \end{equation}
 ```
 où,
-- \(N\) est le nombre d'électrons;
-- \(M\) est le nombre de noyaux;
-- \(M_A\) est le rapport entre la masse du noyau \(A\) et celle de l'électron;
-- \(Z_A\) est le numéro atomique du noyau \(A\);
-- \(r_{iA}\) est la distance entre l’électron \(i\) et le noyau \(A\);
-- \(R_{AB}\) est la distance entre les noyaux \(A\) et \(B\).
+- $N$ est le nombre d'électrons;
+- $M$ est le nombre de noyaux;
+- $M_A$ est le rapport entre la masse du noyau $A$ et celle de l'électron;
+- $Z_A$ est le numéro atomique du noyau $A$;
+- $r_{iA}$ est la distance entre l’électron $i$ et le noyau $A$;
+- $R_{AB}$ est la distance entre les noyaux $A$ et $B$.
 
 \begin{figure}[tbph]
 \centering
-\includegraphics[width=0.7\linewidth]{home/taamangtchu/Documents/UY1_NE_Qiskit/Fondements_QC_2411/Graphics/Interaction_QC}
+\includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
 \caption{Illustration simplififée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
 \label{fig:interactionqc}
 \end{figure}
@@ -91,7 +92,7 @@ où,
 Les différents termes de l'Hamiltonien sont,
 1. **Énergie cinétique des électrons**
    \begin{equation}
-   -\sum_{i=1}^N \frac{1}{2} \nabla_i^2.
+   -\sum_{i=1}^N \frac12 \nabla_i^2.
    \end{equation}
 
 2. **Énergie cinétique des noyaux**
@@ -123,7 +124,7 @@ L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimi
 
 \begin{figure}[tbph]
 \centering
-\includegraphics[width=0.7\linewidth]{Graphics/BO_Interaction_QC}
+\includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
 \caption{Illustration des interactions dams l'approximation de Born-Oppenheimer.}
 \label{fig:bointeractionqc}
 \end{figure}
@@ -133,10 +134,10 @@ L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimi
 En appliquant cette approximation, le hamiltonien électronique est extrait de l'hamiltonien total :
 ```{=tex}
 \begin{equation}
-\hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
+\hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
 \end{equation}
 ```
-Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique \((E_{\text{elec}})\) est calculée pour une configuration donnée des noyaux.
+Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
 
 ### Énergie totale du système
 
@@ -147,7 +148,7 @@ E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}
 \end{equation}
 ```
 où,
-- \(E_{\text{elec}}\) est l'énergie électronique (résultat du hamiltonien électronique);
+- $E_{\text{elec}}$ est l'énergie électronique (résultat du hamiltonien électronique);
 - le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 
 ### Conséquences de l'approximation
@@ -159,7 +160,7 @@ où,
 \hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
 \end{equation}
 ```
-Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des noyaux.
+Ici, $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux.
 
 En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
 
@@ -170,18 +171,18 @@ En chimie quantique, l'étude des états excités implique de comprendre les dif
 
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.7\linewidth]{Graphics/Excited_states}
-\caption{Illustration des différences entre \(\Delta E_{\text{vertical}}\) et \(\Delta E_{\text{adiabatic}}\).}
+\includegraphics[width=0.7\linewidth]{Excited_states.pdf}
+\caption{Illustration des différences entre $\Delta E_{\text{vertical}}$ et $\Delta E_{\text{adiabatic}}$.}
 \label{fig:excitedstates}
 \end{figure}
 
 Deux types principaux d'énergies d'excitation sont distingués (voir la \autoref{fig:excitedstates}):
 
-1. **Énergie d'excitation verticale (\( \Delta E_{\text{vertical}} \))**
+1. **Énergie d'excitation verticale ($ \Delta E_{\text{vertical}} $)**
    - Correspond à l'excitation instantanée sans relaxation de la géométrie moléculaire.
    - Est mesurée directement dans les spectroscopies d'absorption.
 
-2. **Énergie d'excitation adiabatique (\( \Delta E_{\text{adiabatic}} \))**
+2. **Énergie d'excitation adiabatique ($ \Delta E_{\text{adiabatic}} $)**
    - Inclut la relaxation complète de la géométrie après excitation.
    - Est généralement inférieure à l'énergie d'excitation verticale.
 
@@ -218,7 +219,7 @@ La méthode de Hartree-Fock est une approche fondamentale qui approxime l’inte
 
 ### Fonction d'onde - Déterminant de Slater
 
-La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-\(\frac{1}{2}\). Il est défini comme suit :
+La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 ```{=tex}
 \begin{equation}
 \psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
@@ -230,7 +231,7 @@ La fonction d'onde dans cette méthode est représentée par un déterminant de 
 \end{vmatrix} ,
 \end{equation}
 ```
-où \(N\) est le nombre d'électrons, et \(\chi_i(x_j)\) représente l'orbitale de spin de l'électron \(j\) dans l'état \(i\).
+où $N$ est le nombre d'électrons, et $\chi_i(x_j)$ représente l'orbitale de spin de l'électron $j$ dans l'état $i$.
 
 ### Approche variationnelle
 
@@ -240,9 +241,9 @@ F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big) ,
 \end{equation}
 avec,
 - $d$ une densité à N-électron;
-- \(h\) le terme à un électron (énergie cinétique et interaction électron-noyau);
-- \(J_b(d)\) le terme de Coulomb (répulsion classique électron-électron);
-- \(K_b(d)\) le terme d'échange (correction purement quantique).
+- $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
+- $J_b(d)$ le terme de Coulomb (répulsion classique électron-électron);
+- $K_b(d)$ le terme d'échange (correction purement quantique).
 
 ### Équation de Hartree-Fock
 
@@ -255,31 +256,31 @@ En exprimant les orbitales comme une combinaison linéaire de fonctions de base,
 \mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\varepsilon
 \end{equation}
 où,
-- \(\mathbf{F}\) est la matrice de Fock;
-- \(\mathbf{C}\) sont les coefficients des orbitales moléculaires;
-- \(\mathbf{S}\) sont les matrice de recouvrement;
-- \(\varepsilon\) sont les énergies orbitalaires.
+- $\mathbf{F}$ est la matrice de Fock;
+- $\mathbf{C}$ sont les coefficients des orbitales moléculaires;
+- $\mathbf{S}$ sont les matrice de recouvrement;
+- $\varepsilon$ sont les énergies orbitalaires.
 
 #### Procédure auto-cohérente (SCF)
 
 La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
 
-1. **Démarrage :** Initialisation des orbitales moléculaires avec une estimation \(\mathbf{C}^{(0)}\).
-2. **Construction de \(\mathbf{F}\) :**
-   - Calcul des termes de Coulomb (\(\mathbf{J}\)) et d'échange (\(\mathbf{K}\)).
+1. **Démarrage :** Initialisation des orbitales moléculaires avec une estimation $\mathbf{C}^{(0)}$.
+2. **Construction de $\mathbf{F}$ :**
+   - Calcul des termes de Coulomb ($\mathbf{J}$) et d'échange ($\mathbf{K}$).
 3. **Équation de Roothaan-Hall :**
-   - Diagonalisation de \(\mathbf{F}\) pour obtenir les nouvelles orbitales et énergies.
+   - Diagonalisation de $\mathbf{F}$ pour obtenir les nouvelles orbitales et énergies.
 4. **Mise à jour des orbitales :**
-   - Nouvelles orbitales \(\mathbf{C}^{(k+1)}\) obtenues à partir de \(\mathbf{F}\).
+   - Nouvelles orbitales $\mathbf{C}^{(k+1)}$ obtenues à partir de $\mathbf{F}$.
 5. **Critère de convergence :**
-   - Comparer l'énergie \(E^{(k+1)}\) avec \(E^{(k)}\). Si la différence est inférieure à un seuil \(\delta\), le processus est terminé.
+   - Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si la différence est inférieure à un seuil $\delta$, le processus est terminé.
 6. **Retour en cas de non-convergence :** Si la convergence n’est pas atteinte, le cycle est répété.
 
 La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow détaillé.
 
 \begin{figure}[tbph]
 \centering
-\includegraphics[width=0.7\linewidth]{Graphics/SCF_Workflow}
+\includegraphics[width=0.7\linewidth]{SCF_Workflow.pdf}
 \caption{Workflow détaillé de la procédure SCF (Self-Consistent Field).}
 \label{fig:scfworkflow}
 \end{figure}
@@ -290,7 +291,7 @@ Pour améliorer la convergence, la méthode DIIS (Direct Inversion in the Iterat
 \begin{equation}
 e_{m+1} = \sum_{i=1}^m c_i e_i.
 \end{equation}
-avec des coefficients \(c_i\) obtenus en minimisant la norme des résidus.
+avec des coefficients $c_i$ obtenus en minimisant la norme des résidus.
 
 Lorsque la procédure SCF ne parvient pas à converger, des méthodes d'optimisation directe sont nécessaires. Ces
 méthodes sont également nécessaires pour les théories qui pourraient ne pas avoir de solution SCF. Dans de tels cas, des
@@ -347,7 +348,7 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + 
 |\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
 \end{equation}
 
-   - \(\hat{T}\) est l’opérateur de cluster, décomposé comme suit :
+   - $\hat{T}$ est l’opérateur de cluster, décomposé comme suit :
 \begin{equation}
 \hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
 \end{equation}
@@ -393,10 +394,10 @@ Les méthodes pour l'état fondamental visent à résoudre avec précision l'éq
 ```
    - **CI complète (Full CI, FCI)**
      - Inclut toutes les excitations possibles.
-     - Offre une précision maximale mais a un coût combinatoire (\(O(N!)\)).
+     - Offre une précision maximale mais a un coût combinatoire ($O(N!)$).
    - **CI tronquée (CI Single, CIS; CI Single and Double, CISD)** 
      - Limite les excitations aux simples (CIS) ou doubles (CISD).
-     - CISD est d'ordre \(O(N^6)\) mais n'est pas cohérente en taille, ce qui limite son applicabilité pour les grands systèmes.
+     - CISD est d'ordre $O(N^6)$ mais n'est pas cohérente en taille, ce qui limite son applicabilité pour les grands systèmes.
 
 2. **Théorie de la perturbation de Møller-Plesset (MP2)**
    - Approche basée sur une correction perturbative à la méthode de Hartree-Fock :
@@ -407,7 +408,7 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i +
 ```
    - Avantages :
      - Capture efficacement la corrélation dynamique.
-     - Échelle modérée (\(O(N^5)\)).
+     - Échelle modérée ($O(N^5)$).
    - Limites :
      - Inefficace pour les systèmes fortement corrélés.
 
@@ -417,14 +418,14 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i +
 |\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
 \end{equation}
 
-   - L'opérateur de cluster \(\hat{T}\) est défini comme :
+   - L'opérateur de cluster $\hat{T}$ est défini comme :
 \begin{equation}
 \hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
 \end{equation}
 
    - Variantes :
-     - **CCSD** (singles et doubles, \(O(N^6)\)).
-     - **CCSD(T)** (avec triples perturbatifs, \(O(N^7)\)).
+     - **CCSD** (singles et doubles, $O(N^6)$).
+     - **CCSD(T)** (avec triples perturbatifs, $O(N^7)$).
    - Avantages :
      - Très précis pour les systèmes faiblement corrélés.
    - Limites :
@@ -432,7 +433,7 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i +
 
 Le \autoref{tab:groundstate} présente une comparaison des méthodes d'état fondamental.
 ```{=tex}
-\begin{table}[h!]
+\begin{table}[htpb]
 \centering
 \caption{Comparaison des méthodes d'état fondamental}
 \begin{tabular}{@{}lccc@{}}
@@ -502,9 +503,9 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
 \Delta E = \epsilon_a - \epsilon_i + f_{xc}
 \end{equation}
 
-   - \(f_{xc}\) : Terme de correction fonctionnelle pour les états excités.
+   - $f_{xc}$ : Terme de correction fonctionnelle pour les états excités.
    - Avantages :
-     - Efficace en termes de coût computationnel (\(O(N^3)\)).
+     - Efficace en termes de coût computationnel ($O(N^3)$).
      - Bien adaptée pour les excitations localisées.
    - Limites :
      - Moins précise pour les excitations de transfert de charge ou de Rydberg.
@@ -520,7 +521,7 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
    - Avantages :
      - Capture avec précision les corrélations statiques et dynamiques.
    - Limites :
-     - Très coûteux (\(O(N^6)\)).
+     - Très coûteux ($O(N^6)$).
 
 4. **Méthodes basées sur des déterminants multiples (MCSCF, CASSCF) :**
    - Approches multiréférentielles adaptées aux systèmes où plusieurs états électroniques participent (corrélation statique forte).
@@ -542,15 +543,15 @@ La fonction d'onde OO-CIS est similaire à celle de CIS classique, mais elle est
 \end{equation}
 ```
 où,
-- \(C_0\) est le coefficient du déterminant de référence (état fondamental Hartree-Fock);
-- \(C_{ia}\) sont les coefficients associés aux excitations simples d'un électron de l'orbitale occupée \(i\) vers l'orbitale inoccupée \(a\);
-- les orbitales \(|\psi_0\rangle\) et \(|\psi_i^a\rangle\) sont réoptimisées pour refléter l'état excité.
+- $C_0$ est le coefficient du déterminant de référence (état fondamental Hartree-Fock);
+- $C_{ia}$ sont les coefficients associés aux excitations simples d'un électron de l'orbitale occupée $i$ vers l'orbitale inoccupée $a$;
+- les orbitales $|\psi_0\rangle$ et $|\psi_i^a\rangle$ sont réoptimisées pour refléter l'état excité.
 
 #### Optimisation des orbitales
 
-L’objectif est de minimiser l'énergie de l'état excité ciblé par rapport aux coefficients \(C_{ia}\) et aux orbitales moléculaires. Cela nécessite une approche variationnelle qui résout simultanément :
+L’objectif est de minimiser l'énergie de l'état excité ciblé par rapport aux coefficients $C_{ia}$ et aux orbitales moléculaires. Cela nécessite une approche variationnelle qui résout simultanément :
 
-1. les amplitudes des coefficients de configuration \(C_{ia}\),
+1. les amplitudes des coefficients de configuration $C_{ia}$,
 2. les coefficients des orbitales moléculaires optimisées.
 
 La condition d’orthogonalité entre les orbitales d’occupation et de désexcitation est préservée pendant l’optimisation.
@@ -576,7 +577,7 @@ En conclusion, OO-CIS est une amélioration significative de CIS, particulièrem
 La \autoref{tab:excited_state_methods} établit un comparatif des méthodes pour les états excités.
 
 ```{=tex}
-\begin{table}[h!]
+\begin{table}[htpb]
 \centering
 \caption{Comparaison des méthodes pour les états excités}
 \begin{tabular}{@{}lccc@{}}
@@ -602,10 +603,10 @@ MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & 
     \begin{minipage}{0.9\textwidth}
         \textbf{Résumé des méthodes pour les états excités :}
         \begin{itemize}
-            \item \textbf{CIS :} Simples excitations (\(O(N^3)\)), mais néglige les corrélations dynamiques.
-            \item \textbf{OO-CIS :} Introduit une relaxation orbitale pour mieux décrire les états excités (\(O(N^4)\)).
+            \item \textbf{CIS :} Simples excitations ($O(N^3)$), mais néglige les corrélations dynamiques.
+            \item \textbf{OO-CIS :} Introduit une relaxation orbitale pour mieux décrire les états excités ($O(N^4)$).
             \item \textbf{TDDFT :} Capture efficacement les excitations localisées, mais moins adaptée aux transferts de charge.
-            \item \textbf{EOM-CCSD :} Très précis pour les états excités corrélés (\(O(N^6)\)).
+            \item \textbf{EOM-CCSD :} Très précis pour les états excités corrélés ($O(N^6)$).
             \item \textbf{MCSCF / CASSCF :} Idéal pour les systèmes fortement corrélés.
         \end{itemize}
     \end{minipage}
@@ -617,3 +618,5 @@ MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & 
 Les méthodes pour les états excités varient en termes de précision et de coût computationnel, permettant un choix adapté selon la complexité du système et les objectifs de l'étude. Les approches avancées comme EOM-CCSD offrent une grande précision mais nécessitent des ressources importantes, tandis que TDDFT représente un compromis idéal pour de nombreux systèmes pratiques.
 
 \end{markdown}
+
+\end{document}
