@@ -474,6 +474,12 @@ Les méthodes pour l’état fondamental offrent une hiérarchie de précisions 
 
 ##  Méthodes pour les états excités
 
+Compte tenu des approximations et des défis liés à la théorie de la structure électronique de l'état fondamental, il n'est pas surprenant que la théorie de la structure électronique des états excités soit plus complexe et nécessite à la fois de nouvelles approches théoriques et davantage de nuances. Alors qu'il n'existe généralement qu'un seul état fondamental global, les états excités sont nombreux, avec des caractéristiques de spin et de symétrie différentes. Ils sont également plus difficiles à optimiser, car ils ne correspondent pas à des minima d'énergie, mais se situent souvent au niveau de points selles (saddle points). 
+
+L'une des approches les plus simples consiste, une fois encore, à examiner les racines supérieures des équations de CI (Interaction de Configuration). Cependant, en fonction de l'ordre des excitations pris en compte dans la CI, cette méthode peut, comme pour l'état fondamental, devenir prohibitivement coûteuse. Trouver un équilibre entre les coûts computationnels, la précision et les aspects physiques spécifiques d'un calcul donné a largement motivé le développement des méthodes pour les états excités. 
+
+Bien qu'il existe des centaines de méthodes possibles pour calculer les propriétés de la chimie quantique des états excités, nous nous concentrerons ici sur les méthodes qui tentent de capturer les effets des relaxations orbitalaires après excitation ainsi que sur certaines des méthodes les plus couramment utilisées pour les états excités. Les relaxations orbitalaires peuvent avoir des conséquences énergétiques significatives, en particulier pour les états de transfert de charge (CT) [29, 47–51], et elles sont également nécessaires si une méthode peu coûteuse pour les états excités doit jouer un rôle similaire à celui de la théorie Hartree-Fock pour l'état fondamental, en fournissant une base où les effets de corrélation peuvent être ajoutés sur une structure orbitaire déjà relaxée.
+
 Les méthodes pour les états excités visent à déterminer les énergies et propriétés des états électroniques excités d'un système moléculaire. Contrairement aux méthodes de l’état fondamental, ces approches doivent capturer avec précision les transitions électroniques et inclure la corrélation électronique des états excités.
 
 #### Principales méthodes
