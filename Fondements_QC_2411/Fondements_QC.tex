@@ -287,6 +287,10 @@ e_{m+1} = \sum_{i=1}^m c_i e_i
 \]
 avec des coefficients \(c_i\) obtenus en minimisant la norme des résidus.
 
+Lorsque la procédure SCF ne parvient pas à converger, des méthodes d'optimisation directe sont nécessaires. Ces
+méthodes sont également nécessaires pour les théories qui pourraient ne pas avoir de solution SCF. Dans de tels cas, des
+méthodes telles que la descente de gradient, Newton-Raphson, BFGS ou la méthode de descente géométrique peuvent être utilisées.
+
 On retient que la méthode de Hartree-Fock est la base de nombreuses approches modernes en chimie quantique, servant de point de départ pour des méthodes plus précises qui incorporent la corrélation électronique.
 
 
