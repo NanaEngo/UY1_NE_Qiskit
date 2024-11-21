@@ -526,46 +526,6 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
    - Approches multiréférentielles adaptées aux systèmes où plusieurs états électroniques participent (corrélation statique forte).
    - Utilisées pour les spectres complexes (métaux de transition, dissociations).
 
-La \autoref{tab:excited_state_methods} établit un comparatif des méthodes pour les états excités.
-
-```{=tex}
-\begin{table}[h!]
-\centering
-\caption{Comparaison des méthodes pour les états excités}
-\begin{tabular}{@{}lccc@{}}
-\toprule
-\textbf{Méthode}         & \textbf{Type d’excitation}   & \textbf{Précision}   & \textbf{Coût computationnel} \\ \midrule
-CIS                      & Simples                     & Faible               & $O(N^3)$                     \\
-OO-CIS                   & Simples + Relaxation        & Modérée à Bonne      & $O(N^4)$                     \\
-TDDFT                    & Dynamique                   & Modérée              & $O(N^3)$ à $O(N^4)$          \\
-EOM-CCSD                 & Statique + Dynamique        & Très bonne           & $O(N^6)$                     \\
-MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & Très élevé                    \\ \bottomrule
-\end{tabular}
-\label{tab:excited_state_methods}
-\end{table}
-
-
-\begin{tikzpicture}[
-    mybox/.style={draw=black, thick, fill=yellow!10, rounded corners, inner sep=10pt},
-    title/.style={font=\bfseries}
-]
-
-% Box
-\node[mybox] (box) {
-    \begin{minipage}{0.9\textwidth}
-        \textbf{Résumé des méthodes pour les états excités :}
-        \begin{itemize}
-            \item \textbf{CIS :} Simples excitations (\(O(N^3)\)), mais néglige les corrélations dynamiques.
-            \item \textbf{OO-CIS :} Introduit une relaxation orbitale pour mieux décrire les états excités (\(O(N^4)\)).
-            \item \textbf{TDDFT :} Capture efficacement les excitations localisées, mais moins adaptée aux transferts de charge.
-            \item \textbf{EOM-CCSD :} Très précis pour les états excités corrélés (\(O(N^6)\)).
-            \item \textbf{MCSCF / CASSCF :} Idéal pour les systèmes fortement corrélés.
-        \end{itemize}
-    \end{minipage}
-};
-\end{tikzpicture}
-
-```
 
 ### CIS à orbitales optimisées (OO-CIS)
 
@@ -613,6 +573,46 @@ La condition d’orthogonalité entre les orbitales d’occupation et de désexc
 
 En conclusion, OO-CIS est une amélioration significative de CIS, particulièrement utile pour les états excités nécessitant une relaxation orbitale importante. Bien qu'elle ne capture pas tous les effets de corrélation, elle représente une étape intermédiaire efficace entre les méthodes CIS classiques et les approches entièrement corrélées. 
 
+La \autoref{tab:excited_state_methods} établit un comparatif des méthodes pour les états excités.
+
+```{=tex}
+\begin{table}[h!]
+\centering
+\caption{Comparaison des méthodes pour les états excités}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Méthode}         & \textbf{Type d’excitation}   & \textbf{Précision}   & \textbf{Coût computationnel} \\ \midrule
+CIS                      & Simples                     & Faible               & $O(N^3)$                     \\
+OO-CIS                   & Simples + Relaxation        & Modérée à Bonne      & $O(N^4)$                     \\
+TDDFT                    & Dynamique                   & Modérée              & $O(N^3)$ à $O(N^4)$          \\
+EOM-CCSD                 & Statique + Dynamique        & Très bonne           & $O(N^6)$                     \\
+MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & Très élevé                    \\ \bottomrule
+\end{tabular}
+\label{tab:excited_state_methods}
+\end{table}
+
+
+\begin{tikzpicture}[
+    mybox/.style={draw=black, thick, fill=yellow!10, rounded corners, inner sep=10pt},
+    title/.style={font=\bfseries}
+]
+
+% Box
+\node[mybox] (box) {
+    \begin{minipage}{0.9\textwidth}
+        \textbf{Résumé des méthodes pour les états excités :}
+        \begin{itemize}
+            \item \textbf{CIS :} Simples excitations (\(O(N^3)\)), mais néglige les corrélations dynamiques.
+            \item \textbf{OO-CIS :} Introduit une relaxation orbitale pour mieux décrire les états excités (\(O(N^4)\)).
+            \item \textbf{TDDFT :} Capture efficacement les excitations localisées, mais moins adaptée aux transferts de charge.
+            \item \textbf{EOM-CCSD :} Très précis pour les états excités corrélés (\(O(N^6)\)).
+            \item \textbf{MCSCF / CASSCF :} Idéal pour les systèmes fortement corrélés.
+        \end{itemize}
+    \end{minipage}
+};
+\end{tikzpicture}
+
+```
 
 Les méthodes pour les états excités varient en termes de précision et de coût computationnel, permettant un choix adapté selon la complexité du système et les objectifs de l'étude. Les approches avancées comme EOM-CCSD offrent une grande précision mais nécessitent des ressources importantes, tandis que TDDFT représente un compromis idéal pour de nombreux systèmes pratiques.
 
