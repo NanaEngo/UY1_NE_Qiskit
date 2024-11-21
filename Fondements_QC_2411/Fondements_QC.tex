@@ -25,6 +25,10 @@
 	pdfkeywords={Hamiltonien, Approximation BO, HF, Etat fondamental, Etat excité}, % Mots clés
 	pdftitle=Fondements et méthodes en chimie quantique computationnelle V2411 % Titre
 }
+% Prise en compte du numéro de la section dans les différentes numérotations
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
 %
 \frenchbsetup{StandardLayout}
 %
@@ -62,7 +66,7 @@ Département de Physique\\ Université de Yaoundé I}
 \fancypagestyle{logo}{
 \fancyhf{}
 \fancyhead[LE,LO]{\includegraphics[scale=.3]{Neo_logo}}
-\fancyhead[RE,RO]{\thepage}
+\fancyhead[RE,RO]{\thepage}d'état
 \fancyhead[C]{Nana Engo}
 }
 \pagestyle{logo}
@@ -78,7 +82,7 @@ En chimie quantique, l'équation fondamentale est celle de Schrödinger dépenda
 \begin{equation}
 i\hbar \pdv{t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle .
 \end{equation}
-Cette équation décrit comment la focntion d'état $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\hat{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
+Cette équation décrit comment la fonction d'état $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\hat{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
 
 Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
 \begin{equation}
@@ -220,14 +224,14 @@ Les différents types d'excitations électroniques sont les suivantes:
    - Application : Utilisées en spectroscopie XANES ou EXAFS pour sonder les environnements locaux.
 
 4. **Excitations de Rydberg**
-   - Un électron est excité vers un orbital situé loin du noyau, ayant une focntion d'état diffuse.
+   - Un électron est excité vers un orbital situé loin du noyau, ayant une fonction d'état diffuse.
    - Application : Observées dans des atomes ou des molécules diluées à haute énergie.
 
 On retient que les excitations électroniques jouent un rôle central dans la description des propriétés moléculaires. Comprendre leur nature et leur classification permet d’exploiter leurs caractéristiques dans les domaines comme la spectroscopie, les matériaux fonctionnels et la chimie computationnelle.
 
-Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème électronique ne peut pas être résolu analytiquement pour les systèmes multi-électroniques, même pour l'état fondamental, et nécessite donc des approximations. Il existe une multitude de méthodes reposant sur divers types et niveaux d'approximations. Ces méthodes peuvent être classées en deux grandes catégories : celles basées sur la focntion d'état et celles basées sur la théorie de la fonctionnelle de densité (DFT). Ces dernières, regroupées sous l'égide de la **DFT**, sont de loin les plus couramment utilisées. Cependant, les fonctionnelles de densité sont, en pratique, approximatives, et les résultats peuvent être sensibles au choix de l'approximation fonctionnelle utilisée. En revanche, la DFT présente l'avantage majeur d'un coût computationnel relativement faible, les coûts des fonctionnelles modernes augmentant selon une loi de puissance de troisième ou quatrième ordre ($\mathcal{O}(N^3$ ou $\mathcal{O}(N^4$) par rapport à la taille du système, en fonction de l'approximation et des détails de l'implémentations.
+Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème électronique ne peut pas être résolu analytiquement pour les systèmes multi-électroniques, même pour l'état fondamental, et nécessite donc des approximations. Il existe une multitude de méthodes reposant sur divers types et niveaux d'approximations. Ces méthodes peuvent être classées en deux grandes catégories : celles basées sur la fonction d'état et celles basées sur la théorie de la fonctionnelle de densité (DFT). Ces dernières, regroupées sous l'égide de la **DFT**, sont de loin les plus couramment utilisées. Cependant, les fonctionnelles de densité sont, en pratique, approximatives, et les résultats peuvent être sensibles au choix de l'approximation fonctionnelle utilisée. En revanche, la DFT présente l'avantage majeur d'un coût computationnel relativement faible, les coûts des fonctionnelles modernes augmentant selon une loi de puissance de troisième ou quatrième ordre ($\mathcal{O}(N^3$ ou $\mathcal{O}(N^4$) par rapport à la taille du système, en fonction de l'approximation et des détails de l'implémentations.
 
-Les méthodes basées sur la focntion d'état peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la focntion d'état sont construites à partir de la méthode de Hartree-Fock.
+Les méthodes basées sur la fonction d'état peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la fonction d'état sont construites à partir de la méthode de Hartree-Fock.
 
 ## Méthode de Hartree-Fock
 
@@ -235,7 +239,7 @@ La méthode de Hartree-Fock est une approche fondamentale qui approxime l’inte
 
 ### Fonction d'onde - Déterminant de Slater
 
-La focntion d'état dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
+La fonction d'état dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 ```{=tex}
 \begin{equation}
 \psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
@@ -323,7 +327,7 @@ Malgré l'approximation relativement rudimentaire du champ électronique par la 
 E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
 \end{equation}
 ```
- D'autres méthodes basées sur la focntion d'état (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
+ D'autres méthodes basées sur la fonction d'état (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
  
  Les deux types de corrélation sont:
 
@@ -399,10 +403,10 @@ DFT                    & Approximative               & Variable            & $O(
 
 Les méthodes pour l'état fondamental visent à résoudre avec précision l'équation de Schrödinger pour les systèmes multi-électroniques, en incluant la corrélation électronique qui manque dans la méthode Hartree-Fock. Ces approches capturent différents niveaux de corrélation, allant de la dynamique à la statique, et offrent un compromis entre précision et coût computationnel.
 
-### Méthodes basées sur la focntion d'état
+### Méthodes basées sur la fonction d'état
 
 1. **Interaction de configuration (CI)**
-   - Cette méthode construit la focntion d'état comme une combinaison linéaire de déterminants excités :
+   - Cette méthode construit la fonction d'état comme une combinaison linéaire de déterminants excités :
 ```{=tex}
 \begin{equation}
 |\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
@@ -552,7 +556,7 @@ OO-CIS aborde cette limitation en optimisant simultanément les orbitales moléc
 
 #### Fonction d'onde
 
-La focntion d'état OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
+La fonction d'état OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
 ```{=tex}
 \begin{equation}
 |\psi_{\text{OO-CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle ,
