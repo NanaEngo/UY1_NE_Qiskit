@@ -58,31 +58,28 @@ Novembre 2024
 
 
 En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
-
 \[
-i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle
+i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle 
 \]
-
 Cette équation décrit comment la fonction d'onde \(|\psi(t)\rangle\) évolue dans le temps sous l'action de l'Hamiltonien \(\hat{H}\). Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
 
 Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
-
 \[
-\hat{H} |\psi\rangle = E |\psi\rangle
+\hat{H} |\psi\rangle = E |\psi\rangle .
 \]
-
 Ici, l’hamiltonien \(\hat{H}\) est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et \(\hbar\) sont égales à 1) (voir la \autoref{fig:interactionqc}):
-
+```{=tex}
 \[
 \hat{H} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
 \]
-
-- \(N\) : Nombre d'électrons
-- \(M\) : Nombre de noyaux
-- \(M_A\) : Rapport entre la masse du noyau \(A\) et celle de l'électron
-- \(Z_A\) : Numéro atomique du noyau \(A\)
-- \(r_{iA}\) : Distance entre l’électron \(i\) et le noyau \(A\)
-- \(R_{AB}\) : Distance entre les noyaux \(A\) et \(B\)
+```
+où,
+- \(N\) est le nombre d'électrons;
+- \(M\) est le nombre de noyaux;
+- \(M_A\) est le rapport entre la masse du noyau \(A\) et celle de l'électron;
+- \(Z_A\) est le numéro atomique du noyau \(A\);
+- \(r_{iA}\) est la distance entre l’électron \(i\) et le noyau \(A\);
+- \(R_{AB}\) est la distance entre les noyaux \(A\) et \(B\).
 
 \begin{figure}[tbph]
 \centering
@@ -92,30 +89,29 @@ Ici, l’hamiltonien \(\hat{H}\) est exprimé comme suit, en unités atomiques (
 \end{figure}
 
 Les différents termes de l'Hamiltonien sont,
-
 1. **Énergie cinétique des électrons**
    \[
-   -\sum_{i=1}^N \frac{1}{2} \nabla_i^2
+   -\sum_{i=1}^N \frac{1}{2} \nabla_i^2.
    \]
 
 2. **Énergie cinétique des noyaux**
    \[
-   -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2
+   -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 .
    \]
 
 3. **Interaction Coulombienne électron-noyau**
    \[
-   -\sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}}
+   -\sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} .
    \]
 
 4. **Répulsion électron-électron**
    \[
-   \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}}
+   \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
    \]
 
 5. **Répulsion noyau-noyau**
    \[
-   \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+   \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}} .
    \]
 
 L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
@@ -135,11 +131,11 @@ L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimi
 ### Hamiltonien réduit
 
 En appliquant cette approximation, le hamiltonien électronique est extrait de l'hamiltonien total :
-
+```{=tex}
 \[
-\hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}}
+\hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
 \]
-
+```
 Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique \((E_{\text{elec}})\) est calculée pour une configuration donnée des noyaux.
 
 ### Énergie totale du système
@@ -303,25 +299,24 @@ On retient que la méthode de Hartree-Fock est la base de nombreuses approches m
 
 ## Corrélation électronique
 
-La corrélation électronique est la différence entre l'énergie réelle d'un système multi-électronique et l'énergie prédite par la méthode de Hartree-Fock. Cette dernière ne prend en compte qu'une interaction moyenne entre électrons et néglige les fluctuations instantanées des mouvements électroniques. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
-
+Malgré l'approximation relativement rudimentaire du champ électronique par la méthode de Hartree-Fock, celle-ci constitue un point de départ solide pour des méthodes plus avancées et capture déjà une grande partie de l’énergie *réelle* du système. La différence entre les valeurs propres réelles de l’Hamiltonien et l’énergie Hartree-Fock est décrite comme l’**énergie de corrélation**. D'autres méthodes basées sur la fonction d'onde (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
 \[
 E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}
 \]
 
-#### Types de corrélation
+Les deux types de corrélation sont:
 
-1. **Corrélation statique (forte corrélation) :**
+1. **Corrélation statique (forte corrélation)**
    - Présente dans les systèmes où une seule configuration électronique n’est pas suffisante pour décrire correctement l’état quantique.
    - Typique des systèmes avec plusieurs états électroniques dégénérés ou quasi-dégénérés (par exemple, les molécules proches de la dissociation).
 
-2. **Corrélation dynamique (faible corrélation) :**
+2. **Corrélation dynamique (faible corrélation)**
    - Due aux fluctuations instantanées de la répulsion électron-électron.
    - Même lorsque la configuration Hartree-Fock est une bonne approximation qualitative, la corrélation dynamique est nécessaire pour affiner les prédictions quantitatives.
 
-#### Méthodes pour inclure la corrélation
+### Méthodes pour inclure la corrélation
 
-1. **Interaction de configuration (CI) :**
+1. **Interaction de configuration (CI)**
    - Considère des excitations électroniques au-delà du déterminant de Hartree-Fock.
    - Exemple : CI complète (Full CI), CI singles and doubles (CISD).
 
@@ -331,28 +326,24 @@ E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}
 
    - Limitation : Échelle combinatoire (inapplicable aux grands systèmes).
 
-2. **Théorie de la perturbation de Møller-Plesset (MP2) :**
+2. **Théorie de la perturbation de Møller-Plesset (MP2)**
    - Approche de la corrélation dynamique en ajoutant un terme perturbatif à l'hamiltonien de Hartree-Fock.
    - Correction d'ordre 2 donnée par :
-
 \[
 E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\epsilon_i + \epsilon_j - \epsilon_a - \epsilon_b}
 \]
-
    - Avantage : Efficace pour les systèmes faibles à modérément corrélés.
    - Limitation : Ne fonctionne pas bien pour les systèmes fortement corrélés.
 
-3. **Méthodes de Cluster Couplé (CC) :**
+3. **Méthodes de Cluster Couplé (CC)**
    - Approche hiérarchique, construisant la fonction d’onde à partir d’un opérateur exponentiel :
-
 \[
 |\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle
 \]
 
    - \(\hat{T}\) est l’opérateur de cluster, décomposé comme suit :
-
 \[
-\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots
+\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots.
 \]
 
    - Exemple : CCSD (singles et doubles), CCSD(T) (avec correction perturbative des triples).
