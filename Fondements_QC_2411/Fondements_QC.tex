@@ -480,57 +480,7 @@ L'une des approches les plus simples consiste, une fois encore, à examiner les 
 
 Bien qu'il existe des centaines de méthodes possibles pour calculer les propriétés de la chimie quantique des états excités, nous nous concentrerons ici sur les méthodes qui tentent de capturer les effets des relaxations orbitalaires après excitation ainsi que sur certaines des méthodes les plus couramment utilisées pour les états excités. Les relaxations orbitalaires peuvent avoir des conséquences énergétiques significatives, en particulier pour les états de transfert de charge (CT), et elles sont également nécessaires si une méthode peu coûteuse pour les états excités doit jouer un rôle similaire à celui de la théorie Hartree-Fock pour l'état fondamental, en fournissant une base où les effets de corrélation peuvent être ajoutés sur une structure orbitaire déjà relaxée.
 
-
-### CIS à orbitales optimisées (OO-CIS)
-
-La méthode **CIS à orbitales optimisées (OO-CIS)** est une extension de la méthode **Configuration Interaction Singles (CIS)**, qui vise à corriger l'une des principales limitations de CIS classique : le manque de relaxation orbitale après excitation. Dans la méthode CIS classique, les orbitales moléculaires utilisées restent celles optimisées pour l'état fondamental Hartree-Fock, ce qui peut entraîner des erreurs significatives, notamment pour les états de transfert de charge (CT) ou les excitations avec de fortes distorsions structurelles.
-
-OO-CIS aborde cette limitation en optimisant simultanément les orbitales moléculaires pour l’état excité ciblé.
-
-#### Fonction d'onde
-
-La fonction d'onde OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
-
-\[
-|\psi_{\text{OO-CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle
-\]
-
-où :
-- \(C_0\) est le coefficient du déterminant de référence (état fondamental Hartree-Fock),
-- \(C_{ia}\) sont les coefficients associés aux excitations simples d'un électron de l'orbitale occupée \(i\) vers l'orbitale inoccupée \(a\),
-- Les orbitales \(|\psi_0\rangle\) et \(|\psi_i^a\rangle\) sont réoptimisées pour refléter l'état excité.
-
-#### Optimisation des orbitales
-
-L’objectif est de minimiser l'énergie de l'état excité ciblé par rapport aux coefficients \(C_{ia}\) et aux orbitales moléculaires. Cela nécessite une approche variationnelle qui résout simultanément :
-
-1. Les amplitudes des coefficients de configuration \(C_{ia}\),
-2. Les coefficients des orbitales moléculaires optimisées.
-
-La condition d’orthogonalité entre les orbitales d’occupation et de désexcitation est préservée pendant l’optimisation.
-
-#### Avantages de OO-CIS
-
-1. **Relaxation orbitale incluse :**
-   - Les orbitales sont optimisées pour mieux représenter l'état excité, ce qui améliore la précision par rapport à CIS classique.
-
-2. **Meilleure description des états de transfert de charge (CT) :**
-   - Les relaxations orbitalaires permettent de mieux capturer les effets énergétiques associés aux transferts électroniques.
-
-3. **Base pour des méthodes corrélées :**
-   - OO-CIS peut servir de point de départ pour des méthodes plus sophistiquées, comme EOM-CCSD ou des approches multiréférentielles.
-
-#### Limites
-
-- OO-CIS reste limité aux excitations simples et ne capture pas les corrélations dynamiques.
-- L'optimisation conjointe des orbitales et des configurations peut être numériquement coûteuse et nécessite des algorithmes robustes.
-
-#### Conclusion
-
-OO-CIS est une amélioration significative de CIS, particulièrement utile pour les états excités nécessitant une relaxation orbitale importante. Bien qu'elle ne capture pas tous les effets de corrélation, elle représente une étape intermédiaire efficace entre les méthodes CIS classiques et les approches entièrement corrélées. 
-
-
-#### Principales méthodes
+### Principales méthodes
 
 1. **Méthode CIS (Configuration Interaction Singles) :**
    - Approche simple qui inclut uniquement des excitations simples depuis l’état fondamental Hartree-Fock.
@@ -614,6 +564,55 @@ MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & 
 \end{tikzpicture}
 
 ```
+
+### CIS à orbitales optimisées (OO-CIS)
+
+La méthode **CIS à orbitales optimisées (OO-CIS)** est une extension de la méthode **Configuration Interaction Singles (CIS)**, qui vise à corriger l'une des principales limitations de CIS classique : le manque de relaxation orbitale après excitation. Dans la méthode CIS classique, les orbitales moléculaires utilisées restent celles optimisées pour l'état fondamental Hartree-Fock, ce qui peut entraîner des erreurs significatives, notamment pour les états de transfert de charge (CT) ou les excitations avec de fortes distorsions structurelles.
+
+OO-CIS aborde cette limitation en optimisant simultanément les orbitales moléculaires pour l’état excité ciblé.
+
+#### Fonction d'onde
+
+La fonction d'onde OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
+```{=tex}
+\[
+|\psi_{\text{OO-CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle ,
+\]
+```
+où,
+- \(C_0\) est le coefficient du déterminant de référence (état fondamental Hartree-Fock);
+- \(C_{ia}\) sont les coefficients associés aux excitations simples d'un électron de l'orbitale occupée \(i\) vers l'orbitale inoccupée \(a\);
+- les orbitales \(|\psi_0\rangle\) et \(|\psi_i^a\rangle\) sont réoptimisées pour refléter l'état excité.
+
+#### Optimisation des orbitales
+
+L’objectif est de minimiser l'énergie de l'état excité ciblé par rapport aux coefficients \(C_{ia}\) et aux orbitales moléculaires. Cela nécessite une approche variationnelle qui résout simultanément :
+
+1. les amplitudes des coefficients de configuration \(C_{ia}\),
+2. les coefficients des orbitales moléculaires optimisées.
+
+La condition d’orthogonalité entre les orbitales d’occupation et de désexcitation est préservée pendant l’optimisation.
+
+#### Avantages de OO-CIS
+
+1. **Relaxation orbitale incluse**
+   - Les orbitales sont optimisées pour mieux représenter l'état excité, ce qui améliore la précision par rapport à CIS classique.
+
+2. **Meilleure description des états de transfert de charge (CT)**
+   - Les relaxations orbitalaires permettent de mieux capturer les effets énergétiques associés aux transferts électroniques.
+
+3. **Base pour des méthodes corrélées**
+   - OO-CIS peut servir de point de départ pour des méthodes plus sophistiquées, comme EOM-CCSD ou des approches multiréférentielles.
+
+#### Limites
+
+- OO-CIS reste limité aux excitations simples et ne capture pas les corrélations dynamiques.
+- L'optimisation conjointe des orbitales et des configurations peut être numériquement coûteuse et nécessite des algorithmes robustes.
+
+OO-CIS est une amélioration significative de CIS, particulièrement utile pour les états excités nécessitant une relaxation orbitale importante. Bien qu'elle ne capture pas tous les effets de corrélation, elle représente une étape intermédiaire efficace entre les méthodes CIS classiques et les approches entièrement corrélées. 
+
+
+
 
 Les méthodes pour les états excités varient en termes de précision et de coût computationnel, permettant un choix adapté selon la complexité du système et les objectifs de l'étude. Les approches avancées comme EOM-CCSD offrent une grande précision mais nécessitent des ressources importantes, tandis que TDDFT représente un compromis idéal pour de nombreux systèmes pratiques.
 
