@@ -164,51 +164,6 @@ E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}
 
 Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des noyaux.
 
-#### Schéma explicatif en TikZ
-
-Voici une représentation graphique en TikZ pour illustrer l'approximation de Born-Oppenheimer.
-
-```latex
-\begin{tikzpicture}[
-    nucleus/.style={circle, draw=red, fill=red!30, minimum size=20pt, inner sep=0pt},
-    electron/.style={circle, draw=blue, fill=blue!30, minimum size=10pt, inner sep=0pt},
-    motion/.style={->, thick, dashed},
-    param/.style={->, thick},
-    textlabel/.style={font=\small}
-]
-
-% Nucleus
-\node[nucleus, label=above:{$Z_A$}] (nucleus1) at (0,0) {};
-\node[nucleus, label=above:{$Z_B$}] (nucleus2) at (4,0) {};
-
-% Electrons
-\node[electron, label=below:{$e^-$}] (electron1) at (1,-2) {};
-\node[electron, label=below:{$e^-$}] (electron2) at (3,-2) {};
-
-% Electron motion
-\draw[motion] (electron1) to[out=-30,in=-150] (electron2);
-\draw[motion] (electron2) to[out=-150,in=-30] (electron1);
-
-% Nucleus motion
-\draw[motion] (nucleus1) to[out=20,in=160] (nucleus2);
-\draw[motion] (nucleus2) to[out=160,in=20] (nucleus1);
-
-% Parameters
-\draw[param] (nucleus1) -- (electron1) node[midway, left, textlabel] {Paramètre $r_{iA}$};
-\draw[param] (nucleus2) -- (electron2) node[midway, right, textlabel] {Paramètre $r_{iB}$};
-
-% Labels
-\node[textlabel] at (2,-3) {Mouvement rapide des électrons};
-\node[textlabel] at (2,1) {Mouvement lent des noyaux};
-
-\end{tikzpicture}
-
-```
-
-### Résumé
-
-L'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
-
-Si vous souhaitez approfondir un aspect ou ajouter une autre représentation, n'hésitez pas à le demander !
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
 
 \end{markdown}
