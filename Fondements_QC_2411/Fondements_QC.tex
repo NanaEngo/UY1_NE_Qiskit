@@ -215,5 +215,77 @@ Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème �
 
 Les méthodes basées sur la fonction d'onde peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la fonction d'onde sont construites à partir de la méthode de Hartree-Fock.
 
+## Méthode de Hartree-Fock
+
+La méthode de Hartree-Fock est une approche fondamentale qui approxime l’interaction électron-électron dans un système moléculaire. Elle repose sur l'idée de champ moyen (**mean-field**), où chaque électron ressent une répulsion moyenne des autres électrons tout en respectant le principe de symétrie antisymétrique de Pauli.
+
+#### Fonction d'onde - Déterminant de Slater
+
+La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-\(\frac{1}{2}\). Il est défini comme suit :
+
+\[
+\psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\chi_1(x_1) & \chi_2(x_1) & \cdots & \chi_N(x_1) \\
+\chi_1(x_2) & \chi_2(x_2) & \cdots & \chi_N(x_2) \\
+\vdots & \vdots & \ddots & \vdots \\
+\chi_1(x_N) & \chi_2(x_N) & \cdots & \chi_N(x_N)
+\end{vmatrix}
+\]
+où \(N\) est le nombre d'électrons, et \(\chi_i(x_j)\) représente l'orbitale de spin de l'électron \(j\) dans l'état \(i\).
+
+#### Approche variationnelle
+
+L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
+
+\[
+F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big)
+\]
+avec,
+- \(h\) : Terme à un électron (énergie cinétique et interaction électron-noyau).
+- \(J_b(d)\) : Terme de Coulomb (répulsion classique électron-électron).
+- \(K_b(d)\) : Terme d'échange (correction purement quantique).
+
+#### Équation de Hartree-Fock
+
+En minimisant l'énergie totale, on obtient l'équation de Hartree-Fock pour les orbitales moléculaires :
+
+\[
+F|\psi_a\rangle = \epsilon_a|\psi_a\rangle
+\]
+
+En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cette équation devient l'équation de Roothaan-Hall :
+
+\[
+\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\epsilon
+\]
+où :
+- \(\mathbf{F}\) : Matrice de Fock
+- \(\mathbf{C}\) : Coefficients des orbitales moléculaires
+- \(\mathbf{S}\) : Matrice de recouvrement
+- \(\epsilon\) : Énergies orbitalaires
+
+#### Procédure auto-cohérente (SCF)
+
+La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF). À chaque itération :
+1. Une estimation initiale des orbitales est utilisée pour construire \(\mathbf{F}\).
+2. Les nouvelles orbitales sont obtenues en diagonalant \(\mathbf{F}\).
+3. Le processus est répété jusqu'à convergence de l'énergie.
+
+#### Accélération : Méthode DIIS
+
+Pour améliorer la convergence, la méthode DIIS (Direct Inversion in the Iterative Subspace) est souvent utilisée. Elle minimise les résidus de chaque itération en combinant les solutions précédentes :
+
+\[
+e_{m+1} = \sum_{i=1}^m c_i e_i
+\]
+
+avec des coefficients \(c_i\) obtenus en minimisant la norme des résidus.
+
+### Conclusion
+
+La méthode de Hartree-Fock est la base de nombreuses approches modernes en chimie quantique, servant de point de départ pour des méthodes plus précises qui incorporent la corrélation électronique.
+
+Si vous avez besoin de diagrammes ou d'explications supplémentaires, faites-le-moi savoir !
 
 \end{markdown}
