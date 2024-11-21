@@ -1,0 +1,9 @@
+\begin{equation}
+\psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
+\begin{vmatrix}
+\chi_1(x_1) & \chi_2(x_1) & \cdots & \chi_N(x_1) \\
+\chi_1(x_2) & \chi_2(x_2) & \cdots & \chi_N(x_2) \\
+\vdots & \vdots & \ddots & \vdots \\
+\chi_1(x_N) & \chi_2(x_N) & \cdots & \chi_N(x_N)
+\end{vmatrix} ,
+\end{equation}

@@ -1,0 +1,33 @@
+\begin{table}[htpb]
+\centering
+\caption{Comparaison des méthodes d'état fondamental}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Méthode}       & \textbf{Corrélation incluse} & \textbf{Précision}  & \textbf{Coût computationnel} \\ \midrule
+Hartree-Fock           & Aucune                      & Faible              & Faible                       \\
+MP2                    & Dynamique uniquement        & Modérée             & $O(N^5)$                     \\
+CI (CISD)              & Statique + Dynamique        & Bonne               & $O(N^6)$                     \\
+CC (CCSD)              & Statique + Dynamique        & Très bonne          & $O(N^6)$ à $O(N^7)$          \\ \bottomrule
+\end{tabular}
+\label{tab:groundstate}
+\end{table}
+
+
+\begin{tikzpicture}[
+    mybox/.style={draw=black, thick, fill=blue!10, rounded corners, inner sep=10pt},
+    title/.style={font=\bfseries}
+]
+
+\node[mybox] (box) {
+    \begin{minipage}{0.9\textwidth}
+        \textbf{Résumé des méthodes d'état fondamental}
+        \begin{itemize}
+            \item \textbf{Hartree-Fock :} Point de départ pour les méthodes avancées, mais ne capture pas la corrélation.
+            \item \textbf{MP2 :} Approche perturbative efficace pour la corrélation dynamique ($O(N^5)$).
+            \item \textbf{CI :} Capture la corrélation statique et dynamique, mais coûteuse ($O(N^6)$).
+            \item \textbf{CC :} Méthode hiérarchique précise ($O(N^6)$ à $O(N^7)$).
+        \end{itemize}
+    \end{minipage}
+};
+
+\end{tikzpicture}

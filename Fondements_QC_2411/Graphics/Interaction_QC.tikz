@@ -1,0 +1,30 @@
+\begin{tikzpicture}[
+    nucleus/.style={circle, draw=red, fill=red!30, minimum size=15pt, inner sep=0pt},
+    electron/.style={circle, draw=blue, fill=blue!30, minimum size=8pt, inner sep=0pt},
+    interaction/.style={-latex, thick},
+    textlabel/.style={font=\small}
+]
+
+% Nuclei
+\node[nucleus, label=left:{$Z_A$}] (nucleus1) at (0,0) {};
+\node[nucleus, label=right:{$Z_B$}] (nucleus2) at (4,0) {};
+
+% Electrons
+\node[electron, label=below:{$e^-$}] (electron1) at (1,-2) {};
+\node[electron, label=below:{$e^-$}] (electron2) at (3,-2) {};
+
+% Interactions
+% Electron-nucleus interactions
+\draw[interaction] (electron1) -- (nucleus1) node[midway, left, textlabel] {Coulomb $-\frac{Z_A}{r_{iA}}$};
+\draw[interaction] (electron2) -- (nucleus2) node[midway, right, textlabel] {Coulomb $-\frac{Z_B}{r_{iB}}$};
+
+% Electron-electron repulsion
+\draw[interaction] (electron1) to[out=20,in=160] node[midway, above, textlabel] {$\frac{1}{r_{ij}}$} (electron2);
+
+% Nucleus-nucleus repulsion
+\draw[interaction] (nucleus1) to[out=20,in=160] node[midway, below, textlabel] {$\frac{Z_A Z_B}{R_{AB}}$} (nucleus2);
+
+% Labels
+\node[textlabel] at (1.5,1.2) {Énergie cinétique : $\sum -\frac{1}{2}\nabla^2$};
+
+\end{tikzpicture}

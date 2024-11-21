@@ -1,0 +1,30 @@
+\begin{tikzpicture}[node distance=2cm]
+
+% Configuration du style des blocs
+\tikzstyle{process} = [rectangle, draw=blue!70, fill=blue!10,
+                     rounded corners, text centered, minimum height=4em,
+                     text width=18em, drop shadow]
+\tikzstyle{arrow} = [thick, ->, >=stealth]
+\tikzstyle{decision} = [diamond, draw=orange!70, fill=orange!10,
+                        text centered, minimum height=3em, aspect=2, drop shadow]
+\tikzstyle{startstop} = [ellipse, draw=purple!70, fill=purple!10, text centered,
+                     minimum height=3em, drop shadow]
+% Nodes
+\node (start) [startstop] {Démarrage SCF : Initialiser les orbitales $\mathbf{C}^{(0)}$};
+\node (fock) [process, below of=start] {Construire la matrice de Fock $\mathbf{F}^{(k)}$};
+\node (roothaan) [process, below of=fock] {Résoudre l'équation de Roothaan-Hall : $\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\varepsilon$};
+\node (update) [process, below of=roothaan] {Mettre à jour les orbitales $\mathbf{C}^{(k+1)}$};
+\node (convergence) [decision, below of=update, yshift=-0.5cm] {Convergence atteinte ?};
+\node (end) [startstop, below of=convergence, yshift=-0.5cm] {Terminer : $\mathbf{C}$ et $\varepsilon$ convergés};
+\node (back) [process, right of=convergence, xshift=3.5cm, text width=10em] {Retourner à $\mathbf{F}^{(k)}$};
+
+% Arrows
+\draw[arrow] (start) -- (fock);
+\draw[arrow] (fock) -- (roothaan);
+\draw[arrow] (roothaan) -- (update);
+\draw[arrow] (update) -- (convergence);
+\draw[arrow] (convergence) -- node[anchor=south] {Non} (back);
+\draw[arrow] (back) |- (fock);
+\draw[arrow] (convergence) -- node[anchor=east] {Oui} (end);
+
+\end{tikzpicture}
