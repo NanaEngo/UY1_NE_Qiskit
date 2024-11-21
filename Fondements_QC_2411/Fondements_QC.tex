@@ -141,23 +141,24 @@ Cet hamiltonien électronique dépend explicitement des positions des électrons
 ### Énergie totale du système
 
 Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
-
+```{=tex}
 \[
-E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}},
 \]
-
-- \(E_{\text{elec}}\) : Énergie électronique (résultat du hamiltonien électronique).
-- Le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
+```
+où,
+- \(E_{\text{elec}}\) est l'énergie électronique (résultat du hamiltonien électronique);
+- le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 
 ### Conséquences de l'approximation
 
 - L'énergie totale est calculée pour une géométrie nucléaire fixe.
 - Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un hamiltonien nucléaire effectif :
-
+```{=tex}
 \[
-\hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\})
+\hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
 \]
-
+```
 Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des noyaux.
 
 En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
@@ -218,7 +219,7 @@ La méthode de Hartree-Fock est une approche fondamentale qui approxime l’inte
 ### Fonction d'onde - Déterminant de Slater
 
 La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-\(\frac{1}{2}\). Il est défini comme suit :
-
+```{=tex}
 \[
 \psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
@@ -226,16 +227,16 @@ La fonction d'onde dans cette méthode est représentée par un déterminant de 
 \chi_1(x_2) & \chi_2(x_2) & \cdots & \chi_N(x_2) \\
 \vdots & \vdots & \ddots & \vdots \\
 \chi_1(x_N) & \chi_2(x_N) & \cdots & \chi_N(x_N)
-\end{vmatrix}
+\end{vmatrix} ,
 \]
+```
 où \(N\) est le nombre d'électrons, et \(\chi_i(x_j)\) représente l'orbitale de spin de l'électron \(j\) dans l'état \(i\).
 
 ### Approche variationnelle
 
 L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
-
 \[
-F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big)
+F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big) ,
 \]
 avec,
 - $d$ une densité à N-électron;
@@ -247,17 +248,17 @@ avec,
 
 En minimisant l'énergie totale, on obtient l'**équation de Hartree-Fock pour les orbitales moléculaires** :
 \[
-F|\psi_a\rangle = \epsilon_a|\psi_a\rangle
+F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
 \]
 En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cette équation devient l'**équation de Roothaan-Hall** :
 \[
-\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\epsilon
+\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\varepsilon
 \]
-où :
+où,
 - \(\mathbf{F}\) est la matrice de Fock;
 - \(\mathbf{C}\) sont les coefficients des orbitales moléculaires;
 - \(\mathbf{S}\) sont les matrice de recouvrement;
-- \(\epsilon\) sont les énergies orbitalaires.
+- \(\varepsilon\) sont les énergies orbitalaires.
 
 #### Procédure auto-cohérente (SCF)
 
@@ -287,7 +288,7 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow d
 
 Pour améliorer la convergence, la méthode DIIS (Direct Inversion in the Iterative Subspace) est souvent utilisée. Elle minimise les résidus de chaque itération en combinant les solutions précédentes :
 \[
-e_{m+1} = \sum_{i=1}^m c_i e_i
+e_{m+1} = \sum_{i=1}^m c_i e_i.
 \]
 avec des coefficients \(c_i\) obtenus en minimisant la norme des résidus.
 
@@ -299,12 +300,15 @@ On retient que la méthode de Hartree-Fock est la base de nombreuses approches m
 
 ## Corrélation électronique
 
-Malgré l'approximation relativement rudimentaire du champ électronique par la méthode de Hartree-Fock, celle-ci constitue un point de départ solide pour des méthodes plus avancées et capture déjà une grande partie de l’énergie *réelle* du système. La différence entre les valeurs propres réelles de l’Hamiltonien et l’énergie Hartree-Fock est décrite comme l’**énergie de corrélation**. D'autres méthodes basées sur la fonction d'onde (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
+Malgré l'approximation relativement rudimentaire du champ électronique par la méthode de Hartree-Fock, celle-ci constitue un point de départ solide pour des méthodes plus avancées et capture déjà une grande partie de l’énergie *réelle* du système. La différence entre les valeurs propres réelles de l’Hamiltonien et l’énergie Hartree-Fock est décrite comme l’**énergie de corrélation**.
+```{=tex}
 \[
-E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}
+E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
 \]
-
-Les deux types de corrélation sont:
+```
+ D'autres méthodes basées sur la fonction d'onde (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
+ 
+ Les deux types de corrélation sont:
 
 1. **Corrélation statique (forte corrélation)**
    - Présente dans les systèmes où une seule configuration électronique n’est pas suffisante pour décrire correctement l’état quantique.
@@ -319,31 +323,33 @@ Les deux types de corrélation sont:
 1. **Interaction de configuration (CI)**
    - Considère des excitations électroniques au-delà du déterminant de Hartree-Fock.
    - Exemple : CI complète (Full CI), CI singles and doubles (CISD).
-
+```{=tex}
 \[
-|\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots
+|\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
 \]
-
+```
    - Limitation : Échelle combinatoire (inapplicable aux grands systèmes).
 
 2. **Théorie de la perturbation de Møller-Plesset (MP2)**
    - Approche de la corrélation dynamique en ajoutant un terme perturbatif à l'hamiltonien de Hartree-Fock.
    - Correction d'ordre 2 donnée par :
+```{=tex}
 \[
-E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\epsilon_i + \epsilon_j - \epsilon_a - \epsilon_b}
+E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \epsilon_a - \varepsilon_b} .
 \]
+```
    - Avantage : Efficace pour les systèmes faibles à modérément corrélés.
    - Limitation : Ne fonctionne pas bien pour les systèmes fortement corrélés.
 
 3. **Méthodes de Cluster Couplé (CC)**
    - Approche hiérarchique, construisant la fonction d’onde à partir d’un opérateur exponentiel :
 \[
-|\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle
+|\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
 \]
 
    - \(\hat{T}\) est l’opérateur de cluster, décomposé comme suit :
 \[
-\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots.
+\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
 \]
 
    - Exemple : CCSD (singles et doubles), CCSD(T) (avec correction perturbative des triples).
