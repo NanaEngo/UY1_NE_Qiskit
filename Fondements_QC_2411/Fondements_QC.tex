@@ -430,16 +430,21 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i +
    - Limites :
      - Coût prohibitif pour les grands systèmes.
 
-#### Comparaison des méthodes d'état fondamental
+Le \autoref{tab:groundstate} présente une comparaison des méthodes d'état fondamental.
 
-| Méthode       | Corrélation incluse     | Précision    | Coût Computationnel       |
-|---------------|-------------------------|--------------|---------------------------|
-| Hartree-Fock  | Aucune                 | Faible       | Faible                    |
-| MP2           | Dynamique uniquement   | Modérée      | \(O(N^5)\)                |
-| CI (CISD)     | Statique + Dynamique   | Bonne        | \(O(N^6)\)                |
-| CC (CCSD)     | Statique + Dynamique   | Très bonne   | \(O(N^6)\) à \(O(N^7)\)   |
-
-#### Encadré résumant les concepts clés (format TikZ)
+\begin{table}[h!]
+\centering
+\caption{Comparaison des méthodes d'état fondamental}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Méthode}       & \textbf{Corrélation incluse} & \textbf{Précision}  & \textbf{Coût computationnel} \\ \midrule
+Hartree-Fock           & Aucune                      & Faible              & Faible                       \\
+MP2                    & Dynamique uniquement        & Modérée             & $O(N^5)$                     \\
+CI (CISD)              & Statique + Dynamique        & Bonne               & $O(N^6)$                     \\
+CC (CCSD)              & Statique + Dynamique        & Très bonne          & $O(N^6)$ à $O(N^7)$          \\ \bottomrule
+\end{tabular}
+\label{tab:groundstate}
+\end{table}
 
 
 ```{=tex}
