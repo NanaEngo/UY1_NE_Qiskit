@@ -378,7 +378,105 @@ DFT                    & Approximative               & Variable            & $O(
 \end{table}
 ```
 
-La corrélation électronique est essentielle pour capturer les propriétés moléculaires avec précision. Les méthodes disponibles offrent un compromis entre coût et précision, permettant de choisir l’approche la mieux adaptée au système étudié.
+## Méthodes pour l'état fondamental
 
+Les méthodes pour l'état fondamental en chimie quantique computationnelle visent à résoudre avec précision l'équation de Schrödinger pour les systèmes multi-électroniques, en incluant la corrélation électronique qui manque dans la méthode Hartree-Fock. Ces approches capturent différents niveaux de corrélation, allant de la dynamique à la statique, et offrent un compromis entre précision et coût computationnel.
+
+#### Méthodes basées sur la fonction d'onde
+
+1. **Interaction de configuration (CI) :**
+   - Cette méthode construit la fonction d'onde comme une combinaison linéaire de déterminants excités :
+
+\[
+|\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots
+\]
+
+   - **CI complète (Full CI)** :
+     - Inclut toutes les excitations possibles.
+     - Offre une précision maximale mais a un coût combinatoire (\(O(N!)\)).
+   - **CI tronquée (CIS, CISD)** :
+     - Limite les excitations aux simples (CIS) ou doubles (CISD).
+     - CISD est d'ordre \(O(N^6)\) mais n'est pas cohérente en taille, ce qui limite son applicabilité pour les grands systèmes.
+
+2. **Théorie de la perturbation de Møller-Plesset (MP2) :**
+   - Approche basée sur une correction perturbative à la méthode de Hartree-Fock :
+
+\[
+E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\epsilon_i + \epsilon_j - \epsilon_a - \epsilon_b}
+\]
+
+   - Avantages :
+     - Capture efficacement la corrélation dynamique.
+     - Échelle modérée (\(O(N^5)\)).
+   - Limites :
+     - Inefficace pour les systèmes fortement corrélés.
+
+3. **Cluster Couplé (CC) :**
+   - Méthode basée sur l'application d'un opérateur exponentiel pour inclure les excitations :
+
+\[
+|\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle
+\]
+
+   - L'opérateur de cluster \(\hat{T}\) est défini comme :
+
+\[
+\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots
+\]
+
+   - Variantes :
+     - **CCSD** (singles et doubles, \(O(N^6)\)).
+     - **CCSD(T)** (avec triples perturbatifs, \(O(N^7)\)).
+   - Avantages :
+     - Très précis pour les systèmes faiblement corrélés.
+   - Limites :
+     - Coût prohibitif pour les grands systèmes.
+
+#### Comparaison des méthodes d'état fondamental
+
+| Méthode       | Corrélation incluse     | Précision    | Coût Computationnel       |
+|---------------|-------------------------|--------------|---------------------------|
+| Hartree-Fock  | Aucune                 | Faible       | Faible                    |
+| MP2           | Dynamique uniquement   | Modérée      | \(O(N^5)\)                |
+| CI (CISD)     | Statique + Dynamique   | Bonne        | \(O(N^6)\)                |
+| CC (CCSD)     | Statique + Dynamique   | Très bonne   | \(O(N^6)\) à \(O(N^7)\)   |
+
+#### Encadré résumant les concepts clés (format TikZ)
+
+Voici un encadré en TikZ résumant les concepts de cette section.
+
+```latex
+\documentclass[tikz,border=5mm]{standalone}
+\begin{document}
+
+\begin{tikzpicture}[
+    mybox/.style={draw=black, thick, fill=blue!10, rounded corners, inner sep=10pt},
+    title/.style={font=\bfseries}
+]
+
+% Box
+\node[mybox] (box) {
+    \begin{minipage}{0.9\textwidth}
+        \textbf{Résumé des méthodes d'état fondamental :}
+        \begin{itemize}
+            \item \textbf{Hartree-Fock :} Point de départ pour les méthodes avancées, mais ne capture pas la corrélation.
+            \item \textbf{MP2 :} Approche perturbative efficace pour la corrélation dynamique (\(O(N^5)\)).
+            \item \textbf{CI :} Capture la corrélation statique et dynamique, mais coûteuse (\(O(N^6)\)).
+            \item \textbf{CC :} Méthode hiérarchique précise (\(O(N^6)\) à \(O(N^7)\)).
+        \end{itemize}
+    \end{minipage}
+};
+
+% Title
+\node[title] at (box.north) [yshift=0.7cm] {Résumé des méthodes d'état fondamental};
+
+\end{tikzpicture}
+
+\end{document}
+```
+
+### Conclusion
+
+Les méthodes pour l’état fondamental offrent une hiérarchie de précisions et de coûts computationnels, permettant aux chercheurs de choisir l’approche la plus adaptée selon leurs besoins. Si vous souhaitez approfondir l'un des concepts ou des diagrammes spécifiques, faites-le-moi savoir !
 
 \end{markdown}
