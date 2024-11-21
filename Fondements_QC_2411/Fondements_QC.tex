@@ -1,0 +1,250 @@
+\makeatletter\def\input@path{
+	{./Graphics/}
+}\makeatother%%
+%
+\documentclass[12pt,a4paper]{report} 
+\usepackage{graphicx,amsmath,physics,fancyhdr,booktabs,hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[svgnames,x11names,rgb,table]{xcolor}
+\usepackage[margin=2cm,includefoot,includehead]{geometry}
+\usepackage[hybrid,texMathDollars,texMathSingleBackslash,rawAttribute]{markdown}
+\usepackage{tikz,tikzscale}
+\usetikzlibrary{shapes.geometric, arrows, positioning, shadows, fit}
+%
+\hypersetup{ 
+	colorlinks=true, 	% colorise les liens 
+	breaklinks=true,	% permet le retour la ligne dans les liens trop longs 
+	urlcolor= Blue3,  	% couleur des hyperliens (inclut dans x11names de xcolor
+	linkcolor= Blue3, 	% couleur des liens internes 
+	citecolor=Blue3,	% couleur des liens de citation
+	%   bookmarksopen=true,	% ouvre les signets PDF au départ 
+	pdfauthor={Nana Engo},	% Nom de l'auteur du texte
+	pdfsubject={Chimie quantique computationnelle},%
+	pdfkeywords={Hamiltonien, Approximation BO, HF, Etat fondamental, Etat excité}, % Mots clés
+	pdftitle=Fondements et méthodes en chimie quantique computationnelle V2411 % Titre
+}
+%
+\frenchbsetup{StandardLayout}
+%
+%
+\title{\textcolor{blue}{Fondements et méthodes en chimie quantique computationnelle}}
+\author{Nana Engo\\serge.nana-engo@facsciences-uy1.cm\\
+Département de Physique\\ Université de Yaoundé I}
+\date{
+ \vspace{5cm} % Whitespace between the title block and the publisher
+\begin{center}
+\includegraphics[scale=1]{Neo_logo.jpg}
+\end{center}
+Novembre 2024
+}%
+%\titlegraphic{\includegraphics{Neo_logo.jpg}}
+\begin{document}
+\fancypagestyle{logo}{
+\fancyhf{}
+\fancyhead[LE,LO]{\includegraphics[scale=.3]{Neo_logo.jpg}}
+\fancyhead[RE,RO]{\thepage}
+\fancyhead[C]{Nana Engo}
+}
+\pagestyle{logo}
+
+\arrayrulecolor{LawnGreen}\renewcommand{\arraystretch}{1.2}
+
+\maketitle\begin{markdown}
+
+
+## Fondements de la chimie quantique
+
+
+En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
+
+\[
+i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle
+\]
+
+Cette équation décrit comment la fonction d'onde \(|\psi(t)\rangle\) évolue dans le temps sous l'action de l'Hamiltonien \(\hat{H}\). Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
+
+Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
+
+\[
+\hat{H} |\psi\rangle = E |\psi\rangle
+\]
+
+Ici, l’hamiltonien \(\hat{H}\) est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et \(\hbar\) sont égales à 1) (voir la \autoref{fig:interactionqc}):
+
+\[
+\hat{H} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+\]
+
+- \(N\) : Nombre d'électrons
+- \(M\) : Nombre de noyaux
+- \(M_A\) : Rapport entre la masse du noyau \(A\) et celle de l'électron
+- \(Z_A\) : Numéro atomique du noyau \(A\)
+- \(r_{iA}\) : Distance entre l’électron \(i\) et le noyau \(A\)
+- \(R_{AB}\) : Distance entre les noyaux \(A\) et \(B\)
+
+\begin{figure}[tbph]
+\centering
+\includegraphics[width=0.7\linewidth]{home/taamangtchu/Documents/UY1_NE_Qiskit/Fondements_QC_2411/Graphics/Interaction_QC}
+\caption{Illustration simplififée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
+\label{fig:interactionqc}
+\end{figure}
+
+Les différents termes de l'Hamiltonien sont,
+
+1. **Énergie cinétique des électrons**
+   \[
+   -\sum_{i=1}^N \frac{1}{2} \nabla_i^2
+   \]
+
+2. **Énergie cinétique des noyaux**
+   \[
+   -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2
+   \]
+
+3. **Interaction Coulombienne électron-noyau**
+   \[
+   -\sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}}
+   \]
+
+4. **Répulsion électron-électron**
+   \[
+   \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}}
+   \]
+
+5. **Répulsion noyau-noyau**
+   \[
+   \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+   \]
+
+L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
+
+
+## Approximation de Born-Oppenheimer
+
+L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons, se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l’équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
+
+\begin{figure}[tbph]
+\centering
+\includegraphics[width=0.7\linewidth]{Graphics/BO_Interaction_QC}
+\caption{Illustration des interactions dams l'approximation de Born-Oppenheimer.}
+\label{fig:bointeractionqc}
+\end{figure}
+
+### Hamiltonien réduit
+
+En appliquant cette approximation, le hamiltonien électronique est extrait de l'hamiltonien total :
+
+\[
+\hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}}
+\]
+
+Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique \((E_{\text{elec}})\) est calculée pour une configuration donnée des noyaux.
+
+### Énergie totale du système
+
+Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
+
+\[
+E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+\]
+
+- \(E_{\text{elec}}\) : Énergie électronique (résultat du hamiltonien électronique).
+- Le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
+
+### Conséquences de l'approximation
+
+- L'énergie totale est calculée pour une géométrie nucléaire fixe.
+- Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un hamiltonien nucléaire effectif :
+
+\[
+\hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\})
+\]
+
+Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des noyaux.
+
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
+
+
+## Types d'excitations
+
+En chimie quantique, l'étude des états excités implique de comprendre les différentes façons dont un électron peut être excité dans une molécule. Les excitations électroniques se produisent lorsque des électrons sont transférés d'un orbital occupé vers un orbital inoccupé, et elles influencent directement les propriétés optiques et spectroscopiques des systèmes étudiés.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\linewidth]{Graphics/Excited_states}
+\caption{Illustration des différences entre \(\Delta E_{\text{vertical}}\) et \(\Delta E_{\text{adiabatic}}\).}
+\label{fig:excitedstates}
+\end{figure}
+
+Deux types principaux d'énergies d'excitation sont distingués (
+
+1. **Énergie d'excitation verticale (\( \Delta E_{\text{vertical}} \)) :**
+   - Correspond à l'excitation instantanée sans relaxation de la géométrie moléculaire.
+   - Est mesurée directement dans les spectroscopies d'absorption.
+
+2. **Énergie d'excitation adiabatique (\( \Delta E_{\text{adiabatic}} \)) :**
+   - Inclut la relaxation complète de la géométrie après excitation.
+   - Est généralement inférieure à l'énergie d'excitation verticale.
+
+#### Types d'excitations électroniques
+
+1. **Excitations de valence :**
+   - Un électron passe d'un orbital de valence (par exemple, HOMO) à un autre orbital de valence (par exemple, LUMO).
+   - Exemple typique : HOMO → LUMO.
+
+2. **Excitations de transfert de charge (CT - Charge Transfer) :**
+   - L'électron est transféré entre des orbitales situées dans des régions spatialement séparées de la molécule.
+   - Impliquent une séparation importante de charges, et peuvent être intramoléculaires ou intermoléculaires.
+
+3. **Excitations de cœur :**
+   - Un électron est excité d'un orbital de cœur (profondement lié) à un orbital de valence ou de conduction.
+   - Nécessitent de hautes énergies (souvent dans le domaine des rayons X).
+
+4. **Excitations de Rydberg :**
+   - Un électron est excité vers un orbital situé loin du noyau, ayant une fonction d'onde diffuse.
+
+#### Représentation graphique des énergies verticales et adiabatiques
+
+Voici un diagramme en **TikZ** pour illustrer les différences entre \(\Delta E_{\text{vertical}}\) et \(\Delta E_{\text{adiabatic}}\).
+
+```latex
+\documentclass[tikz,border=5mm]{standalone}
+\begin{document}
+
+\begin{tikzpicture}[scale=1.2]
+    % Energy levels
+    \draw[thick] (0,0) -- (2,0) node[midway,below] {État fondamental};
+    \draw[thick] (0,3) -- (2,3) node[midway,above] {État excité};
+
+    % Vertical transition
+    \draw[->,thick] (1,0) -- (1,3) node[midway,right] {$\Delta E_{\text{vertical}}$};
+
+    % Adiabatic transition
+    \draw[dashed,thick] (1,3) -- (2.5,2);
+    \draw[->,thick] (1,0) -- (2.5,2) node[midway,right] {$\Delta E_{\text{adiabatic}}$};
+
+    % Reaction coordinate
+    \draw[thick,->] (-1,0) -- (4,0) node[right] {Coordonnée réactionnelle};
+
+    % Label for geometries
+    \node[align=center] at (-0.5,-0.3) {Géométrie \\ de départ};
+    \node[align=center] at (3,2.7) {Géométrie \\ relaxée};
+\end{tikzpicture}
+
+\end{document}
+```
+
+#### Applications des différents types d'excitation
+
+- **Excitations de valence :** Fréquentes dans les molécules organiques, elles déterminent les transitions UV-visible.
+- **Excitations de transfert de charge :** Cruciales dans les systèmes photovoltaïques ou les complexes de coordination.
+- **Excitations de cœur :** Utilisées en spectroscopie XANES ou EXAFS pour sonder les environnements locaux.
+- **Excitations de Rydberg :** Observées dans des atomes ou des molécules diluées à haute énergie.
+
+### Résumé
+
+Les excitations électroniques jouent un rôle central dans la description des propriétés moléculaires. Comprendre leur nature et leur classification permet d’exploiter leurs caractéristiques dans les domaines comme la spectroscopie, les matériaux fonctionnels et la chimie computationnelle.
+
+\end{markdown}
