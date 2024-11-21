@@ -359,20 +359,25 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + 
    - Approximations fonctionnelles pour inclure la corrélation électronique.
    - Moins coûteux, mais dépend fortement du choix de la fonctionnelle.
 
-#### Comparaison des méthodes
+Le \autoref{tab:comparaison} établit une comparaison des méthodes pour inclure la corrélation électronique.
 
-| Méthode       | Corrélation incluse     | Précision    | Coût Computationnel       |
-|---------------|-------------------------|--------------|---------------------------|
-| Hartree-Fock  | Aucune                 | Faible       | Faible                    |
-| MP2           | Dynamique uniquement   | Modérée      | \(O(N^5)\)                |
-| CI (CISD)     | Statique + Dynamique   | Bonne        | \(O(N^6)\)                |
-| CC (CCSD)     | Statique + Dynamique   | Très bonne   | \(O(N^6)\) à \(O(N^7)\)   |
-| DFT           | Approximative          | Variable     | \(O(N^3)\) à \(O(N^4)\)   |
+\begin{table}[h!]
+\centering
+\caption{Comparaison des méthodes pour inclure la corrélation électronique}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Méthode}       & \textbf{Corrélation incluse} & \textbf{Précision}  & \textbf{Coût computationnel} \\ \midrule
+Hartree-Fock           & Aucune                      & Faible              & Faible                       \\
+MP2                    & Dynamique uniquement        & Modérée             & $O(N^5)$                     \\
+CI (CISD)              & Statique + Dynamique        & Bonne               & $O(N^6)$                     \\
+CC (CCSD)              & Statique + Dynamique        & Très bonne          & $O(N^6)$ à $O(N^7)$          \\
+DFT                    & Approximative               & Variable            & $O(N^3)$ à $O(N^4)$          \\ \bottomrule
+\end{tabular}
+\label{tab:comparaison}
+\end{table}
 
-#### Conclusion
 
-La corrélation électronique est cruciale pour capturer les propriétés moléculaires avec précision. Les méthodes disponibles offrent un compromis entre coût et précision, permettant de choisir l’approche la mieux adaptée au système étudié.
+La corrélation électronique est essentielle pour capturer les propriétés moléculaires avec précision. Les méthodes disponibles offrent un compromis entre coût et précision, permettant de choisir l’approche la mieux adaptée au système étudié.
 
-Si vous souhaitez des graphiques ou des explications supplémentaires, comme un diagramme comparatif ou une figure pour les contributions corrélatives, faites-le-moi savoir !
 
 \end{markdown}
