@@ -1,3 +1,0 @@
-\begin{equation}
-E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}},
-\end{equation}

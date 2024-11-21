@@ -1,3 +1,0 @@
-\begin{equation}
-E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \epsilon_a - \varepsilon_b} .
-\end{equation}
