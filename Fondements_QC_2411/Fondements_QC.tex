@@ -536,6 +536,7 @@ La \autoref{tab:excited_state_methods} établit un comparatif des méthodes pour
 \toprule
 \textbf{Méthode}         & \textbf{Type d’excitation}   & \textbf{Précision}   & \textbf{Coût computationnel} \\ \midrule
 CIS                      & Simples                     & Faible               & $O(N^3)$                     \\
+OO-CIS                   & Simples + Relaxation        & Modérée à Bonne      & $O(N^4)$                     \\
 TDDFT                    & Dynamique                   & Modérée              & $O(N^3)$ à $O(N^4)$          \\
 EOM-CCSD                 & Statique + Dynamique        & Très bonne           & $O(N^6)$                     \\
 MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & Très élevé                    \\ \bottomrule
@@ -610,8 +611,6 @@ La condition d’orthogonalité entre les orbitales d’occupation et de désexc
 - L'optimisation conjointe des orbitales et des configurations peut être numériquement coûteuse et nécessite des algorithmes robustes.
 
 En conclusion, OO-CIS est une amélioration significative de CIS, particulièrement utile pour les états excités nécessitant une relaxation orbitale importante. Bien qu'elle ne capture pas tous les effets de corrélation, elle représente une étape intermédiaire efficace entre les méthodes CIS classiques et les approches entièrement corrélées. 
-
-
 
 
 Les méthodes pour les états excités varient en termes de précision et de coût computationnel, permettant un choix adapté selon la complexité du système et les objectifs de l'étude. Les approches avancées comme EOM-CCSD offrent une grande précision mais nécessitent des ressources importantes, tandis que TDDFT représente un compromis idéal pour de nombreux systèmes pratiques.
