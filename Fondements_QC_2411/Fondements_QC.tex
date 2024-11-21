@@ -335,7 +335,7 @@ E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
    - Correction d'ordre 2 donnée par :
 ```{=tex}
 \[
-E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \epsilon_a - \varepsilon_b} .
+E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b} .
 \]
 ```
    - Avantage : Efficace pour les systèmes faibles à modérément corrélés.
@@ -394,34 +394,32 @@ Les méthodes pour l'état fondamental visent à résoudre avec précision l'éq
    - **CI complète (Full CI, FCI)**
      - Inclut toutes les excitations possibles.
      - Offre une précision maximale mais a un coût combinatoire (\(O(N!)\)).
-   - **CI tronquée (CIS, CISD)** :
+   - **CI tronquée (CI Single, CIS; CI Single and Double, CISD)** 
      - Limite les excitations aux simples (CIS) ou doubles (CISD).
      - CISD est d'ordre \(O(N^6)\) mais n'est pas cohérente en taille, ce qui limite son applicabilité pour les grands systèmes.
 
-2. **Théorie de la perturbation de Møller-Plesset (MP2) :**
+2. **Théorie de la perturbation de Møller-Plesset (MP2)**
    - Approche basée sur une correction perturbative à la méthode de Hartree-Fock :
-
+```{=tex}
 \[
-E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\epsilon_i + \epsilon_j - \epsilon_a - \epsilon_b}
+E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \epsilon_a - \varepsilon_b} .
 \]
-
+```
    - Avantages :
      - Capture efficacement la corrélation dynamique.
      - Échelle modérée (\(O(N^5)\)).
    - Limites :
      - Inefficace pour les systèmes fortement corrélés.
 
-3. **Cluster Couplé (CC) :**
+3. **Cluster Couplé (CC)**
    - Méthode basée sur l'application d'un opérateur exponentiel pour inclure les excitations :
-
 \[
-|\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle
+|\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
 \]
 
    - L'opérateur de cluster \(\hat{T}\) est défini comme :
-
 \[
-\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots
+\hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
 \]
 
    - Variantes :
@@ -443,7 +441,6 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\epsilon_i + \e
 
 #### Encadré résumant les concepts clés (format TikZ)
 
-Voici un encadré en TikZ résumant les concepts de cette section.
 
 ```latex
 \documentclass[tikz,border=5mm]{standalone}
@@ -475,8 +472,6 @@ Voici un encadré en TikZ résumant les concepts de cette section.
 \end{document}
 ```
 
-### Conclusion
-
-Les méthodes pour l’état fondamental offrent une hiérarchie de précisions et de coûts computationnels, permettant aux chercheurs de choisir l’approche la plus adaptée selon leurs besoins. Si vous souhaitez approfondir l'un des concepts ou des diagrammes spécifiques, faites-le-moi savoir !
+Les méthodes pour l’état fondamental offrent une hiérarchie de précisions et de coûts computationnels, permettant aux chercheurs de choisir l’approche la plus adaptée selon leurs besoins. 
 
 \end{markdown}
