@@ -211,4 +211,9 @@ Les différents types d'excitations électroniques sont les suivantes:
 
 On retient que les excitations électroniques jouent un rôle central dans la description des propriétés moléculaires. Comprendre leur nature et leur classification permet d’exploiter leurs caractéristiques dans les domaines comme la spectroscopie, les matériaux fonctionnels et la chimie computationnelle.
 
+Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème électronique ne peut pas être résolu analytiquement pour les systèmes multi-électroniques, même pour l'état fondamental, et nécessite donc des approximations. Il existe une multitude de méthodes reposant sur divers types et niveaux d'approximations. Ces méthodes peuvent être classées en deux grandes catégories : celles basées sur la fonction d'onde et celles basées sur la théorie de la fonctionnelle de densité (DFT). Ces dernières, regroupées sous l'égide de la **DFT**, sont de loin les plus couramment utilisées. Cependant, les fonctionnelles de densité sont, en pratique, approximatives, et les résultats peuvent être sensibles au choix de l'approximation fonctionnelle utilisée. En revanche, la DFT présente l'avantage majeur d'un coût computationnel relativement faible, les coûts des fonctionnelles modernes augmentant selon une loi de puissance de troisième ou quatrième ordre ($\mathcal{O}(N^3$ ou $\mathcal{O}(N^4$) par rapport à la taille du système, en fonction de l'approximation et des détails de l'implémentations.
+
+Les méthodes basées sur la fonction d'onde peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la fonction d'onde sont construites à partir de la méthode de Hartree-Fock.
+
+
 \end{markdown}
