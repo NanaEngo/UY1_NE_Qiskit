@@ -380,18 +380,18 @@ DFT                    & Approximative               & Variable            & $O(
 
 ## Méthodes pour l'état fondamental
 
-Les méthodes pour l'état fondamental en chimie quantique computationnelle visent à résoudre avec précision l'équation de Schrödinger pour les systèmes multi-électroniques, en incluant la corrélation électronique qui manque dans la méthode Hartree-Fock. Ces approches capturent différents niveaux de corrélation, allant de la dynamique à la statique, et offrent un compromis entre précision et coût computationnel.
+Les méthodes pour l'état fondamental visent à résoudre avec précision l'équation de Schrödinger pour les systèmes multi-électroniques, en incluant la corrélation électronique qui manque dans la méthode Hartree-Fock. Ces approches capturent différents niveaux de corrélation, allant de la dynamique à la statique, et offrent un compromis entre précision et coût computationnel.
 
-#### Méthodes basées sur la fonction d'onde
+### Méthodes basées sur la fonction d'onde
 
-1. **Interaction de configuration (CI) :**
+1. **Interaction de configuration (CI)**
    - Cette méthode construit la fonction d'onde comme une combinaison linéaire de déterminants excités :
-
+```{=tex}
 \[
-|\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots
+|\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
 \]
-
-   - **CI complète (Full CI)** :
+```
+   - **CI complète (Full CI, FCI)**
      - Inclut toutes les excitations possibles.
      - Offre une précision maximale mais a un coût combinatoire (\(O(N!)\)).
    - **CI tronquée (CIS, CISD)** :
