@@ -58,20 +58,20 @@ Novembre 2024
 
 
 En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
-\[
+\begin{equation}
 i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle 
-\]
+\end{equation}
 Cette équation décrit comment la fonction d'onde \(|\psi(t)\rangle\) évolue dans le temps sous l'action de l'Hamiltonien \(\hat{H}\). Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
 
 Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
-\[
+\begin{equation}
 \hat{H} |\psi\rangle = E |\psi\rangle .
-\]
+\end{equation}
 Ici, l’hamiltonien \(\hat{H}\) est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et \(\hbar\) sont égales à 1) (voir la \autoref{fig:interactionqc}):
 ```{=tex}
-\[
+\begin{equation}
 \hat{H} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
-\]
+\end{equation}
 ```
 où,
 - \(N\) est le nombre d'électrons;
@@ -90,29 +90,29 @@ où,
 
 Les différents termes de l'Hamiltonien sont,
 1. **Énergie cinétique des électrons**
-   \[
+   \begin{equation}
    -\sum_{i=1}^N \frac{1}{2} \nabla_i^2.
-   \]
+   \end{equation}
 
 2. **Énergie cinétique des noyaux**
-   \[
+   \begin{equation}
    -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 .
-   \]
+   \end{equation}
 
 3. **Interaction Coulombienne électron-noyau**
-   \[
+   \begin{equation}
    -\sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} .
-   \]
+   \end{equation}
 
 4. **Répulsion électron-électron**
-   \[
+   \begin{equation}
    \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
-   \]
+   \end{equation}
 
 5. **Répulsion noyau-noyau**
-   \[
+   \begin{equation}
    \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}} .
-   \]
+   \end{equation}
 
 L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
 
@@ -132,9 +132,9 @@ L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimi
 
 En appliquant cette approximation, le hamiltonien électronique est extrait de l'hamiltonien total :
 ```{=tex}
-\[
+\begin{equation}
 \hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac{1}{2} \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
-\]
+\end{equation}
 ```
 Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique \((E_{\text{elec}})\) est calculée pour une configuration donnée des noyaux.
 
@@ -142,9 +142,9 @@ Cet hamiltonien électronique dépend explicitement des positions des électrons
 
 Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
 ```{=tex}
-\[
+\begin{equation}
 E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}},
-\]
+\end{equation}
 ```
 où,
 - \(E_{\text{elec}}\) est l'énergie électronique (résultat du hamiltonien électronique);
@@ -155,9 +155,9 @@ où,
 - L'énergie totale est calculée pour une géométrie nucléaire fixe.
 - Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un hamiltonien nucléaire effectif :
 ```{=tex}
-\[
+\begin{equation}
 \hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
-\]
+\end{equation}
 ```
 Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des noyaux.
 
@@ -197,7 +197,7 @@ Les différents types d'excitations électroniques sont les suivantes:
    - Impliquent une séparation importante de charges, et peuvent être intramoléculaires ou intermoléculaires.
    - Application : Cruciales dans les systèmes photovoltaïques ou les complexes de coordination.
 
-3. **Excitations de cœur**
+3. **Excitations de coeur**
    - Un électron est excité d'un orbital de cœur (profondement lié) à un orbital de valence ou de conduction.
    - Nécessitent de hautes énergies (souvent dans le domaine des rayons X).
    - Application : Utilisées en spectroscopie XANES ou EXAFS pour sonder les environnements locaux.
@@ -220,7 +220,7 @@ La méthode de Hartree-Fock est une approche fondamentale qui approxime l’inte
 
 La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-\(\frac{1}{2}\). Il est défini comme suit :
 ```{=tex}
-\[
+\begin{equation}
 \psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
 \begin{vmatrix}
 \chi_1(x_1) & \chi_2(x_1) & \cdots & \chi_N(x_1) \\
@@ -228,16 +228,16 @@ La fonction d'onde dans cette méthode est représentée par un déterminant de 
 \vdots & \vdots & \ddots & \vdots \\
 \chi_1(x_N) & \chi_2(x_N) & \cdots & \chi_N(x_N)
 \end{vmatrix} ,
-\]
+\end{equation}
 ```
 où \(N\) est le nombre d'électrons, et \(\chi_i(x_j)\) représente l'orbitale de spin de l'électron \(j\) dans l'état \(i\).
 
 ### Approche variationnelle
 
 L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
-\[
+\begin{equation}
 F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big) ,
-\]
+\end{equation}
 avec,
 - $d$ une densité à N-électron;
 - \(h\) le terme à un électron (énergie cinétique et interaction électron-noyau);
@@ -247,13 +247,13 @@ avec,
 ### Équation de Hartree-Fock
 
 En minimisant l'énergie totale, on obtient l'**équation de Hartree-Fock pour les orbitales moléculaires** :
-\[
+\begin{equation}
 F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
-\]
+\end{equation}
 En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cette équation devient l'**équation de Roothaan-Hall** :
-\[
+\begin{equation}
 \mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\varepsilon
-\]
+\end{equation}
 où,
 - \(\mathbf{F}\) est la matrice de Fock;
 - \(\mathbf{C}\) sont les coefficients des orbitales moléculaires;
@@ -287,9 +287,9 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow d
 ### Accélération - Méthode DIIS
 
 Pour améliorer la convergence, la méthode DIIS (Direct Inversion in the Iterative Subspace) est souvent utilisée. Elle minimise les résidus de chaque itération en combinant les solutions précédentes :
-\[
+\begin{equation}
 e_{m+1} = \sum_{i=1}^m c_i e_i.
-\]
+\end{equation}
 avec des coefficients \(c_i\) obtenus en minimisant la norme des résidus.
 
 Lorsque la procédure SCF ne parvient pas à converger, des méthodes d'optimisation directe sont nécessaires. Ces
@@ -302,9 +302,9 @@ On retient que la méthode de Hartree-Fock est la base de nombreuses approches m
 
 Malgré l'approximation relativement rudimentaire du champ électronique par la méthode de Hartree-Fock, celle-ci constitue un point de départ solide pour des méthodes plus avancées et capture déjà une grande partie de l’énergie *réelle* du système. La différence entre les valeurs propres réelles de l’Hamiltonien et l’énergie Hartree-Fock est décrite comme l’**énergie de corrélation**.
 ```{=tex}
-\[
+\begin{equation}
 E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
-\]
+\end{equation}
 ```
  D'autres méthodes basées sur la fonction d'onde (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
  
@@ -324,9 +324,9 @@ E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
    - Considère des excitations électroniques au-delà du déterminant de Hartree-Fock.
    - Exemple : CI complète (Full CI), CI singles and doubles (CISD).
 ```{=tex}
-\[
+\begin{equation}
 |\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
-\]
+\end{equation}
 ```
    - Limitation : Échelle combinatoire (inapplicable aux grands systèmes).
 
@@ -334,23 +334,23 @@ E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
    - Approche de la corrélation dynamique en ajoutant un terme perturbatif à l'hamiltonien de Hartree-Fock.
    - Correction d'ordre 2 donnée par :
 ```{=tex}
-\[
+\begin{equation}
 E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab | ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \varepsilon_a - \varepsilon_b} .
-\]
+\end{equation}
 ```
    - Avantage : Efficace pour les systèmes faibles à modérément corrélés.
    - Limitation : Ne fonctionne pas bien pour les systèmes fortement corrélés.
 
 3. **Méthodes de Cluster Couplé (CC)**
    - Approche hiérarchique, construisant la fonction d’onde à partir d’un opérateur exponentiel :
-\[
+\begin{equation}
 |\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
-\]
+\end{equation}
 
    - \(\hat{T}\) est l’opérateur de cluster, décomposé comme suit :
-\[
+\begin{equation}
 \hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
-\]
+\end{equation}
 
    - Exemple : CCSD (singles et doubles), CCSD(T) (avec correction perturbative des triples).
    - Limitation : Très coûteux pour les grands systèmes.
@@ -387,9 +387,9 @@ Les méthodes pour l'état fondamental visent à résoudre avec précision l'éq
 1. **Interaction de configuration (CI)**
    - Cette méthode construit la fonction d'onde comme une combinaison linéaire de déterminants excités :
 ```{=tex}
-\[
+\begin{equation}
 |\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
-\]
+\end{equation}
 ```
    - **CI complète (Full CI, FCI)**
      - Inclut toutes les excitations possibles.
@@ -401,9 +401,9 @@ Les méthodes pour l'état fondamental visent à résoudre avec précision l'éq
 2. **Théorie de la perturbation de Møller-Plesset (MP2)**
    - Approche basée sur une correction perturbative à la méthode de Hartree-Fock :
 ```{=tex}
-\[
+\begin{equation}
 E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i + \varepsilon_j - \epsilon_a - \varepsilon_b} .
-\]
+\end{equation}
 ```
    - Avantages :
      - Capture efficacement la corrélation dynamique.
@@ -413,14 +413,14 @@ E_{\text{MP2}} = \sum_{ijab} \frac{|\langle ab || ij \rangle|^2}{\varepsilon_i +
 
 3. **Cluster Couplé (CC)**
    - Méthode basée sur l'application d'un opérateur exponentiel pour inclure les excitations :
-\[
+\begin{equation}
 |\psi_{\text{CC}}\rangle = e^{\hat{T}} |\psi_0\rangle .
-\]
+\end{equation}
 
    - L'opérateur de cluster \(\hat{T}\) est défini comme :
-\[
+\begin{equation}
 \hat{T} = \hat{T}_1 + \hat{T}_2 + \hat{T}_3 + \dots .
-\]
+\end{equation}
 
    - Variantes :
      - **CCSD** (singles et doubles, \(O(N^6)\)).
@@ -486,9 +486,9 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
    - Approche simple qui inclut uniquement des excitations simples depuis l’état fondamental Hartree-Fock.
    - Fonction d’onde approximée :
 
-\[
+\begin{equation}
 |\psi_{\text{CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle
-\]
+\end{equation}
 
    - Limites :
      - Néglige les corrélations dynamiques.
@@ -498,9 +498,9 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
    - Étend la DFT pour inclure les excitations via une réponse linéaire au potentiel externe.
    - Donne directement les énergies d'excitation :
 
-\[
+\begin{equation}
 \Delta E = \epsilon_a - \epsilon_i + f_{xc}
-\]
+\end{equation}
 
    - \(f_{xc}\) : Terme de correction fonctionnelle pour les états excités.
    - Avantages :
@@ -513,9 +513,9 @@ Bien qu'il existe des centaines de méthodes possibles pour calculer les propri�
    - Approche hautement précise basée sur le cluster couplé pour l’état fondamental.
    - Fonction d’onde des états excités construite comme une perturbation de l’état fondamental :
 
-\[
+\begin{equation}
 |\psi_{\text{EOM}}\rangle = R |\psi_{\text{CCSD}}\rangle
-\]
+\end{equation}
 
    - Avantages :
      - Capture avec précision les corrélations statiques et dynamiques.
@@ -537,9 +537,9 @@ OO-CIS aborde cette limitation en optimisant simultanément les orbitales moléc
 
 La fonction d'onde OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
 ```{=tex}
-\[
+\begin{equation}
 |\psi_{\text{OO-CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle ,
-\]
+\end{equation}
 ```
 où,
 - \(C_0\) est le coefficient du déterminant de référence (état fondamental Hartree-Fock);
