@@ -28,23 +28,40 @@
 %
 \frenchbsetup{StandardLayout}
 %
+\setcounter{secnumdepth}{3} % Pour inclure les sous-sections
+\renewcommand{\thesection}{\arabic{section}} % Numérotation des sections
+
 %
 \title{\textcolor{blue}{Fondements et méthodes en chimie quantique computationnelle}}
 \author{Nana Engo\\serge.nana-engo@facsciences-uy1.cm\\
 Département de Physique\\ Université de Yaoundé I}
+%
 \date{
- \vspace{5cm} % Whitespace between the title block and the publisher
-\begin{center}
-\includegraphics[scale=1]{Neo_logo.jpg}
-\end{center}
-Novembre 2024
-}%
+    \vspace{8cm} % Espace avant les logos
+    \begin{center}
+        \begin{minipage}{0.3\textwidth}
+        \centering
+            \includegraphics[width=.5\textwidth]{Neo_Logo.jpg}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+        \centering
+        Novembre 2024
+        \end{minipage}
+        \hfill % Séparation entre les logos
+        \begin{minipage}{0.3\textwidth}
+        \centering
+            \includegraphics[width=.4\textwidth]{UY1_Logo}
+        \end{minipage}
+    \end{center}
+}
+
 %\titlegraphic{\includegraphics{Neo_logo.jpg}}
 
 \begin{document}
 \fancypagestyle{logo}{
 \fancyhf{}
-\fancyhead[LE,LO]{\includegraphics[scale=.3]{Neo_logo.jpg}}
+\fancyhead[LE,LO]{\includegraphics[scale=.3]{Neo_logo}}
 \fancyhead[RE,RO]{\thepage}
 \fancyhead[C]{Nana Engo}
 }
@@ -57,21 +74,20 @@ Novembre 2024
 
 ## Fondements de la chimie quantique
 
-
 En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
 \begin{equation}
-i\hbar \frac{\partial}{\partial t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle 
+i\hbar \pdv{t} |\psi(t)\rangle = \hat{H} |\psi(t)\rangle .
 \end{equation}
-Cette équation décrit comment la fonction d'onde $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\hat{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
+Cette équation décrit comment la focntion d'état $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\hat{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
 
 Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
 \begin{equation}
 \hat{H} |\psi\rangle = E |\psi\rangle .
 \end{equation}
-Ici, l’hamiltonien $\hat{H}$ est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et $\hbar$ sont égales à 1) (voir la \autoref{fig:interactionqc}):
+Ici, l’Hamiltonien $\hat{H}$ est exprimé comme suit, en unités atomiques (où la charge de l'électron, la masse de l'électron et $\hbar$ sont égales à 1) (voir la \autoref{fig:interactionqc}):
 ```{=tex}
 \begin{equation}
-\hat{H} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}
+\hat{H} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}} .
 \end{equation}
 ```
 où,
@@ -85,7 +101,7 @@ où,
 \begin{figure}[tbph]
 \centering
 \includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
-\caption{Illustration simplififée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
+\caption{Illustration simplifiée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
 \label{fig:interactionqc}
 \end{figure}
 
@@ -131,13 +147,13 @@ L'**approximation de Born-Oppenheimer** est une hypothèse fondamentale en chimi
 
 ### Hamiltonien réduit
 
-En appliquant cette approximation, le hamiltonien électronique est extrait de l'hamiltonien total :
+En appliquant cette approximation, le Hamiltonien électronique est extrait de l'Hamiltonien total :
 ```{=tex}
 \begin{equation}
 \hat{H}_{\text{elec}} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
 \end{equation}
 ```
-Cet hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
+Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
 
 ### Énergie totale du système
 
@@ -148,13 +164,13 @@ E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}
 \end{equation}
 ```
 où,
-- $E_{\text{elec}}$ est l'énergie électronique (résultat du hamiltonien électronique);
+- $E_{\text{elec}}$ est l'énergie électronique (résultat du Hamiltonien électronique);
 - le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 
 ### Conséquences de l'approximation
 
 - L'énergie totale est calculée pour une géométrie nucléaire fixe.
-- Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un hamiltonien nucléaire effectif :
+- Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un Hamiltonien nucléaire effectif :
 ```{=tex}
 \begin{equation}
 \hat{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
@@ -204,14 +220,14 @@ Les différents types d'excitations électroniques sont les suivantes:
    - Application : Utilisées en spectroscopie XANES ou EXAFS pour sonder les environnements locaux.
 
 4. **Excitations de Rydberg**
-   - Un électron est excité vers un orbital situé loin du noyau, ayant une fonction d'onde diffuse.
+   - Un électron est excité vers un orbital situé loin du noyau, ayant une focntion d'état diffuse.
    - Application : Observées dans des atomes ou des molécules diluées à haute énergie.
 
 On retient que les excitations électroniques jouent un rôle central dans la description des propriétés moléculaires. Comprendre leur nature et leur classification permet d’exploiter leurs caractéristiques dans les domaines comme la spectroscopie, les matériaux fonctionnels et la chimie computationnelle.
 
-Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème électronique ne peut pas être résolu analytiquement pour les systèmes multi-électroniques, même pour l'état fondamental, et nécessite donc des approximations. Il existe une multitude de méthodes reposant sur divers types et niveaux d'approximations. Ces méthodes peuvent être classées en deux grandes catégories : celles basées sur la fonction d'onde et celles basées sur la théorie de la fonctionnelle de densité (DFT). Ces dernières, regroupées sous l'égide de la **DFT**, sont de loin les plus couramment utilisées. Cependant, les fonctionnelles de densité sont, en pratique, approximatives, et les résultats peuvent être sensibles au choix de l'approximation fonctionnelle utilisée. En revanche, la DFT présente l'avantage majeur d'un coût computationnel relativement faible, les coûts des fonctionnelles modernes augmentant selon une loi de puissance de troisième ou quatrième ordre ($\mathcal{O}(N^3$ ou $\mathcal{O}(N^4$) par rapport à la taille du système, en fonction de l'approximation et des détails de l'implémentations.
+Même après avoir appliqué l'approximation de Born-Oppenheimer, le problème électronique ne peut pas être résolu analytiquement pour les systèmes multi-électroniques, même pour l'état fondamental, et nécessite donc des approximations. Il existe une multitude de méthodes reposant sur divers types et niveaux d'approximations. Ces méthodes peuvent être classées en deux grandes catégories : celles basées sur la focntion d'état et celles basées sur la théorie de la fonctionnelle de densité (DFT). Ces dernières, regroupées sous l'égide de la **DFT**, sont de loin les plus couramment utilisées. Cependant, les fonctionnelles de densité sont, en pratique, approximatives, et les résultats peuvent être sensibles au choix de l'approximation fonctionnelle utilisée. En revanche, la DFT présente l'avantage majeur d'un coût computationnel relativement faible, les coûts des fonctionnelles modernes augmentant selon une loi de puissance de troisième ou quatrième ordre ($\mathcal{O}(N^3$ ou $\mathcal{O}(N^4$) par rapport à la taille du système, en fonction de l'approximation et des détails de l'implémentations.
 
-Les méthodes basées sur la fonction d'onde peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la fonction d'onde sont construites à partir de la méthode de Hartree-Fock.
+Les méthodes basées sur la focntion d'état peuvent offrir une précision plus élevée que la DFT, mais au prix d'un coût computationnel accru. En chimie quantique, la plupart des méthodes basées sur la focntion d'état sont construites à partir de la méthode de Hartree-Fock.
 
 ## Méthode de Hartree-Fock
 
@@ -219,7 +235,7 @@ La méthode de Hartree-Fock est une approche fondamentale qui approxime l’inte
 
 ### Fonction d'onde - Déterminant de Slater
 
-La fonction d'onde dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
+La focntion d'état dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 ```{=tex}
 \begin{equation}
 \psi(x_1, \ldots, x_N) = \frac{1}{\sqrt{N!}}
@@ -237,10 +253,10 @@ où $N$ est le nombre d'électrons, et $\chi_i(x_j)$ représente l'orbitale de s
 
 L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
 \begin{equation}
-F(d) = h + \sum_{b} \big(J_b(d) - K_b(d)\big) ,
+F(d) = h + \sum_b \big(J_b(d) - K_b(d)\big) ,
 \end{equation}
 avec,
-- $d$ une densité à N-électron;
+- $d$ une densité à N-électrons;
 - $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
 - $J_b(d)$ le terme de Coulomb (répulsion classique électron-électron);
 - $K_b(d)$ le terme d'échange (correction purement quantique).
@@ -253,34 +269,34 @@ F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
 \end{equation}
 En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cette équation devient l'**équation de Roothaan-Hall** :
 \begin{equation}
-\mathbf{F}\mathbf{C} = \mathbf{S}\mathbf{C}\varepsilon
+\vb{F}\vb{C} = \vb{S}\vb{C}\varepsilon
 \end{equation}
 où,
-- $\mathbf{F}$ est la matrice de Fock;
-- $\mathbf{C}$ sont les coefficients des orbitales moléculaires;
-- $\mathbf{S}$ sont les matrice de recouvrement;
+- $\vb{F}$ est la matrice de Fock;
+- $\vb{C}$ sont les coefficients des orbitales moléculaires;
+- $\vb{S}$ sont les matrice de recouvrement;
 - $\varepsilon$ sont les énergies orbitalaires.
 
 #### Procédure auto-cohérente (SCF)
 
 La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
 
-1. **Démarrage :** Initialisation des orbitales moléculaires avec une estimation $\mathbf{C}^{(0)}$.
-2. **Construction de $\mathbf{F}$ :**
-   - Calcul des termes de Coulomb ($\mathbf{J}$) et d'échange ($\mathbf{K}$).
+1. **Démarrage :** Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$.
+2. **Construction de $\vb{F}$ :**
+   - Calcul des termes de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
 3. **Équation de Roothaan-Hall :**
-   - Diagonalisation de $\mathbf{F}$ pour obtenir les nouvelles orbitales et énergies.
+   - Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
 4. **Mise à jour des orbitales :**
-   - Nouvelles orbitales $\mathbf{C}^{(k+1)}$ obtenues à partir de $\mathbf{F}$.
+   - Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
 5. **Critère de convergence :**
    - Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si la différence est inférieure à un seuil $\delta$, le processus est terminé.
 6. **Retour en cas de non-convergence :** Si la convergence n’est pas atteinte, le cycle est répété.
 
 La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow détaillé.
 
-\begin{figure}[tbph]
+\begin{figure}[tbh]
 \centering
-\includegraphics[width=0.7\linewidth]{SCF_Workflow.pdf}
+\includegraphics[width=0.6\linewidth]{SCF_Workflow.pdf}
 \caption{Workflow détaillé de la procédure SCF (Self-Consistent Field).}
 \label{fig:scfworkflow}
 \end{figure}
@@ -307,7 +323,7 @@ Malgré l'approximation relativement rudimentaire du champ électronique par la 
 E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
 \end{equation}
 ```
- D'autres méthodes basées sur la fonction d'onde (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
+ D'autres méthodes basées sur la focntion d'état (souvent qualifiées de méthodes **post-Hartree-Fock**) visent à intégrer cette corrélation. Ainsi, la corrélation électronique est essentielle pour améliorer la précision des calculs en chimie quantique.
  
  Les deux types de corrélation sont:
 
@@ -332,7 +348,7 @@ E_{\text{corrélation}} = E_{\text{exact}} - E_{\text{Hartree-Fock}}.
    - Limitation : Échelle combinatoire (inapplicable aux grands systèmes).
 
 2. **Théorie de la perturbation de Møller-Plesset (MP2)**
-   - Approche de la corrélation dynamique en ajoutant un terme perturbatif à l'hamiltonien de Hartree-Fock.
+   - Approche de la corrélation dynamique en ajoutant un terme perturbatif à l'Hamiltonien de Hartree-Fock.
    - Correction d'ordre 2 donnée par :
 ```{=tex}
 \begin{equation}
@@ -383,10 +399,10 @@ DFT                    & Approximative               & Variable            & $O(
 
 Les méthodes pour l'état fondamental visent à résoudre avec précision l'équation de Schrödinger pour les systèmes multi-électroniques, en incluant la corrélation électronique qui manque dans la méthode Hartree-Fock. Ces approches capturent différents niveaux de corrélation, allant de la dynamique à la statique, et offrent un compromis entre précision et coût computationnel.
 
-### Méthodes basées sur la fonction d'onde
+### Méthodes basées sur la focntion d'état
 
 1. **Interaction de configuration (CI)**
-   - Cette méthode construit la fonction d'onde comme une combinaison linéaire de déterminants excités :
+   - Cette méthode construit la focntion d'état comme une combinaison linéaire de déterminants excités :
 ```{=tex}
 \begin{equation}
 |\psi_{\text{CI}}\rangle = C_0 |\psi_0\rangle + \sum_{ia} C_{ia} |\psi_i^a\rangle + \sum_{ijab} C_{ij}^{ab} |\psi_{ij}^{ab}\rangle + \dots .
@@ -536,7 +552,7 @@ OO-CIS aborde cette limitation en optimisant simultanément les orbitales moléc
 
 #### Fonction d'onde
 
-La fonction d'onde OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
+La focntion d'état OO-CIS est similaire à celle de CIS classique, mais elle est définie dans un espace orbitalaire optimisé :
 ```{=tex}
 \begin{equation}
 |\psi_{\text{OO-CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle ,
