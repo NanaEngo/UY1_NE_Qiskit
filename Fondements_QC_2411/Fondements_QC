@@ -166,4 +166,85 @@ Ici, \(E_{\text{tot}}(\{R_A\})\) agit comme un potentiel pour le mouvement des n
 
 En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
 
+
+## Types d'excitations
+
+En chimie quantique, l'étude des états excités implique de comprendre les différentes façons dont un électron peut être excité dans une molécule. Les excitations électroniques se produisent lorsque des électrons sont transférés d'un orbital occupé vers un orbital inoccupé, et elles influencent directement les propriétés optiques et spectroscopiques des systèmes étudiés.
+
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\linewidth]{Graphics/Excited_states}
+\caption{Illustration des différences entre \(\Delta E_{\text{vertical}}\) et \(\Delta E_{\text{adiabatic}}\).}
+\label{fig:excitedstates}
+\end{figure}
+
+Deux types principaux d'énergies d'excitation sont distingués (
+
+1. **Énergie d'excitation verticale (\( \Delta E_{\text{vertical}} \)) :**
+   - Correspond à l'excitation instantanée sans relaxation de la géométrie moléculaire.
+   - Est mesurée directement dans les spectroscopies d'absorption.
+
+2. **Énergie d'excitation adiabatique (\( \Delta E_{\text{adiabatic}} \)) :**
+   - Inclut la relaxation complète de la géométrie après excitation.
+   - Est généralement inférieure à l'énergie d'excitation verticale.
+
+#### Types d'excitations électroniques
+
+1. **Excitations de valence :**
+   - Un électron passe d'un orbital de valence (par exemple, HOMO) à un autre orbital de valence (par exemple, LUMO).
+   - Exemple typique : HOMO → LUMO.
+
+2. **Excitations de transfert de charge (CT - Charge Transfer) :**
+   - L'électron est transféré entre des orbitales situées dans des régions spatialement séparées de la molécule.
+   - Impliquent une séparation importante de charges, et peuvent être intramoléculaires ou intermoléculaires.
+
+3. **Excitations de cœur :**
+   - Un électron est excité d'un orbital de cœur (profondement lié) à un orbital de valence ou de conduction.
+   - Nécessitent de hautes énergies (souvent dans le domaine des rayons X).
+
+4. **Excitations de Rydberg :**
+   - Un électron est excité vers un orbital situé loin du noyau, ayant une fonction d'onde diffuse.
+
+#### Représentation graphique des énergies verticales et adiabatiques
+
+Voici un diagramme en **TikZ** pour illustrer les différences entre \(\Delta E_{\text{vertical}}\) et \(\Delta E_{\text{adiabatic}}\).
+
+```latex
+\documentclass[tikz,border=5mm]{standalone}
+\begin{document}
+
+\begin{tikzpicture}[scale=1.2]
+    % Energy levels
+    \draw[thick] (0,0) -- (2,0) node[midway,below] {État fondamental};
+    \draw[thick] (0,3) -- (2,3) node[midway,above] {État excité};
+
+    % Vertical transition
+    \draw[->,thick] (1,0) -- (1,3) node[midway,right] {$\Delta E_{\text{vertical}}$};
+
+    % Adiabatic transition
+    \draw[dashed,thick] (1,3) -- (2.5,2);
+    \draw[->,thick] (1,0) -- (2.5,2) node[midway,right] {$\Delta E_{\text{adiabatic}}$};
+
+    % Reaction coordinate
+    \draw[thick,->] (-1,0) -- (4,0) node[right] {Coordonnée réactionnelle};
+
+    % Label for geometries
+    \node[align=center] at (-0.5,-0.3) {Géométrie \\ de départ};
+    \node[align=center] at (3,2.7) {Géométrie \\ relaxée};
+\end{tikzpicture}
+
+\end{document}
+```
+
+#### Applications des différents types d'excitation
+
+- **Excitations de valence :** Fréquentes dans les molécules organiques, elles déterminent les transitions UV-visible.
+- **Excitations de transfert de charge :** Cruciales dans les systèmes photovoltaïques ou les complexes de coordination.
+- **Excitations de cœur :** Utilisées en spectroscopie XANES ou EXAFS pour sonder les environnements locaux.
+- **Excitations de Rydberg :** Observées dans des atomes ou des molécules diluées à haute énergie.
+
+### Résumé
+
+Les excitations électroniques jouent un rôle central dans la description des propriétés moléculaires. Comprendre leur nature et leur classification permet d’exploiter leurs caractéristiques dans les domaines comme la spectroscopie, les matériaux fonctionnels et la chimie computationnelle.
+
 \end{markdown}
