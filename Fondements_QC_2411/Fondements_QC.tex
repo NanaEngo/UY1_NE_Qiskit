@@ -471,4 +471,96 @@ CC (CCSD)              & Statique + Dynamique        & Très bonne          & $O
 
 Les méthodes pour l’état fondamental offrent une hiérarchie de précisions et de coûts computationnels, permettant aux chercheurs de choisir l’approche la plus adaptée selon leurs besoins. 
 
+
+##  Méthodes pour les états excités
+
+Les méthodes pour les états excités visent à déterminer les énergies et propriétés des états électroniques excités d'un système moléculaire. Contrairement aux méthodes de l’état fondamental, ces approches doivent capturer avec précision les transitions électroniques et inclure la corrélation électronique des états excités.
+
+#### Principales méthodes
+
+1. **Méthode CIS (Configuration Interaction Singles) :**
+   - Approche simple qui inclut uniquement des excitations simples depuis l’état fondamental Hartree-Fock.
+   - Fonction d’onde approximée :
+
+\[
+|\psi_{\text{CIS}}\rangle = C_0 |\psi_0\rangle + \sum_{i,a} C_{ia} |\psi_i^a\rangle
+\]
+
+   - Limites :
+     - Néglige les corrélations dynamiques.
+     - Ne capte pas correctement les transferts de charge.
+
+2. **Théorie de la fonctionnelle de densité dépendant du temps (TDDFT) :**
+   - Étend la DFT pour inclure les excitations via une réponse linéaire au potentiel externe.
+   - Donne directement les énergies d'excitation :
+
+\[
+\Delta E = \epsilon_a - \epsilon_i + f_{xc}
+\]
+
+   - \(f_{xc}\) : Terme de correction fonctionnelle pour les états excités.
+   - Avantages :
+     - Efficace en termes de coût computationnel (\(O(N^3)\)).
+     - Bien adaptée pour les excitations localisées.
+   - Limites :
+     - Moins précise pour les excitations de transfert de charge ou de Rydberg.
+
+3. **Cluster couplé en équation de mouvement (EOM-CCSD) :**
+   - Approche hautement précise basée sur le cluster couplé pour l’état fondamental.
+   - Fonction d’onde des états excités construite comme une perturbation de l’état fondamental :
+
+\[
+|\psi_{\text{EOM}}\rangle = R |\psi_{\text{CCSD}}\rangle
+\]
+
+   - Avantages :
+     - Capture avec précision les corrélations statiques et dynamiques.
+   - Limites :
+     - Très coûteux (\(O(N^6)\)).
+
+4. **Méthodes basées sur des déterminants multiples (MCSCF, CASSCF) :**
+   - Approches multiréférentielles adaptées aux systèmes où plusieurs états électroniques participent (corrélation statique forte).
+   - Utilisées pour les spectres complexes (métaux de transition, dissociations).
+
+La \autoref{tab:excited_state_methods} établit un comparatif des méthodes pour les états excités.
+
+```{=tex}
+\begin{table}[h!]
+\centering
+\caption{Comparaison des méthodes pour les états excités}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Méthode}         & \textbf{Type d’excitation}   & \textbf{Précision}   & \textbf{Coût computationnel} \\ \midrule
+CIS                      & Simples                     & Faible               & $O(N^3)$                     \\
+TDDFT                    & Dynamique                   & Modérée              & $O(N^3)$ à $O(N^4)$          \\
+EOM-CCSD                 & Statique + Dynamique        & Très bonne           & $O(N^6)$                     \\
+MCSCF / CASSCF           & Statique + Dynamique        & Excellente           & Très élevé                    \\ \bottomrule
+\end{tabular}
+\label{tab:excited_state_methods}
+\end{table}
+
+
+\begin{tikzpicture}[
+    mybox/.style={draw=black, thick, fill=yellow!10, rounded corners, inner sep=10pt},
+    title/.style={font=\bfseries}
+]
+
+% Box
+\node[mybox] (box) {
+    \begin{minipage}{0.9\textwidth}
+        \textbf{Résumé des méthodes pour les états excités :}
+        \begin{itemize}
+            \item \textbf{CIS :} Simples excitations (\(O(N^3)\)), mais néglige les corrélations dynamiques.
+            \item \textbf{TDDFT :} Capture efficacement les excitations localisées, mais moins adaptée aux transferts de charge.
+            \item \textbf{EOM-CCSD :} Très précis pour les états excités corrélés (\(O(N^6)\)).
+            \item \textbf{MCSCF / CASSCF :} Idéal pour les systèmes fortement corrélés.
+        \end{itemize}
+    \end{minipage}
+};
+\end{tikzpicture}
+
+```
+
+Les méthodes pour les états excités varient en termes de précision et de coût computationnel, permettant un choix adapté selon la complexité du système et les objectifs de l'étude. Les approches avancées comme EOM-CCSD offrent une grande précision mais nécessitent des ressources importantes, tandis que TDDFT représente un compromis idéal pour de nombreux systèmes pratiques.
+
 \end{markdown}
