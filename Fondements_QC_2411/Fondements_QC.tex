@@ -265,10 +265,18 @@ où :
 
 #### Procédure auto-cohérente (SCF)
 
-La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF). À chaque itération :
-1. Une estimation initiale des orbitales est utilisée pour construire \(\mathbf{F}\).
-2. Les nouvelles orbitales sont obtenues en diagonalant \(\mathbf{F}\).
-3. Le processus est répété jusqu'à convergence de l'énergie.
+La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
+
+1. **Démarrage :** Initialisation des orbitales moléculaires avec une estimation \(\mathbf{C}^{(0)}\).
+2. **Construction de \(\mathbf{F}\) :**
+   - Calcul des termes de Coulomb (\(\mathbf{J}\)) et d'échange (\(\mathbf{K}\)).
+3. **Équation de Roothaan-Hall :**
+   - Diagonalisation de \(\mathbf{F}\) pour obtenir les nouvelles orbitales et énergies.
+4. **Mise à jour des orbitales :**
+   - Nouvelles orbitales \(\mathbf{C}^{(k+1)}\) obtenues à partir de \(\mathbf{F}\).
+5. **Critère de convergence :**
+   - Comparer l'énergie \(E^{(k+1)}\) avec \(E^{(k)}\). Si la différence est inférieure à un seuil \(\delta\), le processus est terminé.
+6. **Retour en cas de non-convergence :** Si la convergence n’est pas atteinte, le cycle est répété.
 
 La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow détaillé.
 
