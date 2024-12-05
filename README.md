@@ -1,1 +1,1 @@
-Various python tutoriels for Master's students 
+Various Qiskit tutoriels for Master's students 
