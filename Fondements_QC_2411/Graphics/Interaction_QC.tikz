@@ -25,6 +25,6 @@
 \draw[interaction] (nucleus1) to[out=20,in=160] node[midway, below, textlabel] {$\frac{Z_A Z_B}{R_{AB}}$} (nucleus2);
 
 % Labels
-\node[textlabel] at (1.5,1.2) {Énergie cinétique : $\sum -\frac{1}{2}\nabla^2$};
+\node[textlabel] at (1.5,1.2) {Énergie cinétique : $\sum -\frac12\nabla^2$};
 
 \end{tikzpicture}
