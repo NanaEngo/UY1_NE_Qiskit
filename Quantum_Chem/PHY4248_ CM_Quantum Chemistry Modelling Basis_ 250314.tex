@@ -116,7 +116,8 @@ Ce chapitre vise à fournir une base solide pour comprendre les principes sous-j
 \label{fig:interactionqc}
 \end{figure}
 
-En chimie quantique, l'équation de Schrödinger joue un rôle central dans la description des systèmes atomiques et moléculaires. La forme générale de l'équation de Schrödinger dépendante du temps est :\begin{equation}
+La modélisation de la structure électronique des molécules est un problème complexe en raison du grand nombre de particules en interaction. La chimie quantique fournit un cadre théorique pour aborder ce problème, en utilisant l'équation de Schrödinger dépendante du temps suivante :
+\begin{equation}
 i\hbar \pdv{t} |\psi(t)\rangle = \mathtt{H} |\psi(t)\rangle .
 \end{equation}
 $|\psi(t)\rangle$ représente la fonction d'état du système, décrivant son évolution temporelle, et $\mathtt{H}$ est l'opérateur Hamiltonien, qui représente l'énergie totale du système. Résoudre cette équation directement, même en l'absence d'effets relativistes, reste un défi majeur pour les systèmes moléculaires complexes.
@@ -135,9 +136,9 @@ où
 \begin{itemize}
 \item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique; 
 \item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire; 
-\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est la répulsion Coulombienne entre les électrons et les noyaux; 
-\item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est la répulsion Coulombienne entre les électrons eux-mêmes; 
-\item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est la répulsion Coulombienne entre les noyaux eux-mêmes.
+\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est l'énergie potentielle d'attraction Coulombienne entre les électrons et les noyaux;
+\item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est l'énergie potentielle de répulsion Coulombienne entre les électrons;
+\item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est l'énergie potentielle de répulsion Coulombienne entre les noyaux.
 \end{itemize}
 Dans ces expressions, $i$ et $j$ sont des indices qui parcourent tous les électrons, tandis que $I$ et $J$ parcourent tous les noyaux. Les variables $M_I$, $\mathbf{R}_I$, et $Z_I$ désignent respectivement la masse, la position et le numéro atomique du \emph{I}-ième noyau, tandis que $\mathbf{r}_i$ est la position du \emph{i}-ième électron.
 
@@ -159,7 +160,7 @@ Cependant, la résolution directe de l'équation de Schrödinger avec cette Hami
 
 \section{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
 
-L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie considérablement le traitement des systèmes moléculaires complexes. Elle repose sur la différence significative de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette disparité dynamique permet de séparer les mouvements électroniques et nucléaires lors de la résolution de l'équation de Schrödinger (voir la \autoref{fig:bointeractionqc}). En d'autres termes, on considère que les électrons s'adaptent instantanément aux mouvements des noyaux, ce qui permet de découpler leurs équations de mouvement.
+L'\textbf{approximation de Born-Oppenheimer} (BO) est une hypothèse fondamentale en chimie quantique, qui simplifie considérablement le traitement des systèmes moléculaires complexes. Elle repose sur la différence significative de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette disparité dynamique permet de séparer les mouvements électroniques et nucléaires lors de la résolution de l'équation de Schrödinger (voir la \autoref{fig:bointeractionqc}). En d'autres termes, on considère que les électrons s'adaptent instantanément aux mouvements des noyaux, ce qui permet de découpler leurs équations de mouvement.
 
 \begin{figure}
 \centering
@@ -171,7 +172,12 @@ L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en 
 
 \subsection{Hamiltonien réduit}
 
-En appliquant cette approximation, le terme d'énergie cinétique nucléaire $T_n$ est négligé. De plus, l'énergie de répulsion nucléaire $\mathtt{U}_{nn}(\mathbf{R})$ devient constante pour une géométrie nucléaire donnée.  L'Hamiltonien électronique est alors extrait de l'Hamiltonien total:
+En appliquant cette approximation,
+\begin{itemize}
+\item le terme d'énergie cinétique nucléaire $T_n$ est négligé; 
+\item De plus, l'énergie de répulsion nucléaire $\mathtt{U}_{nn}(\mathbf{R})$ devient constante pour une géométrie nucléaire donnée.
+\end{itemize}  
+L'Hamiltonien électronique est alors extrait de l'Hamiltonien total:
 \begin{equation}
 \begin{split}
 \mathtt{H}_{\text{elec}}(\mathbf{R}) &= \underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}_{ee}}\\
@@ -407,7 +413,7 @@ Le tableau suivant résume les différences entre ces trois méthodes :
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{|l|c|c|c|}
+    \begin{tabular}{|p{2.cm}|p{5cm}|p{5cm}|p{3.cm}|}
         \hline
         \textbf{Méthode HF} & \textbf{Systèmes adaptés} & \textbf{Description des orbitales} & \textbf{Multiplicité de spin} \\
         \hline
@@ -415,7 +421,7 @@ Le tableau suivant résume les différences entre ces trois méthodes :
         \hline
         ROHF & Couches ouvertes (électrons non appariés) & Identiques sauf pour les non-appariés & $S>0$ \\
         \hline
-        UHF  & Systèmes magnétiques/couches ouvertes & Différentes pour $\alpha$ et $\beta$ & $S>0$ \\
+        UHF  & Systèmes magnétiques ou couches ouvertes & Différentes pour $\alpha$ et $\beta$ & $S>0$ \\
         \hline
     \end{tabular}
     \caption{Comparaison des méthodes Hartree-Fock selon la structure électronique.}
