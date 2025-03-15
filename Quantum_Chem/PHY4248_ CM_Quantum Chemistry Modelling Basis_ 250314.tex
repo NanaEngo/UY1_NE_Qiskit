@@ -713,8 +713,7 @@ with \(f_i=0,1\) (in the fermionic Fock space).
 \end{enumerate}
 
     \hypertarget{calcul-du-champ-moyen-ou-mean-field}{%
-\subsection{Calcul du champ moyen ou
-mean-field}\label{calcul-du-champ-moyen-ou-mean-field}}
+\subsection{Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}}
 
 Le calcul du champ moyen est généralement la première étape de toutes
 les approches post Hartree-Fock. \textbf{Les approches en champ moyen
@@ -762,19 +761,16 @@ autres électrons.}
 HF}\label{quelques-limites-des-muxe9thodes-hf}}
 
 La méthode de Hartree-Fock présente certaines limites :
-
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Approximation de l'échange-correlation}. La méthode de
+\item \textbf{Approximation de l'échange-correlation}. La méthode de
   Hartree-Fock ne tient pas compte de manière exacte de l'interaction
   électron-électron appelée \textbf{correlation électronique}. Elle
   utilise une approximation connue sous le nom d'approximation de
   l'échange-correlation. Cette approximation simplifie l'interaction
   électronique en la traitant de manière moyennée, ce qui peut conduire
   à des erreurs significatives dans certains cas.
-\item
-  \textbf{Non-inclusion de la corrélation électronique dynamique}. La
+\item \textbf{Non-inclusion de la corrélation électronique dynamique}. La
   méthode de Hartree-Fock considère les électrons comme un ensemble
   d'orbitales indépendantes dans un champ moyen créé par les autres
   électrons. Cependant, elle ne prend pas en compte la corrélation
@@ -783,16 +779,14 @@ La méthode de Hartree-Fock présente certaines limites :
   précision pour les systèmes où la corrélation électronique dynamique
   est importante, tels que les systèmes fortement corrélés ou les
   réactions chimiques avec des états de transition.
-\item
-  \textbf{Problèmes avec les systèmes à interaction forte}. La méthode
+\item \textbf{Problèmes avec les systèmes à interaction forte}. La méthode
   de Hartree-Fock peut être moins précise pour les systèmes contenant
   des électrons fortement corrélés, tels que les systèmes avec des
   liaisons multiples ou des électrons non-appariés. Dans ces cas,
   d'autres méthodes plus avancées, telles que les méthodes de la théorie
   de la fonctionnelle de la densité (DFT) ou les méthodes de couplage de
   cluster, peuvent être nécessaires.
-\item
-  \textbf{Sensibilité aux bases de fonction}. La précision des résultats
+\item \textbf{Sensibilité aux bases de fonction}. La précision des résultats
   de la méthode de Hartree-Fock dépend fortement du choix des bases de
   fonction utilisées pour décrire les orbitales électroniques.
   Différentes bases de fonction peuvent donner des résultats légèrement
@@ -801,17 +795,18 @@ La méthode de Hartree-Fock présente certaines limites :
 \end{enumerate}
 
     \hypertarget{choix-de-lensemble-de-bases}{%
-\subsection{Choix de l'ensemble de
-bases}\label{choix-de-lensemble-de-bases}}
+\subsection{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}}
 
 L'équation de Schrödinger à plusieurs électrons est généralement résolue
 sur une base d'orbitales moléculaires exprimées sous la forme d'une
 \textbf{combinaison linéaire de ses orbitales atomiques (LCAO, Linear
-combination of atomic orbitals)}, \textbackslash begin\{equation\}
+combination of atomic orbitals)}, 
+\begin{equation}
 \phi\emph{a(\mathbf{r}) = \sum\emph{A\^{}\mathrm{atomes}
 \sum}\alpha C\^{}A}\{\alpha a\} \chi\^{}A\_\{\alpha\}(\mathbf{r} -
-\mathbf{R}\_A) \textbackslash begin\{equation\} Les coefficients LCAO,
-utilisés pour construire des orbitales moléculaires (MO), sont obtenus
+\mathbf{R}\_A).
+\end{equation} 
+Les coefficients LCAO, utilisés pour construire des orbitales moléculaires (MO), sont obtenus
 grâce à la minimisation de l'énergie totale, selon le principe
 variationnel. Pour plus de commodité, la base est généralement
 représentée par des fonctions centrées sur les atomes (les positions
@@ -825,12 +820,10 @@ traditionnels}\label{ensembles-de-bases-traditionnels}}
 Les deux classes traditionnelles d'orbitales de base approximatives
 couramment utilisées sont :
 \begin{itemize}
-\item
-  les \textbf{Slater-type orbitals (STOs)} basées sur le déterminant de
+\item les \textbf{Slater-type orbitals (STOs)} basées sur le déterminant de
   Slater, construitent avec des fonctions exponentielles décroissantes
   \(e^{-\alpha r}\),
-\item
-  et les \textbf{orbitales cartésiennes de type Gaussien (GTO)},
+\item et les \textbf{orbitales cartésiennes de type Gaussien (GTO)},
   construitent avec des fonctions Gaussiennes \(e^{-\alpha r^2}\).
   L'utilisation de ces fonctions Gaussiennes est bien plus efficace que
   la stratégie STO pour calculer les nombreuses intégrales de
@@ -845,17 +838,13 @@ Les ensembles de base sont construits à partir de nombreuses primitives
 Gaussiennes. La notation de Pople est l'une des notations les plus
 explicites pour les ensembles de bases~:
 \begin{itemize}
-\item
-  le trait d'union (-) sépare la référence aux orbitales centrales et de
+\item le trait d'union (-) sépare la référence aux orbitales centrales et de
   valence~;
-\item
-  les chiffres représentent le nombre de primitives Gaussiennes dans une
+\item les chiffres représentent le nombre de primitives Gaussiennes dans une
   fonction ;
-\item
-  il y a autant de chiffres qu'il y a de fonctions pour chaque orbitale
+\item il y a autant de chiffres qu'il y a de fonctions pour chaque orbitale
   atomique (zeta \(\zeta\)) ;
-\item
-  la lettre G fait référence à l'utilisation de fonctions Gaussiennes.
+\item la lettre G fait référence à l'utilisation de fonctions Gaussiennes.
 \end{itemize}
 
 À titre d'exemple, l'ensemble de base double zêta \texttt{3-21G} utilise
@@ -882,23 +871,25 @@ permettent des calculs quantitatifs au prix de plus de temps de calcul.
 
 La fonction d'état pour une molécule est une approximation lors de
 l'utilisation d'un ensemble de base finie,
-\textbackslash begin\{equation\} \Phi\emph{\{\text{approx}\} =
-\sum}\{i=0\}\^{}N c\_i \textbar i \rangle
-\textbackslash begin\{equation\}
-
+\begin{equation}
+ \Phi\emph{\{\text{approx}\} = \sum}\{i=0\}\^{}N c\_i \textbar i \rangle.
+\end{equation}
 En vertu du principe variationnel, en considérant que
 \(\Phi_{\text{approx}}\) est normalisée, l'énergie approximée est
 supérieure ou égale à la véritable énergie de l'état fondamentale,
-\textbackslash begin\{equation\} \langle \Phi\emph{\{\text{approx}\}
+\begin{equation}
+ \langle \Phi\emph{\{\text{approx}\}
 \textbar{} \hat{H} \textbar{} \Phi}\{\text{approx}\} \rangle =
-\epsilon\emph{\{\text{approx}\} \geq  \epsilon}\{\text{true}\}
-\textbackslash begin\{equation\}
+\epsilon\emph{\{\text{approx}\} \geq  \epsilon}\{\text{true}\}.
+\end{equation}
 
 A mesure que l'ensemble de base s'agrandit, l'approximation résultante
 se rapproche de la véritable fonction d'état,
-\textbackslash begin\{equation\} \Phi\emph{\{\text{approx}\} =
+\begin{equation}
+ \Phi\emph{\{\text{approx}\} =
 \sum}\{i=0\}\^{}\{\infty\} c\_i \textbar i
-\rangle \approx \Psi\_\{\text{true}\} \textbackslash begin\{equation\}
+\rangle \approx \Psi\_\{\text{true}\} ,
+\end{equation}
 
 Cependant, augmenter la taille de l'ensemble de base a pour effet
 d'augmenter le nombre de paramètres à optimiser, étendant ainsi les
@@ -919,22 +910,18 @@ des vraies fonction d'état. On peut cependant sélectionner des ensembles
 de bases finis et adapter nos approches aux cas d'utilisation. En règle
 générale,
 \begin{itemize}
-\item
-  un double zêta (par exemple \texttt{6-31G} ou \texttt{cc-pvdz}) est la
+\item un double zêta (par exemple \texttt{6-31G} ou \texttt{cc-pvdz}) est la
   taille de base minimale requise pour obtenir des énergies
   semi-quantitatives;
-\item
-  pour les molécules présentant une différence d'électronégativité
+\item pour les molécules présentant une différence d'électronégativité
   élevée entre les atomes, l'ajout de fonctions de polarisation (par
   exemple \texttt{6-31G**} ou \texttt{6-31G(d,p)}) est recommandé;
-\item
-  les fonctions diffuses (par exemple \texttt{6-31G+(d,p)}) doivent être
+\item les fonctions diffuses (par exemple \texttt{6-31G+(d,p)}) doivent être
   incluses lorsqu'il s'agit d'anions. Les fonctions diffuses sont des
   fonctions avec de petits coefficients (petit \(\alpha\) dans
   \(e^{-\alpha r^2}\)) qui peuvent s'adapter à la densité électronique
   loin du noyau;
-\item
-  les ensembles de bases des potentiels de noyau effectif (Effective
+\item les ensembles de bases des potentiels de noyau effectif (Effective
   Core Potential, ECP) sont nécessaires lorsqu'il s'agit d'atomes plus
   lourds avec des effets relativistes et des effets non triviaux (par
   exemple, l'atome d'iode est souvent modélisé dans l'ensemble de base
@@ -943,61 +930,72 @@ générale,
 
 \textbf{Tableau}~: Catégories d'ensemble de base.
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-\begin{minipage}[b]{0.30\columnwidth}\raggedright
-Catégorie\strut
-\end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-Caractère\strut
-\end{minipage} & \begin{minipage}[b]{0.27\columnwidth}\raggedright
-Exemple\strut
-\end{minipage}\tabularnewline
-\midrule
-\endhead
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Minimale\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Fonction de base unique par orbitale atomique occupée, la taille des
-éléments de la deuxième rangée est \([2s1p]\)\strut
-\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
-STO-3G\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Double-\(\zeta\)\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Deux fonctions de base par orbitale atomique de valence occupée, la
-taille des éléments de la deuxième rangée est \([3s2p]\)\strut
-\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
-6-31G\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Triple-\(\zeta\)\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Trois fonctions de base par orbitale atomique de valence occupée, pour
-les éléments de deuxième rangée \([4s3p]\)\strut
-\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
-6-311G\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Polarisation\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Fonctions de base avec un moment cinétique plus élevé~; important pour
-la liaison chimique~; la taille des éléments de la deuxième ligne est
-\([3s2p1d]\)\strut
-\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
-cc-pVDZ\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.30\columnwidth}\raggedright
-Diffusion\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Fonctions de base avec de petits exposants~; important pour les états
-excités~; les tailles des éléments de la deuxième rangée sont \([4s3p]\)
-pour 6-31+G et \([4s3p2d]\) pour aug-cc-pVDZ\strut
-\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
-6-31+G, aug-cc-pVDZ\strut
-\end{minipage}\tabularnewline
-\bottomrule
-\end{longtable}
+\begin{tabular}{|l|p{8cm}|l|}\hline
+\textbf{ Catégorie} & \textbf{Caractère} & \textbf{Exemple} \\\hline
+Minimale& Fonction de base unique par orbitale atomique occupée, la taille des éléments de la deuxième rangée est [2s1p] & STO-3G \\\hline
+Double-$\zeta$ & Deux fonctions de base par orbitale atomique de valence occupée, la taille des éléments de la deuxième rangée est [3s2p]\ & 6-31G \\\hline
+Triple-$\zeta$ & Trois fonctions de base par orbitale atomique de valence occupée, pour les éléments de deuxième rangée [4s3p] & 6-311G \\\hline
+Polarisation & Fonctions de base avec un moment cinétique plus élevé ; important pour la liaison chimique ; la taille des éléments de la deuxième ligne est [3s2p1d] & cc-pVDZ \\\hline
+Diffusion & Fonctions de base avec de petits exposants ; important pour les états excités ; les tailles des éléments de la deuxième rangée sont 4s3p pour 6-31+G et 4s3p2d pour aug-cc-pVDZ & 6-31+G, aug-cc-pVDZ \\\hline
+\end{tabular}
+
+%\begin{longtable}[]{@{}lll@{}}
+%\toprule
+%\begin{minipage}[b]{0.30\columnwidth}\raggedright
+%Catégorie\strut
+%\end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
+%Caractère\strut
+%\end{minipage} & \begin{minipage}[b]{0.27\columnwidth}\raggedright
+%Exemple\strut
+%\end{minipage}\tabularnewline
+%\midrule
+%\endhead
+%\begin{minipage}[t]{0.30\columnwidth}\raggedright
+%Minimale\strut
+%\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
+%Fonction de base unique par orbitale atomique occupée, la taille des
+%éléments de la deuxième rangée est \([2s1p]\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
+%STO-3G\strut
+%\end{minipage}\tabularnewline
+%\begin{minipage}[t]{0.30\columnwidth}\raggedright
+%Double-\(\zeta\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
+%Deux fonctions de base par orbitale atomique de valence occupée, la
+%taille des éléments de la deuxième rangée est \([3s2p]\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
+%6-31G\strut
+%\end{minipage}\tabularnewline
+%\begin{minipage}[t]{0.30\columnwidth}\raggedright
+%Triple-\(\zeta\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
+%Trois fonctions de base par orbitale atomique de valence occupée, pour
+%les éléments de deuxième rangée \([4s3p]\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
+%6-311G\strut
+%\end{minipage}\tabularnewline
+%\begin{minipage}[t]{0.30\columnwidth}\raggedright
+%Polarisation\strut
+%\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
+%Fonctions de base avec un moment cinétique plus élevé~; important pour
+%la liaison chimique~; la taille des éléments de la deuxième ligne est
+%\([3s2p1d]\)\strut
+%\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
+%cc-pVDZ\strut
+%\end{minipage}\tabularnewline
+%\begin{minipage}[t]{0.30\columnwidth}\raggedright
+%Diffusion\strut
+%\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
+%Fonctions de base avec de petits exposants~; important pour les états
+%excités~; les tailles des éléments de la deuxième rangée sont \([4s3p]\)
+%pour 6-31+G et \([4s3p2d]\) pour aug-cc-pVDZ\strut
+%\end{minipage} & \begin{minipage}[t]{0.27\columnwidth}\raggedright
+%6-31+G, aug-cc-pVDZ\strut
+%\end{minipage}\tabularnewline
+%\bottomrule
+%\end{longtable}
+
+
 
 \hypertarget{ensembles-de-base-de-karlsruhe}{%
 \subsubsection{Ensembles de base de
