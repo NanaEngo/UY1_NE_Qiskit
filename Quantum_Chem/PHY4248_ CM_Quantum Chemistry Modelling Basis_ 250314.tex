@@ -185,7 +185,7 @@ L'Hamiltonien électronique est alors extrait de l'Hamiltonien total:
 &=-\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
 \end{split}
 \end{equation}
-Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Pour une configuration nucléaire donnée, on peut donc calculer l'énergie électronique $(E_{\text{elec}})$ en résolvant l'équation de Schrödinger électronique :
+C'est cet Hamiltonien, agissant sur les électrons, que l'on cherche à résoudre pour une géométrie nucléaire fixée. Il faut bien comprendre que, sous BO, l'énergie des électrons dépend paramétriquement de la position des noyaux. Pour une configuration nucléaire donnée, on peut donc calculer l'énergie électronique $(E_{\text{elec}})$ en résolvant l'équation de Schrödinger électronique :
 \begin{equation}
 \mathtt{H}_{\text{elec}}(\mathbf{R}) \psi_{\text{elec}}(\mathbf{r}; \mathbf{R}) = E_{\text{elec}}(\mathbf{R}) \psi_{\text{elec}}(\mathbf{r}; \mathbf{R})
 \end{equation}
@@ -193,7 +193,7 @@ où $\psi_{\text{elec}}(\mathbf{r}; \mathbf{R})$ est la fonction d'état électr
 
 \subsection{Énergie totale du système}
 
-La résolution de l'équation de Schrödinger électronique pour différentes configurations nucléaires permet de construire la \textbf{surface d'énergie potentielle (PES, Potential energy surface)}, $E_{\text{elec}}(\mathbf{R})$. Cette surface décrit l'énergie du système en fonction des positions des noyaux et est un concept central en chimie quantique.
+La résolution de l'équation de Schrödinger électronique pour toutes les positions des noyaux permet de construire la \textbf{surface d'énergie potentielle (PES, Potential energy surface)}, $E_{\text{elec}}(\mathbf{R})$. Cette surface décrit l'énergie du système en fonction des positions des noyaux et est un concept central en chimie quantique.
 
 Une fois l'énergie électronique obtenue, l'énergie totale est approchée comme suit :
 \begin{equation}
@@ -208,7 +208,6 @@ où,
 \subsection{Conséquences de l'approximation}
 
 L'approximation de Born-Oppenheimer a des implications importantes :
-
 \begin{itemize}
 \item L'énergie totale est calculée pour une géométrie nucléaire fixe.  Cette simplification permet de déterminer les structures moléculaires à l'équilibre en minimisant l'énergie totale par rapport aux positions des noyaux.
 \item Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un Hamiltonien nucléaire effectif :
@@ -218,7 +217,11 @@ L'approximation de Born-Oppenheimer a des implications importantes :
 où $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux. Ceci permet d'étudier les spectres vibrationnels des molécules.
 \end{itemize}
 
-En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.  Bien qu'elle repose sur une simplification, elle fournit une base solide pour la compréhension et la prédiction des propriétés moléculaires. Il est important de noter que cette approximation peut devenir moins précise dans certaines situations, notamment lorsque les surfaces d'énergie potentielle sont proches ou lorsqu'on étudie des processus dynamiques où le couplage entre les mouvements électroniques et nucléaires devient important.
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle. Bien qu'elle repose sur une simplification, elle fournit une base solide pour la compréhension et la prédiction des propriétés moléculaires. Il est Cependant important de noter que cette approximation peut devenir moins précise dans certaines situations, notamment
+\begin{itemize}
+\item lorsque les surfaces d'énergie potentielle sont proches;
+\item lorsqu'on étudie des processus dynamiques où le couplage entre les mouvements électroniques et nucléaires devient important.
+\end{itemize}
 
 \section{Méthode de Hartree-Fock - Approche du champ moyen}
 
