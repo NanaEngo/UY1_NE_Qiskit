@@ -226,11 +226,10 @@ où,
 \item L'énergie totale est calculée pour une géométrie nucléaire fixe.
 \item Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un Hamiltonien nucléaire effectif :
 \begin{equation}
-\mathtt{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
+\mathtt{H}_{\text{nucl}} = \mathtt{T}_n + E_{\text{tot}}(\{R_A\}) ,
 \end{equation}
+$E_{\text{tot}}(\{R_A\})$ agissant comme un potentiel pour le mouvement des noyaux.
 \end{itemize}
-Ici, $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux.
-
 En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
 
 
