@@ -76,66 +76,40 @@
 \newpage
 \section{Introduction}
 
-Dans ce chapitre, nous abordons les notions de base suivantes de la chimie quantique :
+La chimie quantique est une discipline fondamentale qui permet de décrire et de prédire les propriétés électroniques et structurales des systèmes atomiques et moléculaires à l'aide des principes de la physique quantique. Elle constitue un outil essentiel pour comprendre les interactions chimiques, modéliser les réactions complexes et développer des applications pratiques dans des domaines variés tels que la conception de nouveaux matériaux, l'optimisation des processus chimiques ou encore le développement de médicaments.
+
+Avec l'émergence des technologies computationnelles modernes et des algorithmes avancés comme le \emph{Variationnel Quantum Eigensolver} (VQE), la chimie quantique computationnelle a révolutionné la recherche scientifique et industrielle. Ces approches permettent de simuler efficacement des systèmes complexes en exploitant des approximations telles que l'approximation de Born-Oppenheimer (BO) ou la méthode Hartree-Fock (HF), tout en maintenant un équilibre entre précision et faisabilité computationnelle.
+
+Dans ce chapitre, nous introduisons les concepts fondamentaux suivants :
 \begin{itemize}
-\item Hamiltonien moléculaire en 1ère quantification ;
-\item Approximation de Born-Oppenheimer ;
-\item Déterminant Slater ;
-\item Hamiltonien en 2e quantification ;
-\item Approximation du champ moyen (Hartree-Fock) ;
-\item Limites de l'approche HF ;
-\item Ensemble de base.
+    \item L'Hamiltonien moléculaire en première quantification ;
+    \item L'approximation de Born-Oppenheimer ;
+    \item L'approche du champ moyen via la méthode Hartree-Fock (HF) ;
+    \item Les limites inhérentes à cette méthode ;
+    \item Le choix et l'importance des ensembles de bases.
 \end{itemize}
 
-Ces notions correspondantes aux composantes encadrées en rouge sur la
-\autoref{fig:VQE_Flowchart}, illustrant le workflow de l'algorithme de la VQE
-permettant de faire des simulations moléculaires.
+Ces notions sont illustrées par leur rôle dans le workflow de l'algorithme VQE (voir les encadrées en rouge sur la \autoref{fig:VQE_Flowchart}), qui constitue une avancée majeure pour les simulations moléculaires en chimie quantique. Ces méthodes ont de nombreuses applications pratiques, notamment dans le domaine énergétique (\autoref{fig:CoverVQE}) , où elles contribuent au développement de matériaux innovants et à l'optimisation des processus chimiques.
+
+Ce chapitre vise à fournir une base solide pour comprendre les principes sous-jacents à la modélisation chimique en physique quantique, tout en mettant en lumière les défis computationnels et les opportunités offertes par ces approches modernes.
 
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{VQE_Flowchart.jpeg} 
-\caption{\textbf{Diagramme de flux de l'algorithme VQE.} Représentation schématique du workflow de l'algorithme de la méthode Variationnel Quantum Eigensolver (VQE), illustrant les étapes clés pour la simulation moléculaire en chimie quantique.}
+\caption{\textbf{Diagramme de flux de l'algorithme VQE (Variationnel Quantum Eigensolver).} Ce diagramme illustre les étapes principales de l'algorithme VQE, une méthode hybride quantique-classique utilisée pour calculer l'énergie des molécules. On y voit comment une boucle itérative optimise les paramètres d'un circuit quantique (ansatz) afin de minimiser l'énergie, en utilisant un calculateur classique pour le contrôle et l'analyse des résultats quantiques. Les encadrés rouges mettent en évidence les contributions des concepts fondamentaux présentés dans ce chapitre, comme l’Hamiltonien moléculaire et l'approximation de Born-Oppenheimer.}
 \label{fig:VQE_Flowchart}
 \end{figure}
-
-Comme nous l'avons déjà précédemment vu, le calcul quantique impacte de nombreux secteurs
-technologiques et pharmacetiques. La \autoref{fig:CoverVQE} pour présente les
-applications dans le domaine de l'énergie.
 
 \begin{figure}
 \centering
 \includegraphics[width=.4\linewidth]{CoverVQE.jpg}
-\caption{\textbf{Applications dans le domaine de l'énergie.} Aperçu des applications potentielles de la chimie quantique computationnelle dans le secteur énergétique, incluant l'optimisation des processus chimiques et le développement de nouveaux matériaux.}
+\caption{\textbf{Applications de la chimie quantique computationnelle dans le domaine de l’énergie.} 
+Cette figure donne un aperçu des diverses applications de la chimie quantique computationnelle dans le secteur énergétique. Parmi celles-ci, on retrouve la conception de nouveaux matériaux pour les cellules solaires, l'optimisation des réactions catalytiques pour la production d'énergie propre, le développement de batteries plus performantes et la compréhension des mécanismes de stockage de l'énergie. Ces applications montrent le potentiel de la chimie quantique pour résoudre les défis énergétiques actuels.
+Aperçu des applications potentielles de la chimie quantique computationnelle dans le secteur énergétique, incluant l'optimisation des processus chimiques et le développement de nouveaux matériaux.}
 \label{fig:CoverVQE}
 \end{figure}
 
-\section{Modélisation chimique}\label{moduxe9lisation-chimique}
-
-La chimie computationnelle a révolutionné la science et l'industrie et a
-contribué à améliorer notre compréhension des processus chimiques. Au
-lieu de s'appuyer uniquement sur des essais et des erreurs en
-laboratoire, les chercheurs peuvent désormais prédire le comportement
-des molécules dans différentes conditions à l'aide de simulations
-informatiques, accélérant ainsi, par exemple, la conception de
-médicaments ou le développement de matériaux pour des applications
-allant de l'électronique au stockage d'énergie. Ces progrès n'ont été
-rendus possibles que par le développement simultané de nouvelles
-méthodes de chimie computationnelle, de calculateurs plus puissants et
-de mises en œuvre plus efficaces exploitant la puissance des
-architectures informatiques émergentes. Ainsi, si les premières
-descriptions quantiques d'atomes et de molécules simples remontent à une
-centaine d'années, ce n'est qu'au cours des dernières décennies que la
-chimie quantique est devenue un outil réaliste pour l'industrie.
-
-La chimie quantique englobe un large éventail de méthodes, chacune ayant
-ses propres forces et faiblesses. Une partie de cette diversité
-correspond simplement à des approximations de plus en plus sophistiquées
-qui donnent de meilleurs résultats à un coût computationnel plus élevé.
-
-\section{Structure électronique des molécules en première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}
-
-\subsection{Hamiltonien d'une molécule en première
-quantification}\label{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}
+\section{Hamiltonien moléculaire en première quantification}
 
 En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
 \begin{equation}
@@ -182,7 +156,7 @@ Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien moléculaire e
 
 L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
 
-\subsection{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
+\section{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
 
 L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l’équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
 
@@ -193,7 +167,7 @@ L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en 
 \label{fig:bointeractionqc}
 \end{figure}
 
-\subsubsection{Hamiltonien réduit}
+\subsection{Hamiltonien réduit}
 
 En appliquant cette approximation, le terme d'énergie cinétique nucléaire $T_n$ est négligé,
 $\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien électronique est extrait de l'Hamiltonien total:
@@ -207,7 +181,7 @@ $\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien électronique est ex
 
 Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
 
-\subsubsection{Énergie totale du système}
+\subsection{Énergie totale du système}
 
 Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
 \begin{equation}
@@ -219,7 +193,7 @@ où,
 \item $E_{nn}=\sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}$ représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 \end{itemize}
 
-\subsubsection{Conséquences de l'approximation}
+\subsection{Conséquences de l'approximation}
 
 \begin{itemize}
 \item L'énergie totale est calculée pour une géométrie nucléaire fixe.
@@ -230,23 +204,6 @@ où,
 $E_{\text{tot}}(\{R_A\})$ agissant comme un potentiel pour le mouvement des noyaux.
 \end{itemize}
 En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
-
-
-
-%Nous nous intéressons principalement à la structure \emph{électronique}
-%de la molécule. Comme $M'\sim10^3$, nous appliquons
-%l'\textbf{approximation de Born-Oppenheimer}, en traitant les noyaux
-%comme des charges ponctuelles classiques. En conséquence, le terme
-%d'énergie cinétique nucléaire $T_n$ est négligé,
-%$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien
-%moléculaire est approché par un Hamiltonien électronique paramétré par
-%$\mathbf{R}$, 
-%\begin{equation}
-%\begin{split}
-%\mathtt{H}(\mathbf{R}) &= \mathtt{U}_{nn}+\underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}{ee}}\\
-%&= \mathtt{U}_{nn}+\underset{\text{One-Electron Operator}}{\sum_i h(i)} + \underset{\text{Two-Electron Operator}}{\sum_{i\ne j}v(i, j)}.
-%\end{split}
-%\end{equation}
 
 \section{Méthode de Hartree-Fock - Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}
 
@@ -325,13 +282,13 @@ avec,
 \item $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
 \item  $J_b(d)$ le terme de Coulomb ou répulsion classique électron-électron,
 \begin{equation}
-J:=\bra{\phi_n(\br_1)\phi_{n'}(\br_2)}\frac{e^2}{\br_{12}}
-\ket{\phi_n(\br_1)\phi_{n'}(\br_2)},
+J:=\bra{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
+\ket{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)},
 \end{equation}
 \item $K_b(d)$ le terme d'interaction d'échange à deux électrons (correction purement quantique),
 \begin{equation}
-K:=\bra{\phi_n(\br_1)\phi_{n'}(\br_2)}\frac{e^2}{\br_{12}}
-\ket{\phi_n(\br_2)\phi_{n'}(\br_1)}.
+K:=\bra{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
+\ket{\phi_n(\vb{r}_2)\phi_{n'}(\vb{r}_1)}.
 \end{equation}
 \end{itemize}
 
@@ -368,7 +325,7 @@ La méthode Hartree-Fock est résolue itérativement par une procédure auto-coh
 
 La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 
-\begin{figure}[tbh]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{SCF_Workflow.pdf}
 \caption{Workflow détaillé de la procédure SCF (Self-Consistent Field).}
@@ -376,7 +333,7 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 \end{figure}
 
 
-\subsection{{Quelques limites des méthodes HF}\label{quelques-limites-des-muxe9thodes-hf}
+\subsection{Quelques limites des méthodes HF}\label{quelques-limites-des-muxe9thodes-hf}
 
 La méthode de Hartree-Fock présente certaines limites :
 \begin{enumerate}
