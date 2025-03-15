@@ -156,8 +156,7 @@ Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépe
 \label{fig:interactionqc}
 \end{figure}
 
-L'Hamiltonien d'une molécule constituée de noyaux $K$ et d'électrons
-$N$ est (voir la \autoref{fig:interactionqc}):
+L'Hamiltonien d'une molécule constituée de noyaux $M$ et d'électrons $N$ est (voir la \autoref{fig:interactionqc}):
 \begin{equation}
 \mathtt{H}=\mathtt{T}_e+\mathtt{T}_n+\mathtt{U}_{en}+\mathtt{U}_{en}+\mathtt{U}_{nn},
 \end{equation} où 
@@ -168,16 +167,9 @@ $N$ est (voir la \autoref{fig:interactionqc}):
 \item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est la répulsion Coulombienne entre les électrons eux-mêmes; 
 \item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est la répulsion Coulombienne entre les noyaux eux-mêmes.
 \end{itemize}
-$M_I$, $\mathbf{R}_I$ et $Z_I$ ($I=1,2$) désignent la masse, la
-position et le numéro atomique du \emph{I}-ème noyau, et
-$\mathbf{r}_i$ est la position du \emph{i}-ème électron. Par souci de
-concision, nous travaillons en unités atomiques, où l'unité de longueur
-est $a_0 = 1$ Bohr ($0.529167~\mathtt{T}imes~10^{-10}$ m), l'unité
-de masse est la masse électronique $m_e$ et l'unité d'énergie est 1
-Hartree
-($1~\textrm{Hartree}~= ~{e^2}/{4\pi\epsilon_0 a_0}~=~27.2113~\textrm{eV}$).
-Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien
-moléculaire en unités atomiques s'écrit 
+$M_I$, $\mathbf{R}_I$ et $Z_I$ ($I=1,2$) désignent respectivement la masse, la position et le numéro atomique du \emph{I}-ième noyau, et $\mathbf{r}_i$ est la position du \emph{i}-ième électron. Par souci de concision, nous travaillons en unités atomiques, où l'unité de longueur est $a_0 = 1$ Bohr (\SI{0.529167e-10}{\meter}), l'unité de masse est la masse électronique $m_e$, et l'unité d'énergie est \SI{1}{Hartree} (\SI{1}{Hartree} $= \frac{e^2}{4\pi\epsilon_0 a_0} = \SI{27.2113}{\electronvolt}$).
+
+Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien moléculaire en unités atomiques s'écrit 
 \begin{equation}
 \begin{split}
 \mathtt{T}_e&=-\sum_i\frac{\nabla^2_i}{2}, \qquad\mathtt{T}_n= -\sum_I\frac{\nabla^2_I}{2M_I'}, 
