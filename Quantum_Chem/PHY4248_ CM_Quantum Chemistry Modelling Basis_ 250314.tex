@@ -132,8 +132,7 @@ ses propres forces et faiblesses. Une partie de cette diversité
 correspond simplement à des approximations de plus en plus sophistiquées
 qui donnent de meilleurs résultats à un coût computationnel plus élevé.
 
-\section{Structure électronique des molécules en
-première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}
+\section{Structure électronique des molécules en première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}
 
 \subsection{Hamiltonien d'une molécule en première
 quantification}\label{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}
@@ -234,65 +233,28 @@ En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer l
 
 
 
-Nous nous intéressons principalement à la structure \emph{électronique}
-de la molécule. Comme $M'\sim10^3$, nous appliquons
-l'\textbf{approximation de Born-Oppenheimer}, en traitant les noyaux
-comme des charges ponctuelles classiques. En conséquence, le terme
-d'énergie cinétique nucléaire $T_n$ est négligé,
-$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien
-moléculaire est approché par un Hamiltonien électronique paramétré par
-$\mathbf{R}$, 
-\begin{equation}
-\begin{split}
-\mathtt{H}(\mathbf{R}) &= \mathtt{U}_{nn}+\underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}{ee}}\\
-&= \mathtt{U}_{nn}+\underset{\text{One-Electron Operator}}{\sum_i h(i)} + \underset{\text{Two-Electron Operator}}{\sum_{i\ne j}v(i, j)}.
-\end{split}
-\end{equation}
+%Nous nous intéressons principalement à la structure \emph{électronique}
+%de la molécule. Comme $M'\sim10^3$, nous appliquons
+%l'\textbf{approximation de Born-Oppenheimer}, en traitant les noyaux
+%comme des charges ponctuelles classiques. En conséquence, le terme
+%d'énergie cinétique nucléaire $T_n$ est négligé,
+%$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien
+%moléculaire est approché par un Hamiltonien électronique paramétré par
+%$\mathbf{R}$, 
+%\begin{equation}
+%\begin{split}
+%\mathtt{H}(\mathbf{R}) &= \mathtt{U}_{nn}+\underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}{ee}}\\
+%&= \mathtt{U}_{nn}+\underset{\text{One-Electron Operator}}{\sum_i h(i)} + \underset{\text{Two-Electron Operator}}{\sum_{i\ne j}v(i, j)}.
+%\end{split}
+%\end{equation}
 
-\hypertarget{uxe9nergie-potentiel-de-surface}{%
-\subsection{Énergie potentiel de
-surface}\label{uxe9nergie-potentiel-de-surface}}
+\section{Méthode de Hartree-Fock - Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}
 
-En vertu de l'équation de $\mathtt{H}(\mathbf{R})$ préceédente,
-l'équation de Schrödinger indépendante du temps non relativiste écrit
-\begin{equation}
-\mathtt{H}(\mathbf{R})\psi_i(\mathbf{R},\mathbf{r})=E_i(\mathbf{R})\psi_i(\mathbf{R},\mathbf{r}),
-\end{equation} 
-où $\psi_i(\mathbf{R},\mathbf{r})$ désigne l'un des
-états propres et $E_i(\mathbf{R})$ correspond aux surfaces d'énergie
-potentielle moléculaire (PES), ce qui est important pour comprendre les
-processus chimiques tels que la formation et la rupture de liaison. En
-règle générale, la précision du calcul du PES (Potential Energy Surface)
-doit être limitée à la \emph{précision chimique}
-$\epsilon=1 \textrm{kcal}\textrm{mol}^{-1}(\sim 1.59\times 10^{-3}\textrm{Hartrees},\, 43.3\textrm{meV})$.
+La méthode de Hartree-Fock est une approche fondamentale qui approxime l’interaction électron-électron dans un système moléculaire. Elle repose sur l'idée de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron ressent une répulsion moyenne des autres électrons} tout en respectant le principe de symétrie antisymétrique de Pauli. En d'autres termes, chaque électron n'interagit pas explicitement avec les autres électrons.
 
-L'énergie de l'état fondamental est donnée par 
-\begin{equation}\label{eq:E0} 
-E_0 = \frac{\langle\psi_0|\mathtt{H}|\psi_0\rangle}{\langle\psi_0|\psi_0\rangle},
-\end{equation} 
-où $|\psi_0\rangle$ est l'état fondamental du système.
-Cependant, la dimensionnalité de ce problème croît exponentiellement
-avec le nombre de degrés de liberté. Pour résoudre ce problème, nous
-aimerions préparer $|\psi_0\rangle$ sur un calculateur quantique et
-mesurer directement la valeur moyenne Hamiltonienne (ou $E_0$). Alors,
-comment pouvons-nous faire cela concrètement?
+\subsection{Fonction d'état - Déterminant de Slater}
 
-Un bon point de départ pour résoudre ce problème est la méthode
-Hartree-Fock (HF), autrement nous allons prendre comme fonction d'état
-de réféfrence la fonction d'état HF. \textbf{Cette méthode rapproche un problème
-à N corps en N problèmes à un corps où chaque électron évolue dans le
-champ moyen des autres.} Il est à noter que le dénominateur de l'Equation
-\eqref{eq:E0} n'est nécessaire que quand la fonction d'etat HF n'est pas
-normalisée au départ. Une facon d'améliorer cette fonction d'état HF est
-d'utiliser une combinaison linéaire des fonction d'état. Ce qui sera
-fait à travers les bases chimiques.
-
-\hypertarget{duxe9terminant-slater}{%
-\subsection{Déterminant Slater}\label{duxe9terminant-slater}}
-
-Un déterminant de Slater est un produit anti-symétrique d'un ou de
-plusieurs spin orbitals. Pour un système à $N$-electron, le
-déterminant de Slater s'écrit 
+La fonction d'état dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 \begin{equation}
 \begin{split}
 \psi(\mathbf{r}_0, \mathbf{r}_1, \ldots, \mathbf{r}_{N-1})\equiv |\phi_{M-1},\cdots,  \phi_1, \phi_0 \rangle 
@@ -305,18 +267,9 @@ déterminant de Slater s'écrit
 &\equiv |M-1,\dots, 1, 0 \rangle,
 \end{split}
 \end{equation} 
-L'échange des positions de deux électrons est équivalent
-à l'échange de deux rangées du déterminant de Slater, ce qui modifie le
-signe de la fonction d'état. Cela fournit la symétrie d'échange correcte
-pour la fonction d'état fermionique. Bien que le nombre de
-spin-orbitales considérées, $M$, soit généralement plus élevé que le
-nombre d'électrons dans le système, $N$, les électrons ne peuvent
-occuper que $N$ des spin-orbitales dans un déterminant Slater donné.
-En conséquence, le déterminant de Slater ne contient que les
-spin-orbitales occupées $N$.
+L'échange des positions de deux électrons est équivalent à l'échange de deux rangées du déterminant de Slater, ce qui modifie le signe de la fonction d'état. Cela fournit la symétrie d'échange correcte pour la fonction d'état fermionique. Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent occuper que $N$ des spin-orbitales dans un déterminant Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées $N$.
 
-    \hypertarget{exemple-dillustration}{%
-\subsection{Exemple d'illustration}\label{exemple-dillustration}}
+\subsection{Exemple d'illustration}\label{exemple-dillustration}
 
 Pour rendre les correspondances plus claires, nous examinons comment une
 fonction d'état sera représentée pour un système quantique fictif. On
@@ -364,242 +317,65 @@ pouvons voir que nous avons seulement besoin de
 $N \lceil\mathrm{log_2}(M)\rceil = 2 \times \lceil\mathrm{log_2}(4)\rceil = 4$
 qubits pour stocker la fonction d'état.
 
-    \hypertarget{seconde-quantification---construction-dun-opuxe9rateur-hamiltonien-fermionique}{%
-\section{Seconde quantification - Construction d'un opérateur
-Hamiltonien
-fermionique}\label{seconde-quantification---construction-dun-opuxe9rateur-hamiltonien-fermionique}}
+\subsection{Approche variationnelle}
 
-\hypertarget{guxe9nuxe9ration-des-intuxe9grales-moluxe9culaires}{%
-\subsection{Génération des intégrales moléculaires}\label{guxe9nuxe9ration-des-intuxe9grales-moluxe9culaires}}
-
-L'Hamiltonien est exprimé dans la base des solutions de la méthode HF,
-également appelées Orbitales Moléculaires (OM) : 
+L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
 \begin{equation}
-\mathtt{H}_{elec}=\sum_{pq} h_{pq} a^{\dagger}_p a_q + 
-\frac{1}{2} \sum_{pqrs} h_{pqrs}  a^{\dagger}_p a^{\dagger}_q a_r  a_s,
-\end{equation} 
-avec 
-\begin{itemize}
-\item les \textbf{intégrales à 1 électron}
-\begin{equation}
-h_{pq} = \int \phi^*_p(r) \left( -\frac{1}{2} \nabla^2 - \sum_{I} \frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|} \right)   \phi_q(r)d\mathbf{r},
-\end{equation} 
-qui décrivent l'énergie cinétique des électrons
-individuels et leurs interactions Coulombiennes avec les champs
-électriques du noyau ; 
-\item et \textbf{intégrales à 2 électrons}
-\begin{equation}
-h_{pqrs} = \int \frac{\phi^*_p(r_1)  \phi^*_q(r_2) \phi_r(r_2)  \phi_s(r_1)}{|\mathbf{r}_1-\mathbf{r}_2|}d\mathbf{r}_1d\mathbf{r}_2,
-\end{equation} 
-décrivent les interactions Coulombiennes entre les
-électrons; 
-\item $a^\dagger_p$ l'\textbf{opérateur de création} d'un
-électron sur le spin-orbite $p$; 
-\item  $a_q$ l'\textbf{opérateur d'annihilation} d'un électron sur sur le spin-orbite $q$; 
-\item $a^{\dagger}_p a_q $ est l'\textbf{opérateur d'excitation}, qui
-excite un électron du spin-orbite occupé $\phi_q$ vers le spin-orbite
-inoccupé $\phi_p$.
-\end{itemize}
-
-Les MO ($\phi_u$) peuvent être occupés ou virtuels (inoccupés). Un MO
-peut contenir 2 électrons. Ces MO sont les solutions de la méthode HF,
-où chaque l´electron est soumis au champ moyen créé par les autres
-électrons. Cependant, dans ce qui suit, nous travaillons en fait avec
-des orbitales de spin qui sont associées à un spin up ($\alpha$)
-d'électron spin down ($\beta$). Ces deux spins sont également
-communément désignés par $\alpha$ et $\beta$, respectivement. Ainsi,
-les orbitales de spin peuvent contenir un électron ou être inoccupées.
-
-Dans le tableau ci-dessous resume les correspondances première-seconde
-quantification des divers éléments du Hamiltonien moléculaire. 
-
-$
-\begin{array}{|l|l|l|}\hline
-\textbf{Approximation BO}  &  \textbf{Combinaison en 2e quantification} &  \textbf{Description}
-\\\hline
--\frac12\sum_i\nabla^2_i & -\frac12\sum_{p,q}\langle p|\nabla^2_p|q\rangle a^\dagger_p a_q & \mathtt{T}_e \\\hline
- -\sum_{i,I}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|} &
- -\sum_{p,q} \langle p|\frac{Z_I}{|\mathbf{r}_p-\mathbf{R}_I|}|q\rangle a^\dagger_p a_q
- & \mathtt{U}_{en}\\\hline
-\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|} & 
-\sum_{p,q,r,s}\langle pq \big|\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}\big|rs\rangle a^\dagger_p a^\dagger_q a_r a_s & 
- \mathtt{U}_{ee}\\\hline
-\end{array}
-$
-
-\emph{Un des avantages apporté par le formalisme de seconde
-quantification est que la propriété d'anti-symétrie des fonctions d'état
-pour l'échange de fermions identiques, prise en compte manuellement dans
-une approche de première quantification en considérant les déterminants
-de Slater, est automatiquement imposée par le relations
-d'anti-commutation des opérateurs de création et d'annihilation.
-Cependant, le prix à payer est de travailler avec un nombre non fixe de
-particules, qui reste de toute façon une quantité conservée.}
-
-    \hypertarget{repruxe9sentation-nombre-doccupations}{%
-\subsection{Représentation nombre
-d'occupations}\label{repruxe9sentation-nombre-doccupations}}
-
-En seconde quantification, le déterminant de Slater est représenté par
-un \textbf{vecteur nombre d'occupations} 
-\begin{equation}
-|f\rangle =|f_{M-1},\dots,f_{i-1},f_i,f_{i+1},\dots, f_0\rangle, 
-\end{equation} 
-avec 
-\begin{itemize}
-\item $f_i=1$ lorsque le spin-orbital $\phi_i$ est
-occupé et donc présent dans le déterminant de Slater; 
-\item $f_i = 0$ lorsque le $\phi_i$ spin-orbital est vide et donc absent du
-déterminant de Slater.
-\item Le vecteur $|f_i\rangle$ est appelé \textbf{vecteur nombre
-  d'occupations de l'orbite fermionique i}, parce que 
-  \begin{align}
-  &|0\rangle=\begin{pmatrix}1\\0\end{pmatrix}:\text{état vide}, & |1\rangle=\begin{pmatrix}0\\1\end{pmatrix}:\text{état occupé}.
-  \end{align}
-\end{itemize}
-
-Dans la deuxième représentation de quantification, au lieu de poser la
-question \emph{Quel électron est dans quel état?}, nous posons la
-question \emph{combien de particules y a-t-il dans chaque état?}.
-
-\hypertarget{opuxe9rateurs-fermioniques}{%
-\subsection{Opérateurs
-fermioniques}\label{opuxe9rateurs-fermioniques}}
-
-Les opérateurs fermioniques $a^\dagger_i$ et $a_i$ obéissent aux
-relations d'anticommutation fermioniques suivantes: 
-\begin{align}
-&\{a_p,a^\dagger_q\} = a_pa^\dagger_q + a^\dagger_q a_p = \delta_{pq}, 
-&\{a_p, a_q \} = \{a^\dagger_p, a^\dagger_q\} = 0 .
-\end{align} 
-La nature fermionique des électrons implique que les
-fonctions d'état à plusieurs électrons doivent être antisymétriques par
-rapport à l'échange de particules. Cela se reflète dans la manière dont
-les opérateurs de création fermionique et d'annhilation agissent sur les
-déterminants $|f\rangle$: 
-\begin{equation}
-\begin{aligned}
-&a_i|f_{M-1},\dots,f_{i-1},f_i,f_{i+1},\dots, f_0\rangle = \delta_{f_i,1}
-(-1)^{\sum_{m<i}f_m}|f_{M-1},\dots,f_{i-1},f_i\oplus 1,f_{i+1},\dots, f_0\rangle,\\
-&a^\dagger_i|f_{M-1},\dots,f_{i-1},f_i,f_{i+1},\dots, f_0\rangle = \delta_{f_i,0}
-(-1)^{\sum_{m<i}f_m}|f_{M-1},\dots,f_{i-1},f_i\oplus 1,f_{i+1},\dots, f_0\rangle`,  \\
-&a|0\rangle=a^\dagger|1\rangle=0.
-\end{aligned}
-\end{equation} 
-\begin{itemize}
-\item Le terme de phase $p_i=(-1)^{\sum_{m<i}f_m}$ désigne
-la parité qu'impose l'anti-symétrie d'échange des fermions. - $p_i=-1$
-si le nombre d'électrons est impair dans ces orbitales de spin, -
-$p_i= 1$ si le nombre d'électrons est pair dans ces orbitales de spin.
-\item Le symbole $\oplus$ représente l'addition modulo 2, i.e., $1
-  \oplus 1=0 $ et $0 \oplus 1=1$.
-\item L'opérateur de création $a^\dagger_i$ met un électron dans une
-  orbitale inoccupée \emph{i} ou dans $|f_i\rangle$.
-\item L'opérateur d'annihilation $a_i$ supprime un électron dans une
-  orbitale occupée \emph{i} ou en $|f_i\rangle$.
-\item $a_i^2 =(a^\dagger_i)^2= 0$ pour tout $i$. On ne peut pas créer ou
-  anéantir un fermion dans le même mode deux fois.
-\end{itemize}
-
-Par example, 
-\begin{align} 
-&a^\dagger_1 |0\rangle_1 = |1\rangle_1,&&a^\dagger_1 |1\rangle_1 =(a^\dagger_i)^2|0\rangle_1= 0,&& a_1 |1\rangle_1 =|0\rangle_1,&a_1 |0\rangle_1 =a_1^2|1\rangle_1=0. 
-\end{align} 
-Notez qu'ici $a^\dagger_1|1\rangle_1=0$ et $a_1 |0\rangle_1=0$ signifie le vecteur zéro et non $|0\rangle_1$.
-
-En utilisant également de tels opérateurs, nous pouvons exprimer
-\begin{equation}
-|0\rangle |1\rangle |1\rangle |0\rangle = a^\dagger_1a^\dagger_2 |0\rangle^{\otimes 4}.
+F(d) = h + \sum_b \big(J_b(d) - K_b(d)\big) ,
 \end{equation}
+avec,
+\begin{itemize}
+\item $d$ une densité à N-électrons;
+\item $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
+\item $J_b(d)$ le terme de Coulomb (répulsion classique électron-électron);
+\item $K_b(d)$ le terme d'échange (correction purement quantique).
+\end{itemize}
 
-L'opérateur d'occupation orbitale est donné par 
-\begin{align}
-&n_i = a^\dagger_i a_i, &n_i |f_{M-1},\dots,f_i,\dots, f_0\rangle= f_i |f_{M-1},\dots,f_i,\dots, f_0\rangle,
-\end{align} 
-et il compte le nombre d'électrons dans une orbitale donnée, c'est-à-dire 
-\begin{align} 
-&n_i |0\rangle_i = 0, &n_i |1\rangle_i = |1\rangle_i. 
-\end{align}
+\subsection{Équation de Hartree-Fock}
 
-\hypertarget{exercice}{%
-\subsection{Exercice}\label{exercice}}
+Les orbitales sont optimisés de manière variationnelle pour un seul déterminant de Slater. En minimisant l'énergie totale, on obtient l'\textbf{équation de Hartree-Fock pour les orbitales moléculaires} :
+\begin{equation}
+F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
+\end{equation}
+En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cad en travaillant sur la base de la fonction de base centrée sur l'atome, cette équation devient l'\href{https://en.wikipedia.org/wiki/Roothaan_equations}{équation de Roothaan-Hall} :
+\begin{equation}
+\vb{F}\vb{C} = \vb{S}\vb{C}\varepsilon , 
+\end{equation}
+où,
+\begin{itemize}
+\item $\vb{F}$ est la matrice de Fock;
+\item $\vb{C}$ est la matrice des coefficients orbitaux moléculaires;
+\item $\vb{S}$ est la matrice de chevauchement/recouvrement des orbitales atomiques;
+\item $\varepsilon$ est le vecteur des énergies des orbitales moléculaires.
+\end{itemize}
 
-In \textbf{Exemple d'illustration} above, we have considered a
-fictitious system described by spin orbitals
-$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$
-labelled as 
-\begin{align}
- &|A_\uparrow\rangle=|00\rangle=|\mathbf{0}\rangle,  &&|A_\downarrow\rangle=|01\rangle=|\mathbf{1}\rangle,
-&&|B_\uparrow\rangle=|10\rangle=|\mathbf{2}\rangle,  &|B_\downarrow\rangle=|11\rangle=|\mathbf{3}\rangle.
-\end{align} 
-We assume that the Hartree-Fock state for this system
-\textbf{has both electrons occupying the $|A\rangle$ orbitals}. We store the occupations of the spin orbitals
-$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$
-which we order as 
-$|f_{B_\downarrow},f_{B_\uparrow},f_{A_\downarrow},f_{A_\uparrow}\rangle$,
-with $f_i=0,1$ (in the fermionic Fock space).
+\subsection{Procédure auto-cohérente (SCF)}
+
+La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
 
 \begin{enumerate}
-\item Write down, in the fermionic Fock space, the Hartree-Fock state
-  $|\Psi_{\rm HF}\rangle$, that is, the corresponding of the
-  antisymmetrized Slater determinant obtained in \textbf{Exemple
-  d'illustration}. 
-  \begin{equation}
-  |\Psi_{\rm HF}\rangle = |0011\rangle .
-  \end{equation}
-\item Write down, in the fermionic Fock space, the $s_z = 0$ state
-  function. 
-  \begin{equation}
-  |\Psi_{\rm HF}\rangle = \alpha|0011\rangle + \beta|1100\rangle + |1001\rangle + |0101\rangle .
-  \end{equation}
+\item \textbf{Démarrage.} Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$.
+\item \textbf{Construction de $\vb{F}$.} Calcul des termes de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
+\item \textbf{Équation de Roothaan-Hall.} Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
+\item \textbf{Mise à jour des orbitales.} Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
+\item \textbf{Critère de convergence.} Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si la différence est inférieure à un seuil $\delta$, le processus est terminé.
+\item \textbf{Retour en cas de non-convergence.} Si la convergence n’est pas atteinte, le cycle est répété.
 \end{enumerate}
 
-    \hypertarget{calcul-du-champ-moyen-ou-mean-field}{%
-\section{Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}}
+La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 
-Le calcul du champ moyen est généralement la première étape de toutes
-les approches post Hartree-Fock. \textbf{Les approches en champ moyen
-résolvent l'équation de Schrödinger en faisant la moyenne du terme de
-répulsion électron-électron de manière auto-cohérente ou SCF. En
-d'autres termes, chaque électron n'interagit pas explicitement avec les
-autres électrons.}
-
-\hypertarget{hartree-fock}{%
-\subsection{\texorpdfstring{\href{https://en.wikipedia.org/wiki/Hartree\%E2\%80\%93Fock_method}{Hartree-Fock}}{Hartree-Fock}}\label{hartree-fock}}
-
-\begin{itemize}
-\item Hatree-Fock (HF) est le point de départ de l'essentiel de la chimie
-  quantique.
-\item Les orbitales sont optimisés de manière variationnelle pour un seul
-  déterminant de Slater.
-\item En travaillant sur la base de la fonction de base centrée sur l'atome,
-  on résoud les équations de
-  \href{https://en.wikipedia.org/wiki/Roothaan_equations}{Roothaan-Hall}.
-\end{itemize}
-\begin{equation}
-\mathbf{FC} = \mathbf{SC} \epsilon.
-\end{equation}
-\begin{itemize}
-\item $\mathbf{F}$ est la matrice Fock;
-\item $\mathbf{C}$ est la matrice des coefficients orbitaux moléculaires;
-\item $\mathbf{S}$ est la matrice de chevauchement orbitale atomique;
-\item $\epsilon$ est le vecteur des énergies orbitales moléculaires.
-\end{itemize}
-
-\begin{figure}
+\begin{figure}[tbh]
 \centering
-\includegraphics[width=.6\linewidth]{SCF_Workflow.jpg}
-\caption{HF Flowchart.  Hamiltonien moléculaire en première quantification
-Illustration des termes constitutifs du Hamiltonien moléculaire, mettant en évidence les contributions cinétiques et interactionnelles entre électrons et noyaux.}
+\includegraphics[width=0.6\linewidth]{SCF_Workflow.pdf}
+\caption{Workflow détaillé de la procédure SCF (Self-Consistent Field).}
+\label{fig:scfworkflow}
 \end{figure}
 
-    \hypertarget{quelques-limites-des-muxe9thodes-hf}{%
-\paragraph{Quelques limites des méthodes
-HF}\label{quelques-limites-des-muxe9thodes-hf}}
+
+\subsection{{Quelques limites des méthodes HF}\label{quelques-limites-des-muxe9thodes-hf}
 
 La méthode de Hartree-Fock présente certaines limites :
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
 \item \textbf{Approximation de l'échange-correlation}. La méthode de
   Hartree-Fock ne tient pas compte de manière exacte de l'interaction
   électron-électron appelée \textbf{correlation électronique}. Elle
@@ -631,8 +407,7 @@ La méthode de Hartree-Fock présente certaines limites :
   tous les systèmes.
 \end{enumerate}
 
-    \hypertarget{choix-de-lensemble-de-bases}{%
-\section{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}}
+\section{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}
 
 L'équation de Schrödinger à plusieurs électrons est généralement résolue
 sur une base d'orbitales moléculaires exprimées sous la forme d'une
@@ -651,8 +426,7 @@ représentée par des fonctions centrées sur les atomes (les positions
 atomiques) pour les systèmes moléculaires, ou par des fonctions d'état
 plane en physique du solide.
 
-\hypertarget{ensembles-de-bases-traditionnels}{%
-\subsection{Ensembles de bases traditionnels}\label{ensembles-de-bases-traditionnels}}
+\subsection{Ensembles de bases traditionnels}\label{ensembles-de-bases-traditionnels}
 
 Les deux classes traditionnelles d'orbitales de base approximatives
 couramment utilisées sont :
@@ -770,8 +544,7 @@ Polarisation & Fonctions de base avec un moment cinétique plus élevé ; impor
 Diffusion & Fonctions de base avec de petits exposants ; important pour les états excités ; les tailles des éléments de la deuxième rangée sont 4s3p pour 6-31+G et 4s3p2d pour aug-cc-pVDZ & 6-31+G, aug-cc-pVDZ \\\hline
 \end{tabular}
 
-\hypertarget{ensembles-de-base-de-karlsruhe}{%
-\subsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}}
+\subsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}
 
 Contrairement aux ensembles de bases traditionnels, les familles
 d'ensembles de bases modernes permettent une approche rentable de la
