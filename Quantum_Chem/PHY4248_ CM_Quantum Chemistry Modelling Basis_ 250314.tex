@@ -187,7 +187,7 @@ L'équation de Schrödinger dans sa forme complète est inapplicable directement
 
 L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l’équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
 
-\begin{figure}[tbph]
+\begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
 \caption{Illustration des interactions dams l'approximation de Born-Oppenheimer.}
@@ -196,22 +196,28 @@ L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en 
 
 \subsubsection{Hamiltonien réduit}
 
-En appliquant cette approximation, le Hamiltonien électronique est extrait de l'Hamiltonien total :
+En appliquant cette approximation, le terme d'énergie cinétique nucléaire $T_n$ est négligé,
+$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien électronique est extrait de l'Hamiltonien total:
 \begin{equation}
-\mathtt{H}_{\text{elec}} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
+\begin{split}
+\mathtt{H}_{\text{elec}}(\mathbf{R}) &= \underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}_{ee}}\\
+&= \underset{\text{One-Electron Operator}}{\sum_i h(i)} + \underset{\text{Two-Electron Operator}}{\sum_{i\ne j}v(i, j)}\\
+&=-\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
+\end{split}
 \end{equation}
+
 Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
 
 \subsubsection{Énergie totale du système}
 
 Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
 \begin{equation}
-E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}},
+E_{\text{tot}} = E_{\text{elec}} + E_{nn},
 \end{equation}
 où,
 \begin{itemize}
 \item $E_{\text{elec}}$ est l'énergie électronique (résultat du Hamiltonien électronique);
-\item le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
+\item $E_{nn}=\sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}$ représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 \end{itemize}
 
 \subsubsection{Conséquences de l'approximation}
