@@ -1,87 +1,80 @@
-\documentclass[12pt]{report}
-%
-\usepackage[utf8]{inputenc}
-\usepackage[french]{babel}
+\makeatletter
+\def\input@path{{./Graphics/}} % Définition du chemin d'entrée pour les graphiques
+\makeatother
 
-    \usepackage[breakable]{tcolorbox}
-    \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
-    
-\usepackage{graphicx,amsthm,mathtools,amsfonts,amssymb,mathptmx,physics,longtable}
-%    \usepackage{caption}
-%    \DeclareCaptionFormat{nocaption}{}
-%    \captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+\documentclass[12pt,a4paper]{article} % Classe de document
 
-    \usepackage{float}
-    \floatplacement{figure}{H} % forces figures to be placed at the correct location
-\usepackage[svgnames,x11names,rgb,table]{xcolor} % définit les couleurs par 
-% noms
-%Diverses packages utiles
-\usepackage{array,multicol,wrapfig,lmodern,multirow,booktabs,mathrsfs}
-\usepackage[detect-all=true,group-minimum-digits=4]{siunitx}
-\usepackage[bf,textfont={footnotesize,it}]{caption}
-%
+% Chargement des packages essentiels
+\usepackage[utf8]{inputenc} % Encodage UTF-8
+\usepackage[french]{babel} % Support de la langue française
+\usepackage{graphicx, amsthm, mathtools, amsfonts, amssymb, physics, longtable, mathrsfs} % Packages pour les graphiques et mathématiques
 
-%-------------------------------------------------------------------------------
-% Gestion de la page (mode économique)
-\usepackage[top=2cm,left=1cm,right=1cm,bottom=1.5cm,includefoot,includehead,a4paper]{geometry}
+\usepackage{float} % Gère le placement des objets flottants
+\floatplacement{figure}{H} % Forces les figures à être placées exactement à l'endroit où elles apparaissent dans le texte
 
-    \usepackage{fancyvrb} % verbatim replacement that allows latex
-    \usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
-    \adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+\usepackage[svgnames,x11names,rgb,table]{xcolor} % Définit les couleurs par noms
+\usepackage{array, multicol, wrapfig, lmodern, multirow, booktabs} % Diverses améliorations de mise en forme
+\usepackage[detect-all=true, group-minimum-digits=4]{siunitx} % Pour les unités SI
 
-    % The hyperref package gives us a pdf with properly built
-    % internal navigation ('pdf bookmarks' for the table of contents,
-    % internal cross-reference links, web links for URLs, etc.)
-    \usepackage{hyperref}
-   \hypersetup{ 
-     colorlinks=true, 	% colorise les liens 
-     breaklinks=true,	% permet le retour la ligne dans les liens trop longs 
-     allcolors= Blue3,
-   %   bookmarksopen=true,	% ouvre les signets PDF au départ 
-     pdfauthor=Nana Engo,	% Nom de l'auteur du texte
-     pdfsubject={Chimie quantique et VQE},%
-     pdftitle={PHY4268 - Chimie quantique et VQE V25.03}t% Titre
-        }
-   
-    % The default LaTeX title has an obnoxious amount of whitespace. By default,
-    % titling removes some of it. It also provides customization options.
-    \usepackage{titling}
-    \usepackage{cleveref}
-\frenchbsetup{StandardLayout=true}
-    % Document parameters
-    % Document title
-    \title{Chapter 1 - Quantum Chemistry Modelling Basis}
+\usepackage[bf, textfont={footnotesize,it}]{caption} % Personnalisation des légendes
+
+% Configuration des marges de la page
+\usepackage[margin=2cm, a4paper]{geometry}
+
+\usepackage{fancyvrb} % Remplacement du mode verbatim qui permet une meilleure mise en forme
+%\usepackage[Export]{adjustbox} % Utilisé pour contraindre les images à une taille maximale
+%\adjustboxset{max size={0.9\linewidth}{0.9\paperheight}} % Taille maximale des images
+
+% Configuration pour hyperref
+\usepackage{hyperref} 
+\hypersetup{
+    colorlinks=true, % Colorise les liens
+    breaklinks=true, % Permet le retour à la ligne dans les liens trop longs
+    allcolors=Blue3, % Couleur des liens
+    pdfauthor={Nana Engo}, % Auteur du document PDF
+    pdfsubject={Chimie quantique et VQE}, % Sujet du document
+    pdftitle={PHY4268 - Chimie quantique et VQE V25.03}, % Titre du document
+    bookmarksopen=true % Ouvre les signets PDF par défaut
+}
+
+\usepackage{cleveref} % Améliore la gestion des références croisées
+
+\frenchbsetup{StandardLayout=true} % Configuration du layout français
+\numberwithin{equation}{section} % Numérotation des équations par section
+\numberwithin{figure}{section} % Numérotation des figures par section
+\numberwithin{table}{section} % Numérotation des tables par section
+
+\setcounter{secnumdepth}{3} % Pour inclure les sous-sections
+\renewcommand{\thesection}{\arabic{section}} % Numérotation des sections
+
+% Titre du document
+\title{\vspace*{8cm}
+Chapter 1 - Quantum Chemistry Modelling Basis
+\vspace*{5cm}}
+
 \author{
-\begin{tabular}{p{4cm}p{3cm}}
-\textbf{Nana Engo} &  \textbf{Tchapet Njafa} \\
-serge.nana-engo@facsciences-uy1.cm  &\textit{Chargé de Cours} \\
-\end{tabular}}
-%\textbf{S. G. Nana Engo}, serge.nana-engo@facsciences-uy1.cm
-%\textbf{S. G. Nana Engo}, serge.nana-engo@facsciences-uy1.cm}    
-\date{Marcs 2025}
-\begin{document}
-    
-    \maketitle
-    
-%    \hypertarget{phy4268-chapitre-1---quantum-chemistry-modelling-basis}{%
-%\section{PHY4268 Chapitre 1 - Quantum Chemistry Modelling
-%Basis}\label{phy4268-chapitre-1---quantum-chemistry-modelling-basis}}
-%
-%\begin{enumerate}
-%\item
-%  \begin{itemize}
-%  \item Department of Physics, Faculty of Science, University of Yaounde I
-%  \end{itemize}
-%\item \textbf{J-P. Tchapet Njafa}, jean-pierre.tchapet-njafa@univ-maroua.cm
-%\begin{itemize}
-%  \item Department of Physics, Faculty of Science, University of Maroua
-%  \end{itemize}
-%\end{enumerate}
-%
-%Mars 2025
+\begin{tabular}{lr}
+    \textbf{Nana Engo} & \textbf{Tchapet Njafa}\\
+    {\small  serge.nana-engo@facsciences-uy1.cm} &\hspace*{2em}
+    {\small jean-pierre.tchapet@facsciences-uy1.cm}
+\end{tabular}\\[3em] % Espace entre les auteurs et la filiation
+\textit{Quantum Simulation Group}\\
+    \textit{Department of Physics} \\ 
+    \textit{Faculty of Science} \\ 
+    \textit{University of Yaoundé I}
+}
+\date{\vspace*{3cm}March 2025} % Date du document
 
-Dans ce chapitre, nous abordons les notions de base suivantes de la
-chimie quantique :
+\begin{document}
+\maketitle % Affiche le titre, les auteurs et la date
+
+% Espace supplémentaire après le titre (ajustable si nécessaire)
+%\vspace*{2cm}
+
+\newpage
+\section{Introduction}
+
+Dans ce chapitre, nous abordons les notions de base suivantes de la chimie quantique :
 \begin{itemize}
 \item Hamiltonien moléculaire en 1ère quantification ;
 \item Approximation de Born-Oppenheimer ;
@@ -93,29 +86,29 @@ chimie quantique :
 \end{itemize}
 
 Ces notions correspondantes aux composantes encadrées en rouge sur la
-\Cref{fig:VQE_FLowchart}, illustrant le workflow de l'algorithme de la VQE
+\autoref{fig:VQE_Flowchart}, illustrant le workflow de l'algorithme de la VQE
 permettant de faire des simulations moléculaires.
 
 \begin{figure}
 \centering
-\includegraphics{Graphics/VQE_Flowchart.jpeg} 
-\caption{Applications dans le domaine de l'énergie.}
+\includegraphics[width=.9\linewidth]{VQE_Flowchart.jpeg} 
+\caption{\textbf{Diagramme de flux de l'algorithme VQE.} Représentation schématique du workflow de l'algorithme de la méthode Variationnel Quantum Eigensolver (VQE), illustrant les étapes clés pour la simulation moléculaire en chimie quantique.}
 \label{fig:VQE_Flowchart}
 \end{figure}
 
 Comme nous l'avons déjà précédemment vu, le calcul quantique impacte de nombreux secteurs
-technologiques et pharmacetiques. La \Cref{fig:CoverVQE} pour présente les
+technologiques et pharmacetiques. La \autoref{fig:CoverVQE} pour présente les
 applications dans le domaine de l'énergie.
 
 \begin{figure}
 \centering
-\includegraphics{Graphics/CoverVQE.jpg}
-\caption{Applications dans le domaine de l'énergie}
+\includegraphics[width=.4\linewidth]{CoverVQE.jpg}
+\caption{\textbf{Applications dans le domaine de l'énergie.} Aperçu des applications potentielles de la chimie quantique computationnelle dans le secteur énergétique, incluant l'optimisation des processus chimiques et le développement de nouveaux matériaux.}
 \label{fig:CoverVQE}
 \end{figure}
 
     \hypertarget{moduxe9lisation-chimique}{%
-\subsection{Modélisation chimique}\label{moduxe9lisation-chimique}}
+\section{Modélisation chimique}\label{moduxe9lisation-chimique}}
 
 La chimie computationnelle a révolutionné la science et l'industrie et a
 contribué à améliorer notre compréhension des processus chimiques. Au
@@ -139,34 +132,34 @@ correspond simplement à des approximations de plus en plus sophistiquées
 qui donnent de meilleurs résultats à un coût computationnel plus élevé.
 
     \hypertarget{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}{%
-\subsection{Structure électronique des molécules en
+\section{Structure électronique des molécules en
 première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}}
 
 \hypertarget{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}{%
-\subsubsection{Hamiltonien d'une molécule en première
+\subsection{Hamiltonien d'une molécule en première
 quantification}\label{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}}
 
-L'Hamiltonien d'une molécule constituée de noyaux \(K\) et d'électrons
-\(N\) est 
+L'Hamiltonien d'une molécule constituée de noyaux $K$ et d'électrons
+$N$ est 
 \begin{equation}
 \mathtt{H}=\mathtt{T}_e+\mathtt{T}_n+\mathtt{U}_{en}+\mathtt{U}_{en}+\mathtt{U}_{nn},
 \end{equation} où 
 \begin{itemize}
-\item \(\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i\) est l'énergie cinétique électronique; 
-\item \(\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I\) est l'énergie cinétique nucléaire; 
-\item \(\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}\) est la répulsion Coulombienne entre les électrons et les noyaux; 
-\item \(\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}\) est la répulsion Coulombienne entre les électrons eux-mêmes; 
-\item \(\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}\) est la répulsion Coulombienne entre les noyaux eux-mêmes.
+\item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique; 
+\item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire; 
+\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est la répulsion Coulombienne entre les électrons et les noyaux; 
+\item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est la répulsion Coulombienne entre les électrons eux-mêmes; 
+\item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est la répulsion Coulombienne entre les noyaux eux-mêmes.
 \end{itemize}
-\(M_I\), \(\mathbf{R}_I\) et \(Z_I\) (\(I=1,2\)) désignent la masse, la
+$M_I$, $\mathbf{R}_I$ et $Z_I$ ($I=1,2$) désignent la masse, la
 position et le numéro atomique du \emph{I}-ème noyau, et
-\(\mathbf{r}_i\) est la position du \emph{i}-ème électron. Par souci de
+$\mathbf{r}_i$ est la position du \emph{i}-ème électron. Par souci de
 concision, nous travaillons en unités atomiques, où l'unité de longueur
-est \(a_0 = 1\) Bohr (\(0.529167~\mathtt{T}imes~10^{-10}\) m), l'unité
-de masse est la masse électronique \(m_e\) et l'unité d'énergie est 1
+est $a_0 = 1$ Bohr ($0.529167~\mathtt{T}imes~10^{-10}$ m), l'unité
+de masse est la masse électronique $m_e$ et l'unité d'énergie est 1
 Hartree
-(\(1~\textrm{Hartree}~= ~{e^2}/{4\pi\epsilon_0 a_0}~=~27.2113~\textrm{eV}\)).
-Dénotant \(M_I'=M_I/m_e\), les différents termes de l'Hamiltonien
+($1~\textrm{Hartree}~= ~{e^2}/{4\pi\epsilon_0 a_0}~=~27.2113~\textrm{eV}$).
+Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien
 moléculaire en unités atomiques s'écrit 
 \begin{equation}
 \begin{split}
@@ -180,17 +173,17 @@ moléculaire en unités atomiques s'écrit
 \end{equation}
 
 \hypertarget{approximation-de-born-oppenheimer}{%
-\subsubsection{Approximation de
+\subsection{Approximation de
 Born-Oppenheimer}\label{approximation-de-born-oppenheimer}}
 
 Nous nous intéressons principalement à la structure \emph{électronique}
-de la molécule. Comme \(M'\sim10^3\), nous appliquons
+de la molécule. Comme $M'\sim10^3$, nous appliquons
 l'\textbf{approximation de Born-Oppenheimer}, en traitant les noyaux
 comme des charges ponctuelles classiques. En conséquence, le terme
-d'énergie cinétique nucléaire \(T_n\) est négligé,
-\(\mathtt{U}_{nn}(\mathbf{R})\) est constant et l'Hamiltonien
+d'énergie cinétique nucléaire $T_n$ est négligé,
+$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien
 moléculaire est approché par un Hamiltonien électronique paramétré par
-\(\mathbf{R}\), 
+$\mathbf{R}$, 
 \begin{equation}
 \begin{split}
 \mathtt{H}(\mathbf{R}) &= \mathtt{U}_{nn}+\underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}{ee}}\\
@@ -199,31 +192,31 @@ moléculaire est approché par un Hamiltonien électronique paramétré par
 \end{equation}
 
 \hypertarget{uxe9nergie-potentiel-de-surface}{%
-\subsubsection{Énergie potentiel de
+\subsection{Énergie potentiel de
 surface}\label{uxe9nergie-potentiel-de-surface}}
 
-En vertu de l'équation de \(\mathtt{H}(\mathbf{R})\) préceédente,
+En vertu de l'équation de $\mathtt{H}(\mathbf{R})$ préceédente,
 l'équation de Schrödinger indépendante du temps non relativiste écrit
 \begin{equation}
 \mathtt{H}(\mathbf{R})\psi_i(\mathbf{R},\mathbf{r})=E_i(\mathbf{R})\psi_i(\mathbf{R},\mathbf{r}),
 \end{equation} 
-où \(\psi_i(\mathbf{R},\mathbf{r})\) désigne l'un des
-états propres et \(E_i(\mathbf{R})\) correspond aux surfaces d'énergie
+où $\psi_i(\mathbf{R},\mathbf{r})$ désigne l'un des
+états propres et $E_i(\mathbf{R})$ correspond aux surfaces d'énergie
 potentielle moléculaire (PES), ce qui est important pour comprendre les
 processus chimiques tels que la formation et la rupture de liaison. En
 règle générale, la précision du calcul du PES (Potential Energy Surface)
 doit être limitée à la \emph{précision chimique}
-\(\epsilon=1 \textrm{kcal}\textrm{mol}^{-1}(\sim 1.59\times 10^{-3}\textrm{Hartrees},\, 43.3\textrm{meV})\).
+$\epsilon=1 \textrm{kcal}\textrm{mol}^{-1}(\sim 1.59\times 10^{-3}\textrm{Hartrees},\, 43.3\textrm{meV})$.
 
 L'énergie de l'état fondamental est donnée par 
 \begin{equation}\label{eq:E0} 
 E_0 = \frac{\langle\psi_0|\mathtt{H}|\psi_0\rangle}{\langle\psi_0|\psi_0\rangle},
 \end{equation} 
-où \(|\psi_0\rangle\) est l'état fondamental du système.
+où $|\psi_0\rangle$ est l'état fondamental du système.
 Cependant, la dimensionnalité de ce problème croît exponentiellement
 avec le nombre de degrés de liberté. Pour résoudre ce problème, nous
-aimerions préparer \(|\psi_0\rangle\) sur un calculateur quantique et
-mesurer directement la valeur moyenne Hamiltonienne (ou \(E_0\)). Alors,
+aimerions préparer $|\psi_0\rangle$ sur un calculateur quantique et
+mesurer directement la valeur moyenne Hamiltonienne (ou $E_0$). Alors,
 comment pouvons-nous faire cela concrètement?
 
 Un bon point de départ pour résoudre ce problème est la méthode
@@ -237,10 +230,10 @@ d'utiliser une combinaison linéaire des fonction d'état. Ce qui sera
 fait à travers les bases chimiques.
 
 \hypertarget{duxe9terminant-slater}{%
-\subsubsection{Déterminant Slater}\label{duxe9terminant-slater}}
+\subsection{Déterminant Slater}\label{duxe9terminant-slater}}
 
 Un déterminant de Slater est un produit anti-symétrique d'un ou de
-plusieurs spin orbitals. Pour un système à \(N\)-electron, le
+plusieurs spin orbitals. Pour un système à $N$-electron, le
 déterminant de Slater s'écrit 
 \begin{equation}
 \begin{split}
@@ -258,23 +251,23 @@ L'échange des positions de deux électrons est équivalent
 à l'échange de deux rangées du déterminant de Slater, ce qui modifie le
 signe de la fonction d'état. Cela fournit la symétrie d'échange correcte
 pour la fonction d'état fermionique. Bien que le nombre de
-spin-orbitales considérées, \(M\), soit généralement plus élevé que le
-nombre d'électrons dans le système, \(N\), les électrons ne peuvent
-occuper que \(N\) des spin-orbitales dans un déterminant Slater donné.
+spin-orbitales considérées, $M$, soit généralement plus élevé que le
+nombre d'électrons dans le système, $N$, les électrons ne peuvent
+occuper que $N$ des spin-orbitales dans un déterminant Slater donné.
 En conséquence, le déterminant de Slater ne contient que les
-spin-orbitales occupées \(N\).
+spin-orbitales occupées $N$.
 
     \hypertarget{exemple-dillustration}{%
-\subsubsection{Exemple d'illustration}\label{exemple-dillustration}}
+\subsection{Exemple d'illustration}\label{exemple-dillustration}}
 
 Pour rendre les correspondances plus claires, nous examinons comment une
 fonction d'état sera représentée pour un système quantique fictif. On
 considère les orbitales de spin
-\(|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle\).
+$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$.
 Nous sommes libres de définir arbitrairement l'état Hartree-Fock de
 notre système fictif et de choisir les deux électrons dans l'orbitale
-\(|A\rangle\). Nous sommes intéressés par la fonction d'état lorsque la
-composante \(z\) du spin est nulle.
+$|A\rangle$. Nous sommes intéressés par la fonction d'état lorsque la
+composante $z$ du spin est nulle.
 
 Labellisons chaque orbitale ainsi qu'il suit~:
 \begin{align}
@@ -283,8 +276,8 @@ Labellisons chaque orbitale ainsi qu'il suit~:
 \end{align}
 
 L'état de Hartree-Fock possède les deux électrons dans les orbitales
-\(|A\rangle\). Un état HF incorrectement symétrisé serait donc
-\(|A_\uparrow\rangle_1|A_\downarrow\rangle_2 = |\mathbf{0}\rangle_1|\mathbf{1}\rangle_2\),
+$|A\rangle$. Un état HF incorrectement symétrisé serait donc
+$|A_\uparrow\rangle_1|A_\downarrow\rangle_2 = |\mathbf{0}\rangle_1|\mathbf{1}\rangle_2$,
 où les indices indiquent l'électron décrit par chaque orbitale. La
 fonction d'état HF correctement antisymétrisée serait
 \begin{equation}
@@ -299,7 +292,7 @@ fonction d'état HF correctement antisymétrisée serait
 \end{split}
 \end{equation}
 Si nous considérons maintenant les excitations au-dessus de l'état HF,
-alors une fonction d'état générale avec \(s_z=0\) qui a été correctement
+alors une fonction d'état générale avec $s_z=0$ qui a été correctement
 antisymétrisée est donnée par
 \begin{equation}
 \begin{aligned}
@@ -308,18 +301,18 @@ antisymétrisée est donnée par
 +& \frac{\gamma}{\sqrt{2}} (|\mathbf{0}\rangle_1|\mathbf{3}\rangle_2 - |\mathbf{3}\rangle_1|\mathbf{0}\rangle_2 ) + \frac{\delta}{\sqrt{2}} (|\mathbf{1}\rangle_1|\mathbf{2}\rangle_2 - |\mathbf{2}\rangle_1|\mathbf{1}\rangle_2 ).
 \end{aligned}
 \end{equation}
-Comme nous avons \(N=2\) électrons et \(M=4\) spin-orbitales, nous
+Comme nous avons $N=2$ électrons et $M=4$ spin-orbitales, nous
 pouvons voir que nous avons seulement besoin de
-\(N \lceil\mathrm{log_2}(M)\rceil = 2 \times \lceil\mathrm{log_2}(4)\rceil = 4\)
+$N \lceil\mathrm{log_2}(M)\rceil = 2 \times \lceil\mathrm{log_2}(4)\rceil = 4$
 qubits pour stocker la fonction d'état.
 
     \hypertarget{seconde-quantification---construction-dun-opuxe9rateur-hamiltonien-fermionique}{%
-\subsection{Seconde quantification - Construction d'un opérateur
+\section{Seconde quantification - Construction d'un opérateur
 Hamiltonien
 fermionique}\label{seconde-quantification---construction-dun-opuxe9rateur-hamiltonien-fermionique}}
 
 \hypertarget{guxe9nuxe9ration-des-intuxe9grales-moluxe9culaires}{%
-\subsubsection{Génération des intégrales moléculaires}\label{guxe9nuxe9ration-des-intuxe9grales-moluxe9culaires}}
+\subsection{Génération des intégrales moléculaires}\label{guxe9nuxe9ration-des-intuxe9grales-moluxe9culaires}}
 
 L'Hamiltonien est exprimé dans la base des solutions de la méthode HF,
 également appelées Orbitales Moléculaires (OM) : 
@@ -342,25 +335,26 @@ h_{pqrs} = \int \frac{\phi^*_p(r_1)  \phi^*_q(r_2) \phi_r(r_2)  \phi_s(r_1)}{|\m
 \end{equation} 
 décrivent les interactions Coulombiennes entre les
 électrons; 
-\item \(a^\dagger_p\) l'\textbf{opérateur de création} d'un
-électron sur le spin-orbite \(p\); 
-\item  \(a_q\) l'\textbf{opérateur d'annihilation} d'un électron sur sur le spin-orbite \(q\); 
+\item $a^\dagger_p$ l'\textbf{opérateur de création} d'un
+électron sur le spin-orbite $p$; 
+\item  $a_q$ l'\textbf{opérateur d'annihilation} d'un électron sur sur le spin-orbite $q$; 
 \item $a^{\dagger}_p a_q $ est l'\textbf{opérateur d'excitation}, qui
-excite un électron du spin-orbite occupé \(\phi_q\) vers le spin-orbite
-inoccupé \(\phi_p\).
+excite un électron du spin-orbite occupé $\phi_q$ vers le spin-orbite
+inoccupé $\phi_p$.
 \end{itemize}
 
-Les MO (\(\phi_u\)) peuvent être occupés ou virtuels (inoccupés). Un MO
+Les MO ($\phi_u$) peuvent être occupés ou virtuels (inoccupés). Un MO
 peut contenir 2 électrons. Ces MO sont les solutions de la méthode HF,
 où chaque l´electron est soumis au champ moyen créé par les autres
 électrons. Cependant, dans ce qui suit, nous travaillons en fait avec
-des orbitales de spin qui sont associées à un spin up (\(\alpha\))
-d'électron spin down (\(\beta\)). Ces deux spins sont également
-communément désignés par \(\alpha\) et \(\beta\), respectivement. Ainsi,
+des orbitales de spin qui sont associées à un spin up ($\alpha$)
+d'électron spin down ($\beta$). Ces deux spins sont également
+communément désignés par $\alpha$ et $\beta$, respectivement. Ainsi,
 les orbitales de spin peuvent contenir un électron ou être inoccupées.
 
 Dans le tableau ci-dessous resume les correspondances première-seconde
 quantification des divers éléments du Hamiltonien moléculaire. 
+
 $
 \begin{array}{|l|l|l|}\hline
 \textbf{Approximation BO}  &  \textbf{Combinaison en 2e quantification} &  \textbf{Description}
@@ -385,7 +379,7 @@ Cependant, le prix à payer est de travailler avec un nombre non fixe de
 particules, qui reste de toute façon une quantité conservée.}
 
     \hypertarget{repruxe9sentation-nombre-doccupations}{%
-\subsubsection{Représentation nombre
+\subsection{Représentation nombre
 d'occupations}\label{repruxe9sentation-nombre-doccupations}}
 
 En seconde quantification, le déterminant de Slater est représenté par
@@ -395,11 +389,11 @@ un \textbf{vecteur nombre d'occupations}
 \end{equation} 
 avec 
 \begin{itemize}
-\item \(f_i=1\) lorsque le spin-orbital \(\phi_i\) est
+\item $f_i=1$ lorsque le spin-orbital $\phi_i$ est
 occupé et donc présent dans le déterminant de Slater; 
-\item \(f_i = 0\) lorsque le \(\phi_i\) spin-orbital est vide et donc absent du
+\item $f_i = 0$ lorsque le $\phi_i$ spin-orbital est vide et donc absent du
 déterminant de Slater.
-\item Le vecteur \(|f_i\rangle\) est appelé \textbf{vecteur nombre
+\item Le vecteur $|f_i\rangle$ est appelé \textbf{vecteur nombre
   d'occupations de l'orbite fermionique i}, parce que 
   \begin{align}
   &|0\rangle=\begin{pmatrix}1\\0\end{pmatrix}:\text{état vide}, & |1\rangle=\begin{pmatrix}0\\1\end{pmatrix}:\text{état occupé}.
@@ -411,10 +405,10 @@ question \emph{Quel électron est dans quel état?}, nous posons la
 question \emph{combien de particules y a-t-il dans chaque état?}.
 
 \hypertarget{opuxe9rateurs-fermioniques}{%
-\subsubsection{Opérateurs
+\subsection{Opérateurs
 fermioniques}\label{opuxe9rateurs-fermioniques}}
 
-Les opérateurs fermioniques \(a^\dagger_i\) et \(a_i\) obéissent aux
+Les opérateurs fermioniques $a^\dagger_i$ et $a_i$ obéissent aux
 relations d'anticommutation fermioniques suivantes: 
 \begin{align}
 &\{a_p,a^\dagger_q\} = a_pa^\dagger_q + a^\dagger_q a_p = \delta_{pq}, 
@@ -424,7 +418,7 @@ La nature fermionique des électrons implique que les
 fonctions d'état à plusieurs électrons doivent être antisymétriques par
 rapport à l'échange de particules. Cela se reflète dans la manière dont
 les opérateurs de création fermionique et d'annhilation agissent sur les
-déterminants \(|f\rangle\): 
+déterminants $|f\rangle$: 
 \begin{equation}
 \begin{aligned}
 &a_i|f_{M-1},\dots,f_{i-1},f_i,f_{i+1},\dots, f_0\rangle = \delta_{f_i,1}
@@ -435,17 +429,17 @@ déterminants \(|f\rangle\):
 \end{aligned}
 \end{equation} 
 \begin{itemize}
-\item Le terme de phase \(p_i=(-1)^{\sum_{m<i}f_m}\) désigne
-la parité qu'impose l'anti-symétrie d'échange des fermions. - \(p_i=-1\)
+\item Le terme de phase $p_i=(-1)^{\sum_{m<i}f_m}$ désigne
+la parité qu'impose l'anti-symétrie d'échange des fermions. - $p_i=-1$
 si le nombre d'électrons est impair dans ces orbitales de spin, -
-\(p_i= 1\) si le nombre d'électrons est pair dans ces orbitales de spin.
-\item Le symbole \(\oplus\) représente l'addition modulo 2, i.e., \$1
-  \oplus 1=0 \$ et \(0 \oplus 1=1\).
-\item L'opérateur de création \(a^\dagger_i\) met un électron dans une
-  orbitale inoccupée \emph{i} ou dans \(|f_i\rangle\).
-\item L'opérateur d'annihilation \(a_i\) supprime un électron dans une
-  orbitale occupée \emph{i} ou en \(|f_i\rangle\).
-\item \(a_i^2 =(a^\dagger_i)^2= 0\) pour tout \(i\). On ne peut pas créer ou
+$p_i= 1$ si le nombre d'électrons est pair dans ces orbitales de spin.
+\item Le symbole $\oplus$ représente l'addition modulo 2, i.e., $1
+  \oplus 1=0 $ et $0 \oplus 1=1$.
+\item L'opérateur de création $a^\dagger_i$ met un électron dans une
+  orbitale inoccupée \emph{i} ou dans $|f_i\rangle$.
+\item L'opérateur d'annihilation $a_i$ supprime un électron dans une
+  orbitale occupée \emph{i} ou en $|f_i\rangle$.
+\item $a_i^2 =(a^\dagger_i)^2= 0$ pour tout $i$. On ne peut pas créer ou
   anéantir un fermion dans le même mode deux fois.
 \end{itemize}
 
@@ -453,7 +447,7 @@ Par example,
 \begin{align} 
 &a^\dagger_1 |0\rangle_1 = |1\rangle_1,&&a^\dagger_1 |1\rangle_1 =(a^\dagger_i)^2|0\rangle_1= 0,&& a_1 |1\rangle_1 =|0\rangle_1,&a_1 |0\rangle_1 =a_1^2|1\rangle_1=0. 
 \end{align} 
-Notez qu'ici \(a^\dagger_1|1\rangle_1=0\) et \(a_1 |0\rangle_1=0\) signifie le vecteur zéro et non \(|0\rangle_1\).
+Notez qu'ici $a^\dagger_1|1\rangle_1=0$ et $a_1 |0\rangle_1=0$ signifie le vecteur zéro et non $|0\rangle_1$.
 
 En utilisant également de tels opérateurs, nous pouvons exprimer
 \begin{equation}
@@ -470,36 +464,32 @@ et il compte le nombre d'électrons dans une orbitale donnée, c'est-à-dire
 \end{align}
 
 \hypertarget{exercice}{%
-\subsubsection{Exercice}\label{exercice}}
+\subsection{Exercice}\label{exercice}}
 
 In \textbf{Exemple d'illustration} above, we have considered a
 fictitious system described by spin orbitals
-\(|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle\)
+$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$
 labelled as 
 \begin{align}
  &|A_\uparrow\rangle=|00\rangle=|\mathbf{0}\rangle,  &&|A_\downarrow\rangle=|01\rangle=|\mathbf{1}\rangle,
 &&|B_\uparrow\rangle=|10\rangle=|\mathbf{2}\rangle,  &|B_\downarrow\rangle=|11\rangle=|\mathbf{3}\rangle.
 \end{align} 
 We assume that the Hartree-Fock state for this system
-\textbf{has both electrons occupying the \(|A\rangle\) orbitals}. We store the occupations of the spin orbitals
-\(|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle\)
+\textbf{has both electrons occupying the $|A\rangle$ orbitals}. We store the occupations of the spin orbitals
+$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$
 which we order as 
-\(|f_{B_\downarrow},f_{B_\uparrow},f_{A_\downarrow},f_{A_\uparrow}\rangle\),
-with \(f_i=0,1\) (in the fermionic Fock space).
+$|f_{B_\downarrow},f_{B_\uparrow},f_{A_\downarrow},f_{A_\uparrow}\rangle$,
+with $f_i=0,1$ (in the fermionic Fock space).
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Write down, in the fermionic Fock space, the Hartree-Fock state
-  \(|\Psi_{\rm HF}\rangle\), that is, the corresponding of the
+\item Write down, in the fermionic Fock space, the Hartree-Fock state
+  $|\Psi_{\rm HF}\rangle$, that is, the corresponding of the
   antisymmetrized Slater determinant obtained in \textbf{Exemple
   d'illustration}. 
   \begin{equation}
   |\Psi_{\rm HF}\rangle = |0011\rangle .
   \end{equation}
-\item
-  Write down, in the fermionic Fock space, the \(s_z = 0\) state
+\item Write down, in the fermionic Fock space, the $s_z = 0$ state
   function. 
   \begin{equation}
   |\Psi_{\rm HF}\rangle = \alpha|0011\rangle + \beta|1100\rangle + |1001\rangle + |0101\rangle .
@@ -507,7 +497,7 @@ with \(f_i=0,1\) (in the fermionic Fock space).
 \end{enumerate}
 
     \hypertarget{calcul-du-champ-moyen-ou-mean-field}{%
-\subsection{Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}}
+\section{Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}}
 
 Le calcul du champ moyen est généralement la première étape de toutes
 les approches post Hartree-Fock. \textbf{Les approches en champ moyen
@@ -517,7 +507,7 @@ d'autres termes, chaque électron n'interagit pas explicitement avec les
 autres électrons.}
 
 \hypertarget{hartree-fock}{%
-\subsubsection{\texorpdfstring{\href{https://en.wikipedia.org/wiki/Hartree\%E2\%80\%93Fock_method}{Hartree-Fock}}{Hartree-Fock}}\label{hartree-fock}}
+\subsection{\texorpdfstring{\href{https://en.wikipedia.org/wiki/Hartree\%E2\%80\%93Fock_method}{Hartree-Fock}}{Hartree-Fock}}\label{hartree-fock}}
 
 \begin{itemize}
 \item Hatree-Fock (HF) est le point de départ de l'essentiel de la chimie
@@ -532,16 +522,17 @@ autres électrons.}
 \mathbf{FC} = \mathbf{SC} \epsilon.
 \end{equation}
 \begin{itemize}
-\item \(\mathbf{F}\) est la matrice Fock;
-\item \(\mathbf{C}\) est la matrice des coefficients orbitaux moléculaires;
-\item \(\mathbf{S}\) est la matrice de chevauchement orbitale atomique;
-\item \(\epsilon\) est le vecteur des énergies orbitales moléculaires.
+\item $\mathbf{F}$ est la matrice Fock;
+\item $\mathbf{C}$ est la matrice des coefficients orbitaux moléculaires;
+\item $\mathbf{S}$ est la matrice de chevauchement orbitale atomique;
+\item $\epsilon$ est le vecteur des énergies orbitales moléculaires.
 \end{itemize}
 
 \begin{figure}
 \centering
-\includegraphics{Graphics/HF_Algo.jpg}
-\caption{HF Flowchart.}
+\includegraphics[width=.6\linewidth]{SCF_Workflow.jpg}
+\caption{HF Flowchart.  Hamiltonien moléculaire en première quantification
+Illustration des termes constitutifs du Hamiltonien moléculaire, mettant en évidence les contributions cinétiques et interactionnelles entre électrons et noyaux.}
 \end{figure}
 
     \hypertarget{quelques-limites-des-muxe9thodes-hf}{%
@@ -583,7 +574,7 @@ La méthode de Hartree-Fock présente certaines limites :
 \end{enumerate}
 
     \hypertarget{choix-de-lensemble-de-bases}{%
-\subsection{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}}
+\section{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}}
 
 L'équation de Schrödinger à plusieurs électrons est généralement résolue
 sur une base d'orbitales moléculaires exprimées sous la forme d'une
@@ -603,16 +594,16 @@ atomiques) pour les systèmes moléculaires, ou par des fonctions d'état
 plane en physique du solide.
 
 \hypertarget{ensembles-de-bases-traditionnels}{%
-\subsubsection{Ensembles de bases traditionnels}\label{ensembles-de-bases-traditionnels}}
+\subsection{Ensembles de bases traditionnels}\label{ensembles-de-bases-traditionnels}}
 
 Les deux classes traditionnelles d'orbitales de base approximatives
 couramment utilisées sont :
 \begin{itemize}
 \item les \textbf{Slater-type orbitals (STOs)} basées sur le déterminant de
   Slater, construitent avec des fonctions exponentielles décroissantes
-  \(e^{-\alpha r}\),
+  $e^{-\alpha r}$,
 \item et les \textbf{orbitales cartésiennes de type Gaussien (GTO)},
-  construitent avec des fonctions Gaussiennes \(e^{-\alpha r^2}\).
+  construitent avec des fonctions Gaussiennes $e^{-\alpha r^2}$.
   L'utilisation de ces fonctions Gaussiennes est bien plus efficace que
   la stratégie STO pour calculer les nombreuses intégrales de
   chevauchement nécessaires à la chimie quantique.
@@ -631,7 +622,7 @@ explicites pour les ensembles de bases~:
 \item les chiffres représentent le nombre de primitives Gaussiennes dans une
   fonction ;
 \item il y a autant de chiffres qu'il y a de fonctions pour chaque orbitale
-  atomique (zeta \(\zeta\)) ;
+  atomique (zeta $\zeta$) ;
 \item la lettre G fait référence à l'utilisation de fonctions Gaussiennes.
 \end{itemize}
 
@@ -663,7 +654,7 @@ l'utilisation d'un ensemble de base finie,
 \Phi_{\text{approx}} = \sum_{i=0}^N c_i |i \rangle .
 \end{equation}
 En vertu du principe variationnel, en considérant que
-\(\Phi_{\text{approx}}\) est normalisée, l'énergie approximée est
+$\Phi_{\text{approx}}$ est normalisée, l'énergie approximée est
 supérieure ou égale à la véritable énergie de l'état fondamentale,
 \begin{equation}
 \langle \Phi_{\text{approx}} | \hat{H} | \Phi_{\text{approx}} \rangle = \epsilon_{\text{approx}} \geq  \epsilon_{\text{true}}.
@@ -679,7 +670,7 @@ ressources de calculs requises dans l'espace (espace de stockage) et en
 temps (nombre d'opérations). Il est souvent judicieux d'équilibrer la
 taille de l'ensemble de base pour optimiser le temps de résolution par
 rapport à la précision cible
-(\(|\epsilon_{\text{approx}} - \epsilon_{\text{true}}|\)), puisque
+($|\epsilon_{\text{approx}} - \epsilon_{\text{true}}|$), puisque
 l'augmentation de la complexité de l'ensemble de base produit des
 rendements décroissants en termes de gain de précision.
 
@@ -700,8 +691,8 @@ générale,
   exemple \texttt{6-31G**} ou \texttt{6-31G(d,p)}) est recommandé;
 \item les fonctions diffuses (par exemple \texttt{6-31G+(d,p)}) doivent être
   incluses lorsqu'il s'agit d'anions. Les fonctions diffuses sont des
-  fonctions avec de petits coefficients (petit \(\alpha\) dans
-  \(e^{-\alpha r^2}\)) qui peuvent s'adapter à la densité électronique
+  fonctions avec de petits coefficients (petit $\alpha$ dans
+  $e^{-\alpha r^2}$) qui peuvent s'adapter à la densité électronique
   loin du noyau;
 \item les ensembles de bases des potentiels de noyau effectif (Effective
   Core Potential, ECP) sont nécessaires lorsqu'il s'agit d'atomes plus
@@ -722,7 +713,7 @@ Diffusion & Fonctions de base avec de petits exposants ; important pour les ét
 \end{tabular}
 
 \hypertarget{ensembles-de-base-de-karlsruhe}{%
-\subsubsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}}
+\subsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}}
 
 Contrairement aux ensembles de bases traditionnels, les familles
 d'ensembles de bases modernes permettent une approche rentable de la
