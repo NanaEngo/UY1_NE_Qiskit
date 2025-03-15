@@ -13,7 +13,7 @@
 \floatplacement{figure}{H} % Forces les figures à être placées exactement à l'endroit où elles apparaissent dans le texte
 
 \usepackage[svgnames,x11names,rgb,table]{xcolor} % Définit les couleurs par noms
-\usepackage{array, multicol, wrapfig, lmodern, multirow, booktabs} % Diverses améliorations de mise en forme
+\usepackage{array, multicol, wrapfig, lmodern, multirow, booktabs, chemformula} % Diverses améliorations de mise en forme
 \usepackage[detect-all=true, group-minimum-digits=4]{siunitx} % Pour les unités SI
 
 \usepackage[bf, textfont={footnotesize,it}]{caption} % Personnalisation des légendes
@@ -350,23 +350,79 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 \label{fig:scfworkflow}
 \end{figure}
 
-\subsection{Influence du type de couche}
-Les trois méthodes HF communément utilisées sont (voir la \autoref{fig:hforb}) :
+\subsection{Types de solutions HF et influence du remplissage électronique}
+
+Dans la méthode de HF, la manière dont les électrons occupent les orbitales moléculaires 
+détermine le type de solution adoptée. En fonction de la configuration électronique de la molécule, 
+trois variantes principales sont couramment utilisées (voir la \autoref{fig:hforb}): 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.5\linewidth]{Graphics/HF_Orb}
-\caption{Méthodes HF suivant le type de couche.}
+\caption{Différentes approches Hartree-Fock selon le remplissage électronique.}
 \label{fig:hforb}
 \end{figure}
 
 \begin{itemize}
-\item \textbf{RHF (Restricted HF)} utiliśee pour des molécules à couches pleines ou fermées. Les spin-orbitales sont soit $\alpha$, soit $\beta$ et tous les orbitales sont doublement occupés par des spin-orbitales $\alpha$ et $\beta$;
- 
-\item \textbf{ROHF (Restricted Open-Shell HF)} utilisée pour des molécules à couches ouvertes où le nombre d'électrons les orbitales n'est pas le même. ROHF utilise autant que possible les orbitales doublement occupées et les orbitales une fois occupées par les électrons non-apariés;
+    \item \textbf{Hartree-Fock restreint (RHF - Restricted HF)}.
+    \begin{itemize}
+        \item Utilisé pour les systèmes où \textbf{toutes les orbitales occupées sont doublées} (couches fermées), c’est-à-dire que chaque orbitale moléculaire contient une paire d’électrons de spins opposés.
+        
+        \item Les mêmes fonctions spatiales sont attribuées aux électrons de spin $\alpha$ et $\beta$.
+        
+        \item Convient aux molécules dans un \textbf{multiplicité de spin singulet} ($S = 0$), comme les molécules diamagnétiques.
+    \end{itemize}
+    
+    \item \textbf{Hartree-Fock restreint pour les couches ouvertes (ROHF - Restricted Open-Shell HF)}.
+    \begin{itemize}
+        \item Adapté aux molécules à \textbf{couches ouvertes}, où certains électrons ne sont pas appariés.
+        
+        \item Les orbitales occupées par deux électrons restent symétriques comme en RHF), tandis que les orbitales contenant un seul électron sont traitées de manière spécifique.
+        
+        \item Permet de modéliser des systèmes avec une \textbf{multiplicité de spin non nulle} ($S > 0$),  comme les radicaux ou les atomes ayant un moment magnétique net.
+    \end{itemize}
 
-\item \textbf{UHF (Unrestricted Hartree-Fock)} utilisée pour des molécules à couches ouvertes où le nombre d'électrons les orbitales n'est pas le même. Les orbitales UHF peuvent avoir avoir des spin $\alpha$ ou $\beta$, mais les orbitales $\alpha$ et $\beta$ peuvent avoir des composants spatiales différents.
+    \item \textbf{Hartree-Fock non restreint (UHF - Unrestricted HF)}.
+    \begin{itemize}
+        \item Utilisé pour les systèmes à \textbf{couches ouvertes}, notamment lorsque le spin total du système ne permet pas une solution symétrique.
+        
+        \item Contrairement à RHF et ROHF, les électrons de spin $\alpha$ et $\beta$ sont décrits par des \textbf{fonctions spatiales différentes}.
+        
+        \item Permet une plus grande flexibilité mais peut introduire un phénomène d’\textbf{instabilité de spin} (le spin-contamination), où la solution obtenue ne correspond pas exactement à l’état de spin souhaité.
+    \end{itemize}
 \end{itemize}
+
+\subsubsection{Comparaison et choix du modèle Hartree-Fock}
+
+Le choix entre RHF, ROHF et UHF dépend du type de molécule étudiée :
+\begin{itemize}
+    \item \textbf{RHF} est adapté aux molécules \textbf{fermées} sans électron non-apparié (ex. \ch{H2}, \ch{CH4}).
+
+    \item \textbf{ROHF} est souvent utilisé pour les systèmes avec \textbf{un nombre impair d’électrons} ou des \textbf{ions radicalaires} (ex. \ch{NO}, \ch{O2}).
+
+    \item \textbf{UHF} est nécessaire pour les systèmes fortement magnétiques, où les électrons occupent des orbitales spatiales distinctes (ex. \textbf{métaux de transition, complexes paramagnétiques}).
+\end{itemize}
+
+Le tableau suivant résume les différences entre ces trois méthodes :
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Méthode HF} & \textbf{Systèmes adaptés} & \textbf{Description des orbitales} & \textbf{Multiplicité de spin} \\
+        \hline
+        RHF  & Couches fermées & Identiques pour $\alpha$ et $\beta$ & $S=0$ \\
+        \hline
+        ROHF & Couches ouvertes (électrons non appariés) & Identiques sauf pour les non-appariés & $S>0$ \\
+        \hline
+        UHF  & Systèmes magnétiques/couches ouvertes & Différentes pour $\alpha$ et $\beta$ & $S>0$ \\
+        \hline
+    \end{tabular}
+    \caption{Comparaison des méthodes Hartree-Fock selon la structure électronique.}
+\end{table}
+
+En pratique, UHF est souvent préféré pour des \textbf{états excités ou fortement corrélés}, tandis que RHF et ROHF sont plus appropriés pour les calculs standards d’énergie fondamentale.
+
 
 \subsection{Quelques limites des méthodes HF}
 
