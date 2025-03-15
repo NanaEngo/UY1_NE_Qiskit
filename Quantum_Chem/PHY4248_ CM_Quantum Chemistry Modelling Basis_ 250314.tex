@@ -174,8 +174,8 @@ Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien moléculaire e
 \mathtt{T}_e&=-\sum_i\frac{\nabla^2_i}{2}, \qquad\mathtt{T}_n= -\sum_I\frac{\nabla^2_I}{2M_I'}, 
  \qquad\mathtt{U}_{en}= - \sum_{i,I}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|},\\
 \mathtt{U}_{ee}&=+\frac12\sum_{i\neq j}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}
-=+\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}=+\sum_{i,j>i}\frac{1}{r_{ij},\\
-\mathtt{U}_{nn}&=+\frac{1}{2}\sum_{I\neq J}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}
+=+\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}=+\sum_{i,j>i}\frac{1}{r_{ij}},\\
+\mathtt{U}_{nn}&=+\frac12\sum_{I\neq J}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}
 =+\sum_{I,J>I}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}=+\sum_{I,J>I}\frac{Z_IZ_J}{R_{IJ}}.
 \end{split}
 \end{equation}
@@ -312,10 +312,6 @@ antisymétrisée est donnée par
 +& \frac{\gamma}{\sqrt{2}} (|\mathbf{0}\rangle_1|\mathbf{3}\rangle_2 - |\mathbf{3}\rangle_1|\mathbf{0}\rangle_2 ) + \frac{\delta}{\sqrt{2}} (|\mathbf{1}\rangle_1|\mathbf{2}\rangle_2 - |\mathbf{2}\rangle_1|\mathbf{1}\rangle_2 ).
 \end{aligned}
 \end{equation}
-Comme nous avons $N=2$ électrons et $M=4$ spin-orbitales, nous
-pouvons voir que nous avons seulement besoin de
-$N \lceil\mathrm{log_2}(M)\rceil = 2 \times \lceil\mathrm{log_2}(4)\rceil = 4$
-qubits pour stocker la fonction d'état.
 
 \subsection{Approche variationnelle}
 
@@ -327,8 +323,16 @@ avec,
 \begin{itemize}
 \item $d$ une densité à N-électrons;
 \item $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
-\item $J_b(d)$ le terme de Coulomb (répulsion classique électron-électron);
-\item $K_b(d)$ le terme d'échange (correction purement quantique).
+\item  $J_b(d)$ le terme de Coulomb ou répulsion classique électron-électron,
+\begin{equation}
+J:=\bra{\phi_n(\br_1)\phi_{n'}(\br_2)}\frac{e^2}{\br_{12}}
+\ket{\phi_n(\br_1)\phi_{n'}(\br_2)},
+\end{equation}
+\item $K_b(d)$ le terme d'interaction d'échange à deux électrons (correction purement quantique),
+\begin{equation}
+K:=\bra{\phi_n(\br_1)\phi_{n'}(\br_2)}\frac{e^2}{\br_{12}}
+\ket{\phi_n(\br_2)\phi_{n'}(\br_1)}.
+\end{equation}
 \end{itemize}
 
 \subsection{Équation de Hartree-Fock}
