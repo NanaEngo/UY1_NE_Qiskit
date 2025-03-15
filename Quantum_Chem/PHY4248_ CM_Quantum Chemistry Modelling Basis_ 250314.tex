@@ -46,10 +46,12 @@
 
 \setcounter{secnumdepth}{3} % Pour inclure les sous-sections
 \renewcommand{\thesection}{\arabic{section}} % Numérotation des sections
-
+%
+\newcommand{\tcb}[1]{\textcolor{blue}{#1}} % textcolor{blue}{#1}
+\newcommand{\tcr}[1]{\textcolor{red}{#1}} % textcolor{red}{#1}
 % Titre du document
 \title{\vspace*{8cm}
-Chapter 1 - Quantum Chemistry Modelling Basis
+\large\tcb{Chapter 1 - Quantum Chemistry Modelling Basis}
 \vspace*{5cm}}
 
 \author{
@@ -107,8 +109,7 @@ applications dans le domaine de l'énergie.
 \label{fig:CoverVQE}
 \end{figure}
 
-    \hypertarget{moduxe9lisation-chimique}{%
-\section{Modélisation chimique}\label{moduxe9lisation-chimique}}
+\section{Modélisation chimique}\label{moduxe9lisation-chimique}
 
 La chimie computationnelle a révolutionné la science et l'industrie et a
 contribué à améliorer notre compréhension des processus chimiques. Au
@@ -131,16 +132,32 @@ ses propres forces et faiblesses. Une partie de cette diversité
 correspond simplement à des approximations de plus en plus sophistiquées
 qui donnent de meilleurs résultats à un coût computationnel plus élevé.
 
-    \hypertarget{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}{%
 \section{Structure électronique des molécules en
-première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}}
+première}\label{structure-uxe9lectronique-des-moluxe9cules-en-premiuxe8re}
 
-\hypertarget{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}{%
 \subsection{Hamiltonien d'une molécule en première
-quantification}\label{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}}
+quantification}\label{hamiltonien-dune-moluxe9cule-en-premiuxe8re-quantification}
+
+En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
+\begin{equation}
+i\hbar \pdv{t} |\psi(t)\rangle = \mathtt{H} |\psi(t)\rangle .
+\end{equation}
+Cette équation décrit comment la fonction d'état $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\mathtt{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
+
+Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
+\begin{equation}
+\mathtt{H} |\psi\rangle = E |\psi\rangle .
+\end{equation}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
+\caption{Illustration simplifiée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
+\label{fig:interactionqc}
+\end{figure}
 
 L'Hamiltonien d'une molécule constituée de noyaux $K$ et d'électrons
-$N$ est 
+$N$ est (voir la \autoref{fig:interactionqc}):
 \begin{equation}
 \mathtt{H}=\mathtt{T}_e+\mathtt{T}_n+\mathtt{U}_{en}+\mathtt{U}_{en}+\mathtt{U}_{nn},
 \end{equation} où 
@@ -166,15 +183,59 @@ moléculaire en unités atomiques s'écrit
 \mathtt{T}_e&=-\sum_i\frac{\nabla^2_i}{2}, \qquad\mathtt{T}_n= -\sum_I\frac{\nabla^2_I}{2M_I'}, 
  \qquad\mathtt{U}_{en}= - \sum_{i,I}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|},\\
 \mathtt{U}_{ee}&=+\frac12\sum_{i\neq j}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}
-=+\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|},\\
+=+\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}=+\sum_{i,j>i}\frac{1}{r_{ij},\\
 \mathtt{U}_{nn}&=+\frac{1}{2}\sum_{I\neq J}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}
-=+\sum_{I,J>I}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}.
+=+\sum_{I,J>I}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}=+\sum_{I,J>I}\frac{Z_IZ_J}{R_{IJ}}.
 \end{split}
 \end{equation}
 
-\hypertarget{approximation-de-born-oppenheimer}{%
-\subsection{Approximation de
-Born-Oppenheimer}\label{approximation-de-born-oppenheimer}}
+L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
+
+\subsection{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
+
+L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l’équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
+
+\begin{figure}[tbph]
+\centering
+\includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
+\caption{Illustration des interactions dams l'approximation de Born-Oppenheimer.}
+\label{fig:bointeractionqc}
+\end{figure}
+
+\subsubsection{Hamiltonien réduit}
+
+En appliquant cette approximation, le Hamiltonien électronique est extrait de l'Hamiltonien total :
+\begin{equation}
+\mathtt{H}_{\text{elec}} = -\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
+\end{equation}
+Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
+
+\subsubsection{Énergie totale du système}
+
+Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
+\begin{equation}
+E_{\text{tot}} = E_{\text{elec}} + \sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}},
+\end{equation}
+où,
+\begin{itemize}
+\item $E_{\text{elec}}$ est l'énergie électronique (résultat du Hamiltonien électronique);
+\item le second terme représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
+\end{itemize}
+
+\subsubsection{Conséquences de l'approximation}
+
+\begin{itemize}
+\item L'énergie totale est calculée pour une géométrie nucléaire fixe.
+\item Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un Hamiltonien nucléaire effectif :
+\begin{equation}
+\mathtt{H}_{\text{nucl}} = -\sum_{A=1}^M \frac{1}{2M_A} \nabla_A^2 + E_{\text{tot}}(\{R_A\}) .
+\end{equation}
+\end{itemize}
+Ici, $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux.
+
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
+
+
 
 Nous nous intéressons principalement à la structure \emph{électronique}
 de la molécule. Comme $M'\sim10^3$, nous appliquons
