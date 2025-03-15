@@ -354,7 +354,7 @@ où,
 La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
 
 \begin{enumerate}
-\item \textbf{Démarrage.} Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$.
+\item \textbf{Démarrage.} Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On founit les coordonnées 3D des atomes du système moléculaire.
 \item \textbf{Construction de $\vb{F}$.} Calcul des termes de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
 \item \textbf{Équation de Roothaan-Hall.} Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
 \item \textbf{Mise à jour des orbitales.} Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
