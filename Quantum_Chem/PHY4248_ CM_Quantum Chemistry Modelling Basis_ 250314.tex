@@ -939,10 +939,8 @@ Polarisation & Fonctions de base avec un moment cinétique plus élevé ; impor
 Diffusion & Fonctions de base avec de petits exposants ; important pour les états excités ; les tailles des éléments de la deuxième rangée sont 4s3p pour 6-31+G et 4s3p2d pour aug-cc-pVDZ & 6-31+G, aug-cc-pVDZ \\\hline
 \end{tabular}
 
-
 \hypertarget{ensembles-de-base-de-karlsruhe}{%
-\subsubsection{Ensembles de base de
-karlsruhe}\label{ensembles-de-base-de-karlsruhe}}
+\subsubsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}}
 
 Contrairement aux ensembles de bases traditionnels, les familles
 d'ensembles de bases modernes permettent une approche rentable de la
@@ -957,8 +955,7 @@ disponibles pour l'ensemble du tableau périodique jusqu'au radon (Z =
 86). Les ensembles Karlsruhe def2 sont disponibles en trois niveaux de
 précision.
 \begin{itemize}
-\item
-  Les ensembles de bases à valence divisée (SV) constituent le plus
+\item Les ensembles de bases à valence divisée (SV) constituent le plus
   petit ensemble de bases raisonnable pour les applications générales.
   La base \texttt{def2-SVP} est un ensemble de base SV avec des
   fonctions de polarisation (P) et est de taille similaire au
@@ -969,68 +966,21 @@ précision.
   \texttt{def2-SV(P)}, elle est plus petite que la base \texttt{6-31G*},
   et elle est souvent utile pour des calculs
   qualitatifs/semi-quantitatifs rapides.
-\item
-  Pour des calculs plus quantitatifs, la série def2 contient également
+\item Pour des calculs plus quantitatifs, la série def2 contient également
   un ensemble de polarisations de valence triple ζ (\texttt{def2-TZVP})
   ainsi qu'un ensemble de polarisations de valence quadruple ζ
   (\texttt{def2-QZVP}), qui suffisent généralement pour atteindre la
   limite complète de l'ensemble de base en HF. et calculs DFT.
-\item
-  Les calculs aux niveaux théoriques post-HF, nécessitent, cependant,
+\item Les calculs aux niveaux théoriques post-HF, nécessitent, cependant,
   des ensembles de bases plus larges avec des fonctions de polarisation
   supplémentaires~; les ensembles de base \texttt{def2-TZVPP} et
   \texttt{def2-QZVPP} existent à cet effet.
-\item
-  Les fonctions diffuses (D) sont nécessaires à la description correcte
+\item Les fonctions diffuses (D) sont nécessaires à la description correcte
   des anions ainsi qu'à la modélisation, de la polarisabilité électrique
   par exemple. Des ensembles sont à cet effet disponibles à tous les
   niveaux de précision (\texttt{def2-SVPD}, \texttt{def2-TZVPD},
   \texttt{def2-TZVPPD}, \texttt{def2-QZVPD}, \texttt{def2-QZVPPD}).
 \end{itemize}
 
-Ci-dessous, des exemples d'ensembles de base populaires utilisés en
-chimie quantique. Une liste complète des ensembles de bases disponibles
-pris en charge dans \href{https://pyscf.org/}{PySCF} est disponible sur
-ce \href{https://pyscf.org/_modules/pyscf/gto/basis.html}{lien}.
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{basis\PYZus{}sets} \PY{o}{=} \PY{p}{[}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{STO\PYZhy{}3G}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}           \PY{c+c1}{\PYZsh{} Simple zeta, minimal basis}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{3\PYZhy{}21G}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}            \PY{c+c1}{\PYZsh{} Double zeta with 3 Gaussian primitives}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZhy{}31G}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}            \PY{c+c1}{\PYZsh{} Double zeta with 6 Gaussian primitives}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZhy{}31G*}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}           \PY{c+c1}{\PYZsh{} Double zeta with 6 Gaussian primitives}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZhy{}31G(d,p)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} Polarization functions (+ 5 d\PYZhy{}orbitals for all atoms except H, +3 p\PYZhy{}orbitals for H atoms) added}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZhy{}311G(d,p)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}      \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{6\PYZhy{}311+G(d,p)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}     \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cc\PYZhy{}pvqz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}          \PY{c+c1}{\PYZsh{} Quadruple zeta}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cc\PYZhy{}pv5z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}          \PY{c+c1}{\PYZsh{} Quintuple zeta}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}SVP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}         \PY{c+c1}{\PYZsh{} Double zeta with polarization functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}SVPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}         \PY{c+c1}{\PYZsh{} Double zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}TZVP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}        \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}TZVPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}TZVPP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}TZVPPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}      \PY{c+c1}{\PYZsh{} Triple zeta with polarization functions, diffuse functions, and d functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}QZVP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}        \PY{c+c1}{\PYZsh{} Quadruple zeta with polarization functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}QZVPP}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} Quadruple zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}QZVPPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}      \PY{c+c1}{\PYZsh{} Quadruple zeta with polarization functions, diffuse functions, and d functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}QZVPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}       \PY{c+c1}{\PYZsh{} Quadruple zeta with polarization functions and diffuse functions}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{def2\PYZhy{}QZVPPD}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}      \PY{c+c1}{\PYZsh{} Quadruple zeta with polarization functions, diffuse functions, and d functions}
-\PY{p}{]}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-
-\end{Verbatim}
-\end{tcolorbox}
-
-
-    % Add a bibliography block to the postdoc
-    
-    
-    
 \end{document}
