@@ -109,17 +109,6 @@ Ce chapitre vise à fournir une base solide pour comprendre les principes sous-j
 
 \section{Hamiltonien moléculaire en première quantification}
 
-En chimie quantique, l'équation fondamentale est celle de Schrödinger dépendant du temps :
-\begin{equation}
-i\hbar \pdv{t} |\psi(t)\rangle = \mathtt{H} |\psi(t)\rangle .
-\end{equation}
-Cette équation décrit comment la fonction d'état $|\psi(t)\rangle$ évolue dans le temps sous l'action de l'Hamiltonien $\mathtt{H}$. Cependant, résoudre cette équation dans sa forme générale est complexe, même en négligeant les effets relativistes.
-
-Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépendante du temps, un problème aux valeurs propres :
-\begin{equation}
-\mathtt{H} |\psi\rangle = E |\psi\rangle .
-\end{equation}
-
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
@@ -127,10 +116,22 @@ Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépe
 \label{fig:interactionqc}
 \end{figure}
 
-L'Hamiltonien d'une molécule constituée de noyaux $M$ et d'électrons $N$ est (voir la \autoref{fig:interactionqc}):
+En chimie quantique, l'équation de Schrödinger joue un rôle central dans la description des systèmes atomiques et moléculaires. La forme générale de l'équation de Schrödinger dépendante du temps est :\begin{equation}
+i\hbar \pdv{t} |\psi(t)\rangle = \mathtt{H} |\psi(t)\rangle .
+\end{equation}
+$|\psi(t)\rangle$ représente la fonction d'état du système, décrivant son évolution temporelle, et $\mathtt{H}$ est l'opérateur Hamiltonien, qui représente l'énergie totale du système. Résoudre cette équation directement, même en l'absence d'effets relativistes, reste un défi majeur pour les systèmes moléculaires complexes.
+
+Pour simplifier, on se concentre souvent sur les états stationnaires du système. Ces états sont décrits par l'équation de Schrödinger indépendante du temps, qui prend la forme d'un problème aux valeurs propres :
+\begin{equation}
+\mathtt{H} |\psi\rangle = E |\psi\rangle ,
+\end{equation}
+où $E$ représente l'énergie de l'état stationnaire $|\psi\rangle$. La résolution de cette équation nous permet de déterminer les énergies permises et les fonctions d'état associées à ces états.
+
+L'Hamiltonien moléculaire, noté $\mathtt{H}$, décrit l'énergie totale d'une molécule constituée de $M$ noyaux et de $N$ électrons. Il englobe les énergies cinétiques et potentielles de toutes les particules en interaction. De manière générale, il peut être exprimé comme la somme des termes suivants (voir la \autoref{fig:interactionqc}):
 \begin{equation}
 \mathtt{H}=\mathtt{T}_e+\mathtt{T}_n+\mathtt{U}_{en}+\mathtt{U}_{en}+\mathtt{U}_{nn},
-\end{equation} où 
+\end{equation}
+où
 \begin{itemize}
 \item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique; 
 \item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire; 
@@ -138,9 +139,11 @@ L'Hamiltonien d'une molécule constituée de noyaux $M$ et d'électrons $N$ est 
 \item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est la répulsion Coulombienne entre les électrons eux-mêmes; 
 \item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est la répulsion Coulombienne entre les noyaux eux-mêmes.
 \end{itemize}
-$M_I$, $\mathbf{R}_I$ et $Z_I$ ($I=1,2$) désignent respectivement la masse, la position et le numéro atomique du \emph{I}-ième noyau, et $\mathbf{r}_i$ est la position du \emph{i}-ième électron. Par souci de concision, nous travaillons en unités atomiques, où l'unité de longueur est $a_0 = 1$ Bohr (\SI{0.529167e-10}{\meter}), l'unité de masse est la masse électronique $m_e$, et l'unité d'énergie est \SI{1}{Hartree} (\SI{1}{Hartree} $= \frac{e^2}{4\pi\epsilon_0 a_0} = \SI{27.2113}{\electronvolt}$).
+Dans ces expressions, $i$ et $j$ sont des indices qui parcourent tous les électrons, tandis que $I$ et $J$ parcourent tous les noyaux. Les variables $M_I$, $\mathbf{R}_I$, et $Z_I$ désignent respectivement la masse, la position et le numéro atomique du \emph{I}-ième noyau, tandis que $\mathbf{r}_i$ est la position du \emph{i}-ième électron.
 
-Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien moléculaire en unités atomiques s'écrit 
+Pour simplifier les calculs et faciliter l'interprétation des résultats, il est courant de travailler en unités atomiques. Dans ce système d'unités, l'unité de longueur est le Bohr ($a_0 \approx \SI{0.529167e-10}{\meter}$), l'unité de masse est la masse de l'électron ($m_e$), et l'unité d'énergie est le Hartree (\SI{1}{Hartree} $= \frac{e^2}{4\pi\epsilon_0 a_0} \approx \SI{27.2113}{\electronvolt}$). L'utilisation de ces unités simplifie les équations en fixant certaines constantes physiques à 1.
+
+En définissant $M_I' = M_I / m_e$, les différents termes de l'Hamiltonien moléculaire s'expriment en unités atomiques comme suit :
 \begin{equation}
 \begin{split}
 \mathtt{T}_e&=-\sum_i\frac{\nabla^2_i}{2}, \qquad\mathtt{T}_n= -\sum_I\frac{\nabla^2_I}{2M_I'}, 
@@ -152,11 +155,11 @@ Dénotant $M_I'=M_I/m_e$, les différents termes de l'Hamiltonien moléculaire e
 \end{split}
 \end{equation}
 
-L'équation de Schrödinger dans sa forme complète est inapplicable directement pour des systèmes multi-électrons. Des approximations sont nécessaires pour rendre les calculs réalisables.
+Cependant, la résolution directe de l'équation de Schrödinger avec cette Hamiltonien complet est extrêmement complexe, voire impossible, pour les systèmes moléculaires de taille significative. Cette complexité découle des interactions corrélées entre les nombreux électrons et noyaux. Pour surmonter cette difficulté, des approximations sont indispensables.
 
 \section{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
 
-L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l'équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
+L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie considérablement le traitement des systèmes moléculaires complexes. Elle repose sur la différence significative de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette disparité dynamique permet de séparer les mouvements électroniques et nucléaires lors de la résolution de l'équation de Schrödinger (voir la \autoref{fig:bointeractionqc}). En d'autres termes, on considère que les électrons s'adaptent instantanément aux mouvements des noyaux, ce qui permet de découpler leurs équations de mouvement.
 
 \begin{figure}
 \centering
@@ -168,8 +171,7 @@ L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en 
 
 \subsection{Hamiltonien réduit}
 
-En appliquant cette approximation, le terme d'énergie cinétique nucléaire $T_n$ est négligé,
-$\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien électronique est extrait de l'Hamiltonien total:
+En appliquant cette approximation, le terme d'énergie cinétique nucléaire $T_n$ est négligé. De plus, l'énergie de répulsion nucléaire $\mathtt{U}_{nn}(\mathbf{R})$ devient constante pour une géométrie nucléaire donnée.  L'Hamiltonien électronique est alors extrait de l'Hamiltonien total:
 \begin{equation}
 \begin{split}
 \mathtt{H}_{\text{elec}}(\mathbf{R}) &= \underset{\text{One-Electron Operators}}{\mathtt{T}_e + \mathtt{U}_{en}(\mathbf{R})} + \underset{\text{Two-Electron Operator}}{\mathtt{U}_{ee}}\\
@@ -177,40 +179,48 @@ $\mathtt{U}_{nn}(\mathbf{R})$ est constant et l'Hamiltonien électronique est ex
 &=-\sum_{i=1}^N \frac12 \nabla_i^2 - \sum_{i=1}^N \sum_{A=1}^M \frac{Z_A}{r_{iA}} + \sum_{i=1}^N \sum_{j>i} \frac{1}{r_{ij}} .
 \end{split}
 \end{equation}
-
-Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Ainsi, l'énergie électronique $(E_{\text{elec}})$ est calculée pour une configuration donnée des noyaux.
+Cet Hamiltonien électronique dépend explicitement des positions des électrons, mais les positions des noyaux y apparaissent uniquement comme des paramètres fixes. Pour une configuration nucléaire donnée, on peut donc calculer l'énergie électronique $(E_{\text{elec}})$ en résolvant l'équation de Schrödinger électronique :
+\begin{equation}
+\mathtt{H}_{\text{elec}}(\mathbf{R}) \psi_{\text{elec}}(\mathbf{r}; \mathbf{R}) = E_{\text{elec}}(\mathbf{R}) \psi_{\text{elec}}(\mathbf{r}; \mathbf{R})
+\end{equation}
+où $\psi_{\text{elec}}(\mathbf{r}; \mathbf{R})$ est la fonction d'état électronique qui dépend des coordonnées électroniques ($\mathbf{r}$) et paramétriquement des coordonnées nucléaires ($\mathbf{R}$).
 
 \subsection{Énergie totale du système}
 
-Une fois l'énergie électronique obtenue, l'énergie totale est exprimée comme suit :
+La résolution de l'équation de Schrödinger électronique pour différentes configurations nucléaires permet de construire la \textbf{surface d'énergie potentielle (PES, Potential energy surface)}, $E_{\text{elec}}(\mathbf{R})$. Cette surface décrit l'énergie du système en fonction des positions des noyaux et est un concept central en chimie quantique.
+
+Une fois l'énergie électronique obtenue, l'énergie totale est approchée comme suit :
 \begin{equation}
 E_{\text{tot}} = E_{\text{elec}} + E_{nn},
 \end{equation}
 où,
 \begin{itemize}
-\item $E_{\text{elec}}$ est l'énergie électronique (résultat du Hamiltonien électronique);
+\item $E_{\text{elec}}$ est l'énergie électronique, obtenue par la résolution de l'équation de Schrödinger électronique;
 \item $E_{nn}=\sum_{A=1}^M \sum_{B>A} \frac{Z_A Z_B}{R_{AB}}$ représente l'énergie de répulsion entre les noyaux, considérés comme des charges ponctuelles fixes.
 \end{itemize}
 
 \subsection{Conséquences de l'approximation}
 
+L'approximation de Born-Oppenheimer a des implications importantes :
+
 \begin{itemize}
-\item L'énergie totale est calculée pour une géométrie nucléaire fixe.
+\item L'énergie totale est calculée pour une géométrie nucléaire fixe.  Cette simplification permet de déterminer les structures moléculaires à l'équilibre en minimisant l'énergie totale par rapport aux positions des noyaux.
 \item Les mouvements des noyaux (vibration, rotation, translation) peuvent être traités séparément en utilisant un Hamiltonien nucléaire effectif :
 \begin{equation}
 \mathtt{H}_{\text{nucl}} = \mathtt{T}_n + E_{\text{tot}}(\{R_A\}) ,
 \end{equation}
-$E_{\text{tot}}(\{R_A\})$ agissant comme un potentiel pour le mouvement des noyaux.
+où $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux. Ceci permet d'étudier les spectres vibrationnels des molécules.
 \end{itemize}
-En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.
 
-\section{Méthode de Hartree-Fock - Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle.  Bien qu'elle repose sur une simplification, elle fournit une base solide pour la compréhension et la prédiction des propriétés moléculaires. Il est important de noter que cette approximation peut devenir moins précise dans certaines situations, notamment lorsque les surfaces d'énergie potentielle sont proches ou lorsqu'on étudie des processus dynamiques où le couplage entre les mouvements électroniques et nucléaires devient important.
 
-La méthode de Hartree-Fock est une approche fondamentale qui approxime l'interaction électron-électron dans un système moléculaire. Elle repose sur l'idée de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron ressent une répulsion moyenne des autres électrons} tout en respectant le principe de symétrie antisymétrique de Pauli. En d'autres termes, chaque électron n'interagit pas explicitement avec les autres électrons.
+\section{Méthode de Hartree-Fock - Approche du champ moyen}
+
+La méthode de Hartree-Fock (HF) est une approche fondamentale qui approxime l'interaction électron-électron dans un système moléculaire en chimie quantique computationnelle. Elle introduit le concept de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron interagit avec un potentiel moyen créé par l'ensemble des autres électrons}. Cette approche inclut les effets d'échange dus au principe de Pauli, mais néglige la \textbf{corrélation électronique dynamique}, ce qui constitue l'une de ses principales limites.
 
 \subsection{Fonction d'état - Déterminant de Slater}
 
-La fonction d'état dans cette méthode est représentée par un déterminant de Slater, qui impose l'antisymétrie requise pour les électrons, particules de spin-$\frac12$. Il est défini comme suit :
+L'approximation centrale de la méthode HF consiste à représenter la fonction d'état multi-électronique par un \textbf{déterminant de Slater}, qui encode mathématiquement l'antisymétrie requise pour les fermions sont les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 \begin{equation}
 \begin{split}
 \psi(\mathbf{r}_0, \mathbf{r}_1, \ldots, \mathbf{r}_{N-1})\equiv |\phi_{M-1},\cdots,  \phi_1, \phi_0 \rangle 
@@ -225,16 +235,16 @@ La fonction d'état dans cette méthode est représentée par un déterminant de
 \end{equation} 
 L'échange des positions de deux électrons est équivalent à l'échange de deux rangées du déterminant de Slater, ce qui modifie le signe de la fonction d'état. Cela fournit la symétrie d'échange correcte pour la fonction d'état fermionique. Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent occuper que $N$ des spin-orbitales dans un déterminant Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées $N$.
 
+Dans la base des \textbf{orbitales moléculaires (MO)}, chaque fonction $\phi_i(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} :
+\begin{equation}
+\phi_i(\mathbf{r}) = \sum_{\mu} C_{\mu i} \chi_\mu(\mathbf{r} - \mathbf{R}_A),
+\end{equation}
+où $\chi_{\mu}(\mathbf{r})$ sont les fonctions de base et $C_{\mu i}$ les coefficients d’expansion.
+
 \subsection{Exemple d'illustration}\label{exemple-dillustration}
 
-Pour rendre les correspondances plus claires, nous examinons comment une
-fonction d'état sera représentée pour un système quantique fictif. On
-considère les orbitales de spin
-$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$.
-Nous sommes libres de définir arbitrairement l'état Hartree-Fock de
-notre système fictif et de choisir les deux électrons dans l'orbitale
-$|A\rangle$. Nous sommes intéressés par la fonction d'état lorsque la
-composante $z$ du spin est nulle.
+Pour rendre les correspondances plus claires, nous examinons comment une fonction d'état sera représentée pour un système quantique fictif. On considère les orbitales de spin
+$|A_\uparrow\rangle,\,|A_\downarrow\rangle,\,|B_\uparrow\rangle,\,|B_\downarrow\rangle$. Nous sommes libres de définir arbitrairement l'état Hartree-Fock de notre système fictif et de choisir les deux électrons dans l'orbitale $|A\rangle$. Nous sommes intéressés par la fonction d'état lorsque la composante $z$ du spin est nulle.
 
 Labellisons chaque orbitale ainsi qu'il suit~:
 \begin{align}
@@ -242,11 +252,15 @@ Labellisons chaque orbitale ainsi qu'il suit~:
 &&|B_\uparrow\rangle=|10\rangle=|\mathbf{2}\rangle,  &|B_\downarrow\rangle=|11\rangle=|\mathbf{3}\rangle.
 \end{align}
 
-L'état de Hartree-Fock possède les deux électrons dans les orbitales
-$|A\rangle$. Un état HF incorrectement symétrisé serait donc
-$|A_\uparrow\rangle_1|A_\downarrow\rangle_2 = |\mathbf{0}\rangle_1|\mathbf{1}\rangle_2$,
-où les indices indiquent l'électron décrit par chaque orbitale. La
-fonction d'état HF correctement antisymétrisée serait
+L'état de Hartree-Fock possède les deux électrons dans les orbitales $|A\rangle$.
+\begin{itemize}
+\item Un état HF incorrectement symétrisé serait donc
+\begin{equation}
+|A_\uparrow\rangle_1|A_\downarrow\rangle_2 = |\mathbf{0}\rangle_1|\mathbf{1}\rangle_2,
+\end{equation}
+où les indices indiquent l'électron décrit par chaque orbitale.
+
+\item La fonction d'état HF correctement antisymétrisée serait
 \begin{equation}
 \begin{split}
     |\Psi_{\mathrm{HF}}\rangle =  \frac{1}{\sqrt{2}}
@@ -258,9 +272,9 @@ fonction d'état HF correctement antisymétrisée serait
 &=\frac{1}{\sqrt{2}} (|\mathbf{0}\rangle_1|\mathbf{1}\rangle_2 - |\mathbf{1}\rangle_1|\mathbf{0}\rangle_2 ).
 \end{split}
 \end{equation}
-Si nous considérons maintenant les excitations au-dessus de l'état HF,
-alors une fonction d'état générale avec $s_z=0$ qui a été correctement
-antisymétrisée est donnée par
+\end{itemize}
+
+Si nous considérons maintenant les excitations au-dessus de l'état HF, alors une fonction d'état générale avec $s_z=0$ qui a été correctement antisymétrisée est donnée par
 \begin{equation}
 \begin{aligned}
 |\Psi\rangle =& \frac{\alpha}{\sqrt{2}}(|\mathbf{0}\rangle_1|\mathbf{1}\rangle_2 - |\mathbf{1}\rangle_1|\mathbf{0}\rangle_2 ) 
@@ -269,35 +283,39 @@ antisymétrisée est donnée par
 \end{aligned}
 \end{equation}
 
-\subsection{Approche variationnelle}
+\subsection{Approche variationnelle et opérateur de Fock}
 
-L'énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
+L'énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'\textbf{opérateur de Fock} est introduit pour représenter le champ moyen ressenti par un électron :
 \begin{equation}
 F(d) = h + \sum_b \big(J_b(d) - K_b(d)\big) ,
 \end{equation}
 avec,
 \begin{itemize}
 \item $d$ une densité à N-électrons;
-\item $h$ le terme à un électron (énergie cinétique et interaction électron-noyau);
-\item  $J_b(d)$ le terme de Coulomb ou répulsion classique électron-électron,
-\begin{equation}
-J:=\bra{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
-\ket{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)},
-\end{equation}
-\item $K_b(d)$ le terme d'interaction d'échange à deux électrons (correction purement quantique),
-\begin{equation}
-K:=\bra{\phi_n(\vb{r}_1)\phi_{n'}(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
-\ket{\phi_n(\vb{r}_2)\phi_{n'}(\vb{r}_1)}.
-\end{equation}
+\item $h$ l'Hamiltonien à un électron (énergie cinétique et interaction électron-noyau);
+\item  $J_b(d)$ le \textbf{terme de Coulomb}, représentant la répulsion classique,
+    \begin{equation}
+\begin{split}
+        J_{ab} &:=\bra{\phi_a(\vb{r}_1)\phi_b(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
+        \ket{\phi_a(\vb{r}_1)\phi_b(\vb{r}_2)}\\
+        &= \int \phi_a^*(\mathbf{r}_1) \phi_b^*(\mathbf{r}_2) \frac{e^2}{r_{12}} \phi_a(\mathbf{r}_1) \phi_b(\mathbf{r}_2) d\mathbf{r}_1 d\mathbf{r}_2,
+\end{split}
+    \end{equation}
+\item $K_b(d)$ le \textbf{terme d’échange} à deux électrons, correction purement quantique,
+    \begin{equation}
+    \begin{split}
+    K_{ab} & :=\bra{\phi_a(\vb{r}_1)\phi_b(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
+    \ket{\phi_a(\vb{r}_2)\phi_b(\vb{r}_1)}\\
+    &= \int \phi_a^*(\mathbf{r}_1) \phi_b^*(\mathbf{r}_2) \frac{e^2}{r_{12}} \phi_b(\mathbf{r}_1) \phi_a(\mathbf{r}_2) d\mathbf{r}_1 d\mathbf{r}_2.
+    \end{split}
+    \end{equation}
 \end{itemize}
-
-\subsection{Équation de Hartree-Fock}
 
 Les orbitales sont optimisés de manière variationnelle pour un seul déterminant de Slater. En minimisant l'énergie totale, on obtient l'\textbf{équation de Hartree-Fock pour les orbitales moléculaires} :
 \begin{equation}
 F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
 \end{equation}
-En exprimant les orbitales comme une combinaison linéaire de fonctions de base, cad en travaillant sur la base de la fonction de base centrée sur l'atome, cette équation devient l'\href{https://en.wikipedia.org/wiki/Roothaan_equations}{équation de Roothaan-Hall} :
+En exprimant les orbitales comme une combinaison linéaire finie de fonctions de base, cad en travaillant sur la base de la fonction de base centrée sur l'atome, cette équation devient l'\href{https://en.wikipedia.org/wiki/Roothaan_equations}{équation de Roothaan-Hall} :
 \begin{equation}
 \vb{F}\vb{C} = \vb{S}\vb{C}\varepsilon , 
 \end{equation}
@@ -315,10 +333,10 @@ La méthode Hartree-Fock est résolue itérativement par une procédure auto-coh
 
 \begin{enumerate}
 \item \textbf{Démarrage.} Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On founit les coordonnées 3D des atomes du système moléculaire.
-\item \textbf{Construction de $\vb{F}$.} Calcul des termes de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
+\item \textbf{Construction de $\vb{F}$.} Calcul des matrices de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
 \item \textbf{Équation de Roothaan-Hall.} Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
 \item \textbf{Mise à jour des orbitales.} Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
-\item \textbf{Critère de convergence.} Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si la différence est inférieure à un seuil $\delta$, le processus est terminé.
+\item \textbf{Critère de convergence.} Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si $\big|E^{(k+1)} - E^{(k)}\big| < \delta$ (le seui), le processus est terminé.
 \item \textbf{Retour en cas de non-convergence.} Si la convergence n'est pas atteinte, le cycle est répété.
 \end{enumerate}
 
@@ -332,47 +350,37 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 \label{fig:scfworkflow}
 \end{figure}
 
+\subsection{Influence du type de couche}
+Les trois méthodes HF communément utilisées sont (voir la \autoref{fig:hforb}) :
 
-\subsection{Quelques limites des méthodes HF}\label{quelques-limites-des-muxe9thodes-hf}
+\begin{figure}
+\centering
+\includegraphics[width=0.5\linewidth]{Graphics/HF_Orb}
+\caption{Méthodes HF suivant le type de couche.}
+\label{fig:hforb}
+\end{figure}
+
+\begin{itemize}
+\item \textbf{RHF (Restricted HF)} utiliśee pour des molécules à couches pleines ou fermées. Les spin-orbitales sont soit $\alpha$, soit $\beta$ et tous les orbitales sont doublement occupés par des spin-orbitales $\alpha$ et $\beta$;
+ 
+\item \textbf{ROHF (Restricted Open-Shell HF)} utilisée pour des molécules à couches ouvertes où le nombre d'électrons les orbitales n'est pas le même. ROHF utilise autant que possible les orbitales doublement occupées et les orbitales une fois occupées par les électrons non-apariés;
+
+\item \textbf{UHF (Unrestricted Hartree-Fock)} utilisée pour des molécules à couches ouvertes où le nombre d'électrons les orbitales n'est pas le même. Les orbitales UHF peuvent avoir avoir des spin $\alpha$ ou $\beta$, mais les orbitales $\alpha$ et $\beta$ peuvent avoir des composants spatiales différents.
+\end{itemize}
+
+\subsection{Quelques limites des méthodes HF}
 
 La méthode de Hartree-Fock présente certaines limites :
 \begin{enumerate}
-\item \textbf{Approximation de l'échange-correlation}. La méthode de
-  Hartree-Fock ne tient pas compte de manière exacte de l'interaction
-  électron-électron appelée \textbf{correlation électronique}. Elle
-  utilise une approximation connue sous le nom d'approximation de
-  l'échange-correlation. Cette approximation simplifie l'interaction
-  électronique en la traitant de manière moyennée, ce qui peut conduire
-  à des erreurs significatives dans certains cas.
-\item \textbf{Non-inclusion de la corrélation électronique dynamique}. La
-  méthode de Hartree-Fock considère les électrons comme un ensemble
-  d'orbitales indépendantes dans un champ moyen créé par les autres
-  électrons. Cependant, elle ne prend pas en compte la corrélation
-  électronique dynamique, c'est-à-dire les effets de corrélation qui
-  dépendent du mouvement des électrons dans le système. Cela limite sa
-  précision pour les systèmes où la corrélation électronique dynamique
-  est importante, tels que les systèmes fortement corrélés ou les
-  réactions chimiques avec des états de transition.
-\item \textbf{Problèmes avec les systèmes à interaction forte}. La méthode
-  de Hartree-Fock peut être moins précise pour les systèmes contenant
-  des électrons fortement corrélés, tels que les systèmes avec des
-  liaisons multiples ou des électrons non-appariés. Dans ces cas,
-  d'autres méthodes plus avancées, telles que les méthodes de la théorie
-  de la fonctionnelle de la densité (DFT) ou les méthodes de couplage de
-  cluster, peuvent être nécessaires.
-\item \textbf{Sensibilité aux bases de fonction}. La précision des résultats
-  de la méthode de Hartree-Fock dépend fortement du choix des bases de
-  fonction utilisées pour décrire les orbitales électroniques.
-  Différentes bases de fonction peuvent donner des résultats légèrement
-  différents, et il n'y a pas de base de fonction unique qui convient à
-  tous les systèmes.
+\item \textbf{Approximation du champ moyen}. La corrélation électronique est uniquement prise en compte par l’interaction d’échange.
+\item \textbf{Absence de corrélation électronique dynamique}. Les interactions instantanées entre électrons ne sont pas modélisées.
+    \item \textbf{Difficultés pour les systèmes fortement corrélés}. La méthide de HF est inefficace pour les molécules avec liaisons multiples ou états multi-déterminants.
+\item \textbf{Sensibilité aux bases de fonction}. La précision des résultats de la méthode de HF dépend fortement du choix des bases de fonction utilisées pour décrire les orbitales électroniques.
 \end{enumerate}
 
-\section{Choix de l'ensemble de bases}\label{choix-de-lensemble-de-bases}
+\section{Choix de l'ensemble de bases}
 
-L'équation de Schrödinger à plusieurs électrons est généralement résolue
-sur une base d'orbitales moléculaires exprimées sous la forme d'une
-\textbf{combinaison linéaire de ses orbitales atomiques (LCAO, Linear
+L'équation de Schrödinger à plusieurs électrons est généralement résolue sur une base d'orbitales moléculaires exprimées sous la forme d'une \textbf{combinaison linéaire de ses orbitales atomiques (LCAO, Linear
 combination of atomic orbitals)}, 
 \begin{equation}
      \phi_a(\mathbf{r}) =
@@ -380,172 +388,116 @@ combination of atomic orbitals)},
      \sum_\alpha C^A_{\alpha a}
      \chi^A_{\alpha}(\mathbf{r} - \mathbf{R}_A) .
 \end{equation}
-Les coefficients LCAO, utilisés pour construire des orbitales moléculaires (MO), sont obtenus
-grâce à la minimisation de l'énergie totale, selon le principe
-variationnel. Pour plus de commodité, la base est généralement
-représentée par des fonctions centrées sur les atomes (les positions
-atomiques) pour les systèmes moléculaires, ou par des fonctions d'état
-plane en physique du solide.
+où $\chi^A_{\alpha}(\mathbf{r} - \mathbf{R}_A)$ sont les \textbf{fonctions de base} centrées sur l’atome $A$, et $C^A_{\alpha a}$ sont les coefficients de la combinaison linéaire. Ces coefficients sont optimisés via le \textbf{principe variationnel}.
 
-\subsection{Ensembles de bases traditionnels}\label{ensembles-de-bases-traditionnels}
+\subsection{Ensembles de bases traditionnels}
 
-Les deux classes traditionnelles d'orbitales de base approximatives
-couramment utilisées sont :
+Les deux classes principales d'orbitales de base approximatives utilisées en chimie quantique sont :
 \begin{itemize}
-\item les \textbf{Slater-type orbitals (STOs)} basées sur le déterminant de
-  Slater, construitent avec des fonctions exponentielles décroissantes
-  $e^{-\alpha r}$,
-\item et les \textbf{orbitales cartésiennes de type Gaussien (GTO)},
-  construitent avec des fonctions Gaussiennes $e^{-\alpha r^2}$.
-  L'utilisation de ces fonctions Gaussiennes est bien plus efficace que
-  la stratégie STO pour calculer les nombreuses intégrales de
-  chevauchement nécessaires à la chimie quantique.
+\item les \textbf{Slater-type orbitals (STOs)} basées sur le déterminant de Slater, construitent avec des fonctions exponentielles décroissantes
+    \begin{equation}
+        \chi_{\mathrm{STO}}(r) = e^{-\alpha r},
+    \end{equation}
+\item et les \textbf{orbitales cartésiennes de type Gaussien (GTO)}, construitent avec des fonctions Gaussiennes
+    \begin{equation}
+        \chi_{\mathrm{GTO}}(r) = e^{-\alpha r^2}.
+    \end{equation}
+  Ces orbitales facilitent le calcul des intégrales de recouvrement et sont donc plus couramment utilisées que les STO en chimie quantique computationnelle.
 \end{itemize}
 
-Ces deux types de fonctions de base peut être combiné comme
-\textbf{STO-nG (Slater-type orbital-n Gaussians)}, où n est le nombre de
-Gaussiennes utilisées pour faire les approximations.
+Les STO sont plus proches de la forme exacte des orbitales atomiques, mais les GTO permettent de simplifier les calculs d’intégrales électroniques. Un compromis entre ces deux approches consiste à combiner plusieurs GTO pour approximer une STO, donnant naissance aux bases \textbf{STO-nG} (Slater-Type Orbital – n Gaussians), où $n$ est le nombre de Gaussiennes utilisées dans l’approximation.
 
-Les ensembles de base sont construits à partir de nombreuses primitives
-Gaussiennes. La notation de Pople est l'une des notations les plus
-explicites pour les ensembles de bases~:
+\subsection{Notations des ensembles de bases}
+
+Les ensembles de bases sont constitués de plusieurs \textbf{primitives gaussiennes}. L'une des notations les plus explicites est celle de Pople :
 \begin{itemize}
-\item le trait d'union (-) sépare la référence aux orbitales centrales et de
-  valence~;
-\item les chiffres représentent le nombre de primitives Gaussiennes dans une
-  fonction ;
-\item il y a autant de chiffres qu'il y a de fonctions pour chaque orbitale
-  atomique (zeta $\zeta$) ;
-\item la lettre G fait référence à l'utilisation de fonctions Gaussiennes.
+    \item Le \textbf{trait d'union (-)} sépare la référence aux orbitales centrales et de valence ;
+    \item Les \textbf{chiffres} indiquent le nombre de primitives Gaussiennes utilisées ;
+    \item La \textbf{lettre G} signifie que des Gaussiennes sont utilisées.
 \end{itemize}
 
-À titre d'exemple, l'ensemble de base double zêta \texttt{3-21G} utilise
-trois primitives Gaussiennes pour chaque orbitale centrale et un
-ensemble de deux plus une primitives Gaussiennes pour les orbitales de
-valence. Plus d'informations, d'exemples et de discussions sur les GTO
-peuvent être trouvés dans ce
+Par exemple, la base \texttt{6-31G} signifie :
+\begin{itemize}
+    \item 6 primitives Gaussiennes pour les orbitales internes.
+    \item 3 primitives Gaussiennes pour les orbitales de valence.
+    \item 1 primitive supplémentaire pour améliorer la flexibilité.
+\end{itemize}
+Cette notation s’étend aux bases plus complexes, comme \texttt{6-31G(d,p)}, où \textbf{(d,p)} indique l’ajout de fonctions de polarisation sur certains atomes.
+
+En parallèle, d'autres familles d’ensembles de bases ont été développées pour répondre à des besoins spécifiques, notamment en méthodes post-Hartree-Fock.
+
+\subsection{Bases correlation-consistent}
+
+Les méthodes de chimie quantique avancées nécessitent des bases capables de capturer les effets de \textbf{corrélation électronique}. La famille \texttt{cc-pVXZ} (\textit{correlation-consistent polarized valence X-zeta}) est spécifiquement conçue pour cela :
+\begin{itemize}
+    \item \texttt{cc-pVDZ} : Double-$\zeta$, bonne précision pour les calculs préliminaires.
+    \item \texttt{cc-pVTZ} : Triple-$\zeta$, plus précis pour les corrélations électroniques.
+    \item \texttt{cc-pVQZ} : Quadruple-$\zeta$, nécessaire pour des énergies précises.
+    \item \texttt{aug-cc-pVDZ} : Ajout de fonctions diffuses pour mieux représenter les anions et les états excités.
+\end{itemize}
+
+Plus d'informations, d'exemples et de discussions sur les GTO peuvent être trouvés dans ce
 \href{https://chem.libretexts.org/Courses/Pacific_Union_College/Quantum_Chemistry/11\%3A_Computational_Quantum_Chemistry/11.02\%3A_Gaussian_Basis_Sets}{lien}.
 
-Généralement, on adopte des ensembles identiques de fonctions de base
-pour tous les atomes d'un élément donné et les ensembles adoptés pour
-les différents éléments doivent avoir une précision équilibrée. Une
-déclaration telle que \emph{nous avons utilisé la base 6-31G définie
-dans le calcul} signifie qu'un ensemble équilibré d'ensembles d'AO a
-été adopté pour tous les éléments.
+\subsection{Catégories d'ensembles de bases}
 
-L'ensemble de base étant une approximation, il est hautement souhaitable
-de pouvoir contrôler sa précision afin de faire des compromis entre le
-coût du calcul et la précision des résultats obtenus. En conséquence,
-les ensembles de base modernes se répartissent généralement en familles
-de tailles variables : les ensembles les plus petits permettent des
-calculs rapides mais qualitatifs, tandis que les ensembles plus grands
-permettent des calculs quantitatifs au prix de plus de temps de calcul.
+Les ensembles de bases modernes se répartissent en plusieurs catégories,
+chacune adaptée à des besoins spécifiques en termes de précision et de coût
+computationnel. Le tableau \ref{tab:basis_sets} résume les principales familles.
 
-La fonction d'état pour une molécule est une approximation lors de
-l'utilisation d'un ensemble de base finie,
-\begin{equation}
-\Phi_{\text{approx}} = \sum_{i=0}^N c_i |i \rangle .
-\end{equation}
-En vertu du principe variationnel, en considérant que
-$\Phi_{\text{approx}}$ est normalisée, l'énergie approximée est
-supérieure ou égale à la véritable énergie de l'état fondamentale,
-\begin{equation}
-\langle \Phi_{\text{approx}} | \hat{H} | \Phi_{\text{approx}} \rangle = \epsilon_{\text{approx}} \geq  \epsilon_{\text{true}}.
-\end{equation}
-A mesure que l'ensemble de base s'agrandit, l'approximation résultante
-se rapproche de la véritable fonction d'état,
-\begin{equation}
-\langle \Phi_{\text{approx}} | \hat{H} | \Phi_{\text{approx}} \rangle = \epsilon_{\text{approx}} \geq  \epsilon_{\text{true}}.
-\end{equation}
-Cependant, augmenter la taille de l'ensemble de base a pour effet
-d'augmenter le nombre de paramètres à optimiser, étendant ainsi les
-ressources de calculs requises dans l'espace (espace de stockage) et en
-temps (nombre d'opérations). Il est souvent judicieux d'équilibrer la
-taille de l'ensemble de base pour optimiser le temps de résolution par
-rapport à la précision cible
-($|\epsilon_{\text{approx}} - \epsilon_{\text{true}}|$), puisque
-l'augmentation de la complexité de l'ensemble de base produit des
-rendements décroissants en termes de gain de précision.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
+        \textbf{Catégorie} & \textbf{Description} & \textbf{Exemple} \\
+        \hline
+        Minimale & Une seule fonction de base par orbitale atomique occupée. & STO-3G \\
+        \hline
+        Double-$\zeta$ & Deux fonctions de base par orbitale atomique de valence. & 6-31G \\
+        \hline
+        Triple-$\zeta$ & Trois fonctions de base par orbitale atomique de valence. & 6-311G \\
+        \hline
+        Polarisation & Ajout de fonctions d'ordre supérieur pour mieux représenter la flexibilité des orbitales. & cc-pVDZ \\
+        \hline
+        Diffusion & Utilisation de fonctions étendues pour modéliser des électrons faiblement liés ou des états excités. & 6-31+G, aug-cc-pVDZ \\
+        \hline
+    \end{tabular}
+    \caption{Différentes catégories d'ensembles de bases utilisées en chimie quantique.}
+    \label{tab:basis_sets}
+\end{table}
 
-De plus en plus de bases sont disponibles pour la communauté, et le
-choix d'un ensemble de bases peut s'avérer une tâche difficile. La
-théorie stipule qu'une base infinie est le moyen d'obtenir de vrais
-calculs des fonctions d'état. En pratique, il n'est pas possible
-d'effectuer les calculs avec des ensembles de bases infinis et d'obtenir
-des vraies fonction d'état. On peut cependant sélectionner des ensembles
-de bases finis et adapter nos approches aux cas d'utilisation. En règle
-générale,
+\subsection{Bases de Karlsruhe}
+
+Les ensembles \texttt{def2} de Karlsruhe offrent une alternative moderne aux bases de Pople et correlation-consistent. Elles couvrent l’ensemble du tableau périodique jusqu’au radon ($Z=86$) et intègrent des
+\textbf{potentiels de noyau effectif (ECP)} pour les éléments lourds. Trois niveaux de précision sont disponibles :
 \begin{itemize}
-\item un double zêta (par exemple \texttt{6-31G} ou \texttt{cc-pvdz}) est la
-  taille de base minimale requise pour obtenir des énergies
-  semi-quantitatives;
-\item pour les molécules présentant une différence d'électronégativité
-  élevée entre les atomes, l'ajout de fonctions de polarisation (par
-  exemple \texttt{6-31G**} ou \texttt{6-31G(d,p)}) est recommandé;
-\item les fonctions diffuses (par exemple \texttt{6-31G+(d,p)}) doivent être
-  incluses lorsqu'il s'agit d'anions. Les fonctions diffuses sont des
-  fonctions avec de petits coefficients (petit $\alpha$ dans
-  $e^{-\alpha r^2}$) qui peuvent s'adapter à la densité électronique
-  loin du noyau;
-\item les ensembles de bases des potentiels de noyau effectif (Effective
-  Core Potential, ECP) sont nécessaires lorsqu'il s'agit d'atomes plus
-  lourds avec des effets relativistes et des effets non triviaux (par
-  exemple, l'atome d'iode est souvent modélisé dans l'ensemble de base
-  \texttt{LANDL2DZ}).
+    \item \textbf{def2-SVP} : Base compacte, adaptée aux calculs rapides (équivalent à \texttt{6-31G**}).
+    \item \textbf{def2-TZVP} : Triple-$\zeta$ avec polarisation, bon compromis précision/coût.
+    \item \textbf{def2-QZVP} : Quadruple-$\zeta$, utilisé pour des études très précises.
+\end{itemize}
+L'utilisation de bases \texttt{def2} est souvent privilégiée en \textbf{DFT (Density Functional Theory)} et en \textbf{calculs post-Hartree-Fock}.
+
+\subsection{Critères pour choisir un ensemble de bases}
+
+Le choix optimal dépend du système étudié et des exigences du calcul. En règle générale pour,
+\begin{itemize}
+    \item \textbf{Études rapides :} \texttt{6-31G}, \texttt{def2-SVP}.
+    \item \textbf{Chimie de la valence :} \texttt{cc-pVDZ}, \texttt{def2-TZVP}.
+    \item \textbf{Calculs précis :} \texttt{cc-pVTZ}, \texttt{def2-QZVP}.
+    \item \textbf{Anions et états excités :} \texttt{aug-cc-pVDZ}, \texttt{def2-TZVPPD}.
+    \item \textbf{Effets relativistes :} bases avec \textbf{potentiels de noyau effectif (ECP)}, ex. \texttt{LANL2DZ}.
 \end{itemize}
 
-\textbf{Tableau}~: Catégories d'ensemble de base.
+En augmentant la taille de l’ensemble de bases, l’approximation obtenue  se rapproche de la fonction d’état exacte :
+\begin{equation}
+\langle \Phi_{\text{approx}} | \mathtt{H} | \Phi_{\text{approx}} \rangle \geq  \epsilon_{\text{true}}.
+\end{equation}
+Cependant, une base plus grande implique une augmentation des coûts de calcul. Il est donc essentiel de trouver un équilibre optimal.
 
-\begin{tabular}{|l|p{10cm}|p{2.4cm}|}\hline
-\textbf{ Catégorie} & \textbf{Caractère} & \textbf{Exemple} \\\hline
-Minimale& Fonction de base unique par orbitale atomique occupée, la taille des éléments de la deuxième rangée est [2s1p] & STO-3G \\\hline
-Double-$\zeta$ & Deux fonctions de base par orbitale atomique de valence occupée, la taille des éléments de la deuxième rangée est [3s2p]\ & 6-31G \\\hline
-Triple-$\zeta$ & Trois fonctions de base par orbitale atomique de valence occupée, pour les éléments de deuxième rangée [4s3p] & 6-311G \\\hline
-Polarisation & Fonctions de base avec un moment cinétique plus élevé ; important pour la liaison chimique ; la taille des éléments de la deuxième ligne est [3s2p1d] & cc-pVDZ \\\hline
-Diffusion & Fonctions de base avec de petits exposants ; important pour les états excités ; les tailles des éléments de la deuxième rangée sont 4s3p pour 6-31+G et 4s3p2d pour aug-cc-pVDZ & 6-31+G, aug-cc-pVDZ \\\hline
-\end{tabular}
+\subsection{Conclusion}
 
-\subsection{Ensembles de base de Karlsruhe}\label{ensembles-de-base-de-karlsruhe}
-
-Contrairement aux ensembles de bases traditionnels, les familles
-d'ensembles de bases modernes permettent une approche rentable de la
-limite complète de l'ensemble de bases, auquel cas l'erreur dans
-l'ensemble de base à un électron n'affecte plus le calcul. Notez que
-d'autres types d'ensembles de bases que les gaussiennes peuvent
-également être utilisés pour la chimie quantique.
-
-La famille Karlsruhe \texttt{def2} d'ensembles de bases gaussiennes, qui
-constituent un bon choix complet pour la chimie quantique car ils sont
-disponibles pour l'ensemble du tableau périodique jusqu'au radon (Z =
-86). Les ensembles Karlsruhe def2 sont disponibles en trois niveaux de
-précision.
-\begin{itemize}
-\item Les ensembles de bases à valence divisée (SV) constituent le plus
-  petit ensemble de bases raisonnable pour les applications générales.
-  La base \texttt{def2-SVP} est un ensemble de base SV avec des
-  fonctions de polarisation (P) et est de taille similaire au
-  \texttt{6-31G**} également connu sous le nom d'ensemble de base
-  \texttt{6-31G(d,p)}. Comme le \texttt{6-31G**}, l'ensemble
-  \texttt{def2-SVP} peut également être utilisé sans fonctions de
-  polarisation sur les atomes d'hydrogène ; cette base est appelée
-  \texttt{def2-SV(P)}, elle est plus petite que la base \texttt{6-31G*},
-  et elle est souvent utile pour des calculs
-  qualitatifs/semi-quantitatifs rapides.
-\item Pour des calculs plus quantitatifs, la série def2 contient également
-  un ensemble de polarisations de valence triple $\zeta$ (\texttt{def2-TZVP})
-  ainsi qu'un ensemble de polarisations de valence quadruple $\zeta$
-  (\texttt{def2-QZVP}), qui suffisent généralement pour atteindre la
-  limite complète de l'ensemble de base en HF. et calculs DFT.
-\item Les calculs aux niveaux théoriques post-HF, nécessitent, cependant,
-  des ensembles de bases plus larges avec des fonctions de polarisation
-  supplémentaires~; les ensembles de base \texttt{def2-TZVPP} et
-  \texttt{def2-QZVPP} existent à cet effet.
-\item Les fonctions diffuses (D) sont nécessaires à la description correcte
-  des anions ainsi qu'à la modélisation, de la polarisabilité électrique
-  par exemple. Des ensembles sont à cet effet disponibles à tous les
-  niveaux de précision (\texttt{def2-SVPD}, \texttt{def2-TZVPD},
-  \texttt{def2-TZVPPD}, \texttt{def2-QZVPD}, \texttt{def2-QZVPPD}).
-\end{itemize}
+Le choix d’un ensemble de bases est un facteur déterminant en chimie quantique computationnelle. Un compromis doit être trouvé entre la précision souhaitée et les ressources disponibles.
+Les bases modernes, comme \texttt{def2} et \texttt{cc-pVXZ}, offrent des solutions flexibles adaptées à divers niveaux de calcul. En sélectionnant soigneusement une base appropriée, on optimise le rapport coût-précision pour les études moléculaires.
 
 
 \end{document}
