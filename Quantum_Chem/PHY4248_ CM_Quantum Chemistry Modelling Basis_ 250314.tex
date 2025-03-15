@@ -103,8 +103,7 @@ Ce chapitre vise à fournir une base solide pour comprendre les principes sous-j
 \begin{figure}
 \centering
 \includegraphics[width=.4\linewidth]{CoverVQE.jpg}
-\caption{\textbf{Applications de la chimie quantique computationnelle dans le domaine de l'énergie.} 
-Cette figure donne un aperçu des diverses applications de la chimie quantique computationnelle dans le secteur énergétique. Parmi celles-ci, on retrouve la conception de nouveaux matériaux pour les cellules solaires, l'optimisation des réactions catalytiques pour la production d'énergie propre, le développement de batteries plus performantes et la compréhension des mécanismes de stockage de l'énergie. Ces applications montrent le potentiel de la chimie quantique pour résoudre les défis énergétiques actuels.}
+\caption{\textbf{Applications de la chimie quantique computationnelle dans le domaine de l'énergie.} Parmi celles-ci, on retrouve la conception de nouveaux matériaux pour les cellules solaires, l'optimisation des réactions catalytiques pour la production d'énergie propre, le développement de batteries plus performantes et la compréhension des mécanismes de stockage de l'énergie. Ces applications montrent le potentiel de la chimie quantique pour résoudre les défis énergétiques actuels.}
 \label{fig:CoverVQE}
 \end{figure}
 
@@ -124,7 +123,7 @@ Pour simplifier, on se concentre souvent sur l'équation de Schrödinger indépe
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
-\caption{Illustration simplifiée des différentes interactions (électron-noyau, électron-électron, noyau-noyau) dans un système moléculaire.}
+\caption{\textbf{Illustration simplifiée des différentes interactions dans un système moléculaire.} Ce diagramme schématise les interactions fondamentales présentes dans une molécule, incluant les attractions et répulsions électrostatiques. On distingue les interactions entre les électrons et les noyaux (attraction), les répulsions entre les électrons, et les répulsions entre les noyaux. Les étiquettes sur le schéma mettent en évidence la nature Coulombienne de ces interactions et montrent comment ces forces contribuent à l'énergie totale du système. La figure aide à visualiser les composantes de l'Hamiltonien moléculaire avant l'application de l'approximation de Born-Oppenheimer.}
 \label{fig:interactionqc}
 \end{figure}
 
@@ -162,7 +161,7 @@ L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en 
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
-\caption{\textbf{Illustration des interactions dams l'approximation de Born-Oppenheimer.} Ce schéma simplifie la représentation des interactions au sein d'une molécule dans le cadre de l'approximation de Born-Oppenheimer. Il met en évidence la séparation des mouvements rapides des électrons et des mouvements lents des noyaux, due à la grande différence de masse entre ces particules. Les électrons sont considérés comme se déplaçant dans un champ créé par les noyaux fixes, ce qui permet de simplifier considérablement les calculs de structure électronique.
+\caption{\textbf{Illustration des interactions dams l'approximation de Born-Oppenheimer.} Ce schéma met en évidence la séparation des mouvements rapides des électrons et des mouvements lents des noyaux, due à la grande différence de masse entre ces particules. Les électrons sont considérés comme se déplaçant dans un champ créé par les noyaux fixes, ce qui permet de simplifier considérablement les calculs de structure électronique.
 }
 \label{fig:bointeractionqc}
 \end{figure}
@@ -328,7 +327,8 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 \begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{SCF_Workflow.pdf}
-\caption{Workflow détaillé de la procédure SCF (Self-Consistent Field).}
+\caption{\textbf{Workflow détaillé de la procédure SCF (Self-Consistent Field).} Le processus débute par une estimation initiale des orbitales moléculaires, suivie de la construction de la matrice de Fock. Cette matrice est ensuite diagonalisée pour obtenir de nouvelles orbitales et énergies. Un critère de convergence est appliqué pour vérifier si les orbitales ont suffisamment convergé. Si la convergence n'est pas atteinte, le processus est répété jusqu'à ce qu'un seuil de tolérance soit satisfait, garantissant ainsi une solution auto-cohérente.
+}
 \label{fig:scfworkflow}
 \end{figure}
 
