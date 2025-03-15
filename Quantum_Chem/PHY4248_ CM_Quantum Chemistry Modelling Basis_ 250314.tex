@@ -96,14 +96,14 @@ Ce chapitre vise à fournir une base solide pour comprendre les principes sous-j
 \begin{figure}
 \centering
 \includegraphics[width=.9\linewidth]{VQE_Flowchart.jpeg} 
-\caption{\textbf{Diagramme de flux de l'algorithme VQE (Variationnel Quantum Eigensolver).} Ce diagramme illustre les étapes principales de l'algorithme VQE, une méthode hybride quantique-classique utilisée pour calculer l'énergie des molécules. On y voit comment une boucle itérative optimise les paramètres d'un circuit quantique (ansatz) afin de minimiser l'énergie, en utilisant un calculateur classique pour le contrôle et l'analyse des résultats quantiques. Les encadrés rouges mettent en évidence les contributions des concepts fondamentaux présentés dans ce chapitre, comme l’Hamiltonien moléculaire et l'approximation de Born-Oppenheimer.}
+\caption{\textbf{Diagramme de flux de l'algorithme VQE (Variationnel Quantum Eigensolver).} Ce diagramme illustre les étapes principales de l'algorithme VQE, une méthode hybride quantique-classique utilisée pour calculer l'énergie des molécules. On y voit comment une boucle itérative optimise les paramètres d'un circuit quantique (ansatz) afin de minimiser l'énergie, en utilisant un calculateur classique pour le contrôle et l'analyse des résultats quantiques. Les encadrés rouges mettent en évidence les contributions des concepts fondamentaux présentés dans ce chapitre, comme l'Hamiltonien moléculaire et l'approximation de Born-Oppenheimer.}
 \label{fig:VQE_Flowchart}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=.4\linewidth]{CoverVQE.jpg}
-\caption{\textbf{Applications de la chimie quantique computationnelle dans le domaine de l’énergie.} 
+\caption{\textbf{Applications de la chimie quantique computationnelle dans le domaine de l'énergie.} 
 Cette figure donne un aperçu des diverses applications de la chimie quantique computationnelle dans le secteur énergétique. Parmi celles-ci, on retrouve la conception de nouveaux matériaux pour les cellules solaires, l'optimisation des réactions catalytiques pour la production d'énergie propre, le développement de batteries plus performantes et la compréhension des mécanismes de stockage de l'énergie. Ces applications montrent le potentiel de la chimie quantique pour résoudre les défis énergétiques actuels.}
 \label{fig:CoverVQE}
 \end{figure}
@@ -157,12 +157,13 @@ L'équation de Schrödinger dans sa forme complète est inapplicable directement
 
 \section{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
 
-L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l’équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
+L'\textbf{approximation de Born-Oppenheimer} est une hypothèse fondamentale en chimie quantique, qui simplifie le traitement des systèmes moléculaires complexes. Elle repose sur la grande différence de masse entre les noyaux et les électrons. Les noyaux, étant bien plus massifs que les électrons ($M'\sim10^3$), se déplacent beaucoup plus lentement. Cette différence de dynamique permet de séparer les mouvements électroniques et nucléaires dans l'équation de Schrödinger (voir la \autoref{fig:bointeractionqc}.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
-\caption{Illustration des interactions dams l'approximation de Born-Oppenheimer.}
+\caption{\textbf{Illustration des interactions dams l'approximation de Born-Oppenheimer.} Ce schéma simplifie la représentation des interactions au sein d'une molécule dans le cadre de l'approximation de Born-Oppenheimer. Il met en évidence la séparation des mouvements rapides des électrons et des mouvements lents des noyaux, due à la grande différence de masse entre ces particules. Les électrons sont considérés comme se déplaçant dans un champ créé par les noyaux fixes, ce qui permet de simplifier considérablement les calculs de structure électronique.
+}
 \label{fig:bointeractionqc}
 \end{figure}
 
@@ -206,7 +207,7 @@ En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer l
 
 \section{Méthode de Hartree-Fock - Calcul du champ moyen ou mean-field}\label{calcul-du-champ-moyen-ou-mean-field}
 
-La méthode de Hartree-Fock est une approche fondamentale qui approxime l’interaction électron-électron dans un système moléculaire. Elle repose sur l'idée de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron ressent une répulsion moyenne des autres électrons} tout en respectant le principe de symétrie antisymétrique de Pauli. En d'autres termes, chaque électron n'interagit pas explicitement avec les autres électrons.
+La méthode de Hartree-Fock est une approche fondamentale qui approxime l'interaction électron-électron dans un système moléculaire. Elle repose sur l'idée de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron ressent une répulsion moyenne des autres électrons} tout en respectant le principe de symétrie antisymétrique de Pauli. En d'autres termes, chaque électron n'interagit pas explicitement avec les autres électrons.
 
 \subsection{Fonction d'état - Déterminant de Slater}
 
@@ -271,7 +272,7 @@ antisymétrisée est donnée par
 
 \subsection{Approche variationnelle}
 
-L’énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
+L'énergie totale est obtenue par minimisation variationnelle, où l'énergie est exprimée comme fonction des orbitales. L'opérateur de Fock est introduit pour représenter le champ moyen ressenti par un électron :
 \begin{equation}
 F(d) = h + \sum_b \big(J_b(d) - K_b(d)\big) ,
 \end{equation}
@@ -319,7 +320,7 @@ La méthode Hartree-Fock est résolue itérativement par une procédure auto-coh
 \item \textbf{Équation de Roothaan-Hall.} Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
 \item \textbf{Mise à jour des orbitales.} Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
 \item \textbf{Critère de convergence.} Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si la différence est inférieure à un seuil $\delta$, le processus est terminé.
-\item \textbf{Retour en cas de non-convergence.} Si la convergence n’est pas atteinte, le cycle est répété.
+\item \textbf{Retour en cas de non-convergence.} Si la convergence n'est pas atteinte, le cycle est répété.
 \end{enumerate}
 
 La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
