@@ -122,7 +122,7 @@ i\hbar \pdv{t} |\psi(t)\rangle = \mathtt{H} |\psi(t)\rangle .
 \end{equation}
 $|\psi(t)\rangle$ représente la fonction d'état du système, décrivant son évolution temporelle, et $\mathtt{H}$ est l'opérateur Hamiltonien, qui représente l'énergie totale du système. Résoudre cette équation directement, même en l'absence d'effets relativistes, reste un défi majeur pour les systèmes moléculaires complexes.
 
-Pour simplifier, on se concentre souvent sur les états stationnaires du système. Ces états sont décrits par l'équation de Schrödinger indépendante du temps, qui prend la forme d'un problème aux valeurs propres :
+Pour simplifier, on se concentre souvent sur les états stationnaires du système. Ces états sont décrits par l'équation de Schrödinger \textit{indépendante} du temps, qui prend la forme d'un problème aux valeurs propres :
 \begin{equation}
 \mathtt{H} |\psi\rangle = E |\psi\rangle ,
 \end{equation}
@@ -592,11 +592,11 @@ Dans ce chapitre, nous avons exploré les fondements de la modélisation de la s
 \begin{enumerate}
     \item \textbf{Approximation de Born-Oppenheimer.} On considère que les noyaux sont fixes et on se concentre sur le mouvement des électrons dans le potentiel créé par ces noyaux fixes.
     \item \textbf{Choix d'une base d'orbitales.} On sélectionne un ensemble de fonctions de base (par exemple, STO-3G, 6-31G*) pour représenter les orbitales atomiques.
-    \item {Construction du déterminant de Slater.} On construit une fonction d'état multi-électronique antisymétrique en utilisant un déterminant de Slater.
-    \item {Méthode de Hartree-Fock (SCF).} On utilise une procédure itérative pour optimiser les orbitales moléculaires en considérant que chaque électron se déplace dans un champ moyen créé par les autres.
+    \item \textbf{Construction du déterminant de Slater.} On construit une fonction d'état multi-électronique antisymétrique en utilisant un déterminant de Slater.
+    \item \textbf{Méthode de Hartree-Fock (SCF).} On utilise une procédure itérative pour optimiser les orbitales moléculaires en considérant que chaque électron se déplace dans un champ moyen créé par les autres.
 \end{enumerate}
 
-\textbf{Un Choix déterminant : approximations et bases}
+\textbf{Un choix déterminant : approximations et bases}
 
 Il est essentiel de comprendre que cette procédure repose sur des approximations. La méthode Hartree-Fock néglige une partie importante de la corrélation électronique, ce qui peut affecter la précision des résultats. De plus, le choix de la base d'orbitales a un impact direct sur la qualité de la modélisation et sur le temps de calcul.
 
