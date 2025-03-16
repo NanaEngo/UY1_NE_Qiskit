@@ -225,7 +225,20 @@ En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer l
 
 \section{Méthode de Hartree-Fock - Approche du champ moyen}
 
-La méthode de Hartree-Fock (HF) est une approche fondamentale qui approxime l'interaction électron-électron dans un système moléculaire en chimie quantique computationnelle. Elle introduit le concept de champ moyen (\textbf{mean-field} en anglais), où \textbf{chaque électron interagit avec un potentiel moyen créé par l'ensemble des autres électrons}. Cette approche inclut les effets d'échange dus au principe de Pauli, mais néglige la \textbf{corrélation électronique dynamique}, ce qui constitue l'une de ses principales limites.
+La méthode de Hartree-Fock (HF) est une approche fondamentale qui approxime l'interaction électron-électron dans un système moléculaire en chimie quantique computationnelle. En réalité, résoudre directement l'équation de Schrödinger pour une molécule est impossible à cause des interactions complexes entre tous les électrons. L'astuce de Hartree-Fock est de remplacer ces interactions complexes par une approximation plus simple : le \textbf{champ moyen} ou \textbf{mean-field} en anglais.
+
+Imaginez un électron qui se déplace dans une molécule. Au lieu de ressentir l'influence instantanée de tous les autres électrons, qui se déplacent aussi, on considère que cet électron se déplace dans un potentiel \textbf{moyen}, une sorte de \textbf{moyenne de l'influence de tous les autres électrons}.
+
+En d'autres termes, au lieu de traiter le problème à N corps (N électrons), on le réduit à N problèmes à un seul corps, où chaque électron se déplace dans un potentiel effectif. Ce potentiel est dit \textbf{auto-cohérent} car il est déterminé par les orbitales des autres électrons.
+
+Cette approximation a des conséquences importantes :
+\begin{itemize}
+    \item elle simplifie considérablement les calculs, rendant possible la modélisation de molécules plus grandes (\textbf{avantage principal});
+    \item elle inclut les effets d'échange dus au principe de Pauli;
+    \item elle néglige la \textbf{corrélation électronique dynamique}, c'est-à-dire la façon dont les électrons ajustent instantanément leur position les uns par rapport aux autres (\textbf{limite principale}).
+\end{itemize}
+
+Pour comprendre comment implémenter cette idée, il faut détailler comment on représente l'état quantique de la molécule.
 
 \subsection{Fonction d'état - Déterminant de Slater}
 
@@ -242,13 +255,22 @@ L'approximation centrale de la méthode HF consiste à représenter la fonction 
 &\equiv |M-1,\dots, 1, 0 \rangle,
 \end{split}
 \end{equation} 
-L'échange des positions de deux électrons est équivalent à l'échange de deux rangées du déterminant de Slater, ce qui modifie le signe de la fonction d'état. Cela fournit la symétrie d'échange correcte pour la fonction d'état fermionique. Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent occuper que $N$ des spin-orbitales dans un déterminant Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées $N$.
+Il est à noter que:
+\begin{itemize}
+\item $\mathbf{r}_i$ est la position de l'électron $i$;
+\item $\phi_i$ est une \textbf{spin-orbitale}, c'est-à-dire une fonction décrivant à la fois la position spatiale et le spin d'un électron;
+\item le déterminant assure que la fonction d'état est \textbf{antisymétrique} par rapport à l'échange de deux électrons (principe de Pauli). En d'autres termes, si on échange deux lignes dans le déterminant, la fonction d'état change de signe.
+\end{itemize}
 
-Dans la base des \textbf{orbitales moléculaires (MO)}, chaque fonction $\phi_i(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} :
+\textbf{Pourquoi un déterminant ?} Le déterminant de Slater est la \textit{façon la plus simple} de construire une fonction d'état multi-électronique qui respecte le principe fondamental de Pauli, qui stipule que la fonction d'état doit être antisymétrique par rapport à l'échange de deux fermions (les électrons sont des fermions).
+
+Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent occuper que $N$ des spin-orbitales dans un déterminant Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées $N$.
+
+Dans la base des \textbf{orbitales moléculaires (MO)}, chaque spin-orbitale $\phi_i(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} (Linear Combination of Atomic Orbitals):
 \begin{equation}
 \phi_i(\mathbf{r}) = \sum_{\mu} C_{\mu i} \chi_\mu(\mathbf{r} - \mathbf{R}_A),
 \end{equation}
-où $\chi_{\mu}(\mathbf{r})$ sont les fonctions de base et $C_{\mu i}$ les coefficients d’expansion.
+où $\chi_{\mu}(\mathbf{r})$ sont les fonctions de base  atomiques (e.g., fonctions de Slater ou Gaussiennes) et $C_{\mu i}$ les coefficients d’expansion à optimiser.
 
 \subsection{Exemple d'illustration}\label{exemple-dillustration}
 
@@ -338,14 +360,14 @@ où,
 
 \subsection{Procédure auto-cohérente (SCF)}
 
-La méthode Hartree-Fock est résolue itérativement par une procédure auto-cohérente (Self-Consistent Field, SCF).
+L'équation de Hartree-Fock est non-linéaire. Pour la résoudre, on utilise une procédure itérative auto-cohérente (Self-Consistent Field, SCF).
 
 \begin{enumerate}
-\item \textbf{Démarrage.} Initialisation des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On founit les coordonnées 3D des atomes du système moléculaire.
-\item \textbf{Construction de $\vb{F}$.} Calcul des matrices de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$).
-\item \textbf{Équation de Roothaan-Hall.} Diagonalisation de $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
-\item \textbf{Mise à jour des orbitales.} Nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
-\item \textbf{Critère de convergence.} Comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si $\big|E^{(k+1)} - E^{(k)}\big| < \delta$ (le seui), le processus est terminé.
+\item \textbf{Initialisation} des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On founit les coordonnées 3D des atomes du système moléculaire.
+\item \textbf{Construction de l'opérateur de Fock $\vb{F}$.} On calculs les matrices de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$) (elles sont très souvent coûteuses).
+\item \textbf{Résolution de l'équation de Roothaan-Hall.} On diagonalise l'opérateur $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
+\item \textbf{Mise à jour des orbitales.} On met à jour les nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
+\item \textbf{Vérification du critère de convergence.} On comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si $\big|E^{(k+1)} - E^{(k)}\big| < \delta$ (le seui), le processus est terminé.
 \item \textbf{Retour en cas de non-convergence.} Si la convergence n'est pas atteinte, le cycle est répété.
 \end{enumerate}
 
@@ -359,6 +381,8 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 \label{fig:scfworkflow}
 \end{figure}
 
+On retient que la méthode Hartree-Fock fournit une approximation du champ moyen qui permet de calculer la structure électronique des molécules. Cependant, elle a des limitations importantes en raison de la négligence de la corrélation électronique dynamique, ce qui motive le développement de méthodes plus avancées.
+
 \subsection{Types de solutions HF et influence du remplissage électronique}
 
 Dans la méthode de HF, la manière dont les électrons occupent les orbitales moléculaires 
@@ -368,7 +392,7 @@ trois variantes principales sont couramment utilisées (voir la \autoref{fig:hfo
 \begin{figure}
 \centering
 \includegraphics[width=0.5\linewidth]{Graphics/HF_Orb}
-\caption{Différentes approches Hartree-Fock selon le remplissage électronique.}
+\caption{\textbf{Orbitales moléculaires et approches Hartree-Fock.} Choix de la méthode Hartree-Fock (RHF, ROHF, UHF) en fonction de l'occupation des orbitales moléculaires. RHF est adapté aux systèmes à couches fermées, ROHF aux couches ouvertes, et UHF aux systèmes fortement magnétiques, mais au prix d'une complexité accrue et d'un risque de spin contamination.}
 \label{fig:hforb}
 \end{figure}
 
@@ -560,8 +584,28 @@ Cependant, une base plus grande implique une augmentation des coûts de calcul. 
 
 \subsection{Conclusion}
 
-Le choix d’un ensemble de bases est un facteur déterminant en chimie quantique computationnelle. Un compromis doit être trouvé entre la précision souhaitée et les ressources disponibles.
-Les bases modernes, comme \texttt{def2} et \texttt{cc-pVXZ}, offrent des solutions flexibles adaptées à divers niveaux de calcul. En sélectionnant soigneusement une base appropriée, on optimise le rapport coût-précision pour les études moléculaires.
+Le choix d’un ensemble de bases est un facteur déterminant en chimie quantique computationnelle. Un compromis doit être trouvé entre la précision souhaitée et les ressources disponibles. Les bases modernes, comme \texttt{def2} et \texttt{cc-pVXZ}, offrent des solutions flexibles adaptées à divers niveaux de calcul. En sélectionnant soigneusement une base appropriée, on optimise le rapport coût-précision pour les études moléculaires.
 
+\section{Conclusion - Premiers pas dans la modélisation moléculaire}
+
+Dans ce chapitre, nous avons exploré les fondements de la modélisation de la structure électronique des molécules, en nous concentrant sur l'approximation de Born-Oppenheimer et la méthode de Hartree-Fock. En résumé, voici les étapes clés de cette approche en \textit{première approximation} :
+\begin{enumerate}
+    \item \textbf{Approximation de Born-Oppenheimer.} On considère que les noyaux sont fixes et on se concentre sur le mouvement des électrons dans le potentiel créé par ces noyaux fixes.
+    \item \textbf{Choix d'une base d'orbitales.} On sélectionne un ensemble de fonctions de base (par exemple, STO-3G, 6-31G*) pour représenter les orbitales atomiques.
+    \item {Construction du déterminant de Slater.} On construit une fonction d'état multi-électronique antisymétrique en utilisant un déterminant de Slater.
+    \item {Méthode de Hartree-Fock (SCF).} On utilise une procédure itérative pour optimiser les orbitales moléculaires en considérant que chaque électron se déplace dans un champ moyen créé par les autres.
+\end{enumerate}
+
+\textbf{Un Choix déterminant : approximations et bases}
+
+Il est essentiel de comprendre que cette procédure repose sur des approximations. La méthode Hartree-Fock néglige une partie importante de la corrélation électronique, ce qui peut affecter la précision des résultats. De plus, le choix de la base d'orbitales a un impact direct sur la qualité de la modélisation et sur le temps de calcul.
+
+Le choix des approximations et de l'ensemble de bases dépend fortement des objectifs de l'étude :
+\begin{itemize}
+    \item Pour des \textbf{calculs rapides et qualitatifs}, on peut utiliser une base minimale (ex. STO-3G).
+    \item Pour des \textbf{calculs plus précis}, on utilisera des bases étendues avec des fonctions de polarisation (ex. 6-31G*, cc-pVDZ).
+    \item Si l'objectif est d'\textbf{étudier des propriétés spécifiques} (anions, états excités), on choisira une base adaptée (ex. aug-cc-pVDZ).
+\end{itemize}
+Comprendre ces compromis et les limitations de l'approche Hartree-Fock est essentiel pour interpréter correctement les résultats et pour choisir des méthodes plus avancées si nécessaire. Dans les chapitres suivants, nous explorerons ces méthodes plus sophistiquées qui visent à inclure la corrélation électronique et à améliorer la précision de la modélisation.
 
 \end{document}
