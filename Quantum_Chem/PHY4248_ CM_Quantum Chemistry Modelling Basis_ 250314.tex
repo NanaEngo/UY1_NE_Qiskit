@@ -134,11 +134,11 @@ L'Hamiltonien moléculaire, noté $\mathtt{H}$, décrit l'énergie totale d'une 
 \end{equation}
 où
 \begin{itemize}
-\item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique; 
-\item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire; 
-\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est l'énergie potentielle d'attraction Coulombienne entre les électrons et les noyaux;
-\item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est l'énergie potentielle de répulsion Coulombienne entre les électrons;
-\item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est l'énergie potentielle de répulsion Coulombienne entre les noyaux.
+\item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique. Les électrons sont en mouvement constant autour des noyaux, ce qui contribue à l'énergie totale; 
+\item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire. Les noyaux sont également en mouvement (vibrations, rotations), mais leur contribution est souvent négligeable en première approximation (Born-Oppenheimer); 
+\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est l'énergie potentielle d'attraction Coulombienne entre les électrons et les noyaux, C'est cette interaction \textbf{attractive Coulombienne} entre les électrons négatifs et les noyaux positifs, qui stabilise la molécule;
+\item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est l'énergie potentielle de répulsion Coulombienne entre les électrons. Les électrons, portant la même charge négative, se repoussent mutuellement;
+\item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est l'énergie potentielle de répulsion Coulombienne entre les noyaux.  Les noyaux positifs se repoussent. Cette répulsion est \textit{purement classique} et dépend uniquement de la distance internucléaire.
 \end{itemize}
 Dans ces expressions, $i$ et $j$ sont des indices qui parcourent tous les électrons, tandis que $I$ et $J$ parcourent tous les noyaux. Les variables $M_I$, $\mathbf{R}_I$, et $Z_I$ désignent respectivement la masse, la position et le numéro atomique du \emph{I}-ième noyau, tandis que $\mathbf{r}_i$ est la position du \emph{i}-ième électron.
 
