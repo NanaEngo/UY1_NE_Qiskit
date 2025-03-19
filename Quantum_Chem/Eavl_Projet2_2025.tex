@@ -1,0 +1,103 @@
+\documentclass{exam} % Pour la version avec les réponses, utiliser: \documentclass[answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+
+\title{Évaluation - Projet 2 : Modélisation moléculaire}
+\author{Équipe pédagogique}
+\date{21 Mars 2025}
+
+\begin{document}
+\maketitle
+\noindent\textbf{Instructions}
+\begin{itemize}
+    \item Durée : 20 minutes
+    \item Matériel autorisé : Aucun document ni calculatrice.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{questions}
+
+\question[5] \textbf{Hamiltonien moléculaire électronique}
+
+Nommez et décrivez brièvement (en une phrase) les \textbf{trois termes de potentiel} qui composent l'Hamiltonien moléculaire électronique ($'\mathtt{H}_{elec}$).
+
+\begin{solution}
+\textbf{Solution Question 1 (5 points)}
+
+\begin{itemize}
+    \item $'\mathtt{U}_{en}$ (Énergie potentielle d'attraction électron-noyau) \hfill \marks[1]
+        \begin{itemize}
+            \item[] Description : Interaction attractive Coulombienne entre électrons et noyaux. \hfill \marks[1]
+        \end{itemize}
+    \item $'\mathtt{U}_{ee}$ (Énergie potentielle de répulsion électron-électron) \hfill \marks[1]
+        \begin{itemize}
+            \item[] Description : Interaction répulsive Coulombienne entre électrons. \hfill \marks[1]
+        \end{itemize}
+    \item $'\mathtt{U}_{nn}$ (Énergie potentielle de répulsion noyau-noyau) \hfill \marks[1]
+        \begin{itemize}
+            \item[] Description : Interaction répulsive Coulombienne entre noyaux.  \hfill \marks[1]
+        \end{itemize}
+\end{itemize}
+\end{solution}
+
+\fbox{\parbox{\textwidth}{\vspace{1cm}}} % Boîte pour la réponse étudiant
+
+\question[5] \textbf{Approximation de Born-Oppenheimer}
+
+Expliquez en \textbf{termes simples} (2-3 phrases maximum) le principe de l'Approximation de Born-Oppenheimer. Quel est l'\textbf{avantage principal} de cette approximation pour la modélisation moléculaire ?
+
+\begin{solution}
+\textbf{Solution Question 2 (5 points)}
+\begin{itemize}
+    \item \textbf{Principe BO} : Séparation des mouvements noyaux/électrons due à la différence de masse. Noyaux considérés fixes pour le mouvement électronique. \hfill \marks[3]
+    \item \textbf{Avantage principal} : Simplification drastique des calculs, rendant la modélisation possible. \hfill \marks[2]
+\end{itemize}
+\end{solution}
+
+\fbox{\parbox{\textwidth}{\vspace{1cm}}} % Boîte pour la réponse étudiant
+
+
+\question[5] \textbf{Méthode de Hartree-Fock et champ moyen ou mean-field}
+
+\begin{parts}
+    \part[2] Qu'est-ce que l'approximation du "\textbf{champ moyen}" dans la méthode de Hartree-Fock ? (1 phrase)
+    \begin{solution}
+    \textbf{Solution Question 3a (2 points)}
+    \begin{itemize}
+        \item[] Champ moyen : Chaque électron se déplace dans un potentiel moyen créé par l'ensemble des autres électrons (interaction électron-électron moyennée). \hfill \marks[2]
+    \end{itemize}
+    \end{solution}
+    \fbox{\parbox{0.9\textwidth}{\vspace{0.5cm}}} % Boîte pour la réponse étudiant
+
+    \part[3] Pourquoi la méthode de Hartree-Fock est-elle qualifiée de procédure "\textbf{auto-cohérente (SCF)}"? (1 phrase)
+    \begin{solution}
+    \textbf{Solution Question 3b (3 points)}
+    \begin{itemize}
+        \item[] Auto-cohérence (SCF) : La procédure est itérative car les orbitales (et donc le champ moyen) sont recalculées et mises à jour jusqu'à convergence. \hfill \marks[3]
+    \end{itemize}
+    \end{solution}
+    \fbox{\parbox{0.9\textwidth}{\vspace{0.5cm}}} % Boîte pour la réponse étudiant
+\end{parts}
+
+
+\question[5] \textbf{Choix de la Méthode Hartree-Fock}
+
+Dans quel type de situation choisiriez-vous la méthode Hartree-Fock \textbf{UHF} plutôt que la méthode \textbf{RHF} ?  \textbf{Justifiez brièvement} votre réponse en considérant les types de systèmes moléculaires et leurs propriétés électroniques.
+
+\begin{solution}
+\textbf{Solution Question 4 (5 points)}
+\begin{itemize}
+    \item[] UHF plutôt que RHF : Pour les systèmes à couches ouvertes (radicaux, systèmes magnétiques) ou lorsque RHF n'est pas adapté. \hfill \marks[3]
+    \item[] Justification : UHF permet de traiter les systèmes où les spins alpha et beta ne sont pas contraints d'occuper les mêmes orbitales spatiales, ce qui est nécessaire pour décrire correctement ces systèmes. \hfill \marks[2]
+\end{itemize}
+\end{solution}
+
+\fbox{\parbox{\textwidth}{\vspace{1cm}}} % Boîte pour la réponse étudiant
+
+
+\end{questions}
+
+\end{document} 
