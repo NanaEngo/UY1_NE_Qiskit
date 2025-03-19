@@ -50,8 +50,8 @@
 \newcommand{\tcb}[1]{\textcolor{blue}{#1}} % textcolor{blue}{#1}
 \newcommand{\tcr}[1]{\textcolor{red}{#1}} % textcolor{red}{#1}
 % Titre du document
-\title{\vspace*{8cm}
-\large\tcb{Chapter 1 - Quantum Chemistry Modelling Basis}
+\title{\vspace*{4cm}
+\Huge\tcb{Chapter 1 - Quantum Chemistry Modelling Basis}
 \vspace*{5cm}}
 
 \author{
@@ -69,9 +69,6 @@
 
 \begin{document}
 \maketitle % Affiche le titre, les auteurs et la date
-
-% Espace supplémentaire après le titre (ajustable si nécessaire)
-%\vspace*{2cm}
 
 \newpage
 \section{Introduction}
@@ -112,7 +109,7 @@ Ce chapitre vise à fournir une base solide pour comprendre les principes sous-j
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{Interaction_QC.pdf}
-\caption{\textbf{Illustration simplifiée des différentes interactions dans un système moléculaire.} Ce diagramme schématise les interactions fondamentales présentes dans une molécule, incluant les attractions et répulsions électrostatiques. On distingue les interactions entre les électrons et les noyaux (attraction), les répulsions entre les électrons, et les répulsions entre les noyaux. Les étiquettes sur le schéma mettent en évidence la nature Coulombienne de ces interactions et montrent comment ces forces contribuent à l'énergie totale du système. La figure aide à visualiser les composantes de l'Hamiltonien moléculaire avant l'application de l'approximation de Born-Oppenheimer.}
+\caption{\textbf{Illustration simplifiée des différentes interactions dans un système moléculaire.} Ce diagramme schématise les interactions fondamentales présentes dans une molécule, incluant les attractions et répulsions électrostatiques. On distingue les interactions entre les électrons et les noyaux (attraction), les répulsions entre les électrons et les répulsions entre les noyaux. Les étiquettes sur le schéma mettent en évidence la nature Coulombienne de ces interactions et montrent comment ces forces contribuent à l'énergie totale du système. La figure aide à visualiser les composantes de l'Hamiltonien moléculaire avant l'application de l'approximation de Born-Oppenheimer.}
 \label{fig:interactionqc}
 \end{figure}
 
@@ -136,7 +133,7 @@ où
 \begin{itemize}
 \item $\mathtt{T}_e= -\sum_i\frac{\hbar^2}{2m_e}\nabla^2_i$ est l'énergie cinétique électronique. Les électrons sont en mouvement constant autour des noyaux, ce qui contribue à l'énergie totale; 
 \item $\mathtt{T}_n=-\sum_I\frac{\hbar^2}{2M_I}\nabla^2_I$ est l'énergie cinétique nucléaire. Les noyaux sont également en mouvement (vibrations, rotations), mais leur contribution est souvent négligeable en première approximation (Born-Oppenheimer); 
-\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est l'énergie potentielle d'attraction Coulombienne entre les électrons et les noyaux, C'est cette interaction \textbf{attractive Coulombienne} entre les électrons négatifs et les noyaux positifs, qui stabilise la molécule;
+\item $\mathtt{U}_{en}= -\sum_{i,I}\frac{e^2}{4\pi\epsilon_0}\frac{Z_I}{|\mathbf{r}_i-\mathbf{R}_I|}$ est l'énergie potentielle d'attraction Coulombienne entre les électrons et les noyaux. C'est cette interaction \textbf{attractive Coulombienne} entre les électrons négatifs et les noyaux positifs qui stabilise la molécule;
 \item $\mathtt{U}_{ee}=+\frac{1}{2}\sum_{i\neq j}\frac{e^2}{4\pi\epsilon_0}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ est l'énergie potentielle de répulsion Coulombienne entre les électrons. Les électrons, portant la même charge négative, se repoussent mutuellement;
 \item $\mathtt{U}_{nn}=+\frac{1}{2}\sum_{I\neq J}\frac{e^2}{4\pi\epsilon_0}\frac{Z_IZ_J}{|\mathbf{R}_I-\mathbf{R}_J|}$ est l'énergie potentielle de répulsion Coulombienne entre les noyaux.  Les noyaux positifs se repoussent. Cette répulsion est \textit{purement classique} et dépend uniquement de la distance internucléaire.
 \end{itemize}
@@ -156,7 +153,7 @@ En définissant $M_I' = M_I / m_e$, les différents termes de l'Hamiltonien mol�
 \end{split}
 \end{equation}
 
-Cependant, la résolution directe de l'équation de Schrödinger avec cette Hamiltonien complet est extrêmement complexe, voire impossible, pour les systèmes moléculaires de taille significative. Cette complexité découle des interactions corrélées entre les nombreux électrons et noyaux. Pour surmonter cette difficulté, des approximations sont indispensables.
+Cependant, la résolution directe de l'équation de Schrödinger avec cet Hamiltonien complet est extrêmement complexe, voire impossible, pour les systèmes moléculaires de taille significative. Cette complexité découle des interactions corrélées entre les nombreux électrons et noyaux. Pour surmonter cette difficulté, des approximations sont indispensables.
 
 \section{Approximation de Born-Oppenheimer}\label{approximation-de-born-oppenheimer}
 
@@ -165,7 +162,7 @@ L'\textbf{approximation de Born-Oppenheimer} (BO) est une hypothèse fondamental
 \begin{figure}
 \centering
 \includegraphics[width=0.7\linewidth]{BO_Interaction_QC.pdf}
-\caption{\textbf{Illustration des interactions dams l'approximation de Born-Oppenheimer.} Ce schéma met en évidence la séparation des mouvements rapides des électrons et des mouvements lents des noyaux, due à la grande différence de masse entre ces particules. Les électrons sont considérés comme se déplaçant dans un champ créé par les noyaux fixes, ce qui permet de simplifier considérablement les calculs de structure électronique.
+\caption{\textbf{Illustration des interactions dans l'approximation de Born-Oppenheimer.} Ce schéma met en évidence la séparation des mouvements rapides des électrons et des mouvements lents des noyaux, due à la grande différence de masse entre ces particules. Les électrons sont considérés comme se déplaçant dans un champ créé par les noyaux fixes, ce qui permet de simplifier considérablement les calculs de structure électronique.
 }
 \label{fig:bointeractionqc}
 \end{figure}
@@ -217,7 +214,7 @@ L'approximation de Born-Oppenheimer a des implications importantes :
 où $E_{\text{tot}}(\{R_A\})$ agit comme un potentiel pour le mouvement des noyaux. Ceci permet d'étudier les spectres vibrationnels des molécules.
 \end{itemize}
 
-En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle. Bien qu'elle repose sur une simplification, elle fournit une base solide pour la compréhension et la prédiction des propriétés moléculaires. Il est Cependant important de noter que cette approximation peut devenir moins précise dans certaines situations, notamment
+En résumé, l'approximation de Born-Oppenheimer est essentielle pour séparer les degrés de liberté nucléaires et électroniques, rendant ainsi le problème beaucoup plus gérable en chimie quantique computationnelle. Bien qu'elle repose sur une simplification, elle fournit une base solide pour la compréhension et la prédiction des propriétés moléculaires. Il est cependant important de noter que cette approximation peut devenir moins précise dans certaines situations, notamment
 \begin{itemize}
 \item lorsque les surfaces d'énergie potentielle sont proches;
 \item lorsqu'on étudie des processus dynamiques où le couplage entre les mouvements électroniques et nucléaires devient important.
@@ -242,7 +239,7 @@ Pour comprendre comment implémenter cette idée, il faut détailler comment on 
 
 \subsection{Fonction d'état - Déterminant de Slater}
 
-L'approximation centrale de la méthode HF consiste à représenter la fonction d'état multi-électronique par un \textbf{déterminant de Slater}, qui encode mathématiquement l'antisymétrie requise pour les fermions sont les électrons, particules de spin-$\frac12$. Il est défini comme suit :
+L'approximation centrale de la méthode HF consiste à représenter la fonction d'état multi-électronique par un \textbf{déterminant de Slater}, qui encode mathématiquement l'antisymétrie requise pour les fermions que sont les électrons, particules de spin-$\frac12$. Il est défini comme suit :
 \begin{equation}
 \begin{split}
 \psi(\mathbf{r}_0, \mathbf{r}_1, \ldots, \mathbf{r}_{N-1})\equiv |\phi_{M-1},\cdots,  \phi_1, \phi_0 \rangle 
@@ -342,7 +339,7 @@ avec,
     \end{equation}
 \end{itemize}
 
-Les orbitales sont optimisés de manière variationnelle pour un seul déterminant de Slater. En minimisant l'énergie totale, on obtient l'\textbf{équation de Hartree-Fock pour les orbitales moléculaires} :
+Les orbitales sont optimisées de manière variationnelle pour un seul déterminant de Slater. En minimisant l'énergie totale, on obtient l'\textbf{équation de Hartree-Fock pour les orbitales moléculaires} :
 \begin{equation}
 F|\psi_a\rangle = \varepsilon_a|\psi_a\rangle .
 \end{equation}
@@ -363,11 +360,11 @@ où,
 L'équation de Hartree-Fock est non-linéaire. Pour la résoudre, on utilise une procédure itérative auto-cohérente (Self-Consistent Field, SCF).
 
 \begin{enumerate}
-\item \textbf{Initialisation} des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On founit les coordonnées 3D des atomes du système moléculaire.
-\item \textbf{Construction de l'opérateur de Fock $\vb{F}$.} On calculs les matrices de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$) (elles sont très souvent coûteuses).
+\item \textbf{Initialisation} des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On fournit les coordonnées 3D des atomes du système moléculaire.
+\item \textbf{Construction de l'opérateur de Fock $\vb{F}$.} On calcule les matrices de Coulomb ($\vb{J}$) et d'échange ($\vb{K}$) (elles sont très souvent coûteuses).
 \item \textbf{Résolution de l'équation de Roothaan-Hall.} On diagonalise l'opérateur $\vb{F}$ pour obtenir les nouvelles orbitales et énergies.
 \item \textbf{Mise à jour des orbitales.} On met à jour les nouvelles orbitales $\vb{C}^{(k+1)}$ obtenues à partir de $\vb{F}$.
-\item \textbf{Vérification du critère de convergence.} On comparer l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si $\big|E^{(k+1)} - E^{(k)}\big| < \delta$ (le seui), le processus est terminé.
+\item \textbf{Vérification du critère de convergence.} On compare l'énergie $E^{(k+1)}$ avec $E^{(k)}$. Si $\big|E^{(k+1)} - E^{(k)}\big| < \delta$ (le seuil), le processus est terminé.
 \item \textbf{Retour en cas de non-convergence.} Si la convergence n'est pas atteinte, le cycle est répété.
 \end{enumerate}
 
@@ -429,7 +426,7 @@ trois variantes principales sont couramment utilisées (voir la \autoref{fig:hfo
 
 Le choix entre RHF, ROHF et UHF dépend du type de molécule étudiée :
 \begin{itemize}
-    \item \textbf{RHF} est adapté aux molécules \textbf{fermées} sans électron non-apparié (ex. \ch{H2}, \ch{CH4}).
+    \item \textbf{RHF} est adapté aux molécules \textbf{fermées} sans électron non apparié (ex. \ch{H2}, \ch{CH4}).
 
     \item \textbf{ROHF} est souvent utilisé pour les systèmes avec \textbf{un nombre impair d’électrons} ou des \textbf{ions radicalaires} (ex. \ch{NO}, \ch{O2}).
 
@@ -454,7 +451,7 @@ Le tableau suivant résume les différences entre ces trois méthodes :
     \caption{\textbf{Synthèse du choix de la méthode Hartree-Fock.} Comparaison des trois variantes de la méthode Hartree-Fock, en fonction de la structure électronique du système (couches fermées vs. couches ouvertes, magnétisme) et du type d'orbitales utilisées. Le choix de la méthode impacte la précision et le coût du calcul.}
 \end{table}
 
-En pratique, UHF est souvent préféré pour des \textbf{états excités ou fortement corrélés}, tandis que RHF et ROHF sont plus appropriés pour les calculs standards d’énergie fondamentale.
+En pratique, UHF est souvent préféré pour des \textbf{états excités ou fortement corrélés}, tandis que RHF et ROHF sont plus appropriés pour les calculs standards d'énergie fondamentale.
 
 \subsection{Quelques limites des méthodes HF}
 
@@ -524,7 +521,7 @@ Les méthodes de chimie quantique avancées nécessitent des bases capables de c
     \item \texttt{aug-cc-pVDZ} : Ajout de fonctions diffuses pour mieux représenter les anions et les états excités.
 \end{itemize}
 
-Plus d'informations, d'exemples et de discussions sur les GTO peuvent être trouvés dans ce
+Plus d'informations, d'exemples et de discussions sur les GTO peuvent être trouvées dans ce  
 \href{https://chem.libretexts.org/Courses/Pacific_Union_College/Quantum_Chemistry/11\%3A_Computational_Quantum_Chemistry/11.02\%3A_Gaussian_Basis_Sets}{lien}.
 
 \subsection{Catégories d'ensembles de bases}
@@ -606,6 +603,6 @@ Le choix des approximations et de l'ensemble de bases dépend fortement des obje
     \item Pour des \textbf{calculs plus précis}, on utilisera des bases étendues avec des fonctions de polarisation (ex. 6-31G*, cc-pVDZ).
     \item Si l'objectif est d'\textbf{étudier des propriétés spécifiques} (anions, états excités), on choisira une base adaptée (ex. aug-cc-pVDZ).
 \end{itemize}
-Comprendre ces compromis et les limitations de l'approche Hartree-Fock est essentiel pour interpréter correctement les résultats et pour choisir des méthodes plus avancées si nécessaire. Dans les chapitres suivants, nous explorerons ces méthodes plus sophistiquées qui visent à inclure la corrélation électronique et à améliorer la précision de la modélisation.
+Comprendre ces compromis et les limitations de l'approche Hartree-Fock est essentiel pour interpréter correctement les résultats et pour choisir des méthodes plus avancées si nécessaire. Dans les chapitres suivants, nous explorerons ces méthodes post-Hartree-Fock qui visent à inclure la corrélation électronique et à améliorer la précision de la modélisation.
 
 \end{document}
