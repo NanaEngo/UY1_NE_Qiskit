@@ -52,7 +52,7 @@
 \newcommand{\tcr}[1]{\textcolor{red}{#1}} % textcolor{red}{#1}
 % Titre du document
 \title{\vspace*{4cm}
-\Huge\tcb{Chapter 1 - Geometry optimization}
+\Huge\tcb{Chapter 2 - Aspects généraux de la représentation moléculaire}
 \vspace*{5cm}}
 
 \author{
@@ -84,13 +84,142 @@ Il est à noter que le framework xTB permet de
 * fournir un cadre pour gérer et manipuler les données de paramétrage;
 * fournir des fonctionnalités au-delà des calculs à point unique (single-point) dans cette bibliothèque : l'optimisation géométrique et  la dynamique moléculaire.
 Dans ce chapitre, nous introduisons les concepts fondamentaux suivants :
+
+
+
+\section{Introduction}
+
 \begin{itemize}
-    \item L'Hamiltonien moléculaire en première quantification ;
-    \item L'approximation de Born-Oppenheimer ;
-    \item L'approche du champ moyen via la méthode Hartree-Fock (HF) ;
-    \item Les limites inhérentes à cette méthode ;
-    \item Le choix et l'importance des ensembles de bases.
+    \item Rappel du Chapitre 1 : Nous avons posé les bases de la chimie quantique et de l'approximation de Born-Oppenheimer et de la méthode Hartree-Fock.
+    \item Nécessité d'aller plus loin : Pour modéliser des systèmes moléculaires réels, il faut maintenant aborder les aspects pratiques de la représentation des molécules et des calculs.
+    \item Aperçu du chapitre : Ce chapitre introduit les concepts clés pour décrire et étudier les molécules en chimie quantique computationnelle :
+        \begin{itemize}
+            \item Représentation des molécules (coordonnées, bases)
+            \item Méthodes d'optimisation géométrique (recherche de structures stables)
+            \item Étude des états électroniques (fondamental et excités)
+            \item Méthodes semi-empiriques (pour les grands systèmes)
+        \end{itemize}
+\end{itemize}
+
+\section{Représentation des molécules}
+
+\subsection{Coordonnées cartésiennes et coordonnées internes}
+\begin{itemize}
+    \item \textbf{Coordonnées cartésiennes (3N) : }
+        \begin{itemize}
+            \item Description : Position de chaque atome par (x, y, z) dans un repère global.
+            \item Simplicité et universalité.
+            \item Peu intuitif pour la description des vibrations et rotations moléculaires.
+        \end{itemize}
+    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
+        \begin{itemize}
+            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
+            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
+            \item Exemple : Molécule d'eau (distances OH, angle HOH).
+        \end{itemize}
+\end{itemize}
+
+\subsection{Choix des bases d'orbitales atomiques (Rappel et Compléments)}
+\begin{itemize}
+    \item Rappel du chapitre 1: Nécessité d'utiliser des bases d'orbitales atomiques (combinaison linéaire d'orbitales atomiques LCAO).
+    \item Bases STO (Slater Type Orbitals) :
+        \begin{itemize}
+            \item Forme exponentielle, plus proche des orbitales atomiques réelles.
+            \item Calculs d'intégrales complexes.
+        \end{itemize}
+    \item Bases GTO (Gaussian Type Orbitals) :
+        \begin{itemize}
+            \item Fonctions Gaussiennes, calculs d'intégrales simplifiés.
+            \item Bases les plus utilisées en pratique (compromis précision/coût).
+            \item Bases de Pople (ex: 6-31G*) et bases correlation-consistent (cc-pVXZ) : compromis précision/taille de base.
+        \end{itemize}
+    \item Importance du choix de la base : impact sur la précision et le temps de calcul.
 \end{itemize}
 
 
+\section{Méthodes d'optimisation géométrique}
+
+\subsection{Principe de l'optimisation géométrique}
+\begin{itemize}
+    \item Définition : Recherche de la géométrie moléculaire d'énergie minimale.
+    \item Concept de Surface d'Énergie Potentielle (PES) :
+        \begin{itemize}
+            \item  Rappel : Energie moléculaire fonction des positions nucléaires $E_{elec}(\mathbf{R})$.
+            \item  Minimum de la PES = géométrie d'équilibre.
+            \item  Visualisation schématique d'une PES 1D et 2D.
+        \end{itemize}
+    \item Algorithmes d'optimisation :
+        \begin{itemize}
+            \item  Descente de gradient : Principe de base (suivre la pente).
+            \item  Méthodes plus avancées (Newton-Raphson, BFGS) : Convergence plus rapide.
+            \item  Importance du "pas" d'optimisation et risque d'oscillations.
+        \end{itemize}
+    \item Critères de convergence :
+        \begin{itemize}
+            \item Gradient de l'énergie (force sur les atomes).
+            \item Déplacement des atomes entre itérations.
+            \item Convergence de l'énergie.
+        \end{itemize}
+\end{itemize}
+
+\section{État fondamental et états excités}
+
+\subsection{État fondamental et énergie de point zéro (ZPE)}
+\begin{itemize}
+    \item État fondamental : État de plus basse énergie de la molécule (état stable).
+    \item Calcul de l'énergie de l'état fondamental par les méthodes HF et DFT.
+    \item Corrections vibrationnelles et énergie de point zéro (ZPE) :
+        \begin{itemize}
+            \item Mouvement vibrationnel des noyaux même au zéro absolu.
+            \item ZPE : énergie minimale de vibration, à ajouter à l'énergie électronique pour obtenir l'énergie totale "réelle" de la molécule.
+        \end{itemize}
+\end{itemize}
+
+\subsection{États excités et spectroscopies électroniques}
+\begin{itemize}
+    \item États excités : États de plus haute énergie, accessibles par excitation électronique (absorption de photons).
+    \item Transitions électroniques et spectroscopie UV-Visible :
+        \begin{itemize}
+            \item  Absorption de photons : transition vers un état excité.
+            \item  Spectre UV-Visible :  positions et intensités des pics liés aux transitions électroniques.
+            \item  Importance pour la photochimie et la photobiologie (biophysique).
+        \end{itemize}
+    \item Méthodes de calcul des états excités (mention rapide) :
+        \begin{itemize}
+            \item  TD-DFT (Time-Dependent DFT) : extension de la DFT pour les états excités.
+            \item  Méthodes CIS, CASSCF (mention très brève pour culture générale).
+        \end{itemize}
+\end{itemize}
+
+
+\section{Méthodes semi-empiriques et Tight-Binding}
+
+\subsection{Principe des méthodes semi-empiriques}
+\begin{itemize}
+    \item Nécessité de méthodes approchées pour les grands systèmes :  compromis précision/temps de calcul.
+    \item Simplifications majeures par rapport aux méthodes ab initio :
+        \begin{itemize}
+            \item  Négligence des électrons de cœur.
+            \item  Simplification du calcul des intégrales (paramétrisation).
+        \end{itemize}
+    \item Méthodes courantes :
+        \begin{itemize}
+            \item AM1, PM3 (méthodes semi-empiriques historiques).
+            \item DFTB (Density Functional Tight Binding) :  combinaison de Tight-Binding et DFT.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Méthodes Tight-Binding (TB) pour les systèmes étendus}
+\begin{itemize}
+    \item  Approximation encore plus forte :  paramétrisation extensive, transferabilité limitée.
+    \item  Adaptées aux systèmes étendus (solides, nanomatériaux, biophysique pour des simulations à grande échelle).
+    \item  Exemples d'applications : calcul de structures de bandes électroniques, simulations de transport électronique approchées.
+\end{itemize}
+
+\section{Conclusion du Chapitre 2}
+\begin{itemize}
+    \item Récapitulation des points clés : Représentation moléculaire, optimisation géométrique, états électroniques, méthodes semi-empiriques.
+    \item Importance du choix de la méthode et du niveau d'approximation en fonction du système et des propriétés étudiées.
+    \item Transition vers le chapitre suivant (VQE) : Les limitations des méthodes HF motivent le développement de nouvelles approches, comme le VQE, pour aller au-delà de l'approximation du champ moyen et capturer la corrélation électronique de manière plus précise.
+\end{itemize}
 \end{document}
