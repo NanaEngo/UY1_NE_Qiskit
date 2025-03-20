@@ -94,38 +94,146 @@ En maîtrisant ces aspects fondamentaux, vous disposerez des outils essentiels p
 
 \section{Représentation des molécules}
 
-\subsection{Coordonnées cartésiennes et coordonnées internes}
+Un concept fondamental en chimie quantique est la \textbf{surface d'énergie potentielle} (\textit{Potential Energy Surface}, PES) multidimensionnelle. Elle capture l'interaction complexe entre les degrés de liberté électroniques et nucléaires dans un système moléculaire. Les points stationnaires sur cette PES sont d'une importance capitale pour comprendre les conformations moléculaires stables et élucider les mécanismes des réactions chimiques et photochimiques.  Les dérivées du premier ordre (\textbf{gradient}) et du second ordre (\textbf{Hessien}) de l'énergie par rapport aux déplacements nucléaires sont des outils mathématiques clés pour localiser ces points stationnaires (minima, états de transition) et déterminer les voies réactionnelles d'énergie minimale.
+
+Pour exploiter pleinement le concept de PES, le choix du système de coordonnées dans lequel les positions atomiques sont décrites est crucial.  Différentes représentations existent, chacune présentant des avantages et des inconvénients, notamment en termes d'efficacité pour l'optimisation géométrique. La Figure \ref{fig:molrep} présente un aperçu des différentes manières de représenter une molécule, allant des coordonnées cartésiennes aux notations textuelles simplifiées. Dans cette section, nous allons nous concentrer sur les représentations les plus couramment utilisées en chimie quantique computationnelle.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\textwidth]{Mol_representation.png} 
+\caption{\textbf{Multiples représentations moléculaires.} Diverses représentations utilisées pour décrire une molécule dans le domaine de la chimie informatique et de l'apprentissage machine. On y retrouve des formats basés sur les coordonnées atomiques (XYZ, 3D Geometry), des notations textuelles simplifiées (SMILES), des représentations graphiques (Weighted Graph, Bag of bonds/fragments), des matrices de connectivité (Coulomb matrix), ou encore des empreintes digitales moléculaires (Fingerprints) et des visualisations de propriétés électroniques (Electronic density $\Psi$).  Chaque représentation met l'accent sur différents aspects de la structure moléculaire et est adaptée à des applications spécifiques.}
+\label{fig:molrep}
+\end{figure}
+
+Examinons plus en détail les systèmes de coordonnées et formats de fichiers les plus fréquemment utilisés.
+
+\subsection{Coordonnées cartésiennes (XYZ)}
+
+La manière la plus simple et fondamentale de définir la géométrie moléculaire est d'utiliser les \textbf{coordonnées cartésiennes}. Comme nous l'avons vu précédemment, dans cette représentation, la position de chaque atome est spécifiée par ses trois coordonnées ($x$, $y$, $z$) dans un système de référence global. Un fichier \textbf{XYZ} est un format de fichier texte standard et largement utilisé pour représenter les coordonnées cartésiennes tridimensionnelles des atomes d'une molécule.
+
+\paragraph{Structure d'un fichier XYZ}
+
+Dans un fichier XYZ, chaque ligne correspond à un atome et contient les informations suivantes, séparées par des espaces :
+
 \begin{itemize}
-    \item \textbf{Coordonnées cartésiennes (3N) : }
-        \begin{itemize}
-            \item Description : Position de chaque atome par (x, y, z) dans un repère global.
-            \item Simplicité et universalité.
-            \item Peu intuitif pour la description des vibrations et rotations moléculaires.
-        \end{itemize}
-    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
-        \begin{itemize}
-            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
-            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
-            \item Exemple : Molécule d'eau (distances OH, angle HOH).
-        \end{itemize}
+    \item Le symbole de l'élément chimique de l'atome (ex : C, H, O, N, etc.).
+    \item La coordonnée $x$ de l'atome.
+    \item La coordonnée $y$ de l'atome.
+    \item La coordonnée $z$ de l'atome.
+\end{itemize}
+Les deux premières lignes d'un fichier XYZ contiennent généralement :
+
+\begin{itemize}
+    \item Ligne 1 : Le nombre total d'atomes dans la molécule.
+    \item Ligne 2 : Une ligne de commentaire optionnelle (peut être utilisée pour le titre, des informations sur la méthode de calcul, etc.).
 \end{itemize}
 
-\subsection{Choix des bases d'orbitales atomiques (Rappel et Compléments)}
+\textbf{Exemple de fichier XYZ (molécule d'eau H$_2$O) :}
+
+\begin{verbatim}
+3
+Water molecule (H2O) - Optimized geometry
+O  0.000000   0.000000   0.000000
+H  0.757000   0.586000   0.000000
+H -0.757000   0.586000   0.000000
+\end{verbatim}
+
+\textbf{Avantages et Inconvénients des coordonnées cartésiennes (XYZ) : }
+
+Les avantages et inconvénients des coordonnées cartésiennes (et donc du format XYZ) sont ceux que nous avons déjà décrits dans la section précédente : simplicité, universalité, mais couplage des coordonnées et manque d'intuitivité pour les mouvements internes.
+
+\subsection{Simplified Molecular Input Line Entry System (SMILES)}
+
+Le format \textbf{SMILES} (\textit{Simplified Molecular Input Line Entry System}) est une notation linéaire textuelle extrêmement puissante et compacte, utilisée pour décrire la structure chimique des molécules.  Contrairement au format XYZ qui donne les coordonnées 3D, SMILES encode la connectivité et la nature des liaisons chimiques en une chaîne de caractères lisible par machine et par l'homme (avec un peu d'apprentissage !).
+
+\textbf{Principes de base de la notation SMILES :}
+
+Une chaîne SMILES représente une molécule en suivant ces principes :
+
 \begin{itemize}
-    \item Rappel du chapitre 1: Nécessité d'utiliser des bases d'orbitales atomiques (combinaison linéaire d'orbitales atomiques LCAO).
-    \item Bases STO (Slater Type Orbitals) :
+    \item \textbf{Atomes} : Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
+    \item \textbf{Liaisons simples} :  Généralement implicites entre les atomes adjacents dans la chaîne.
+    \item \textbf{Liaisons multiples} :
         \begin{itemize}
-            \item Forme exponentielle, plus proche des orbitales atomiques réelles.
-            \item Calculs d'intégrales complexes.
+            \item Double liaison : "=" (ex : C=O)
+            \item Triple liaison : "\#" (ex : C\#N)
+            \item Liaison aromatique : ":" (ex : c1ccccc1 pour le benzène)
         \end{itemize}
-    \item Bases GTO (Gaussian Type Orbitals) :
-        \begin{itemize}
-            \item Fonctions Gaussiennes, calculs d'intégrales simplifiés.
-            \item Bases les plus utilisées en pratique (compromis précision/coût).
-            \item Bases de Pople (ex: 6-31G*) et bases correlation-consistent (cc-pVXZ) : compromis précision/taille de base.
-        \end{itemize}
-    \item Importance du choix de la base : impact sur la précision et le temps de calcul.
+    \item \textbf{Branches} : Parenthèses "()" pour indiquer les ramifications (groupes substituants).
+    \item \textbf{Cycles} : Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
+    \item \textbf{Spécifications additionnelles} :  Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
 \end{itemize}
+
+\textbf{Exemples de notations SMILES :}
+
+\begin{itemize}
+    \item Eau (H$_2$O) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
+    \item Dioxyde de carbone (CO$_2$) : \texttt{O=C=O}
+    \item Éthanol (CH$_3$CH$_2$OH) : \texttt{CCO} ou \texttt{CC(O)}
+    \item Benzène (C$_6$H$_6$) : \texttt{c1ccccc1}
+    \item Acide acétylsalicylique (Aspirine) : \texttt{CC(=O)Oc1ccccc1C(=O)O} (plus complexe !)
+\end{itemize}
+
+\textbf{Avantages et Inconvénients du format SMILES :}
+
+\textbf{Avantages :}
+
+\begin{itemize}
+    \item \textbf{Compact et lisible :}  SMILES est une notation très compacte, qui permet de représenter des structures moléculaires complexes sous forme de courtes chaînes de caractères. C'est facile à stocker, partager et manipuler informatiquement.
+    \item \textbf{Non-ambigu (canonique) :}  Il existe des algorithmes pour convertir une structure moléculaire 3D en un SMILES "canonique" unique, ce qui est très utile pour l'indexation et la recherche dans les bases de données chimiques.
+    \item \textbf{Largement supporté :} Le format SMILES est un standard largement reconnu et supporté par de nombreux logiciels de chimie informatique, bases de données chimiques et outils en ligne.
+\end{itemize}
+
+\textbf{Inconvénients :}
+
+\begin{itemize}
+    \item \textbf{Moins intuitif pour les non-initiés :} La notation SMILES peut paraître cryptique au premier abord et nécessite un certain apprentissage pour être lue et écrite couramment.
+    \item \textbf{Perte d'information 3D :} SMILES décrit principalement la connectivité 2D de la molécule et ne contient pas directement d'informations sur la géométrie 3D (coordonnées atomiques). Des algorithmes de reconstruction 3D existent, mais ils sont basés sur des approximations.
+    \item \textbf{Limitations pour certains types de structures complexes :} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
+\end{itemize}
+
+\subsection{Autres représentations (mention rapide)}
+
+[On pourrait ici mentionner très brièvement d'autres représentations moléculaires, en lien avec la Figure \ref{fig:molrep},  par exemple : Matrice de Coulomb, graphes moléculaires, "fingerprints" moléculaires...  Mais cela peut être omis si on veut rester concis dans ce chapitre d'introduction.]
+
+\subsection{Conclusion sur la représentation moléculaire}
+
+Le choix de la représentation moléculaire (coordonnées cartésiennes, coordonnées internes, SMILES, etc.) dépend fortement de l'application visée.  Les coordonnées cartésiennes (XYZ) restent la base fondamentale pour les calculs de chimie quantique, tandis que les coordonnées internes sont privilégiées pour l'optimisation géométrique. Le format SMILES, quant à lui, est un outil puissant pour la manipulation et l'échange d'informations sur la structure chimique des molécules, en particulier dans les bases de données et les applications de chimie informatique à grande échelle.
+
+%\section{Représentation des molécules}
+%
+%\subsection{Coordonnées cartésiennes et coordonnées internes}
+%\begin{itemize}
+%    \item \textbf{Coordonnées cartésiennes (3N) : }
+%        \begin{itemize}
+%            \item Description : Position de chaque atome par (x, y, z) dans un repère global.
+%            \item Simplicité et universalité.
+%            \item Peu intuitif pour la description des vibrations et rotations moléculaires.
+%        \end{itemize}
+%    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
+%        \begin{itemize}
+%            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
+%            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
+%            \item Exemple : Molécule d'eau (distances OH, angle HOH).
+%        \end{itemize}
+%\end{itemize}
+%
+%\subsection{Choix des bases d'orbitales atomiques (Rappel et Compléments)}
+%\begin{itemize}
+%    \item Rappel du chapitre 1: Nécessité d'utiliser des bases d'orbitales atomiques (combinaison linéaire d'orbitales atomiques LCAO).
+%    \item Bases STO (Slater Type Orbitals) :
+%        \begin{itemize}
+%            \item Forme exponentielle, plus proche des orbitales atomiques réelles.
+%            \item Calculs d'intégrales complexes.
+%        \end{itemize}
+%    \item Bases GTO (Gaussian Type Orbitals) :
+%        \begin{itemize}
+%            \item Fonctions Gaussiennes, calculs d'intégrales simplifiés.
+%            \item Bases les plus utilisées en pratique (compromis précision/coût).
+%            \item Bases de Pople (ex: 6-31G*) et bases correlation-consistent (cc-pVXZ) : compromis précision/taille de base.
+%        \end{itemize}
+%    \item Importance du choix de la base : impact sur la précision et le temps de calcul.
+%\end{itemize}
 
 
 \section{Méthodes d'optimisation géométrique}
