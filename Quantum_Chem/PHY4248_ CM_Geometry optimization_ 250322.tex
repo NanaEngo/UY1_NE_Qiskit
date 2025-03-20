@@ -74,33 +74,28 @@
 \newpage
 \section{Introduction}
 
-La \textbf{optimisation de la structure géométrique} est une étape primordiale en modélisation moléculaire, car la prédiction de propriétés physico-chimiques ne peut être envisagée que sur des structures représentatives de molécules existantes. Un grand principe de la nature est de toujours minimiser l'énergie totale d'un système et en conséquence, la conformation des molécules dans un système réel sont distribuées autour du minimum global de l'énergie potentielle.
+\section{Chapitre 2 : Aspects généraux de la représentation moléculaire}
 
-L'optimisation de la structure géométrique permet donc d'ajuster la structure géométrique afin déterminer la configuration électronique la plus stable. Celle-ci permet d'obtenir une meilleure concordance entre les calculs théoriques et les mesures expérimentales.  
+\textbf{Introduction}
 
+Dans le chapitre précédent, nous avons jeté les bases théoriques de la chimie quantique, en explorant l'équation de Schrödinger, l'approximation de Born-Oppenheimer, et la méthode Hartree-Fock. Ces outils conceptuels nous permettent en principe de décrire le monde moléculaire à l'échelle quantique.  Cependant, pour passer de la théorie à la pratique et modéliser des molécules *réelles*,  il est crucial d'aborder des aspects plus concrets et techniques.
 
-Il est à noter que le framework xTB permet de
-* permettre un accès de bas niveau aux composants formant l'expression énergétique réelle;
-* fournir un cadre pour gérer et manipuler les données de paramétrage;
-* fournir des fonctionnalités au-delà des calculs à point unique (single-point) dans cette bibliothèque : l'optimisation géométrique et  la dynamique moléculaire.
-Dans ce chapitre, nous introduisons les concepts fondamentaux suivants :
+\textbf{L'optimisation de la structure géométrique} est une étape primordiale en modélisation moléculaire. En effet, la prédiction de propriétés physico-chimiques ne peut être envisagée que sur des structures moléculaires représentatives de la réalité.  Un grand principe de la nature est de toujours minimiser l'énergie totale d'un système, et en conséquence, les conformations des molécules dans un système réel sont distribuées autour du minimum global de l'énergie potentielle. L'optimisation de la structure géométrique permet donc d'ajuster la structure moléculaire afin de déterminer la configuration électronique la plus stable, condition essentielle pour obtenir une bonne concordance entre les calculs théoriques et les mesures expérimentales.
 
+Ce chapitre constitue un \textit{premier pas essentiel vers la modélisation moléculaire computationnelle}. Nous allons explorer comment, concrètement, on représente les molécules dans un ordinateur, et quelles sont les stratégies pour calculer leurs propriétés avec une précision raisonnable.
 
-
-\section{Introduction}
+Plus précisément, nous aborderons les points suivants :
 
 \begin{itemize}
-    \item Rappel du Chapitre 1 : Nous avons posé les bases de la chimie quantique et de l'approximation de Born-Oppenheimer et de la méthode Hartree-Fock.
-    \item Nécessité d'aller plus loin : Pour modéliser des systèmes moléculaires réels, il faut maintenant aborder les aspects pratiques de la représentation des molécules et des calculs.
-    \item Aperçu du chapitre : Ce chapitre introduit les concepts clés pour décrire et étudier les molécules en chimie quantique computationnelle :
-        \begin{itemize}
-            \item Représentation des molécules (coordonnées, bases)
-            \item Méthodes d'optimisation géométrique (recherche de structures stables)
-            \item Étude des états électroniques (fondamental et excités)
-            \item Méthodes semi-empiriques (pour les grands systèmes)
-        \end{itemize}
+    \item \textbf{Représentation des molécules.} Comment décrire la géométrie moléculaire de manière adaptée au calcul quantique ?  Quels systèmes de coordonnées utiliser (cartésiennes, internes) ?  Quel est le rôle des bases d'orbitales atomiques pour représenter les électrons ?
+    
+    \item \textbf{Méthodes d'optimisation géométrique.} Comment trouver la structure moléculaire stable, c'est-à-dire celle qui correspond au minimum d'énergie ? Nous introduirons les algorithmes d'optimisation de géométrie basés sur la notion de Surface d'Énergie Potentielle (PES).
+    
+    \item \textbf{Méthodes semi-empiriques et Tight-Binding.} Face à la complexité des calculs \textit{ab initio}, comment des méthodes approchées, comme les méthodes semi-empiriques et Tight-Binding, peuvent-elles offrir des solutions efficaces pour l'étude de grands systèmes, notamment en biophysique et science des matériaux ?
 \end{itemize}
 
+En maîtrisant ces aspects fondamentaux, vous disposerez des outils essentiels pour explorer le vaste champ de la modélisation moléculaire et pour aborder, dans les chapitres suivants, des méthodes plus avancées comme le VQE.
+ 
 \section{Représentation des molécules}
 
 \subsection{Coordonnées cartésiennes et coordonnées internes}
