@@ -1,0 +1,96 @@
+\makeatletter
+\def\input@path{{./Graphics/}} % Définition du chemin d'entrée pour les graphiques
+\makeatother
+
+\documentclass[12pt,a4paper]{article} % Classe de document
+
+% Chargement des packages essentiels
+\usepackage[utf8]{inputenc} % Encodage UTF-8
+\usepackage[french]{babel} % Support de la langue française
+\usepackage{graphicx, amsthm, mathtools, amsfonts, amssymb, physics, longtable, mathrsfs} % Packages pour les graphiques et mathématiques
+
+\usepackage{float} % Gère le placement des objets flottants
+\floatplacement{figure}{H} % Forces les figures à être placées exactement à l'endroit où elles apparaissent dans le texte
+
+\usepackage[svgnames,x11names,rgb,table]{xcolor} % Définit les couleurs par noms
+\usepackage{array, multicol, wrapfig, lmodern, multirow, booktabs, chemformula} % Diverses améliorations de mise en forme
+\usepackage[detect-all=true, group-minimum-digits=4]{siunitx} % Pour les unités SI
+
+\usepackage[bf, textfont={footnotesize,it}]{caption} % Personnalisation des légendes
+\usepackage{subcaption}
+
+% Configuration des marges de la page
+\usepackage[margin=2cm, a4paper]{geometry}
+
+\usepackage{fancyvrb} % Remplacement du mode verbatim qui permet une meilleure mise en forme
+%\usepackage[Export]{adjustbox} % Utilisé pour contraindre les images à une taille maximale
+%\adjustboxset{max size={0.9\linewidth}{0.9\paperheight}} % Taille maximale des images
+
+% Configuration pour hyperref
+\usepackage{hyperref} 
+\hypersetup{
+    colorlinks=true, % Colorise les liens
+    breaklinks=true, % Permet le retour à la ligne dans les liens trop longs
+    allcolors=Blue3, % Couleur des liens
+    pdfauthor={Nana Engo}, % Auteur du document PDF
+    pdfsubject={Chimie quantique et VQE}, % Sujet du document
+    pdftitle={PHY4268 - Geometry optimization V25.03}, % Titre du document
+    bookmarksopen=true % Ouvre les signets PDF par défaut
+}
+
+\usepackage{cleveref} % Améliore la gestion des références croisées
+
+\frenchbsetup{StandardLayout=true} % Configuration du layout français
+\numberwithin{equation}{section} % Numérotation des équations par section
+\numberwithin{figure}{section} % Numérotation des figures par section
+\numberwithin{table}{section} % Numérotation des tables par section
+
+\setcounter{secnumdepth}{3} % Pour inclure les sous-sections
+\renewcommand{\thesection}{\arabic{section}} % Numérotation des sections
+%
+\newcommand{\tcb}[1]{\textcolor{blue}{#1}} % textcolor{blue}{#1}
+\newcommand{\tcr}[1]{\textcolor{red}{#1}} % textcolor{red}{#1}
+% Titre du document
+\title{\vspace*{4cm}
+\Huge\tcb{Chapter 1 - Geometry optimization}
+\vspace*{5cm}}
+
+\author{
+\begin{tabular}{lr}
+    \textbf{Nana Engo} & \textbf{Tchapet Njafa}\\
+    {\small  serge.nana-engo@facsciences-uy1.cm} &\hspace*{2em}
+    {\small jean-pierre.tchapet@facsciences-uy1.cm}
+\end{tabular}\\[3em] % Espace entre les auteurs et la filiation
+\textit{Quantum Simulation Group}\\
+    \textit{Department of Physics} \\ 
+    \textit{Faculty of Science} \\ 
+    \textit{University of Yaoundé I}
+}
+\date{\vspace*{3cm}March 2025} % Date du document
+
+\begin{document}
+\maketitle % Affiche le titre, les auteurs et la date
+
+\newpage
+\section{Introduction}
+
+La \textbf{optimisation de la structure géométrique} est une étape primordiale en modélisation moléculaire, car la prédiction de propriétés physico-chimiques ne peut être envisagée que sur des structures représentatives de molécules existantes. Un grand principe de la nature est de toujours minimiser l'énergie totale d'un système et en conséquence, la conformation des molécules dans un système réel sont distribuées autour du minimum global de l'énergie potentielle.
+
+L'optimisation de la structure géométrique permet donc d'ajuster la structure géométrique afin déterminer la configuration électronique la plus stable. Celle-ci permet d'obtenir une meilleure concordance entre les calculs théoriques et les mesures expérimentales.  
+
+
+Il est à noter que le framework xTB permet de
+* permettre un accès de bas niveau aux composants formant l'expression énergétique réelle;
+* fournir un cadre pour gérer et manipuler les données de paramétrage;
+* fournir des fonctionnalités au-delà des calculs à point unique (single-point) dans cette bibliothèque : l'optimisation géométrique et  la dynamique moléculaire.
+Dans ce chapitre, nous introduisons les concepts fondamentaux suivants :
+\begin{itemize}
+    \item L'Hamiltonien moléculaire en première quantification ;
+    \item L'approximation de Born-Oppenheimer ;
+    \item L'approche du champ moyen via la méthode Hartree-Fock (HF) ;
+    \item Les limites inhérentes à cette méthode ;
+    \item Le choix et l'importance des ensembles de bases.
+\end{itemize}
+
+
+\end{document}
