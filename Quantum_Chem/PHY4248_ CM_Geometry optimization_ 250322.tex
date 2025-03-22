@@ -380,40 +380,7 @@ L'optimisation orbitale, dans ce contexte,  met l'accent sur le fait que les orb
     \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles par rapport aux rotations orbitales. Cela signifie que l'énergie calculée est toujours une borne supérieure à l'énergie exacte, et que l'optimisation tend à minimiser cette énergie.  L'aspect variationnel simplifie le calcul des gradients nucléaires, car il n'est pas nécessaire de tenir compte des contributions de la "réponse orbitale" (la variation des orbitales en fonction des déplacements nucléaires) lors du calcul du gradient.
     \item \textbf{Simplification du calcul des propriétés.}  De même, le calcul de nombreuses propriétés moléculaires (moments dipolaires, polarisabilités, etc.) est simplifié car il n'y a pas de contributions de réponse orbitale aux matrices de densité.
     \item \textbf{Suppression des pôles parasites dans les fonctions de réponse.} Pour certaines méthodes de corrél
-\subsection{État fondamental et énergie de point zéro (ZPE)}
-\begin{itemize}
-    \item État fondamental : État de plus basse énergie de la molécule (état stable).
-    \item Calcul de l'énergie de l'état fondamental par les méthodes HF et DFT.
-    \item Corrections vibrationnelles et énergie de point zéro (ZPE) :
-        \begin{itemize}
-            \item Mouvement vibrationnel des noyaux même au zéro absolu.
-            \item ZPE : énergie minimale de vibration, à ajouter à l'énergie électronique pour obtenir l'énergie totale "réelle" de la molécule.
-        \end{itemize}
-\end{itemize}
 
-
-\section{Méthodes semi-empiriques et Tight-Binding}
-
-\subsection{Principe des méthodes semi-empiriques}
-\begin{itemize}
-    \item Nécessité de méthodes approchées pour les grands systèmes :  compromis précision/temps de calcul.
-    \item Simplifications majeures par rapport aux méthodes ab initio :
-        \begin{itemize}
-            \item  Négligence des électrons de cœur.
-            \item  Simplification du calcul des intégrales (paramétrisation).
-        \end{itemize}
-    \item Méthodes courantes :
-        \begin{itemize}
-            \item xTB eXtend Tight-Binding.
-        \end{itemize}
-\end{itemize}
-
-\subsection{Méthodes Tight-Binding (TB) pour les systèmes étendus}
-\begin{itemize}
-    \item  Approximation encore plus forte :  paramétrisation extensive, transferabilité limitée.
-    \item  Adaptées aux systèmes étendus (solides, nanomatériaux, biophysique pour des simulations à grande échelle).
-    \item  Exemples d'applications : calcul de structures de bandes électroniques, simulations de transport électronique approchées.
-\end{itemize}
 
 \section{Conclusion du Chapitre 2}
 \begin{itemize}
