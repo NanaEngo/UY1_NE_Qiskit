@@ -299,7 +299,7 @@ L'expansion LCAO pour l'ensemble des orbitales moléculaires peut alors être é
 \end{equation}
 où $\mathbf{C}$ est la \textbf{matrice des coefficients des orbitales moléculaires (OM)}. Chaque colonne de la matrice $\mathbf{C}$ contient les coefficients d'expansion LCAO pour une orbitale moléculaire donnée, et chaque ligne correspond à une orbitale atomique de base.
 
-Cette expansion LCAO, bien qu'approximative, permet de transformer le problème de la résolution de l'équation de Schrödinger pour les électrons en un problème algébrique matriciel, qui peut être résolu numériquement sur ordinateur.  Le choix des orbitales atomiques de base $\chi_\alpha$ (appelées aussi \textbf{ensembles de bases}) est un aspect crucial de la modélisation moléculaire, que nous aborderons plus en détail dans le chapitre suivant.
+Cette expansion LCAO, bien qu'approximative, permet de transformer le problème de la résolution de l'équation de Schrödinger pour les électrons en un problème algébrique matriciel, qui peut être résolu numériquement sur ordinateur. Le choix des orbitales atomiques de base $\chi_\alpha$ (appelées aussi \textbf{ensembles de bases}) est un aspect essentiel de la modélisation moléculaire, que nous aborderons plus en détail dans la \autoref{sec:Base}.
 
 
 \subsubsection{Spin et Déterminants de Slater}
@@ -633,10 +633,9 @@ La méthode de Hartree-Fock présente certaines limites :
 \item \textbf{Sensibilité aux bases de fonction}. La précision des résultats de la méthode de HF dépend fortement du choix des bases de fonction utilisées pour décrire les orbitales électroniques.
 \end{enumerate}
 
-\section{Choix de l'ensemble de bases}
+\section{\label{sec:Base} Choix de l'ensemble de bases}
 
-L'équation de Schrödinger à plusieurs électrons est généralement résolue sur une base d'orbitales moléculaires exprimées sous la forme d'une \textbf{combinaison linéaire de ses orbitales atomiques (LCAO, Linear
-combination of atomic orbitals)}, 
+L'équation de Schrödinger à plusieurs électrons est généralement résolue sur une base d'orbitales moléculaires exprimées sous la forme d'une \textbf{combinaison linéaire de ses orbitales atomiques (LCAO, Linear combination of atomic orbitals)}, 
 \begin{equation}
      \phi_a(\mathbf{r}) =
      \sum_A^\mathrm{atomes}
