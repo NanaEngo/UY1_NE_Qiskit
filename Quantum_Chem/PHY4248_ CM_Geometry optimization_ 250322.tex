@@ -134,8 +134,7 @@ Les deux premières lignes d'un fichier XYZ contiennent généralement :
     \item Ligne 2 : Une ligne de commentaire optionnelle (peut être utilisée pour le titre, des informations sur la méthode de calcul, etc.).
 \end{itemize}
 
-
-\textbf{Exemple de fichier XYZ - molécule d'eau \CH{H2O} :}
+\begin{example}{Exemple de fichier XYZ - molécule d'eau \ch{H2O}}{}
 
 \begin{verbatim}
 3
@@ -144,6 +143,8 @@ O  0.000000   0.000000   0.000000
 H  0.757000   0.586000   0.000000
 H -0.757000   0.586000   0.000000
 \end{verbatim}
+\end{example}
+
 
 \paragraph{Avantages et inconvénients des coordonnées cartésiennes (XYZ)}
 
@@ -226,7 +227,7 @@ La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées 
 
 Les positions des deux premiers atomes sont généralement définies simplement en termes de leur position relative le long d'un axe (par exemple, le premier atome à l'origine, le second à une distance donnée sur l'axe des x).
 
-\textbf{Exemple de Matrice Z (molécule d'eau H$_2$O) :}
+\begin{example}{Exemple de Matrice Z - molécule d'eau \ch{H2O}}{}
 
 \begin{verbatim}
 3  ! Nombre d'atomes
@@ -241,12 +242,13 @@ R_OH = 0.96
 A_HOH = 104.5
 \end{verbatim}
 
-Dans cet exemple :
-
-*   L'oxygène (O) est le premier atome, sa position est prise comme référence.
-*   Le premier hydrogène (H) est lié à l'oxygène (atome 1) avec une longueur de liaison R\_OH.
-*   Le second hydrogène (H) est également lié à l'oxygène (atome 1) avec la même longueur de liaison R\_OH, et forme un angle de valence A\_HOH avec l'oxygène (atome 1) et le premier hydrogène (atome 2).
-*   Les valeurs des variables R\_OH et A\_HOH (longueur OH et angle HOH) sont définies à la fin de la matrice Z.
+\begin{itemize}
+\item *   L'oxygène (O) est le premier atome, sa position est prise comme référence.
+\item *   Le premier hydrogène (H) est lié à l'oxygène (atome 1) avec une longueur de liaison R\_OH.
+\item *   Le second hydrogène (H) est également lié à l'oxygène (atome 1) avec la même longueur de liaison R\_OH, et forme un angle de valence A\_HOH avec l'oxygène (atome 1) et le premier hydrogène (atome 2).
+\item Les valeurs des variables R\_OH et A\_HOH (longueur OH et angle HOH) sont définies à la fin de la matrice Z.
+\end{itemize}
+\end{example}
 
 \textbf{Pertinence chimique et avantages des coordonnées internes :}
 
