@@ -208,7 +208,7 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
 
 \subsection{Coordonnées internes - Matrice Z}
 
-En complément des coordonnées cartésiennes, les \textbf{coordonnées internes} offrent une description alternative et souvent plus avantageuse de la géométrie moléculaire. Comme nous l'avons brièvement introduit, les coordonnées internes décrivent la structure moléculaire en termes de paramètres géométriques intrinsèques, directement liés à la notion de structure chimique :
+En complément des coordonnées cartésiennes, les \textbf{coordonnées internes} offrent une description alternative et souvent plus avantageuse de la géométrie moléculaire. Les coordonnées internes décrivent la structure moléculaire en termes de paramètres géométriques intrinsèques, directement liés à la notion de structure chimique :
 
 \begin{itemize}
     \item \textbf{Longueurs de liaison.} Distances entre deux atomes liés chimiquement. Elles décrivent l'extension ou la contraction des liaisons chimiques.
@@ -220,8 +220,8 @@ Pour une molécule non-linéaire de $N$ atomes, $3N-6$ coordonnées internes son
 
 \subsubsection{Définition des coordonnées internes}
 
+\begin{definition}{Matrice Z (Z-Matrix)}{}
 La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées internes. Pour chaque atome de la molécule (à partir du troisième), la matrice Z spécifie :
-
 \begin{itemize}
     \item L'atome lui-même (symbole chimique).
     \item L'atome auquel il est lié (\textbf{atome 1}).
@@ -231,8 +231,8 @@ La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées 
     \item Un troisième atome (\textbf{atome 3}), déjà défini, avec lequel il forme un angle dièdre.
     \item L'angle dièdre (en degrés) formé par l'atome courant, l'atome 1, l'atome 2 et l'atome 3.
 \end{itemize}
-
 Les positions des deux premiers atomes sont généralement définies simplement en termes de leur position relative le long d'un axe (par exemple, le premier atome à l'origine, le second à une distance donnée sur l'axe des x).
+\end{definition}
 
 \begin{example}{Exemple de Matrice Z - molécule d'eau \ch{H2O}}{}
 
