@@ -289,12 +289,10 @@ Les déterminants de Slater, en plus d'assurer l'antisymétrie de la fonction d'
 \paragraph{Déterminants et Spin $S_z$}
 
 Tous les déterminants de Slater sont des fonctions propres de l'opérateur $ \mathtt{S}_z$, qui représente la projection du spin total sur l'axe $z$.  La valeur propre associée, notée $M_S$, est donnée par :
-
-$$
-M_S = \frac{1}{2} ( N^\alpha - N^\beta )
-$$
-
-où $N^\alpha$ et $N^\beta$ représentent respectivement le nombre de spin-orbitales $\alpha$ et $\beta$ occupées dans le déterminant de Slater.  En particulier, tous les états à couches fermées (où chaque orbitale spatiale est doublement occupée par un électron $\alpha$ et un électron $\beta$) ont une projection du moment angulaire de spin nulle sur l'axe $z$ ($M_S = 0$).
+\begin{equation}
+    M_S = \frac12 (N^\alpha - N^\beta),
+\end{equation}
+où $N^\alpha$ et $N^\beta$ représentent respectivement le nombre de spin-orbitales $\alpha$ et $\beta$ occupées dans le déterminant de Slater. En particulier, tous les états à couches fermées (où chaque orbitale spatiale est doublement occupée par un électron $\alpha$ et un électron $\beta$) ont une projection du moment angulaire de spin nulle sur l'axe $z$ ($M_S = 0$).
 
 \paragraph{Déterminants Haut-Spin et Spin $S^2$}
 
@@ -302,7 +300,7 @@ Les déterminants dits \textit{haut-spin} (correspondant à la multiplicité de 
 \begin{equation}
     S = \frac{|N^\alpha - N^\beta|}{2}.
 \end{equation}
-Il est important de noter que cette propriété n'est pas générale pour tous les déterminants de Slater.  En particulier, pour les déterminants qui ne sont pas "haut-spin" (par exemple, certains déterminants pour les états à couches ouvertes autres que l'état fondamental), les déterminants de Slater ne sont généralement pas fonctions propres de $ \mathtt{S}^2$, et ne représentent donc pas des états de spin pur.  Ce point sera important à considérer lors de l'étude des méthodes post-Hartree-Fock, qui visent à construire des fonctions d'onde multi-déterminantales qui soient fonctions propres de $ \mathtt{S}^2$ et représentent des états de spin pur.
+Il est important de noter que cette propriété n'est pas générale pour tous les déterminants de Slater.  En particulier, pour les déterminants qui ne sont pas \textit{haut-spin} (par exemple, certains déterminants pour les états à couches ouvertes autres que l'état fondamental), les déterminants de Slater ne sont généralement pas fonctions propres de $ \mathtt{S}^2$, et ne représentent donc pas des états de spin pur. Ce point sera important à considérer lors de l'étude des méthodes post-Hartree-Fock, qui visent à construire des fonctions d'onde multi-déterminantales qui soient fonctions propres de $\mathtt{S}^2$ et représentent des états de spin pur.
 
 \subsection{Exemple d'illustration}\label{exemple-dillustration}
 
