@@ -146,25 +146,24 @@ Les avantages et inconvénients des coordonnées cartésiennes (et donc du forma
 
 Le format \textbf{SMILES} (\textit{Simplified Molecular Input Line Entry System}) est une notation linéaire textuelle extrêmement puissante et compacte, utilisée pour décrire la structure chimique des molécules. Contrairement au format XYZ qui donne les coordonnées 3D, SMILES encode la connectivité et la nature des liaisons chimiques en une chaîne de caractères lisible par machine et par l'homme (avec un peu d'apprentissage !).
 
-\textbf{Principes de base de la notation SMILES :}
+\paragraph{Principes de base de la notation SMILES}
 
 Une chaîne SMILES représente une molécule en suivant ces principes :
-
 \begin{itemize}
-    \item \textbf{Atomes} : Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
-    \item \textbf{Liaisons simples} :  Généralement implicites entre les atomes adjacents dans la chaîne.
-    \item \textbf{Liaisons multiples} :
+    \item \textbf{Atomes.} Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
+    \item \textbf{Liaisons simples.} Généralement implicites entre les atomes adjacents dans la chaîne.
+    \item \textbf{Liaisons multiples.}
         \begin{itemize}
             \item Double liaison : "=" (ex : C=O)
             \item Triple liaison : "\#" (ex : C\#N)
-            \item Liaison aromatique : ":" (ex : c1ccccc1 pour le benzène)
+            \item Liaison aromatique : ":" (ex : C1CCCCC1 pour le benzène)
         \end{itemize}
-    \item \textbf{Branches} : Parenthèses "()" pour indiquer les ramifications (groupes substituants).
-    \item \textbf{Cycles} : Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
-    \item \textbf{Spécifications additionnelles} :  Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
+    \item \textbf{Branches.} Parenthèses "()" pour indiquer les ramifications (groupes substituants).
+    \item \textbf{Cycles.} Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
+    \item \textbf{Spécifications additionnelles.} Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
 \end{itemize}
 
-\textbf{Exemples de notations SMILES :}
+\paragraph{Exemples de notations SMILES}
 
 \begin{itemize}
     \item Eau (H$_2$O) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
@@ -174,27 +173,23 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
     \item Acide acétylsalicylique (Aspirine) : \texttt{CC(=O)Oc1ccccc1C(=O)O} (plus complexe !)
 \end{itemize}
 
-\textbf{Avantages et Inconvénients du format SMILES :}
+\paragraph{Avantages et inconvénients du format SMILES}
 
-\textbf{Avantages :}
-
-\begin{itemize}
-    \item \textbf{Compact et lisible :}  SMILES est une notation très compacte, qui permet de représenter des structures moléculaires complexes sous forme de courtes chaînes de caractères. C'est facile à stocker, partager et manipuler informatiquement.
-    \item \textbf{Non-ambigu (canonique) :}  Il existe des algorithmes pour convertir une structure moléculaire 3D en un SMILES "canonique" unique, ce qui est très utile pour l'indexation et la recherche dans les bases de données chimiques.
-    \item \textbf{Largement supporté :} Le format SMILES est un standard largement reconnu et supporté par de nombreux logiciels de chimie informatique, bases de données chimiques et outils en ligne.
-\end{itemize}
-
-\textbf{Inconvénients :}
+\textbf{Avantages}
 
 \begin{itemize}
-    \item \textbf{Moins intuitif pour les non-initiés :} La notation SMILES peut paraître cryptique au premier abord et nécessite un certain apprentissage pour être lue et écrite couramment.
-    \item \textbf{Perte d'information 3D :} SMILES décrit principalement la connectivité 2D de la molécule et ne contient pas directement d'informations sur la géométrie 3D (coordonnées atomiques). Des algorithmes de reconstruction 3D existent, mais ils sont basés sur des approximations.
-    \item \textbf{Limitations pour certains types de structures complexes :} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
+    \item \textbf{Compact et lisible.} SMILES est une notation très compacte, qui permet de représenter des structures moléculaires complexes sous forme de courtes chaînes de caractères. C'est facile à stocker, partager et manipuler informatiquement.
+    \item \textbf{Non-ambigu (canonique).} Il existe des algorithmes pour convertir une structure moléculaire 3D en un SMILES "canonique" unique, ce qui est très utile pour l'indexation et la recherche dans les bases de données chimiques.
+    \item \textbf{Largement supporté.} Le format SMILES est un standard largement reconnu et supporté par de nombreux logiciels de chimie informatique, bases de données chimiques et outils en ligne.
 \end{itemize}
 
-\subsection{Autres représentations (mention rapide)}
+\textbf{Inconvénients}
 
-[On pourrait ici mentionner très brièvement d'autres représentations moléculaires, en lien avec la Figure \ref{fig:molrep},  par exemple : Matrice de Coulomb, graphes moléculaires, "fingerprints" moléculaires...  Mais cela peut être omis si on veut rester concis dans ce chapitre d'introduction.]
+\begin{itemize}
+    \item \textbf{Moins intuitif pour les non-initiés.} La notation SMILES peut paraître cryptique au premier abord et nécessite un certain apprentissage pour être lue et écrite couramment.
+    \item \textbf{Perte d'information 3D.} SMILES décrit principalement la connectivité 2D de la molécule et ne contient pas directement d'informations sur la géométrie 3D (coordonnées atomiques). Des algorithmes de reconstruction 3D existent, mais ils sont basés sur des approximations.
+    \item \textbf{Limitations pour certains types de structures complexes.} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
+\end{itemize}
 
 \subsection{Conclusion sur la représentation moléculaire}
 
