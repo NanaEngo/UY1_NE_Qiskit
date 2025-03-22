@@ -101,7 +101,7 @@ Pour exploiter pleinement le concept de PES, le choix du système de coordonnée
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.9\textwidth]{Mol_representation.png} 
-\caption{\textbf{Multiples représentations moléculaires.} Diverses représentations utilisées pour décrire une molécule dans le domaine de la chimie informatique et de l'apprentissage machine. On y retrouve des formats basés sur les coordonnées atomiques (XYZ, 3D Geometry), des notations textuelles simplifiées (SMILES), des représentations graphiques (Weighted Graph, Bag of bonds/fragments), des matrices de connectivité (Coulomb matrix), ou encore des empreintes digitales moléculaires (Fingerprints) et des visualisations de propriétés électroniques (Electronic density $\Psi$).  Chaque représentation met l'accent sur différents aspects de la structure moléculaire et est adaptée à des applications spécifiques.}
+\caption{\textbf{Multiples représentations moléculaires.} Diverses représentations utilisées pour décrire une molécule dans le domaine de la chimie informatique et de l'apprentissage machine. On y retrouve des formats basés sur les coordonnées atomiques (XYZ, 3D Geometry), des notations textuelles simplifiées (SMILES), des représentations graphiques (Weighted Graph, Bag of bonds/fragments), des matrices de connectivité (Coulomb matrix), ou encore des empreintes digitales moléculaires (Fingerprints) et des visualisations de propriétés électroniques (Electronic density $\Psi$). Chaque représentation met l'accent sur différents aspects de la structure moléculaire et est adaptée à des applications spécifiques.}
 \label{fig:molrep}
 \end{figure}
 
@@ -128,7 +128,7 @@ Les deux premières lignes d'un fichier XYZ contiennent généralement :
     \item Ligne 2 : Une ligne de commentaire optionnelle (peut être utilisée pour le titre, des informations sur la méthode de calcul, etc.).
 \end{itemize}
 
-\textbf{Exemple de fichier XYZ (molécule d'eau H$_2$O) :}
+\textbf{Exemple de fichier XYZ - molécule d'eau \CH{H2O} :}
 
 \begin{verbatim}
 3
@@ -191,6 +191,71 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
     \item \textbf{Limitations pour certains types de structures complexes.} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
 \end{itemize}
 
+\subsection{Coordonnées Internes - Matrice Z}
+
+En complément des coordonnées cartésiennes, les \textbf{coordonnées internes} offrent une description alternative et souvent plus avantageuse de la géométrie moléculaire. Comme nous l'avons brièvement introduit, les coordonnées internes décrivent la structure moléculaire en termes de paramètres géométriques intrinsèques, directement liés à la notion de structure chimique :
+
+\begin{itemize}
+    \item \textbf{Longueurs de liaison.} Distances entre deux atomes liés chimiquement. Elles décrivent l'extension ou la contraction des liaisons chimiques.
+    \item \textbf{Angles de valence.} Angles formés par trois atomes liés consécutivement. Ils décrivent la déformation des angles entre les liaisons.
+    \item \textbf{Angles dièdres (ou angles de torsion).} Angles définissant la rotation autour d'une liaison, impliquant quatre atomes liés consécutivement. Ils décrivent la rotation autour des liaisons simples, influençant la conformation globale de la molécule.
+\end{itemize}
+
+Pour une molécule non-linéaire de $N$ atomes, $3N-6$ coordonnées internes sont nécessaires pour définir sa géométrie (pour une molécule linéaire, $3N-5$).  L'ensemble de coordonnées internes le plus couramment utilisé est implémenté dans la \textbf{matrice Z} (ou Z-matrix).
+
+\subsubsection{Définition des Coordonnées Internes}
+
+La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées internes. Pour chaque atome de la molécule (à partir du troisième), la matrice Z spécifie :
+
+\begin{itemize}
+    \item L'atome lui-même (symbole chimique).
+    \item L'atome auquel il est lié (\textbf{atome 1}).
+    \item La longueur de liaison avec l'atome 1.
+    \item Un deuxième atome (\textbf{atome 2}), déjà défini, avec lequel il forme un angle de valence.
+    \item L'angle de valence (en degrés) formé par l'atome courant, l'atome 1 et l'atome 2.
+    \item Un troisième atome (\textbf{atome 3}), déjà défini, avec lequel il forme un angle dièdre.
+    \item L'angle dièdre (en degrés) formé par l'atome courant, l'atome 1, l'atome 2 et l'atome 3.
+\end{itemize}
+
+Les positions des deux premiers atomes sont généralement définies simplement en termes de leur position relative le long d'un axe (par exemple, le premier atome à l'origine, le second à une distance donnée sur l'axe des x).
+
+\textbf{Exemple de Matrice Z (molécule d'eau H$_2$O) :}
+
+\begin{verbatim}
+3  ! Nombre d'atomes
+Water molecule (H2O) - Z-matrix coordinates
+
+O
+H  1  R_OH
+H  1  R_OH  2  A_HOH
+
+Variables:
+R_OH = 0.96
+A_HOH = 104.5
+\end{verbatim}
+
+Dans cet exemple :
+
+*   L'oxygène (O) est le premier atome, sa position est prise comme référence.
+*   Le premier hydrogène (H) est lié à l'oxygène (atome 1) avec une longueur de liaison R\_OH.
+*   Le second hydrogène (H) est également lié à l'oxygène (atome 1) avec la même longueur de liaison R\_OH, et forme un angle de valence A\_HOH avec l'oxygène (atome 1) et le premier hydrogène (atome 2).
+*   Les valeurs des variables R\_OH et A\_HOH (longueur OH et angle HOH) sont définies à la fin de la matrice Z.
+
+\textbf{Pertinence chimique et avantages des coordonnées internes :}
+
+\begin{itemize}
+    \item \textbf{Description chimiquement intuitive :} Les coordonnées internes (et la matrice Z) décrivent la structure moléculaire en termes de paramètres directement liés aux concepts chimiques : longueurs de liaison, angles, géométrie locale, etc.  C'est une représentation beaucoup plus intuitive pour un chimiste que les coordonnées cartésiennes brutes.
+    \item \textbf{Adaptées à la description des vibrations et rotations moléculaires :} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
+    \item \textbf{Efficacité pour l'optimisation géométrique :} Comme mentionné précédemment, l'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
+\end{itemize}
+
+\textbf{Défis liés à l'utilisation des coordonnées internes (Matrice Z) :}
+
+\begin{itemize}
+    \item \textbf{Choix non unique et complexité pour les molécules complexes :} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique.  Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
+    \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient :}  Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
+\end{itemize}
+
 \subsection{Conclusion sur la représentation moléculaire}
 
 Le choix de la représentation moléculaire (coordonnées cartésiennes, coordonnées internes, SMILES, etc.) dépend fortement de l'application visée.  Les coordonnées cartésiennes (XYZ) restent la base fondamentale pour les calculs de chimie quantique, tandis que les coordonnées internes sont privilégiées pour l'optimisation géométrique. Le format SMILES, quant à lui, est un outil puissant pour la manipulation et l'échange d'informations sur la structure chimique des molécules, en particulier dans les bases de données et les applications de chimie informatique à grande échelle.
@@ -205,12 +270,12 @@ Le choix de la représentation moléculaire (coordonnées cartésiennes, coordon
 %            \item Simplicité et universalité.
 %            \item Peu intuitif pour la description des vibrations et rotations moléculaires.
 %        \end{itemize}
-%    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
-%        \begin{itemize}
-%            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
-%            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
-%            \item Exemple : Molécule d'eau (distances OH, angle HOH).
-%        \end{itemize}
+    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
+        \begin{itemize}
+            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
+            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
+            \item Exemple : Molécule d'eau (distances OH, angle HOH).
+        \end{itemize}
 %\end{itemize}
 %
 %\subsection{Choix des bases d'orbitales atomiques (Rappel et Compléments)}
