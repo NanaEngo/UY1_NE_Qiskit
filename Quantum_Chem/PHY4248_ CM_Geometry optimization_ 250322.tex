@@ -9,6 +9,12 @@
 \usepackage[french]{babel} % Support de la langue française
 \usepackage{graphicx, amsthm, mathtools, amsfonts, amssymb, physics, longtable, mathrsfs} % Packages pour les graphiques et mathématiques
 
+% Divers Box en couleur avec le package tcolorbox
+\usepackage[many]{tcolorbox}
+\newtcbtheorem[number within=section]{texample}{Exemple}
+{fonttitle=\bfseries\upshape,fontupper=\slshape, arc=0mm, colback=green!5!white,
+colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
+
 \usepackage{float} % Gère le placement des objets flottants
 \floatplacement{figure}{H} % Forces les figures à être placées exactement à l'endroit où elles apparaissent dans le texte
 
