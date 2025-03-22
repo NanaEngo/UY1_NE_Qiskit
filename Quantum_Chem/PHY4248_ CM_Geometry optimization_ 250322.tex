@@ -289,7 +289,17 @@ L'\textbf{optimisation de la structure géométrique}, souvent appelée simpleme
 
 \subsubsection{Pourquoi optimiser la géométrie ?}
 
-La \textbf{recherche de la géométrie moléculaire d'énergie minimale} est essentielle car, en vertu des principes fondamentaux de la nature, les molécules tendent à adopter les conformations les plus stables, c'est-à-dire celles qui minimisent leur énergie totale.  Ces structures optimisées correspondent généralement à des configurations stables : soit un \textbf{minimum local} sur la surface d'énergie potentielle (représentant une espèce moléculaire stable), soit un \textbf{état de transition} (représentant une configuration de haute énergie entre deux minima, crucial pour comprendre les mécanismes réactionnels).
+La \textbf{recherche de la géométrie moléculaire d'énergie minimale} est essentielle car, en vertu des principes fondamentaux de la nature, les molécules tendent à adopter les conformations les plus stables, c'est-à-dire celles qui minimisent leur énergie totale. Ces structures optimisées correspondent généralement à des configurations stables : soit un \textbf{minimum local} sur la surface d'énergie potentielle (représentant une espèce moléculaire stable), soit un \textbf{état de transition} (représentant une configuration de haute énergie entre deux minima, crucial pour comprendre les mécanismes réactionnels).
+
+La Figure \ref{fig:pes3d} illustre de manière visuelle ce concept de minimisation de l'énergie.  Imaginez la Surface d'Énergie Potentielle comme un paysage montagneux complexe. Les molécules stables correspondent aux vallées de ce paysage (minima d'énergie), tandis que les chemins réactionnels entre ces vallées passent par des cols de montagne (états de transition).  L'optimisation géométrique est alors analogue à la recherche des points les plus bas dans ce paysage, ou à l'identification des cols qui permettent de passer d'une vallée à une autre.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{PES_3D.png} % Assurez-vous que le fichier PES_3D.png est dans le même répertoire
+\caption{\textbf{Surface d'Énergie Potentielle 3D et optimisation géométrique.}  Cette figure schématise une Surface d'Énergie Potentielle (PES) à deux dimensions, visualisée comme un paysage 3D. Les zones bleues foncées représentent les régions de basse énergie (vallées), correspondant aux \textbf{minima} de la PES et aux structures moléculaires stables. Les zones plus claires représentent des régions de plus haute énergie.  Le chemin jaune tracé sur la surface illustre un \textbf{chemin réactionnel} typique, reliant deux minima en passant par un \textbf{état de transition (TS)}, situé au point col de la PES. L'optimisation géométrique consiste à partir d'une géométrie initiale et à se déplacer itérativement sur la PES, "en descendant la pente" du gradient, jusqu'à atteindre un minimum local d'énergie.}
+\label{fig:pes3d}
+\end{figure}
+
 
 \subsubsection{Surface d'Énergie Potentielle (PES) et optimisation}
 
