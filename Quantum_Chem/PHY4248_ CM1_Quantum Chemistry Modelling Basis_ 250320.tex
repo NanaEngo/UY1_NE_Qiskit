@@ -272,15 +272,35 @@ Il est à noter que:
 
 \textbf{Pourquoi un déterminant ?} Le déterminant de Slater est la \textit{façon la plus simple} de construire une fonction d'état multi-électronique qui respecte le principe fondamental de Pauli, qui stipule que la fonction d'état doit être antisymétrique par rapport à l'échange de deux fermions (les électrons sont des fermions).
 
-Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent 
-occuper que $N$ des spin-orbitales dans un déterminant de Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées 
-$N$.
+Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plus élevé que le nombre d'électrons dans le système, $N$, les électrons ne peuvent occuper que $N$ des spin-orbitales dans un déterminant de Slater donné. En conséquence, le déterminant de Slater ne contient que les spin-orbitales occupées $N$.
 
-Dans la base des \textbf{orbitales moléculaires (MO)}, chaque spin-orbitale $\phi_i(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} (Linear Combination of Atomic Orbitals):
+
+\subsubsection{Combinaison Linéaire d'Orbitales Atomiques (LCAO)}
+
+
+Dans la base des \textbf{orbitales moléculaires (MO)}, chaque spin-orbitale $\phi_p(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} (Linear Combination of Atomic Orbitals):
 \begin{equation}
-\phi_i(\mathbf{r}) = \sum_{\mu} C_{\mu i} \chi_\mu(\mathbf{r} - \mathbf{R}_A),
+\phi_p(\mathbf{r}) = \sum_\alpha c_{\alpha p} \chi_\alpha(\mathbf{r} - \mathbf{R}_\alpha),
 \end{equation}
-où $\chi_{\mu}(\mathbf{r})$ sont les fonctions de base  atomiques (e.g., fonctions de Slater ou Gaussiennes) et $C_{\mu i}$ les coefficients d’expansion à optimiser.
+où $\mathbf{R}_\alpha$ représente la position du centre atomique de la fonction de base $\chi_\alpha$, et les coefficients d'expansion $c_{\alpha p}$ sont appelés \textbf{coefficients des orbitales moléculaires (OM)}. Ces coefficients $c_{\alpha p}$ déterminent la contribution de chaque orbitale atomique $\chi_\alpha$ à l'orbitale moléculaire $\phi_p$.
+
+En utilisant la notation de Dirac, cette expansion LCAO prend la forme plus compacte :
+\begin{equation}
+  \ket{\phi_p} = \sum_\alpha c_{\alpha p}\ket{\chi_\alpha}.
+\end{equation}
+
+Il peut être pratique de regrouper l'ensemble des orbitales moléculaires (et atomiques) sous forme de vecteurs lignes.  Introduisons la notation suivante pour représenter un vecteur ligne d'orbitales moléculaires :
+\begin{equation}
+    \ket{\overline{\phi}} = (\ldots, \ket{\phi_p}, \ldots)
+\end{equation}
+L'expansion LCAO pour l'ensemble des orbitales moléculaires peut alors être écrite de manière encore plus concise sous forme matricielle :
+\begin{equation}
+    | \overline{\phi} \rangle = | \overline{\chi} \rangle \mathbf{C},
+\end{equation}
+où $\mathbf{C}$ est la \textbf{matrice des coefficients des orbitales moléculaires (OM)}.  Chaque colonne de la matrice $\mathbf{C}$ contient les coefficients d'expansion LCAO pour une orbitale moléculaire donnée, et chaque ligne correspond à une orbitale atomique de base.
+
+Cette expansion LCAO, bien qu'approximative, permet de transformer le problème de la résolution de l'équation de Schrödinger pour les électrons en un problème algébrique matriciel, qui peut être résolu numériquement sur ordinateur.  Le choix des orbitales atomiques de base $\chi_\alpha$ (appelées aussi \textbf{ensembles de bases}) est un aspect crucial de la modélisation moléculaire, que nous aborderons plus en détail dans le chapitre suivant.
+
 
 \subsubsection{Spin et Déterminants de Slater}
 
