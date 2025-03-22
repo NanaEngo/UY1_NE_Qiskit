@@ -272,42 +272,6 @@ A_HOH = 104.5
 
 Le choix de la représentation moléculaire (coordonnées cartésiennes, coordonnées internes, SMILES, etc.) dépend fortement de l'application visée.  Les coordonnées cartésiennes (XYZ) restent la base fondamentale pour les calculs de chimie quantique, tandis que les coordonnées internes sont privilégiées pour l'optimisation géométrique. Le format SMILES, quant à lui, est un outil puissant pour la manipulation et l'échange d'informations sur la structure chimique des molécules, en particulier dans les bases de données et les applications de chimie informatique à grande échelle.
 
-%\section{Représentation des molécules}
-%
-%\subsection{Coordonnées cartésiennes et coordonnées internes}
-%\begin{itemize}
-%    \item \textbf{Coordonnées cartésiennes (3N) : }
-%        \begin{itemize}
-%            \item Description : Position de chaque atome par (x, y, z) dans un repère global.
-%            \item Simplicité et universalité.
-%            \item Peu intuitif pour la description des vibrations et rotations moléculaires.
-%        \end{itemize}
-    \item \textbf{Coordonnées internes (3N-6 ou 3N-5) : }
-        \begin{itemize}
-            \item Description :  Distance interatomiques, angles de valence, angles dièdres.
-            \item Pertinence chimique : directement liées à la structure et aux vibrations moléculaires.
-            \item Exemple : Molécule d'eau (distances OH, angle HOH).
-        \end{itemize}
-%\end{itemize}
-%
-%\subsection{Choix des bases d'orbitales atomiques (Rappel et Compléments)}
-%\begin{itemize}
-%    \item Rappel du chapitre 1: Nécessité d'utiliser des bases d'orbitales atomiques (combinaison linéaire d'orbitales atomiques LCAO).
-%    \item Bases STO (Slater Type Orbitals) :
-%        \begin{itemize}
-%            \item Forme exponentielle, plus proche des orbitales atomiques réelles.
-%            \item Calculs d'intégrales complexes.
-%        \end{itemize}
-%    \item Bases GTO (Gaussian Type Orbitals) :
-%        \begin{itemize}
-%            \item Fonctions Gaussiennes, calculs d'intégrales simplifiés.
-%            \item Bases les plus utilisées en pratique (compromis précision/coût).
-%            \item Bases de Pople (ex: 6-31G*) et bases correlation-consistent (cc-pVXZ) : compromis précision/taille de base.
-%        \end{itemize}
-%    \item Importance du choix de la base : impact sur la précision et le temps de calcul.
-%\end{itemize}
-
-
 \section{Méthodes d'optimisation géométrique}
 
 \subsection{Principe de l'optimisation géométrique}
