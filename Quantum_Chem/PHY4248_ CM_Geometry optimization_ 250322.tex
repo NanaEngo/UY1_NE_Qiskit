@@ -329,13 +329,6 @@ En pratique, la réalisation d'une optimisation géométrique nécessite de déf
     \item \textbf{Maximum d'ordre supérieur.} Plus d'une valeur propre négative (rare en chimie moléculaire, généralement instable).
   \end{itemize}
 
-  Les dérivées secondes de l'énergie (et donc le Hessien) peuvent être calculées de deux manières :
-  \begin{itemize}
-    \item \textbf{Numériquement} : Par différences finies du gradient. Cette approche présente les mêmes avantages et inconvénients que le calcul numérique du gradient (simplicité d'implémentation, mais coût et précision limités).
-    \item \textbf{Analytiquement} : En dérivant analytiquement l'expression du gradient. Calcul plus complexe à mettre en œuvre, mais plus précis et efficace en termes de temps de calcul.
-  \end{itemize}
-
-
  \item \textbf{Algorithme d'optimisation.} Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie. Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
 
  \item \textbf{Critères de convergence.} Conditions définissant quand l'optimisation est considérée comme terminée. Les critères de convergence typiques portent sur :
