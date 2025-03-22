@@ -41,13 +41,13 @@ colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
 % Configuration pour hyperref
 \usepackage{hyperref} 
 \hypersetup{
-  colorlinks=true, % Colorise les liens
-  breaklinks=true, % Permet le retour à la ligne dans les liens trop longs
-  allcolors=Blue3, % Couleur des liens
-  pdfauthor={Nana Engo}, % Auteur du document PDF
-  pdfsubject={Chimie quantique et VQE}, % Sujet du document
-  pdftitle={PHY4268 - Geometry optimization V25.03}, % Titre du document
-  bookmarksopen=true % Ouvre les signets PDF par défaut
+ colorlinks=true, % Colorise les liens
+ breaklinks=true, % Permet le retour à la ligne dans les liens trop longs
+ allcolors=Blue3, % Couleur des liens
+ pdfauthor={Nana Engo}, % Auteur du document PDF
+ pdfsubject={Chimie quantique et VQE}, % Sujet du document
+ pdftitle={PHY4268 - Geometry optimization V25.03}, % Titre du document
+ bookmarksopen=true % Ouvre les signets PDF par défaut
 }
 
 \usepackage{cleveref} % Améliore la gestion des références croisées
@@ -69,14 +69,14 @@ colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
 
 \author{
 \begin{tabular}{lr}
-  \textbf{Nana Engo} & \textbf{Tchapet Njafa}\\
-  {\small serge.nana-engo@facsciences-uy1.cm} &\hspace*{2em}
-  {\small jean-pierre.tchapet@facsciences-uy1.cm}
+ \textbf{Nana Engo} & \textbf{Tchapet Njafa}\\
+ {\small serge.nana-engo@facsciences-uy1.cm} &\hspace*{2em}
+ {\small jean-pierre.tchapet@facsciences-uy1.cm}
 \end{tabular}\\[3em] % Espace entre les auteurs et la filiation
 \textit{Quantum Simulation Group}\\
-  \textit{Department of Physics} \\ 
-  \textit{Faculty of Science} \\ 
-  \textit{University of Yaoundé I}
+ \textit{Department of Physics} \\ 
+ \textit{Faculty of Science} \\ 
+ \textit{University of Yaoundé I}
 }
 \date{\vspace*{3cm}March 2025} % Date du document
 
@@ -93,9 +93,9 @@ Dans le chapitre précédent, nous avons jeté les bases théoriques de la chimi
 Ce chapitre constitue un \textit{premier pas essentiel vers la modélisation moléculaire computationnelle}. Nous explorons comment, concrètement, on représente les molécules dans un ordinateur, et quelles sont les stratégies pour calculer leurs propriétés avec une précision raisonnable.
 
 \begin{enumerate}
-    \item \textbf{Représentation des molécules.} Nous examinons les différents systèmes de coordonnées utilisés pour décrire la géométrie moléculaire, en particulier les \textbf{coordonnées cartésiennes (XYZ)} et les \textbf{coordonnées internes (Matrice Z)}. Nous explorons également le format \textbf{SMILES}, une notation textuelle puissante pour représenter la connectivité moléculaire.
-    
-    \item \textbf{Méthodes d'optimisation géométrique.} Nous détaillons le principe de l'optimisation géométrique, qui vise à trouver les structures moléculaires d'énergie minimale en explorant la \textbf{Surface d'Énergie Potentielle (PES)}. Nous présentons l'algorithme général d'optimisation, les ingrédients nécessaires (énergie, gradient, Hessien), et les critères de convergence.
+  \item \textbf{Représentation des molécules.} Nous examinons les différents systèmes de coordonnées utilisés pour décrire la géométrie moléculaire, en particulier les \textbf{coordonnées cartésiennes (XYZ)} et les \textbf{coordonnées internes (Matrice Z)}. Nous explorons également le format \textbf{SMILES}, une notation textuelle puissante pour représenter la connectivité moléculaire.
+  
+  \item \textbf{Méthodes d'optimisation géométrique.} Nous détaillons le principe de l'optimisation géométrique, qui vise à trouver les structures moléculaires d'énergie minimale en explorant la \textbf{Surface d'Énergie Potentielle (PES)}. Nous présentons l'algorithme général d'optimisation, les ingrédients nécessaires (énergie, gradient, Hessien), et les critères de convergence.
 \end{enumerate}
 
 \noindent En maîtrisant ces aspects fondamentaux, vous disposez des outils essentiels pour explorer le vaste champ de la modélisation moléculaire et pour aborder, dans les chapitres suivants, des méthodes de calcul et d'analyse plus avancées.
@@ -124,16 +124,16 @@ La manière la plus simple et fondamentale de définir la géométrie moléculai
 Dans un fichier XYZ, chaque ligne correspond à un atome et contient les informations suivantes, séparées par des espaces :
 
 \begin{itemize}
-  \item Le symbole de l'élément chimique de l'atome (ex : C, H, O, N, etc.).
-  \item La coordonnée $x$ de l'atome.
-  \item La coordonnée $y$ de l'atome.
-  \item La coordonnée $z$ de l'atome.
+ \item Le symbole de l'élément chimique de l'atome (ex : C, H, O, N, etc.).
+ \item La coordonnée $x$ de l'atome.
+ \item La coordonnée $y$ de l'atome.
+ \item La coordonnée $z$ de l'atome.
 \end{itemize}
 Les deux premières lignes d'un fichier XYZ contiennent généralement :
 
 \begin{itemize}
-  \item Ligne 1 : Le nombre total d'atomes dans la molécule.
-  \item Ligne 2 : Une ligne de commentaire optionnelle (peut être utilisée pour le titre, des informations sur la méthode de calcul, etc.).
+ \item Ligne 1 : Le nombre total d'atomes dans la molécule.
+ \item Ligne 2 : Une ligne de commentaire optionnelle (peut être utilisée pour le titre, des informations sur la méthode de calcul, etc.).
 \end{itemize}
 
 \begin{example}{Exemple de fichier XYZ - molécule d'eau \ch{H2O}}{}
@@ -141,9 +141,9 @@ Les deux premières lignes d'un fichier XYZ contiennent généralement :
 \begin{verbatim}
 3
 Water molecule (H2O) - Optimized geometry
-O 0.000000  0.000000  0.000000
-H 0.757000  0.586000  0.000000
-H -0.757000  0.586000  0.000000
+O 0.000000 0.000000 0.000000
+H 0.757000 0.586000 0.000000
+H -0.757000 0.586000 0.000000
 \end{verbatim}
 \end{example}
 
@@ -162,27 +162,27 @@ Le format \textbf{SMILES} (\textit{Simplified Molecular Input Line Entry System}
 
 Une chaîne SMILES représente une molécule en suivant ces principes :
 \begin{itemize}
-  \item \textbf{Atomes.} Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
-  \item \textbf{Liaisons simples.} Généralement implicites entre les atomes adjacents dans la chaîne.
-  \item \textbf{Liaisons multiples.}
-    \begin{itemize}
-      \item Double liaison : "=" (ex : C=O)
-      \item Triple liaison : "\#" (ex : C\#N)
-      \item Liaison aromatique : ":" (ex : C1CCCCC1 pour le benzène)
-    \end{itemize}
-  \item \textbf{Branches.} Parenthèses "()" pour indiquer les ramifications (groupes substituants).
-  \item \textbf{Cycles.} Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
-  \item \textbf{Spécifications additionnelles.} Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
+ \item \textbf{Atomes.} Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
+ \item \textbf{Liaisons simples.} Généralement implicites entre les atomes adjacents dans la chaîne.
+ \item \textbf{Liaisons multiples.}
+  \begin{itemize}
+   \item Double liaison : "=" (ex : C=O)
+   \item Triple liaison : "\#" (ex : C\#N)
+   \item Liaison aromatique : ":" (ex : C1CCCCC1 pour le benzène)
+  \end{itemize}
+ \item \textbf{Branches.} Parenthèses "()" pour indiquer les ramifications (groupes substituants).
+ \item \textbf{Cycles.} Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
+ \item \textbf{Spécifications additionnelles.} Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
 \end{itemize}
 
 \subsubsection{Exemples de notations SMILES}
 
 \begin{itemize}
-  \item Eau (\ch{H2O}) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
-  \item Dioxyde de carbone (\ch{CO2}) : \texttt{O=C=O}
-  \item Éthanol (\ch{CH3CH2OH}) : \texttt{CCO} ou \texttt{CC(O)}
-  \item Benzène (\ch{C6H6}) : \texttt{c1ccccc1}
-  \item Acide acétylsalicylique (Aspirine) : \texttt{CC(=O)Oc1ccccc1C(=O)O} (plus complexe !)
+ \item Eau (\ch{H2O}) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
+ \item Dioxyde de carbone (\ch{CO2}) : \texttt{O=C=O}
+ \item Éthanol (\ch{CH3CH2OH}) : \texttt{CCO} ou \texttt{CC(O)}
+ \item Benzène (\ch{C6H6}) : \texttt{c1ccccc1}
+ \item Acide acétylsalicylique (Aspirine) : \texttt{CC(=O)Oc1ccccc1C(=O)O} (plus complexe !)
 \end{itemize}
 
 \subsubsection{Avantages et inconvénients du format SMILES}
@@ -190,17 +190,17 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
 \textbf{Avantages}
 
 \begin{itemize}
-  \item \textbf{Compact et lisible.} SMILES est une notation très compacte, qui permet de représenter des structures moléculaires complexes sous forme de courtes chaînes de caractères. C'est facile à stocker, partager et manipuler informatiquement.
-  \item \textbf{Non-ambigu (canonique).} Il existe des algorithmes pour convertir une structure moléculaire 3D en un SMILES "canonique" unique, ce qui est très utile pour l'indexation et la recherche dans les bases de données chimiques.
-  \item \textbf{Largement supporté.} Le format SMILES est un standard largement reconnu et supporté par de nombreux logiciels de chimie informatique, bases de données chimiques et outils en ligne.
+ \item \textbf{Compact et lisible.} SMILES est une notation très compacte, qui permet de représenter des structures moléculaires complexes sous forme de courtes chaînes de caractères. C'est facile à stocker, partager et manipuler informatiquement.
+ \item \textbf{Non-ambigu (canonique).} Il existe des algorithmes pour convertir une structure moléculaire 3D en un SMILES "canonique" unique, ce qui est très utile pour l'indexation et la recherche dans les bases de données chimiques.
+ \item \textbf{Largement supporté.} Le format SMILES est un standard largement reconnu et supporté par de nombreux logiciels de chimie informatique, bases de données chimiques et outils en ligne.
 \end{itemize}
 
 \textbf{Inconvénients}
 
 \begin{itemize}
-  \item \textbf{Moins intuitif pour les non-initiés.} La notation SMILES peut paraître cryptique au premier abord et nécessite un certain apprentissage pour être lue et écrite couramment.
-  \item \textbf{Perte d'information 3D.} SMILES décrit principalement la connectivité 2D de la molécule et ne contient pas directement d'informations sur la géométrie 3D (coordonnées atomiques). Des algorithmes de reconstruction 3D existent, mais ils sont basés sur des approximations.
-  \item \textbf{Limitations pour certains types de structures complexes.} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
+ \item \textbf{Moins intuitif pour les non-initiés.} La notation SMILES peut paraître cryptique au premier abord et nécessite un certain apprentissage pour être lue et écrite couramment.
+ \item \textbf{Perte d'information 3D.} SMILES décrit principalement la connectivité 2D de la molécule et ne contient pas directement d'informations sur la géométrie 3D (coordonnées atomiques). Des algorithmes de reconstruction 3D existent, mais ils sont basés sur des approximations.
+ \item \textbf{Limitations pour certains types de structures complexes.} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
 \end{itemize}
 
 \subsection{Coordonnées internes - Matrice Z}
@@ -208,9 +208,9 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
 En complément des coordonnées cartésiennes, les \textbf{coordonnées internes} offrent une description alternative et souvent plus avantageuse de la géométrie moléculaire. Les coordonnées internes décrivent la structure moléculaire en termes de paramètres géométriques intrinsèques, directement liés à la notion de structure chimique :
 
 \begin{itemize}
-  \item \textbf{Longueurs de liaison.} Distances entre deux atomes liés chimiquement. Elles décrivent l'extension ou la contraction des liaisons chimiques.
-  \item \textbf{Angles de valence.} Angles formés par trois atomes liés consécutivement. Ils décrivent la déformation des angles entre les liaisons.
-  \item \textbf{Angles dièdres (ou angles de torsion).} Angles définissant la rotation autour d'une liaison, impliquant quatre atomes liés consécutivement. Ils décrivent la rotation autour des liaisons simples, influençant la conformation globale de la molécule.
+ \item \textbf{Longueurs de liaison.} Distances entre deux atomes liés chimiquement. Elles décrivent l'extension ou la contraction des liaisons chimiques.
+ \item \textbf{Angles de valence.} Angles formés par trois atomes liés consécutivement. Ils décrivent la déformation des angles entre les liaisons.
+ \item \textbf{Angles dièdres (ou angles de torsion).} Angles définissant la rotation autour d'une liaison, impliquant quatre atomes liés consécutivement. Ils décrivent la rotation autour des liaisons simples, influençant la conformation globale de la molécule.
 \end{itemize}
 
 Pour une molécule non-linéaire de $N$ atomes, $3N-6$ coordonnées internes sont nécessaires pour définir sa géométrie (pour une molécule linéaire, $3N-5$). L'ensemble de coordonnées internes le plus couramment utilisé est implémenté dans la \textbf{matrice Z} (ou Z-matrix).
@@ -220,13 +220,13 @@ Pour une molécule non-linéaire de $N$ atomes, $3N-6$ coordonnées internes son
 \begin{definition}{Matrice Z (Z-Matrix)}{}
 La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées internes. Pour chaque atome de la molécule (à partir du troisième), la matrice Z spécifie :
 \begin{itemize}
-  \item L'atome lui-même (symbole chimique).
-  \item L'atome auquel il est lié (\textbf{atome 1}).
-  \item La longueur de liaison avec l'atome 1.
-  \item Un deuxième atome (\textbf{atome 2}), déjà défini, avec lequel il forme un angle de valence.
-  \item L'angle de valence (en degrés) formé par l'atome courant, l'atome 1 et l'atome 2.
-  \item Un troisième atome (\textbf{atome 3}), déjà défini, avec lequel il forme un angle dièdre.
-  \item L'angle dièdre (en degrés) formé par l'atome courant, l'atome 1, l'atome 2 et l'atome 3.
+ \item L'atome lui-même (symbole chimique).
+ \item L'atome auquel il est lié (\textbf{atome 1}).
+ \item La longueur de liaison avec l'atome 1.
+ \item Un deuxième atome (\textbf{atome 2}), déjà défini, avec lequel il forme un angle de valence.
+ \item L'angle de valence (en degrés) formé par l'atome courant, l'atome 1 et l'atome 2.
+ \item Un troisième atome (\textbf{atome 3}), déjà défini, avec lequel il forme un angle dièdre.
+ \item L'angle dièdre (en degrés) formé par l'atome courant, l'atome 1, l'atome 2 et l'atome 3.
 \end{itemize}
 Les positions des deux premiers atomes sont généralement définies simplement en termes de leur position relative le long d'un axe (par exemple, le premier atome à l'origine, le second à une distance donnée sur l'axe des x).
 \end{definition}
@@ -257,19 +257,19 @@ A_HOH = 104.5
 \subsubsection{Pertinence chimique et avantages des coordonnées internes}
 
 \begin{itemize}
-  \item \textbf{Description chimiquement intuitive.} Les coordonnées internes (et la matrice Z) décrivent la structure moléculaire en termes de paramètres directement liés aux concepts chimiques : longueurs de liaison, angles, géométrie locale, etc. C'est une représentation beaucoup plus intuitive pour un chimiste que les coordonnées cartésiennes brutes.
-  
-  \item \textbf{Adaptées à la description des vibrations et rotations moléculaires.} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
-  
-  \item \textbf{Efficacité pour l'optimisation géométrique.} L'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
+ \item \textbf{Description chimiquement intuitive.} Les coordonnées internes (et la matrice Z) décrivent la structure moléculaire en termes de paramètres directement liés aux concepts chimiques : longueurs de liaison, angles, géométrie locale, etc. C'est une représentation beaucoup plus intuitive pour un chimiste que les coordonnées cartésiennes brutes.
+ 
+ \item \textbf{Adaptées à la description des vibrations et rotations moléculaires.} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
+ 
+ \item \textbf{Efficacité pour l'optimisation géométrique.} L'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
 \end{itemize}
 
 \subsubsection{Défis liés à l'utilisation des coordonnées internes (Matrice Z)}
 
 \begin{itemize}
-  \item \textbf{Choix non unique et complexité pour les molécules complexes.} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique. Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
-  
-  \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient.} Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
+ \item \textbf{Choix non unique et complexité pour les molécules complexes.} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique. Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
+ 
+ \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient.} Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
 \end{itemize}
 
 \subsection{Conclusion sur la représentation moléculaire}
@@ -312,23 +312,23 @@ L'optimisation géométrique revient mathématiquement à résoudre le problème
 
 En pratique, la réalisation d'une optimisation géométrique nécessite de définir et de calculer plusieurs éléments clés :
 \begin{enumerate}
-  \item \textbf{Coordonnées moléculaires initiales.} Point de départ de l'optimisation. Elles peuvent être estimées à partir de données expérimentales (cristallographie, spectroscopie), de l'intuition chimique, de banques de données moléculaires, ou générées par des outils de construction moléculaire (logiciels de dessin moléculaire, outils comme RDKit ou Openbabel).
+ \item \textbf{Coordonnées moléculaires initiales.} Point de départ de l'optimisation. Elles peuvent être estimées à partir de données expérimentales (cristallographie, spectroscopie), de l'intuition chimique, de banques de données moléculaires, ou générées par des outils de construction moléculaire (logiciels de dessin moléculaire, outils comme RDKit ou Openbabel).
 
-  \item \textbf{Choix du système de coordonnées.} Comme discuté dans la section précédente, le choix entre coordonnées cartésiennes et coordonnées internes influence l'efficacité de l'optimisation. Les coordonnées internes sont souvent privilégiées pour leur pertinence chimique et leur meilleur découplage des mouvements.
+ \item \textbf{Choix du système de coordonnées.} Comme discuté dans la section précédente, le choix entre coordonnées cartésiennes et coordonnées internes influence l'efficacité de l'optimisation. Les coordonnées internes sont souvent privilégiées pour leur pertinence chimique et leur meilleur découplage des mouvements.
 
-  \item \textbf{Calcul de l'énergie $E(\mathbf{x})$ et du gradient $\mathbf{g}(\mathbf{x}) = \nabla E(\mathbf{x})$.} Pour chaque géométrie moléculaire testée lors de l'optimisation, il est nécessaire de calculer l'énergie électronique $E(\mathbf{x})$ et son gradient $\mathbf{g}(\mathbf{x})$. Ces calculs sont réalisés à l'aide d'une méthode de chimie quantique (Hartree-Fock, DFT, méthodes post-Hartree-Fock, méthodes semi-empiriques ou Tight-Binding). Le gradient $\mathbf{g}(\mathbf{x})$ représente la force exercée sur chaque atome et indique la direction de la plus forte variation de l'énergie.
+ \item \textbf{Calcul de l'énergie $E(\mathbf{x})$ et du gradient $\mathbf{g}(\mathbf{x}) = \nabla E(\mathbf{x})$.} Pour chaque géométrie moléculaire testée lors de l'optimisation, il est nécessaire de calculer l'énergie électronique $E(\mathbf{x})$ et son gradient $\mathbf{g}(\mathbf{x})$. Ces calculs sont réalisés à l'aide d'une méthode de chimie quantique (Hartree-Fock, DFT, méthodes post-Hartree-Fock, méthodes semi-empiriques ou Tight-Binding). Le gradient $\mathbf{g}(\mathbf{x})$ représente la force exercée sur chaque atome et indique la direction de la plus forte variation de l'énergie.
 
-  \item \textbf{Hessien (optionnel, mais souvent utilisé pour les optimisations avancées).} La matrice Hessienne, $\mathbf{H}(\mathbf{x})$, est la matrice des dérivées secondes de l'énergie par rapport aux coordonnées nucléaires. Elle décrit la courbure de la PES au point $\mathbf{x}$. Le Hessien est utilisé dans les algorithmes d'optimisation plus avancés (comme la méthode de Newton-Raphson) pour accélérer la convergence et pour caractériser la nature des points stationnaires (minima, états de transition).
+ \item \textbf{Hessien (optionnel, mais souvent utilisé pour les optimisations avancées).} La matrice Hessienne, $\mathbf{H}(\mathbf{x})$, est la matrice des dérivées secondes de l'énergie par rapport aux coordonnées nucléaires. Elle décrit la courbure de la PES au point $\mathbf{x}$. Le Hessien est utilisé dans les algorithmes d'optimisation plus avancés (comme la méthode de Newton-Raphson) pour accélérer la convergence et pour caractériser la nature des points stationnaires (minima, états de transition).
 
-  \item \textbf{Algorithme d'optimisation.} Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie. Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
+ \item \textbf{Algorithme d'optimisation.} Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie. Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
 
-  \item \textbf{Critères de convergence.} Conditions définissant quand l'optimisation est considérée comme terminée. Les critères de convergence typiques portent sur :
-    \begin{itemize}
-      \item Le gradient maximal (force maximale sur un atome) qui doit être inférieur à un seuil.
-      \item Le déplacement maximal des atomes entre deux itérations qui doit être inférieur à un seuil.
-      \item La variation de l'énergie entre deux itérations qui doit être inférieure à un seuil.
-      \item La convergence de l'énergie elle-même, cad l'énergie doit se stabiliser et ne plus varier significativement.
-    \end{itemize}
+ \item \textbf{Critères de convergence.} Conditions définissant quand l'optimisation est considérée comme terminée. Les critères de convergence typiques portent sur :
+  \begin{itemize}
+   \item Le gradient maximal (force maximale sur un atome) qui doit être inférieur à un seuil.
+   \item Le déplacement maximal des atomes entre deux itérations qui doit être inférieur à un seuil.
+   \item La variation de l'énergie entre deux itérations qui doit être inférieure à un seuil.
+   \item La convergence de l'énergie elle-même, cad l'énergie doit se stabiliser et ne plus varier significativement.
+  \end{itemize}
 \end{enumerate}
 
 \subsection{Fonctionnement d'une optimisation géométrique}
@@ -345,15 +345,15 @@ La \autoref{fig:geooptworkflow} illustre les étapes typiques d'une optimisation
 Le processus d'optimisation se déroule de manière itérative :
 
 \begin{enumerate}
-  \item \textbf{Initialisation (étape 1 de la \autoref{fig:geooptworkflow}).} L'optimisation commence avec une \textbf{géométrie moléculaire initiale} fournie par l'utilisateur et une estimation du \textbf{Hessien} initial (souvent une matrice Hessienne approximée ou un Hessien calculé pour une méthode simple).
-  
-  \item \textbf{Calcul SCF et Gradient (étape 2 de la \autoref{fig:geooptworkflow}).} À chaque itération, un calcul de structure électronique (typiquement un calcul SCF dans le cas de la méthode Hartree-Fock ou DFT) est réalisé pour la géométrie moléculaire courante. Ce calcul fournit l'\textbf{énergie électronique} $E$ et le \textbf{gradient de l'énergie} $\nabla E$ (les forces sur les atomes) pour cette géométrie.
-  
-  \item \textbf{Test de Convergence (étape 3 de la \autoref{fig:geooptworkflow}).} Les critères de convergence (sur le gradient, le déplacement atomique, la variation d'énergie) sont évalués. Si tous les critères sont satisfaits, l'optimisation est considérée comme \textbf{convergée}, et la géométrie courante est considérée comme la \textbf{géométrie optimisée} (correspondant à un minimum local ou un état de transition).
-  
-  \item \textbf{Mise à jour du Hessien (étape 4 de la \autoref{fig:geooptworkflow}) et de la Géométrie (étape 5 de la \autoref{fig:geooptworkflow}).} Si la convergence n'est pas atteinte, le \textbf{Hessien} est mis à jour (par exemple, en utilisant des méthodes de mise à jour du Hessien comme BFGS) pour mieux approximer la courbure de la PES au voisinage du minimum. Ensuite, un \textbf{algorithme d'optimisation} (par exemple, descente de gradient, BFGS) utilise le gradient et (éventuellement) le Hessien pour prédire une \textbf{nouvelle géométrie moléculaire} avec une énergie plus basse. Les coordonnées atomiques sont mises à jour en conséquence.
-  
-  \item \textbf{Itération suivante.} Le processus retourne à l'étape 2 avec la nouvelle géométrie moléculaire, et le cycle itératif se poursuit jusqu'à convergence.
+ \item \textbf{Initialisation (étape 1 de la \autoref{fig:geooptworkflow}).} L'optimisation commence avec une \textbf{géométrie moléculaire initiale} fournie par l'utilisateur et une estimation du \textbf{Hessien} initial (souvent une matrice Hessienne approximée ou un Hessien calculé pour une méthode simple).
+ 
+ \item \textbf{Calcul SCF et Gradient (étape 2 de la \autoref{fig:geooptworkflow}).} À chaque itération, un calcul de structure électronique (typiquement un calcul SCF dans le cas de la méthode Hartree-Fock ou DFT) est réalisé pour la géométrie moléculaire courante. Ce calcul fournit l'\textbf{énergie électronique} $E$ et le \textbf{gradient de l'énergie} $\nabla E$ (les forces sur les atomes) pour cette géométrie.
+ 
+ \item \textbf{Test de Convergence (étape 3 de la \autoref{fig:geooptworkflow}).} Les critères de convergence (sur le gradient, le déplacement atomique, la variation d'énergie) sont évalués. Si tous les critères sont satisfaits, l'optimisation est considérée comme \textbf{convergée}, et la géométrie courante est considérée comme la \textbf{géométrie optimisée} (correspondant à un minimum local ou un état de transition).
+ 
+ \item \textbf{Mise à jour du Hessien (étape 4 de la \autoref{fig:geooptworkflow}) et de la Géométrie (étape 5 de la \autoref{fig:geooptworkflow}).} Si la convergence n'est pas atteinte, le \textbf{Hessien} est mis à jour (par exemple, en utilisant des méthodes de mise à jour du Hessien comme BFGS) pour mieux approximer la courbure de la PES au voisinage du minimum. Ensuite, un \textbf{algorithme d'optimisation} (par exemple, descente de gradient, BFGS) utilise le gradient et (éventuellement) le Hessien pour prédire une \textbf{nouvelle géométrie moléculaire} avec une énergie plus basse. Les coordonnées atomiques sont mises à jour en conséquence.
+ 
+ \item \textbf{Itération suivante.} Le processus retourne à l'étape 2 avec la nouvelle géométrie moléculaire, et le cycle itératif se poursuit jusqu'à convergence.
 
 \end{enumerate}
 
@@ -362,9 +362,9 @@ Le processus d'optimisation se déroule de manière itérative :
 Il est important de souligner que les algorithmes d'optimisation géométrique convergent généralement vers le \textbf{minimum local} le plus proche de la géométrie initiale. Bien que l'objectif idéal soit de trouver le \textbf{minimum global} (la structure la plus stable de la molécule), il n'existe pas de méthode algorithmique universelle pour garantir la localisation du minimum global pour des molécules complexes. En pratique, plusieurs stratégies peuvent être utilisées pour explorer différentes régions de la PES et augmenter les chances de trouver le minimum global, telles que :
 
 \begin{itemize}
-  \item Démarrer l'optimisation à partir de différentes géométries initiales, générées par différentes méthodes (construction manuelle, dynamique moléculaire, algorithmes de recherche conformationnelle).
-  \item Utiliser des algorithmes d'optimisation plus sophistiqués, capables d'échapper aux minima locaux (par exemple, "basin hopping", algorithmes génétiques).
-  \item Combiner l'optimisation géométrique avec des méthodes de recherche conformationnelle plus larges (par exemple, dynamique moléculaire simulée, algorithmes génétiques).
+ \item Démarrer l'optimisation à partir de différentes géométries initiales, générées par différentes méthodes (construction manuelle, dynamique moléculaire, algorithmes de recherche conformationnelle).
+ \item Utiliser des algorithmes d'optimisation plus sophistiqués, capables d'échapper aux minima locaux (par exemple, "basin hopping", algorithmes génétiques).
+ \item Combiner l'optimisation géométrique avec des méthodes de recherche conformationnelle plus larges (par exemple, dynamique moléculaire simulée, algorithmes génétiques).
 \end{itemize}
 
 \subsection{Avantages de l'optimisation orbitale}
@@ -373,19 +373,31 @@ Le terme \textbf{optimisation orbitale}" est parfois utilisé de manière interc
 
 L'optimisation orbitale dans les méthodes de structure électronique offre les avantages suivants :
 \begin{enumerate}
-    \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles en ce qui concerne les rotations orbitales. Cela signifie qu'il n'y a pas besoin de considérer la réponse orbitale lors du calcul des gradients nucléaires, ce qui simplifie le calcul des forces.
+  \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles en ce qui concerne les rotations orbitales. Cela signifie qu'il n'y a pas besoin de considérer la réponse orbitale lors du calcul des gradients nucléaires, ce qui simplifie le calcul des forces.
 
-    \item \textbf{Calcul simplifié des propriétés.} Les propriétés moléculaires peuvent être calculées plus facilement, car il n'y a aucune contribution de réponse orbitale aux matrices de densité.
+  \item \textbf{Calcul simplifié des propriétés.} Les propriétés moléculaires peuvent être calculées plus facilement, car il n'y a aucune contribution de réponse orbitale aux matrices de densité.
 
-    \item \textbf{Suppression des pôles parasites.} Les pôles parasites qui peuvent apparaître dans les fonctions de réponse pour des méthodes approximées comme la théorie des clusters couplés (CC) peuvent être supprimés grâce à l'optimisation orbitale.
+  \item \textbf{Suppression des pôles parasites.} Les pôles parasites qui peuvent apparaître dans les fonctions de réponse pour des méthodes approximées comme la théorie des clusters couplés (CC) peuvent être supprimés grâce à l'optimisation orbitale.
 
-    \item \textbf{Meilleure description des ruptures de symétrie.} L'optimisation orbitale peut améliorer la description des problèmes de rupture de symétrie qui peuvent se produire dans certaines méthodes de structure électronique.
+  \item \textbf{Meilleure description des ruptures de symétrie.} L'optimisation orbitale peut améliorer la description des problèmes de rupture de symétrie qui peuvent se produire dans certaines méthodes de structure électronique.
 \end{enumerate}
 
 \subsection{Conclusion sur l'optimisation géométrique}
 
 L'optimisation géométrique est une étape fondamentale et incontournable dans la modélisation moléculaire. Elle permet de déterminer les structures moléculaires stables, correspondant aux minima de la surface d'énergie potentielle (PES). Le choix de l'algorithme d'optimisation, des critères de convergence, et du niveau de théorie quantique sont des aspects importants à considérer pour obtenir des résultats précis et fiables. Comprendre le principe de l'optimisation géométrique et les algorithmes associés est essentiel pour tout chercheur souhaitant utiliser la chimie quantique computationnelle pour étudier les propriétés et la réactivité des molécules.
 
-\section{Conclusion du Chapitre 2}
+\section{Conclusion}
 
+Dans ce chapitre, nous avons posé les bases essentielles pour la représentation et la manipulation des molécules dans le cadre de la chimie quantique computationnelle. Nous avons exploré les différentes manières de décrire la géométrie moléculaire, en mettant en évidence les avantages et les inconvénients des \textbf{coordonnées cartésiennes}, des \textbf{coordonnées internes (Matrice Z)}, et du format \textbf{SMILES}. Vous devriez maintenant être en mesure de choisir le système de coordonnées le plus adapté à une application donnée, et de comprendre les principes fondamentaux des formats de fichiers utilisés en chimie moléculaire numérique.
+
+Nous avons également introduit en détail la notion d'\textbf{optimisation géométrique}, une étape essentielle pour déterminer les structures moléculaires stables. Vous avez découvert le concept de \textbf{Surface d'Énergie Potentielle (PES)}, le rôle du \textbf{gradient} et du \textbf{Hessien}, ainsi que l'\textbf{algorithme itératif} général d'optimisation et les \textbf{critères de convergence} associés. Vous comprenez maintenant pourquoi l'optimisation géométrique est indispensable pour obtenir des résultats pertinents et comparables aux données expérimentales.
+
+En conclusion, ce chapitre vous a fourni les outils conceptuels et pratiques pour :
+\begin{itemize}
+  \item \textbf{Représenter une molécule} de manière appropriée pour les calculs de chimie quantique, en choisissant le système de coordonnées et le format de fichier adaptés.
+  
+  \item \textbf{Comprendre et mettre en œuvre une optimisation géométrique} pour trouver les structures moléculaires d'énergie minimale, en interprétant les résultats en termes de Surface d'Énergie Potentielle.
+\end{itemize}
+
+Ces compétences sont fondamentales pour la suite de votre apprentissage en chimie quantique computationnelle. Dans les chapitres suivants, nous nous appuierons sur ces bases pour explorer des méthodes de calcul plus avancées et pour étudier les propriétés moléculaires avec une précision accrue.
 \end{document}
