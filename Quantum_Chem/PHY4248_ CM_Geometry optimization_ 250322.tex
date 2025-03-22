@@ -283,13 +283,15 @@ Le choix de la représentation moléculaire (coordonnées cartésiennes, coordon
 
 \subsection{Principe de l'optimisation géométrique}
 
-L'\textbf{optimisation de la structure géométrique}, souvent appelée simplement optimisation géométrique, optimisation moléculaire ou relaxation, est une étape primordiale en modélisation moléculaire.  Elle désigne le processus par lequel la géométrie d'une molécule est ajustée de manière itérative, dans le but de trouver une structure correspondant à une énergie électronique minimale.  
+\begin{definition}{Optimisation de la structure géométrique}{}
+L'\textbf{optimisation de la structure géométrique}, souvent appelée simplement optimisation géométrique, optimisation moléculaire ou relaxation, est une étape primordiale en modélisation moléculaire. Elle désigne le processus par lequel la géométrie d'une molécule est ajustée de manière itérative, dans le but de trouver une structure correspondant à une énergie électronique minimale.
+\end{definition}
 
-\paragraph{Pourquoi optimiser la géométrie ?}
+\subsubsection{Pourquoi optimiser la géométrie ?}
 
 La \textbf{recherche de la géométrie moléculaire d'énergie minimale} est essentielle car, en vertu des principes fondamentaux de la nature, les molécules tendent à adopter les conformations les plus stables, c'est-à-dire celles qui minimisent leur énergie totale.  Ces structures optimisées correspondent généralement à des configurations stables : soit un \textbf{minimum local} sur la surface d'énergie potentielle (représentant une espèce moléculaire stable), soit un \textbf{état de transition} (représentant une configuration de haute énergie entre deux minima, crucial pour comprendre les mécanismes réactionnels).
 
-\paragraph{Surface d'Énergie Potentielle (PES) et optimisation}
+\subsubsection{Surface d'Énergie Potentielle (PES) et optimisation}
 
 Comme nous l'avons introduit précédemment, le concept central pour l'optimisation géométrique est la \textbf{Surface d'Énergie Potentielle (PES)}.  Dans l'approximation de Born-Oppenheimer, nous considérons les noyaux comme des particules ponctuelles fixes. L'énergie totale de la molécule, $E(\mathbf{x})$, devient alors une fonction des seules coordonnées nucléaires $\mathbf{x}$ (positions des noyaux).  Cette fonction $E(\mathbf{x})$ définit la PES.
 
@@ -336,7 +338,7 @@ Le processus d'optimisation se déroule de manière itérative :
 
 \end{enumerate}
 
-\paragraph{Minima locaux vs. Minimum global}
+\subsubsection{Minima locaux vs. Minimum global}
 
 Il est important de souligner que les algorithmes d'optimisation géométrique convergent généralement vers le \textbf{minimum local} le plus proche de la géométrie initiale.  Bien que l'objectif idéal soit de trouver le \textbf{minimum global} (la structure la plus stable de la molécule), il n'existe pas de méthode algorithmique universelle pour garantir la localisation du minimum global pour des molécules complexes.  En pratique, plusieurs stratégies peuvent être utilisées pour explorer différentes régions de la PES et augmenter les chances de trouver le minimum global, telles que :
 
