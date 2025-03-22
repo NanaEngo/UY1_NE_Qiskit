@@ -93,9 +93,9 @@ Dans le chapitre précédent, nous avons jeté les bases théoriques de la chimi
 Ce chapitre constitue un \textit{premier pas essentiel vers la modélisation moléculaire computationnelle}. Nous explorons comment, concrètement, on représente les molécules dans un ordinateur, et quelles sont les stratégies pour calculer leurs propriétés avec une précision raisonnable.
 
 \begin{enumerate}
-  \item \textbf{Représentation des molécules.} Nous examinons les différents systèmes de coordonnées utilisés pour décrire la géométrie moléculaire, en particulier les \textbf{coordonnées cartésiennes (XYZ)} et les \textbf{coordonnées internes (Matrice Z)}. Nous explorons également le format \textbf{SMILES}, une notation textuelle puissante pour représenter la connectivité moléculaire.
-  
-  \item \textbf{Méthodes d'optimisation géométrique.} Nous détaillons le principe de l'optimisation géométrique, qui vise à trouver les structures moléculaires d'énergie minimale en explorant la \textbf{Surface d'Énergie Potentielle (PES)}. Nous présentons l'algorithme général d'optimisation, les ingrédients nécessaires (énergie, gradient, Hessien), et les critères de convergence.
+ \item \textbf{Représentation des molécules.} Nous examinons les différents systèmes de coordonnées utilisés pour décrire la géométrie moléculaire, en particulier les \textbf{coordonnées cartésiennes (XYZ)} et les \textbf{coordonnées internes (Matrice Z)}. Nous explorons également le format \textbf{SMILES}, une notation textuelle puissante pour représenter la connectivité moléculaire.
+ 
+ \item \textbf{Méthodes d'optimisation géométrique.} Nous détaillons le principe de l'optimisation géométrique, qui vise à trouver les structures moléculaires d'énergie minimale en explorant la \textbf{Surface d'Énergie Potentielle (PES)}. Nous présentons l'algorithme général d'optimisation, les ingrédients nécessaires (énergie, gradient, Hessien), et les critères de convergence.
 \end{enumerate}
 
 \noindent En maîtrisant ces aspects fondamentaux, vous disposez des outils essentiels pour explorer le vaste champ de la modélisation moléculaire et pour aborder, dans les chapitres suivants, des méthodes de calcul et d'analyse plus avancées.
@@ -165,11 +165,11 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
  \item \textbf{Atomes.} Les atomes sont représentés par leur symbole chimique (ex : C, O, N, H, etc.). L'hydrogène est souvent implicite (sauf indication contraire).
  \item \textbf{Liaisons simples.} Généralement implicites entre les atomes adjacents dans la chaîne.
  \item \textbf{Liaisons multiples.}
-  \begin{itemize}
-   \item Double liaison : "=" (ex : C=O)
-   \item Triple liaison : "\#" (ex : C\#N)
-   \item Liaison aromatique : ":" (ex : C1CCCCC1 pour le benzène)
-  \end{itemize}
+ \begin{itemize}
+  \item Double liaison : "=" (ex : C=O)
+  \item Triple liaison : "\#" (ex : C\#N)
+  \item Liaison aromatique : ":" (ex : C1CCCCC1 pour le benzène)
+ \end{itemize}
  \item \textbf{Branches.} Parenthèses "()" pour indiquer les ramifications (groupes substituants).
  \item \textbf{Cycles.} Chiffres pour indiquer la fermeture de cycles. Le même chiffre est utilisé pour les deux atomes qui forment la liaison cyclique.
  \item \textbf{Spécifications additionnelles.} Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
@@ -296,7 +296,7 @@ La \autoref{fig:pes3d} illustre de manière visuelle ce concept de minimisation 
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{PES_TS.png} 
+\includegraphics[width=0.35\textwidth]{PES_TS.png} 
 \caption{\textbf{Surface d'Énergie Potentielle 3D et optimisation géométrique.} On peut visualiser une Surface d'Énergie Potentielle (PES) à deux dimensions comme un paysage 3D. Les zones bleues foncées représentent les régions de basse énergie (vallées), correspondant aux \textbf{minima} de la PES et aux structures moléculaires stables. Les zones plus claires représentent des régions de plus haute énergie. Le chemin jaune tracé sur la surface illustre un \textbf{chemin réactionnel} typique, reliant deux minima en passant par un \textbf{état de transition (TS)}, situé au point col de la PES. L'optimisation géométrique consiste à partir d'une géométrie initiale et à se déplacer itérativement sur la PES, \textit{en descendant la pente} du gradient, jusqu'à atteindre un minimum local d'énergie.}
 \label{fig:pes3d}
 \end{figure}
@@ -319,16 +319,32 @@ En pratique, la réalisation d'une optimisation géométrique nécessite de déf
  \item \textbf{Calcul de l'énergie $E(\mathbf{x})$ et du gradient $\mathbf{g}(\mathbf{x}) = \nabla E(\mathbf{x})$.} Pour chaque géométrie moléculaire testée lors de l'optimisation, il est nécessaire de calculer l'énergie électronique $E(\mathbf{x})$ et son gradient $\mathbf{g}(\mathbf{x})$. Ces calculs sont réalisés à l'aide d'une méthode de chimie quantique (Hartree-Fock, DFT, méthodes post-Hartree-Fock, méthodes semi-empiriques ou Tight-Binding). Le gradient $\mathbf{g}(\mathbf{x})$ représente la force exercée sur chaque atome et indique la direction de la plus forte variation de l'énergie.
 
  \item \textbf{Hessien (optionnel, mais souvent utilisé pour les optimisations avancées).} La matrice Hessienne, $\mathbf{H}(\mathbf{x})$, est la matrice des dérivées secondes de l'énergie par rapport aux coordonnées nucléaires. Elle décrit la courbure de la PES au point $\mathbf{x}$. Le Hessien est utilisé dans les algorithmes d'optimisation plus avancés (comme la méthode de Newton-Raphson) pour accélérer la convergence et pour caractériser la nature des points stationnaires (minima, états de transition).
+ 
+  \textbf{Importance du Hessien pour la caractérisation des points stationnaires.} Afin de vérifier si un point stationnaire, c'est-à-dire un point sur la surface d'énergie potentielle où le gradient s'annule, correspond à un minimum local (structure stable) ou à un état de transition (point col), il est nécessaire de calculer les dérivées secondes de l'énergie par rapport aux déplacements nucléaires. Cette matrice de toutes les dérivées secondes possibles est appelée \textbf{matrice Hessienne}.
+
+  Une fois calculée, la matrice Hessienne peut être diagonalisée pour obtenir les \textbf{constantes de force harmoniques}, les \textbf{fréquences vibrationnelles} et les \textbf{modes normaux de vibration} de la molécule au voisinage du point stationnaire. L'analyse des valeurs propres (fréquences vibrationnelles) du Hessien permet de déterminer la nature du point stationnaire :
+  \begin{itemize}
+    \item \textbf{Minimum local.} Toutes les valeurs propres du Hessien sont positives (fréquences vibrationnelles réelles).
+    \item \textbf{État de transition.} Une (et une seule) valeur propre du Hessien est négative (fréquence vibrationnelle imaginaire), correspondant au mouvement le long de la coordonnée de réaction.
+    \item \textbf{Maximum d'ordre supérieur.} Plus d'une valeur propre négative (rare en chimie moléculaire, généralement instable).
+  \end{itemize}
+
+  Les dérivées secondes de l'énergie (et donc le Hessien) peuvent être calculées de deux manières :
+  \begin{itemize}
+    \item \textbf{Numériquement} : Par différences finies du gradient. Cette approche présente les mêmes avantages et inconvénients que le calcul numérique du gradient (simplicité d'implémentation, mais coût et précision limités).
+    \item \textbf{Analytiquement} : En dérivant analytiquement l'expression du gradient. Calcul plus complexe à mettre en œuvre, mais plus précis et efficace en termes de temps de calcul.
+  \end{itemize}
+
 
  \item \textbf{Algorithme d'optimisation.} Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie. Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
 
  \item \textbf{Critères de convergence.} Conditions définissant quand l'optimisation est considérée comme terminée. Les critères de convergence typiques portent sur :
-  \begin{itemize}
-   \item Le gradient maximal (force maximale sur un atome) qui doit être inférieur à un seuil.
-   \item Le déplacement maximal des atomes entre deux itérations qui doit être inférieur à un seuil.
-   \item La variation de l'énergie entre deux itérations qui doit être inférieure à un seuil.
-   \item La convergence de l'énergie elle-même, cad l'énergie doit se stabiliser et ne plus varier significativement.
-  \end{itemize}
+ \begin{itemize}
+  \item Le gradient maximal (force maximale sur un atome) qui doit être inférieur à un seuil.
+  \item Le déplacement maximal des atomes entre deux itérations qui doit être inférieur à un seuil.
+  \item La variation de l'énergie entre deux itérations qui doit être inférieure à un seuil.
+  \item La convergence de l'énergie elle-même, cad l'énergie doit se stabiliser et ne plus varier significativement.
+ \end{itemize}
 \end{enumerate}
 
 \subsection{Fonctionnement d'une optimisation géométrique}
@@ -337,7 +353,7 @@ La \autoref{fig:geooptworkflow} illustre les étapes typiques d'une optimisation
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.7\textwidth]{Geo_opt.png} 
+\includegraphics[width=0.6\textwidth]{Geo_opt.png} 
 \caption{\textbf{Workflow d'une optimisation géométrique moléculaire.} Ce diagramme illustre le processus itératif typique d'une optimisation géométrique. L'optimisation débute avec une géométrie moléculaire initiale et une estimation du Hessien. À chaque itération, un calcul SCF (Self-Consistent Field) est réalisé pour obtenir l'énergie et le gradient. Un test de convergence est effectué sur le gradient et le déplacement des atomes. Si la convergence n'est pas atteinte, le Hessien et la géométrie sont mis à jour, et le processus est répété. Une fois la convergence atteinte, la géométrie optimisée est sauvegardée.}
 \label{fig:geooptworkflow}
 \end{figure}
@@ -373,13 +389,13 @@ Le terme \textbf{optimisation orbitale}" est parfois utilisé de manière interc
 
 L'optimisation orbitale dans les méthodes de structure électronique offre les avantages suivants :
 \begin{enumerate}
-  \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles en ce qui concerne les rotations orbitales. Cela signifie qu'il n'y a pas besoin de considérer la réponse orbitale lors du calcul des gradients nucléaires, ce qui simplifie le calcul des forces.
+ \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles en ce qui concerne les rotations orbitales. Cela signifie qu'il n'y a pas besoin de considérer la réponse orbitale lors du calcul des gradients nucléaires, ce qui simplifie le calcul des forces.
 
-  \item \textbf{Calcul simplifié des propriétés.} Les propriétés moléculaires peuvent être calculées plus facilement, car il n'y a aucune contribution de réponse orbitale aux matrices de densité.
+ \item \textbf{Calcul simplifié des propriétés.} Les propriétés moléculaires peuvent être calculées plus facilement, car il n'y a aucune contribution de réponse orbitale aux matrices de densité.
 
-  \item \textbf{Suppression des pôles parasites.} Les pôles parasites qui peuvent apparaître dans les fonctions de réponse pour des méthodes approximées comme la théorie des clusters couplés (CC) peuvent être supprimés grâce à l'optimisation orbitale.
+ \item \textbf{Suppression des pôles parasites.} Les pôles parasites qui peuvent apparaître dans les fonctions de réponse pour des méthodes approximées comme la théorie des clusters couplés (CC) peuvent être supprimés grâce à l'optimisation orbitale.
 
-  \item \textbf{Meilleure description des ruptures de symétrie.} L'optimisation orbitale peut améliorer la description des problèmes de rupture de symétrie qui peuvent se produire dans certaines méthodes de structure électronique.
+ \item \textbf{Meilleure description des ruptures de symétrie.} L'optimisation orbitale peut améliorer la description des problèmes de rupture de symétrie qui peuvent se produire dans certaines méthodes de structure électronique.
 \end{enumerate}
 
 \subsection{Conclusion sur l'optimisation géométrique}
@@ -394,9 +410,9 @@ Nous avons également introduit en détail la notion d'\textbf{optimisation géo
 
 En conclusion, ce chapitre vous a fourni les outils conceptuels et pratiques pour :
 \begin{itemize}
-  \item \textbf{Représenter une molécule} de manière appropriée pour les calculs de chimie quantique, en choisissant le système de coordonnées et le format de fichier adaptés.
-  
-  \item \textbf{Comprendre et mettre en œuvre une optimisation géométrique} pour trouver les structures moléculaires d'énergie minimale, en interprétant les résultats en termes de Surface d'Énergie Potentielle.
+ \item \textbf{Représenter une molécule} de manière appropriée pour les calculs de chimie quantique, en choisissant le système de coordonnées et le format de fichier adaptés.
+ 
+ \item \textbf{Comprendre et mettre en œuvre une optimisation géométrique} pour trouver les structures moléculaires d'énergie minimale, en interprétant les résultats en termes de Surface d'Énergie Potentielle.
 \end{itemize}
 
 Ces compétences sont fondamentales pour la suite de votre apprentissage en chimie quantique computationnelle. Dans les chapitres suivants, nous nous appuierons sur ces bases pour explorer des méthodes de calcul plus avancées et pour étudier les propriétés moléculaires avec une précision accrue.
