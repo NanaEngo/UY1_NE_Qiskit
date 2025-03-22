@@ -374,15 +374,20 @@ Il est important de souligner que les algorithmes d'optimisation géométrique c
 
 Le terme \textbf{optimisation orbitale}" est parfois utilisé de manière interchangeable avec l'optimisation géométrique, car dans les méthodes de structure électronique comme Hartree-Fock et DFT, l'énergie moléculaire dépend à la fois des positions nucléaires (géométrie) et des orbitales électroniques. L'optimisation géométrique implique donc une optimisation conjointe de la géométrie nucléaire et, de manière implicite, des orbitales électroniques, qui s'adaptent à chaque nouvelle géométrie nucléaire via le calcul SCF.
 
-L'optimisation orbitale, dans ce contexte, met l'accent sur le fait que les orbitales électroniques sont optimisées de manière variationnelle à chaque étape de l'optimisation géométrique. Cette approche présente plusieurs avantages :
+L'optimisation orbitale dans les méthodes de structure électronique offre les avantages suivants :
+\begin{enumerate}
+    \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles en ce qui concerne les rotations orbitales. Cela signifie qu'il n'y a pas besoin de considérer la réponse orbitale lors du calcul des gradients nucléaires, ce qui simplifie le calcul des forces.
 
-\begin{itemize}
-  \item \textbf{Énergies variationnelles.} Les énergies obtenues sont variationnelles par rapport aux rotations orbitales. Cela signifie que l'énergie calculée est toujours une borne supérieure à l'énergie exacte, et que l'optimisation tend à minimiser cette énergie. L'aspect variationnel simplifie le calcul des gradients nucléaires, car il n'est pas nécessaire de tenir compte des contributions de la "réponse orbitale" (la variation des orbitales en fonction des déplacements nucléaires) lors du calcul du gradient.
-  
-  \item \textbf{Simplification du calcul des propriétés.} De même, le calcul de nombreuses propriétés moléculaires (moments dipolaires, polarisabilités, etc.) est simplifié car il n'y a pas de contributions de réponse orbitale aux matrices de densité.
-  
-  \item \textbf{Suppression des pôles parasites dans les fonctions de réponse.} Pour certaines méthodes de corrél
+    \item \textbf{Calcul simplifié des propriétés.} Les propriétés moléculaires peuvent être calculées plus facilement, car il n'y a aucune contribution de réponse orbitale aux matrices de densité.
 
+    \item \textbf{Suppression des pôles parasites.} Les pôles parasites qui peuvent apparaître dans les fonctions de réponse pour des méthodes approximées comme la théorie des clusters couplés (CC) peuvent être supprimés grâce à l'optimisation orbitale.
+
+    \item \textbf{Meilleure description des ruptures de symétrie.} L'optimisation orbitale peut améliorer la description des problèmes de rupture de symétrie qui peuvent se produire dans certaines méthodes de structure électronique.
+\end{enumerate}
+
+\subsection{Conclusion sur l'optimisation géométrique}
+
+L'optimisation géométrique est une étape fondamentale et incontournable dans la modélisation moléculaire. Elle permet de déterminer les structures moléculaires stables, correspondant aux minima de la surface d'énergie potentielle (PES). Le choix de l'algorithme d'optimisation, des critères de convergence, et du niveau de théorie quantique sont des aspects importants à considérer pour obtenir des résultats précis et fiables. Comprendre le principe de l'optimisation géométrique et les algorithmes associés est essentiel pour tout chercheur souhaitant utiliser la chimie quantique computationnelle pour étudier les propriétés et la réactivité des molécules.
 
 \section{Conclusion du Chapitre 2}
 \begin{itemize}
