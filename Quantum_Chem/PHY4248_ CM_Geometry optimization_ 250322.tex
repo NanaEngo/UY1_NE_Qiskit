@@ -243,26 +243,28 @@ A_HOH = 104.5
 \end{verbatim}
 
 \begin{itemize}
-\item *   L'oxygène (O) est le premier atome, sa position est prise comme référence.
-\item *   Le premier hydrogène (H) est lié à l'oxygène (atome 1) avec une longueur de liaison R\_OH.
-\item *   Le second hydrogène (H) est également lié à l'oxygène (atome 1) avec la même longueur de liaison R\_OH, et forme un angle de valence A\_HOH avec l'oxygène (atome 1) et le premier hydrogène (atome 2).
+\item L'oxygène (O) est le premier atome, sa position est prise comme référence.
+\item Le premier hydrogène (H) est lié à l'oxygène (atome 1) avec une longueur de liaison R\_OH.
+\item Le second hydrogène (H) est également lié à l'oxygène (atome 1) avec la même longueur de liaison R\_OH, et forme un angle de valence A\_HOH avec l'oxygène (atome 1) et le premier hydrogène (atome 2).
 \item Les valeurs des variables R\_OH et A\_HOH (longueur OH et angle HOH) sont définies à la fin de la matrice Z.
 \end{itemize}
 \end{example}
 
-\textbf{Pertinence chimique et avantages des coordonnées internes :}
+\subsubsection{Pertinence chimique et avantages des coordonnées internes}
 
 \begin{itemize}
-    \item \textbf{Description chimiquement intuitive :} Les coordonnées internes (et la matrice Z) décrivent la structure moléculaire en termes de paramètres directement liés aux concepts chimiques : longueurs de liaison, angles, géométrie locale, etc.  C'est une représentation beaucoup plus intuitive pour un chimiste que les coordonnées cartésiennes brutes.
-    \item \textbf{Adaptées à la description des vibrations et rotations moléculaires :} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
-    \item \textbf{Efficacité pour l'optimisation géométrique :} Comme mentionné précédemment, l'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
+    \item \textbf{Description chimiquement intuitive.} Les coordonnées internes (et la matrice Z) décrivent la structure moléculaire en termes de paramètres directement liés aux concepts chimiques : longueurs de liaison, angles, géométrie locale, etc. C'est une représentation beaucoup plus intuitive pour un chimiste que les coordonnées cartésiennes brutes.
+    
+    \item \textbf{Adaptées à la description des vibrations et rotations moléculaires.} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
+    
+    \item \textbf{Efficacité pour l'optimisation géométrique.} Comme mentionné précédemment, l'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
 \end{itemize}
 
-\textbf{Défis liés à l'utilisation des coordonnées internes (Matrice Z) :}
+\subsubsection{Défis liés à l'utilisation des coordonnées internes (Matrice Z)}
 
 \begin{itemize}
-    \item \textbf{Choix non unique et complexité pour les molécules complexes :} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique.  Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
-    \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient :}  Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
+    \item \textbf{Choix non unique et complexité pour les molécules complexes.} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique.  Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
+    \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient.}  Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
 \end{itemize}
 
 \subsection{Conclusion sur la représentation moléculaire}
