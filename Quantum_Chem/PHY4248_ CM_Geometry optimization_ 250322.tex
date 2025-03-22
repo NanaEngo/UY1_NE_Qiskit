@@ -319,39 +319,43 @@ En pratique, la réalisation d'une optimisation géométrique nécessite de déf
 
     \item \textbf{Choix du système de coordonnées.}  Comme discuté dans la section précédente, le choix entre coordonnées cartésiennes et coordonnées internes influence l'efficacité de l'optimisation. Les coordonnées internes sont souvent privilégiées pour leur pertinence chimique et leur meilleur découplage des mouvements.
 
-    \item \textbf{Calcul de l'énergie $E(\mathbf{x})$ et du gradient $\mathbf{g}(\mathbf{x}) = \nabla E(\mathbf{x})$.}  Pour chaque géométrie moléculaire testée lors de l'optimisation, il est nécessaire de calculer l'énergie électronique $E(\mathbf{x})$ et son gradient $\mathbf{g}(\mathbf{x})$.  Ces calculs sont réalisés à l'aide d'une méthode de chimie quantique (Hartree-Fock, DFT, méthodes post-Hartree-Fock, méthodes semi-empiriques ou Tight-Binding). Le gradient $\mathbf{g}(\mathbf{x})$ représente la force exercée sur chaque atome et indique la direction de la plus forte variation de l'énergie.
+    \item \textbf{Calcul de l'énergie $E(\mathbf{x})$ et du gradient $\mathbf{g}(\mathbf{x}) = \nabla E(\mathbf{x})$.}  Pour chaque géométrie moléculaire testée lors de l'optimisation, il est nécessaire de calculer l'énergie électronique $E(\mathbf{x})$ et son gradient $\mathbf{g}(\mathbf{x})$. Ces calculs sont réalisés à l'aide d'une méthode de chimie quantique (Hartree-Fock, DFT, méthodes post-Hartree-Fock, méthodes semi-empiriques ou Tight-Binding). Le gradient $\mathbf{g}(\mathbf{x})$ représente la force exercée sur chaque atome et indique la direction de la plus forte variation de l'énergie.
 
-    \item \textbf{Hessien (optionnel, mais souvent utilisé pour les optimisations avancées).} La matrice Hessienne, $\mathbf{H}(\mathbf{x})$, est la matrice des dérivées secondes de l'énergie par rapport aux coordonnées nucléaires. Elle décrit la courbure de la PES au point $\mathbf{x}$.  Le Hessien est utilisé dans les algorithmes d'optimisation plus avancés (comme la méthode de Newton-Raphson) pour accélérer la convergence et pour caractériser la nature des points stationnaires (minima, états de transition).
+    \item \textbf{Hessien (optionnel, mais souvent utilisé pour les optimisations avancées).} La matrice Hessienne, $\mathbf{H}(\mathbf{x})$, est la matrice des dérivées secondes de l'énergie par rapport aux coordonnées nucléaires. Elle décrit la courbure de la PES au point $\mathbf{x}$. Le Hessien est utilisé dans les algorithmes d'optimisation plus avancés (comme la méthode de Newton-Raphson) pour accélérer la convergence et pour caractériser la nature des points stationnaires (minima, états de transition).
 
-    \item \textbf{Algorithme d'optimisation.}  Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie.  Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
+    \item \textbf{Algorithme d'optimisation.} Procédure algorithmique pour mettre à jour itérativement les coordonnées atomiques et se déplacer sur la PES vers des régions de plus basse énergie. Les algorithmes courants incluent la descente de gradient, la méthode de Newton-Raphson et ses variantes (BFGS, etc.).
 
-    \item \textbf{Critères de convergence.}  Conditions définissant quand l'optimisation est considérée comme terminée.  Les critères de convergence typiques portent sur :
+    \item \textbf{Critères de convergence.} Conditions définissant quand l'optimisation est considérée comme terminée. Les critères de convergence typiques portent sur :
         \begin{itemize}
-            \item Le gradient maximal (force maximale sur un atome) : doit être inférieur à un seuil.
-            \item Le déplacement maximal des atomes entre deux itérations : doit être inférieur à un seuil.
-            \item La variation de l'énergie entre deux itérations : doit être inférieure à un seuil.
-            \item La convergence de l'énergie elle-même :  l'énergie doit se stabiliser et ne plus varier significativement.
+            \item Le gradient maximal (force maximale sur un atome)  qui doit être inférieur à un seuil.
+            \item Le déplacement maximal des atomes entre deux itérations qui doit être inférieur à un seuil.
+            \item La variation de l'énergie entre deux itérations qui doit être inférieure à un seuil.
+            \item La convergence de l'énergie elle-même, cad l'énergie doit se stabiliser et ne plus varier significativement.
         \end{itemize}
 \end{enumerate}
 
 \subsection{Fonctionnement d'une optimisation géométrique}
 
-La Figure \ref{fig:geooptworkflow} illustre les étapes typiques d'une optimisation de la géométrie moléculaire.
+La \autoref{fig:geooptworkflow} illustre les étapes typiques d'une optimisation de la géométrie moléculaire.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.7\textwidth]{Geo_opt.png} % Assurez-vous que le fichier Geo_opt.png est dans le même répertoire
-\caption{\textbf{Workflow d'une optimisation géométrique moléculaire.} Ce diagramme illustre le processus itératif typique d'une optimisation géométrique.  L'optimisation débute avec une géométrie moléculaire initiale et une estimation du Hessien.  À chaque itération, un calcul SCF (Self-Consistent Field) est réalisé pour obtenir l'énergie et le gradient.  Un test de convergence est effectué sur le gradient et le déplacement des atomes. Si la convergence n'est pas atteinte, le Hessien et la géométrie sont mis à jour, et le processus est répété. Une fois la convergence atteinte, la géométrie optimisée est sauvegardée.}
+\includegraphics[width=0.7\textwidth]{Geo_opt.png} 
+\caption{\textbf{Workflow d'une optimisation géométrique moléculaire.} Ce diagramme illustre le processus itératif typique d'une optimisation géométrique. L'optimisation débute avec une géométrie moléculaire initiale et une estimation du Hessien. À chaque itération, un calcul SCF (Self-Consistent Field) est réalisé pour obtenir l'énergie et le gradient. Un test de convergence est effectué sur le gradient et le déplacement des atomes. Si la convergence n'est pas atteinte, le Hessien et la géométrie sont mis à jour, et le processus est répété. Une fois la convergence atteinte, la géométrie optimisée est sauvegardée.}
 \label{fig:geooptworkflow}
 \end{figure}
 
 Le processus d'optimisation se déroule de manière itérative :
 
 \begin{enumerate}
-    \item \textbf{Initialisation (étape 1 de la Figure \ref{fig:geooptworkflow}).} L'optimisation commence avec une \textbf{géométrie moléculaire initiale} fournie par l'utilisateur et une estimation du \textbf{Hessien} initial (souvent une matrice Hessienne approximée ou un Hessien calculé pour une méthode simple).
-    \item \textbf{Calcul SCF et Gradient (étape 2 de la Figure \ref{fig:geooptworkflow}).} À chaque itération, un calcul de structure électronique (typiquement un calcul SCF dans le cas de la méthode Hartree-Fock ou DFT) est réalisé pour la géométrie moléculaire courante. Ce calcul fournit l'\textbf{énergie électronique} $E$ et le \textbf{gradient de l'énergie} $\nabla E$ (les forces sur les atomes) pour cette géométrie.
-    \item \textbf{Test de Convergence (étape 3 de la Figure \ref{fig:geooptworkflow}).} Les critères de convergence (sur le gradient, le déplacement atomique, la variation d'énergie) sont évalués.  Si tous les critères sont satisfaits, l'optimisation est considérée comme \textbf{convergée}, et la géométrie courante est considérée comme la \textbf{géométrie optimisée} (correspondant à un minimum local ou un état de transition).
-    \item \textbf{Mise à jour du Hessien (étape 4 de la Figure \ref{fig:geooptworkflow}) et de la Géométrie (étape 5 de la Figure \ref{fig:geooptworkflow}).} Si la convergence n'est pas atteinte, le \textbf{Hessien} est mis à jour (par exemple, en utilisant des méthodes de mise à jour du Hessien comme BFGS) pour mieux approximer la courbure de la PES au voisinage du minimum.  Ensuite, un \textbf{algorithme d'optimisation} (par exemple, descente de gradient, BFGS) utilise le gradient et (éventuellement) le Hessien pour prédire une \textbf{nouvelle géométrie moléculaire} avec une énergie plus basse.  Les coordonnées atomiques sont mises à jour en conséquence.
+    \item \textbf{Initialisation (étape 1 de la \autoref{fig:geooptworkflow}).} L'optimisation commence avec une \textbf{géométrie moléculaire initiale} fournie par l'utilisateur et une estimation du \textbf{Hessien} initial (souvent une matrice Hessienne approximée ou un Hessien calculé pour une méthode simple).
+    
+    \item \textbf{Calcul SCF et Gradient (étape 2 de la \autoref{fig:geooptworkflow}).} À chaque itération, un calcul de structure électronique (typiquement un calcul SCF dans le cas de la méthode Hartree-Fock ou DFT) est réalisé pour la géométrie moléculaire courante. Ce calcul fournit l'\textbf{énergie électronique} $E$ et le \textbf{gradient de l'énergie} $\nabla E$ (les forces sur les atomes) pour cette géométrie.
+    
+    \item \textbf{Test de Convergence (étape 3 de la \autoref{fig:geooptworkflow}).} Les critères de convergence (sur le gradient, le déplacement atomique, la variation d'énergie) sont évalués.  Si tous les critères sont satisfaits, l'optimisation est considérée comme \textbf{convergée}, et la géométrie courante est considérée comme la \textbf{géométrie optimisée} (correspondant à un minimum local ou un état de transition).
+    
+    \item \textbf{Mise à jour du Hessien (étape 4 de la \autoref{fig:geooptworkflow}) et de la Géométrie (étape 5 de la \autoref{fig:geooptworkflow}).} Si la convergence n'est pas atteinte, le \textbf{Hessien} est mis à jour (par exemple, en utilisant des méthodes de mise à jour du Hessien comme BFGS) pour mieux approximer la courbure de la PES au voisinage du minimum.  Ensuite, un \textbf{algorithme d'optimisation} (par exemple, descente de gradient, BFGS) utilise le gradient et (éventuellement) le Hessien pour prédire une \textbf{nouvelle géométrie moléculaire} avec une énergie plus basse.  Les coordonnées atomiques sont mises à jour en conséquence.
+    
     \item \textbf{Itération suivante.} Le processus retourne à l'étape 2 avec la nouvelle géométrie moléculaire, et le cycle itératif se poursuit jusqu'à convergence.
 
 \end{enumerate}
