@@ -117,7 +117,7 @@ Examinons plus en détail les systèmes de coordonnées et formats de fichiers l
 
 La manière la plus simple et fondamentale de définir la géométrie moléculaire est d'utiliser les \textbf{coordonnées cartésiennes}. Comme nous l'avons vu précédemment, dans cette représentation, la position de chaque atome est spécifiée par ses trois coordonnées ($x$, $y$, $z$) dans un système de référence global. Un fichier \textbf{XYZ} est un format de fichier texte standard et largement utilisé pour représenter les coordonnées cartésiennes tridimensionnelles des atomes d'une molécule.
 
-\paragraph{Structure d'un fichier XYZ}
+\subsubsection{Structure d'un fichier XYZ}
 
 Dans un fichier XYZ, chaque ligne correspond à un atome et contient les informations suivantes, séparées par des espaces :
 
@@ -146,7 +146,7 @@ H -0.757000   0.586000   0.000000
 \end{example}
 
 
-\paragraph{Avantages et inconvénients des coordonnées cartésiennes (XYZ)}
+\subsubsection{Avantages et inconvénients des coordonnées cartésiennes (XYZ)}
 
 Les avantages et inconvénients des coordonnées cartésiennes (et donc du format XYZ) sont ceux que nous avons déjà décrits dans la section précédente : simplicité, universalité, mais couplage des coordonnées et manque d'intuitivité pour les mouvements internes.
 
@@ -154,7 +154,7 @@ Les avantages et inconvénients des coordonnées cartésiennes (et donc du forma
 
 Le format \textbf{SMILES} (\textit{Simplified Molecular Input Line Entry System}) est une notation linéaire textuelle extrêmement puissante et compacte, utilisée pour décrire la structure chimique des molécules. Contrairement au format XYZ qui donne les coordonnées 3D, SMILES encode la connectivité et la nature des liaisons chimiques en une chaîne de caractères lisible par machine et par l'homme (avec un peu d'apprentissage !).
 
-\paragraph{Principes de base de la notation SMILES}
+\subsubsection{Principes de base de la notation SMILES}
 
 Une chaîne SMILES représente une molécule en suivant ces principes :
 \begin{itemize}
@@ -171,17 +171,17 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
     \item \textbf{Spécifications additionnelles.} Charges, isotopes, configurations stéréochimiques peuvent être ajoutées avec des notations spécifiques.
 \end{itemize}
 
-\paragraph{Exemples de notations SMILES}
+\subsubsection{Exemples de notations SMILES}
 
 \begin{itemize}
-    \item Eau (H$_2$O) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
-    \item Dioxyde de carbone (CO$_2$) : \texttt{O=C=O}
-    \item Éthanol (CH$_3$CH$_2$OH) : \texttt{CCO} ou \texttt{CC(O)}
-    \item Benzène (C$_6$H$_6$) : \texttt{c1ccccc1}
+    \item Eau (\ch{H2O}) : \texttt{O} (l'hydrogène est implicite) ou \texttt{[H]O[H]} (hydrogène explicite)
+    \item Dioxyde de carbone (\ch{CO2}) : \texttt{O=C=O}
+    \item Éthanol (\ch{CH3CH2OH}) : \texttt{CCO} ou \texttt{CC(O)}
+    \item Benzène (\ch{C6H6}) : \texttt{c1ccccc1}
     \item Acide acétylsalicylique (Aspirine) : \texttt{CC(=O)Oc1ccccc1C(=O)O} (plus complexe !)
 \end{itemize}
 
-\paragraph{Avantages et inconvénients du format SMILES}
+\subsubsection{Avantages et inconvénients du format SMILES}
 
 \textbf{Avantages}
 
@@ -199,7 +199,7 @@ Une chaîne SMILES représente une molécule en suivant ces principes :
     \item \textbf{Limitations pour certains types de structures complexes.} Bien que très puissant, SMILES peut devenir complexe et moins lisible pour des structures moléculaires très grandes ou avec des stéréochimies complexes.
 \end{itemize}
 
-\subsection{Coordonnées Internes - Matrice Z}
+\subsection{Coordonnées internes - Matrice Z}
 
 En complément des coordonnées cartésiennes, les \textbf{coordonnées internes} offrent une description alternative et souvent plus avantageuse de la géométrie moléculaire. Comme nous l'avons brièvement introduit, les coordonnées internes décrivent la structure moléculaire en termes de paramètres géométriques intrinsèques, directement liés à la notion de structure chimique :
 
@@ -211,7 +211,7 @@ En complément des coordonnées cartésiennes, les \textbf{coordonnées internes
 
 Pour une molécule non-linéaire de $N$ atomes, $3N-6$ coordonnées internes sont nécessaires pour définir sa géométrie (pour une molécule linéaire, $3N-5$).  L'ensemble de coordonnées internes le plus couramment utilisé est implémenté dans la \textbf{matrice Z} (ou Z-matrix).
 
-\subsubsection{Définition des Coordonnées Internes}
+\subsubsection{Définition des coordonnées internes}
 
 La matrice Z (Z-Matrix) est une manière spécifique d'encoder les coordonnées internes. Pour chaque atome de la molécule (à partir du troisième), la matrice Z spécifie :
 
@@ -257,13 +257,14 @@ A_HOH = 104.5
     
     \item \textbf{Adaptées à la description des vibrations et rotations moléculaires.} Les coordonnées internes sont naturellement adaptées à la description des mouvements internes des molécules, tels que les vibrations et les rotations. Les modes normaux de vibration sont souvent exprimés et analysés plus facilement en coordonnées internes.
     
-    \item \textbf{Efficacité pour l'optimisation géométrique.} Comme mentionné précédemment, l'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
+    \item \textbf{Efficacité pour l'optimisation géométrique.} L'utilisation de coordonnées internes peut rendre l'optimisation géométrique plus efficace, car elles permettent de découpler partiellement les mouvements atomiques et de cibler plus directement les paramètres structuraux pertinents.
 \end{itemize}
 
 \subsubsection{Défis liés à l'utilisation des coordonnées internes (Matrice Z)}
 
 \begin{itemize}
     \item \textbf{Choix non unique et complexité pour les molécules complexes.} La construction d'une matrice Z pour une molécule complexe peut être délicate et le choix des atomes de référence et de l'ordre de définition n'est pas unique.  Pour les grandes molécules, la matrice Z peut devenir moins intuitive à manipuler directement.
+    
     \item \textbf{Conversion nécessaire pour les calculs d'énergie et de gradient.}  Comme pour les coordonnées internes en général, il est nécessaire de convertir la matrice Z en coordonnées cartésiennes pour effectuer les calculs de l'énergie et du gradient, qui sont généralement formulés en coordonnées cartésiennes.
 \end{itemize}
 
