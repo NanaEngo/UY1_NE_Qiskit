@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+
+% Axes
+\draw[->] (0,0) -- (6,0) node[below] {$R$};
+\draw[->] (0,0) -- (0,5) node[left] {$E$};
+
+% Courbe de l'état fondamental
+\draw[thick, domain=0.7:5.3, smooth, blue, variable=\x]
+    plot ({\x}, {0.6*(\x-3)^2 + 0.5});
+
+% Courbe de l'état excité
+\draw[thick, domain=0.7:5.3, smooth, red, variable=\x]
+    plot ({\x}, {0.4*(\x-3)^2 + 3});
+
+% Asymptotes horizontales
+\draw[dotted] (0,0.5) -- (6,0.5)
+    node[above, blue] at (0,0.5) {État fondamental minimal}; % Asymptote au minimum de l'état fondamental
+\draw[dotted] (0,3.) -- (6,3.)
+    node[above,red] at (0,3) {État excité minimal}; % Asymptote au minimum de l'état excité
+
+% Transition verticale (Delta E_vertical)
+\draw[<->] (3.5,0.5) -- (3.5,3.) node[midway,right] {$\Delta E_\text{adiabatique}$};
+
+% Transition adiabatique (Delta E_adiabatic)
+\draw[<->] (2,.5) -- (2,3.4) node[midway,left] {$\Delta E_\text{verticale}$};
+
+% Étiquettes
+\node[right, red] at (4.8,4.2) {État excité};
+\node[right, blue] at (4.4,1.2) {État fondamental};
+\end{tikzpicture}

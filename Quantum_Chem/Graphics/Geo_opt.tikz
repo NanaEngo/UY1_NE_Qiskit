@@ -1,0 +1,44 @@
+\begin{tikzpicture}[node distance=2cm, auto]
+
+\tikzstyle{process} = [rectangle, draw=blue!70, fill=blue!10,
+                     rounded corners, text centered, minimum height=4em,
+                     text width=10em, drop shadow]
+\tikzstyle{arrow} = [thick, ->, >=stealth]
+\tikzstyle{decision} = [diamond, draw=orange!70, fill=orange!10,
+                        text centered, text width=5em, minimum height=3em, aspect=2, drop shadow]
+\tikzstyle{startstop} = [ellipse, draw=purple!70, fill=purple!10, text centered,
+                     minimum height=2em, text width=10em, drop shadow]
+\tikzstyle{io} = [rectangle, rounded corners, text width=2.5cm, minimum height=1.5cm, yshift=-2cm,
+                    centered, draw=black!10, fill=green!30, drop shadow]
+
+% Nodes
+\node (start) [startstop] {Initial guess \\ Geometry $x_1$, Hessian $H_1$};
+
+\node (scf) [process, below of=start,  text width=14em,minimum height=3em] {SCF opt. $\Rightarrow$ Egradient $\Rightarrow$ $\nabla E$};
+
+\node (converged) [decision, below of=scf, node distance=2.2cm] {Converged? \\ $\nabla E$, $\Delta x$};
+
+\node (updateHessian) [process, below of=converged, node distance=2.2cm, fill=blue!20, xshift=-2.5cm] {Update Hessian \\ $H_i$ $\Rightarrow$ $H_{i+1}$};
+
+\node (updateGeom) [process, below of=updateHessian, fill=blue!20] {Update geom. \\ H, $\nabla E\Rightarrow\Delta x$ \\ $x_{i+1} = x_i + \Delta x$};
+
+\node (done) [io, right of=converged, xshift=1cm] {Done.\\ Save geometry};
+
+% Arrows
+\draw[arrow](start) -- (scf);
+
+\draw[arrow](scf) -- (converged);
+
+\draw[arrow, red]
+    (converged) -- node [anchor=east,above] {NO} node [below, anchor=north] {\Large\frownie{}} +(-2cm,0) -| (updateHessian);
+
+\draw[arrow]
+    (updateHessian) -- (updateGeom);
+
+\draw[arrow]
+    (updateGeom) -- +(-2.2cm,0) |- (scf);
+
+\draw[arrow, green]
+    (converged) -- node [above, anchor=south] {YES} node [below, anchor=north] {\Large\smiley{}} +(2cm,0) -| (done);
+
+\end{tikzpicture}

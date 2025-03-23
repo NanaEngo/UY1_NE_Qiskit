@@ -277,7 +277,6 @@ Bien que le nombre de spin-orbitales considérées, $M$, soit généralement plu
 
 \subsubsection{Combinaison Linéaire d'Orbitales Atomiques (LCAO)}
 
-
 Dans la base des \textbf{orbitales moléculaires (MO)}, chaque spin-orbitale $\phi_p(\mathbf{r})$ est une combinaison linéaire des \textbf{orbitales atomiques (AO)} via la méthode \textbf{LCAO} (Linear Combination of Atomic Orbitals):
 \begin{equation}
 \phi_p(\mathbf{r}) = \sum_\alpha c_{\alpha p} \chi_\alpha(\mathbf{r} - \mathbf{R}_\alpha),
@@ -382,7 +381,7 @@ avec,
         &= \int \phi_a^*(\mathbf{r}_1) \phi_b^*(\mathbf{r}_2) \frac{e^2}{r_{12}} \phi_a(\mathbf{r}_1) \phi_b(\mathbf{r}_2) d\mathbf{r}_1 d\mathbf{r}_2,
 \end{split}
     \end{equation}
-\item $K_b(d)$ le \textbf{terme d’échange} à deux électrons, correction purement quantique,
+\item $K_b(d)$ le \textbf{terme d’échange} à deux électrons, correction purement quantique, issue du principe d'exclusion de Pauli et de l'indiscernabilité des électrons,
     \begin{equation}
     \begin{split}
     K_{ab} & :=\bra{\phi_a(\vb{r}_1)\phi_b(\vb{r}_2)}\frac{e^2}{\vb{r}_{12}}
@@ -410,7 +409,7 @@ où,
 
 \subsection{Procédure auto-cohérente (SCF)}
 
-L'équation de Hartree-Fock est non-linéaire. Pour la résoudre, on utilise une procédure itérative auto-cohérente (Self-Consistent Field, SCF).
+L'équation de Hartree-Fock est non-linéaire. Pour la résoudre, on utilise une procédure itérative auto-cohérente (Self-Consistent Field, SCF). La méthode de Hartree-Fock a un coût de calcul qui est typiquement de l'ordre de $O(N^4)$, où $N$ est la taille du système (nombre d'atomes ou d'orbitales de base). Ce coût peut devenir prohibitif pour les très grands systèmes moléculaires.
 
 \begin{enumerate}
 \item \textbf{Initialisation} des orbitales moléculaires avec une estimation $\vb{C}^{(0)}$. On fournit les coordonnées 3D des atomes du système moléculaire.
@@ -425,55 +424,39 @@ La \autoref{fig:scfworkflow} présente cette procédure sous forme de workflow.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.6\linewidth]{SCF_Workflow.pdf}
-\caption{\textbf{Workflow détaillé de la procédure SCF (Self-Consistent Field).} Le processus débute par une estimation initiale des orbitales moléculaires, suivie de la construction de la matrice de Fock. Cette matrice est ensuite diagonalisée pour obtenir de nouvelles orbitales et énergies. Un critère de convergence est appliqué pour vérifier si les orbitales ont suffisamment convergé. Si la convergence n'est pas atteinte, le processus est répété jusqu'à ce qu'un seuil de tolérance soit satisfait, garantissant ainsi une solution auto-cohérente.
-}
+\includegraphics[width=0.5\linewidth]{SCF_Workflow.pdf}
+\caption{\textbf{Workflow détaillé de la procédure SCF (Self-Consistent Field).} Le processus débute par une estimation initiale des orbitales moléculaires, suivie de la construction de la matrice de Fock. Cette matrice est ensuite diagonalisée pour obtenir de nouvelles orbitales et énergies. Un critère de convergence est appliqué pour vérifier si les orbitales ont suffisamment convergé. Si la convergence n'est pas atteinte, le processus est répété jusqu'à ce qu'un seuil de tolérance soit satisfait, garantissant ainsi une solution auto-cohérente.}
 \label{fig:scfworkflow}
 \end{figure}
 
-On retient que la méthode Hartree-Fock fournit une approximation du champ moyen qui permet de calculer la structure électronique des molécules. Cependant, elle 
-a des limitations importantes en raison de la négligence de la corrélation électronique dynamique, ce qui motive le développement de méthodes plus avancées.
+On retient que la méthode Hartree-Fock fournit une approximation du champ moyen qui permet de calculer la structure électronique des molécules. Cependant, elle a des limitations importantes en raison de la négligence de la corrélation électronique dynamique, ce qui motive le développement de méthodes plus avancées, dites \textbf{post-Hartree-Fock}, qui seront abordées dans un chapitre ultérieur.
 
 \subsection{Rappels sur les notions d'orbitales atomiques}
 
+\begin{figure}
+ \centering
+ \subfloat[Formes de quelques orbitales.]{\includegraphics[width=0.3\linewidth]{orbital-shapes.png}}\hfil
+ \subfloat[Modèles d'orbitales atomique.]{\includegraphics[width=0.15\linewidth]{orbital-pattern.png}}
+ \caption{La forme des orbitales (a) peut être facilement prédite en connaissant le nombre de n{\oe}uds planaires, représentés par des lignes noires. Le noyau est au centre de chaque orbitale. Un schéma géométrique (b) peut permettre de se souvenir du nombre de chaque type d'orbitales et des valeurs possibles des nombres quantiques [\href{https://chem.libretexts.org/Bookshelves/General\_Chemistry/General\_Chemistry\_Supplement\_(Eames)/Quantum\_Chemistry/Atomic\_Orbitals}{chem.libretexts.org}].}\label{fig:orbital}
+\end{figure}
+
 \subsubsection{Orbitales atomiques}
 
-En mécanique quantique, on appelle \emph{orbitale atomique} (voir la \autoref{fig:orbital}) une fonction qui décrit la localisation et la nature ondulatoire
-d'un électron dans un atome. En 
-d'autres termes, cette fonction décrit la distribution de charge d'un électron autour du noyau d'un atome, et peut être utilisée pour calculer la probabilité 
-de localisation de l'électron dans une région spécifique autour du noyau.
+En physique quantique, on appelle \emph{orbitale atomique} (voir la \autoref{fig:orbital}) une fonction qui décrit la localisation et la nature ondulatoire d'un électron dans un atome. En d'autres termes, cette fonction décrit la distribution de charge d'un électron autour du noyau d'un atome, et peut être utilisée pour calculer la probabilité de localisation de l'électron dans une région spécifique autour du noyau.
 
 Chaque orbitale dans un atome est caractérisée par trois nombres quantiques:
 \begin{itemize}
- \item le \textbf{\emph{nombre quantique principal}} $n$: il étiquette les niveaux d'énergie, nous indique la taille de l'orbitale et nous donne aussi 
-l'information sur le nombre de n{\oe}uds sphériques que possède l'orbitale. $n=1,2,3,\cdots$ et les états correspondant sont généralement appelés 
-\emph{couches électroniques} et désignées par $K,L,M,\cdots$;
-\item le \textbf{\emph{nombre quantique orbital}} ou \emph{nombre quantique du moment angulaire} ou encore  \emph{nombre quantique du moment azimutal}  $\ell$: 
-il indique la forme de l'orbitale. Pour une valeur précise du nombre quantique principal, les valeurs prises par $\ell$ sont $0,1,2,\cdots,(n-1)$. Si $\ell=0$, 
-l'orbitale a une symétrie sphérique, et on dit qu'on a une \emph{orbitale $s$}. Si $\ell=1$, l'orbitale a un n{\oe}ud planaire et elle est appelée 
-\emph{orbitale $p$}. Le nombre de n{\oe}uds sphériques dans une orbitale atomique est $n-\ell-1$;
-\item le \textbf{\emph{nombre quantique magnétique}} $m$: il fixe l'orientation du moment angulaire par rapport à l'axe de quantification du moment angulaire 
-(généralement $Oz$). Pour chaque valeur de $\ell$, $m$ est tel que $-\ell\leq m\leq\ell$. Ainsi, pour chaque valeur de $\ell$, il ya $2\ell+1$ 
-valeurs de $m$.
+ \item le \textbf{\emph{nombre quantique principal}} $n$: il étiquette les niveaux d'énergie, nous indique la taille de l'orbitale et nous donne aussi l'information sur le nombre de n{\oe}uds sphériques que possède l'orbitale. $n=1,2,3,\cdots$ et les états correspondant sont généralement appelés \emph{couches électroniques} et désignées par $K,L,M,\cdots$;
+
+\item le \textbf{\emph{nombre quantique orbital}} ou \emph{nombre quantique du moment angulaire} ou encore  \emph{nombre quantique du moment azimutal}  $\ell$: il indique la forme de l'orbitale. Pour une valeur précise du nombre quantique principal, les valeurs prises par $\ell$ sont $0,1,2,\cdots,(n-1)$. Si $\ell=0$, l'orbitale a une symétrie sphérique, et on dit qu'on a une \emph{orbitale $s$}. Si $\ell=1$, l'orbitale a un n{\oe}ud planaire et elle est appelée \emph{orbitale $p$}. Le nombre de n{\oe}uds sphériques dans une orbitale atomique est $n-\ell-1$;
+
+\item le \textbf{\emph{nombre quantique magnétique}} $m$: il fixe l'orientation du moment angulaire par rapport à l'axe de quantification du moment angulaire (généralement $Oz$). Pour chaque valeur de $\ell$, $m$ est tel que $-\ell\leq m\leq\ell$. Ainsi, pour chaque valeur de $\ell$, il ya $2\ell+1$ valeurs de $m$.
 \end{itemize}
 
-\begin{figure}
- \centering
- \subfloat[Formes de quelques orbitales.]{\includegraphics[width=0.4\linewidth]{orbital-shapes.png}}\hfil
- \subfloat[Modèles d'orbitales atomique.]{\includegraphics[width=0.2\linewidth]{orbital-pattern.png}}
- \caption{La forme des orbitales (a) peut être facilement prédite en connaissant le nombre de n{\oe}uds planaires, représentés par des lignes noires. Le noyau 
-est au 
-centre de chaque orbitale.
-Un schéma géométrique (b) peut permettre de se souvenir du nombre de chaque type d'orbitales et des valeurs possibles des nombres quantiques 
-[\href{https://chem.libretexts.org/Bookshelves/General\_Chemistry/General\_Chemistry\_Supplement\_(Eames)/Quantum\_Chemistry/Atomic
-\_Orbitals}{chem.libretexts.org}].}\label{fig:orbital}
-\end{figure}
 
 \subsubsection{Règle de Klechkowski}
 
-La \emph{règle de Klechkowski}, encore appelée \emph{règle de Madelung}, est une méthode empirique permettant de prédire avec une assez bonne précision l'ordre 
-de remplissage des électrons dans les sous-couches des atomes électriquement neutres. Avec la règle de Hund et le principe d'exclusion de Pauli, elle constitue 
-l'un des outils de base permettant de prévoir le remplissage des orbitales atomiques.
+La \emph{règle de Klechkowski}, encore appelée \emph{règle de Madelung}, est une méthode empirique permettant de prédire avec une assez bonne précision l'ordre de remplissage des électrons dans les sous-couches des atomes électriquement neutres. Avec la règle de Hund et le principe d'exclusion de Pauli, elle constitue l'un des outils de base permettant de prévoir le remplissage des orbitales atomiques.
 
 La règle de Hund stipule que:
 \begin{enumerate}
@@ -481,23 +464,20 @@ La règle de Hund stipule que:
  \item tous les électrons des orbitales occupées individuellement ont le même spin (pour maximiser le spin total).
 \end{enumerate}
 
-La règle de Klechkowski indique que le remplissage des sous-couches électroniques des atomes électriquement neutres à l'état fondamental, rangés par numéro 
-atomique croissant, procède comme suit:
+La règle de Klechkowski indique que le remplissage des sous-couches électroniques des atomes électriquement neutres à l'état fondamental, rangés par numéro atomique croissant, procède comme suit:
 \begin{enumerate}
  \item par ordre croissant des valeurs de $n+\ell$ définissant les sous-couches électroniques;
  \item par ordre croissant des valeurs de $n$ lorsque plusieurs sous-couches présentent des valeurs de $n+\ell$ égales.
 \end{enumerate}
 
-Grace au diagramme de Klechkowski (voir la \autoref{fig:Klech} et le \autoref{tab:nombresQuantiques}), on peut retrouver l'ordre de remplissage au moyen d'une 
-construction  simple:
+Grace au diagramme de Klechkowski (voir la \autoref{fig:Klech} et le \autoref{tab:nombresQuantiques}), on peut retrouver l'ordre de remplissage au moyen d'une construction  simple:
 \begin{itemize}
  \item toutes les sous-couches $s$ sont identiques en diagonale;
  \item les sous-couches $p,d,f,\cdots$ suivantes sont ajoutées à la suite sur la même ligne;
  \item la lecture se fait colonne par colonne.
 \end{itemize}
 
-Notons cependant que la règle de Klechkowski ne renseigne que sur l'ordre de remplissage des sous-couches et ne donne aucune indication sur le nombre 
-d'électrons que chaque sous-couche peut contenir.
+Notons cependant que la règle de Klechkowski ne renseigne que sur l'ordre de remplissage des sous-couches et ne donne aucune indication sur le nombre d'électrons que chaque sous-couche peut contenir.
 
 \begin{figure}
 \centering
@@ -545,16 +525,14 @@ $n + \ell$ = 2 & $n$ = 2 & $\ell$ = 0 & $2s$ \\
  & $n$ = 8 & $\ell$ = 0 & $8s$ \\
 \hline
 \end{tabular}
-\caption{Tableau des nombres quantiques et des sous-couches}
+\caption{Tableau des nombres quantiques et des sous-couches.}
 \label{tab:nombresQuantiques}
 \end{table}
 
 
 \subsection{Types de solutions HF et influence du remplissage électronique}
 
-Dans la méthode de HF, la manière dont les électrons occupent les orbitales moléculaires 
-détermine le type de solution adoptée. En fonction de la configuration électronique de la molécule, 
-trois variantes principales sont couramment utilisées (voir la \autoref{fig:hforb}): 
+Dans la méthode de HF, la manière dont les électrons occupent les orbitales moléculaires détermine le type de solution adoptée. En fonction de la configuration électronique de la molécule, trois variantes principales sont couramment utilisées (voir la \autoref{fig:hforb}):
 
 \begin{figure}
 \centering
@@ -603,7 +581,7 @@ Le choix entre RHF, ROHF et UHF dépend du type de molécule étudiée :
     \item \textbf{UHF} est nécessaire pour les systèmes fortement magnétiques, où les électrons occupent des orbitales spatiales distinctes (ex. \textbf{métaux de transition, complexes paramagnétiques}).
 \end{itemize}
 
-Le tableau suivant résume les différences entre ces trois méthodes :
+Le \autoref{tab:HF_Meth} résume les différences entre ces trois méthodes :
 
 \begin{table}[h!]
     \centering
@@ -618,7 +596,7 @@ Le tableau suivant résume les différences entre ces trois méthodes :
         UHF  & Systèmes magnétiques ou couches ouvertes & Différentes pour $\alpha$ et $\beta$ & $S>0$ \\
         \hline
     \end{tabular}
-    \caption{\textbf{Synthèse du choix de la méthode Hartree-Fock.} Comparaison des trois variantes de la méthode Hartree-Fock, en fonction de la structure électronique du système (couches fermées vs. couches ouvertes, magnétisme) et du type d'orbitales utilisées. Le choix de la méthode impacte la précision et le coût du calcul.}
+    \caption{\textbf{Synthèse du choix de la méthode Hartree-Fock.} Comparaison des trois variantes de la méthode Hartree-Fock, en fonction de la structure électronique du système (couches fermées vs. couches ouvertes, magnétisme) et du type d'orbitales utilisées. Le choix de la méthode impacte la précision et le coût du calcul.} \label{tab:HF_Meth}
 \end{table}
 
 En pratique, UHF est souvent préféré pour des \textbf{états excités ou fortement corrélés}, tandis que RHF et ROHF sont plus appropriés pour les calculs standards d'énergie fondamentale.
@@ -632,6 +610,8 @@ La méthode de Hartree-Fock présente certaines limites :
     \item \textbf{Difficultés pour les systèmes fortement corrélés}. La méthide de HF est inefficace pour les molécules avec liaisons multiples ou états multi-déterminants.
 \item \textbf{Sensibilité aux bases de fonction}. La précision des résultats de la méthode de HF dépend fortement du choix des bases de fonction utilisées pour décrire les orbitales électroniques.
 \end{enumerate}
+
+On retient que la méthode Hartree-Fock fournit une approximation du champ moyen qui permet de calculer la structure électronique des molécules. Cependant, elle a des limitations importantes en raison de la négligence de la corrélation électronique dynamique, ce qui motive le développement de méthodes plus avancées, dites \textbf{post-Hartree-Fock}, qui seront abordées dans un chapitre ultérieur.
 
 \section{\label{sec:Base} Choix de l'ensemble de bases}
 
