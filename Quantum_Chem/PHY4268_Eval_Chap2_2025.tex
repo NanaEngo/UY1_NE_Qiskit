@@ -1,0 +1,115 @@
+\documentclass[a4paper,answers]{exam} % Pour la version avec les réponses, utiliser: \documentclass[answers]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{siunitx}
+
+\newcommand{\pts}[1]{\textbf{#1 pts}}
+
+\extrawidth{1in}
+
+%\firstpageheader{
+%\large{Évaluation - Projet 2 : Modélisation moléculaire}
+
+\pagestyle{headandfoot}
+\runningheadrule
+\firstpageheader{PHY 4268}{Évaluation Chapitre 2 - Méthodes d’optimisation géométrique}{28 Mars 2025}
+\runningheader{PHY 4268}
+{Évaluation Chapitre 2 - Méthodes d’optimisation géométrique, Page \thepage\ of \numpages}
+{28 Mars 2025}
+\firstpagefooter{}{}{}
+\runningfooter{}{}{}
+
+\begin{document}
+
+\begin{itemize}
+    \item Durée : 20 minutes
+    \item Type d'épreuve : Questions à réponses courtes et questions de compréhension
+\end{itemize}
+
+\vspace{0.2cm}
+
+\begin{questions}
+
+\question[5] \textbf{Objectif de l'optimisation géométrique.} En termes simples, quel est le \textbf{but principal} de l'optimisation géométrique en chimie quantique computationnelle ? (Maximum 2 phrases)
+
+\begin{solution}
+\begin{itemize}
+    \item[] But principal : Trouver la géométrie moléculaire correspondant à l'énergie la plus basse / structure moléculaire stable \hfill \marks[3]
+    \item[] Précision/Complément :  Ajuster les positions des atomes pour minimiser l'énergie totale / trouver la configuration électronique la plus stable \hfill \marks[2]
+\end{itemize}
+\end{solution}
+
+
+\question[5] \textbf{Surface d'Énergie Potentielle (PES) et Minima.}
+\begin{parts}
+    \part[2] Définissez brièvement ce qu'est la \textbf{Surface d'Énergie Potentielle (PES)} dans le contexte de la modélisation moléculaire. (1 phrase)
+    \begin{solution}
+    \begin{itemize}
+        \item[] Définition PES : Surface représentant l'énergie moléculaire en fonction des positions des noyaux \hfill \marks[2]
+    \end{itemize}
+    \end{solution}
+
+    \part[3] Quel élément de la PES recherche-t-on lors d'une optimisation géométrique, et à quoi correspond cet élément en termes de structure moléculaire ? (2 phrases maximum)
+    \begin{solution}
+    \begin{itemize}
+        \item[] Élément recherché : Minimum de la PES \hfill \marks[1]
+        \item[] Correspondance : Correspond à la géométrie d'équilibre / structure stable de la molécule \hfill \marks[2]
+    \end{itemize}
+    \end{solution}
+\end{parts}
+
+
+\question[5] \textbf{Rôle et Avantage de l'Hessien.}
+\begin{parts}
+    \part[3] Quel est l'\textbf{avantage principal} d'utiliser le \textbf{Hessien} (matrice des dérivées secondes de l'énergie) dans un algorithme d'optimisation géométrique, par rapport à un algorithme utilisant uniquement le gradient ? (1-2 phrases maximum)
+    \begin{solution}
+    \begin{itemize}
+        \item[] Avantage principal de l'Hessien : Convergence plus rapide vers le minimum \hfill \marks[2]
+        \begin{itemize}
+            \item[] Précision/Complément : L'Hessien donne des informations sur la courbure de la PES, permettant des pas d'optimisation plus efficaces / prédit mieux la direction du minimum \hfill \marks[1]
+        \end{itemize}
+    \end{itemize}
+    \end{solution}
+
+    \part[2] Le calcul du Hessien est-il toujours effectué lors d'une optimisation géométrique ? \textbf{Justifiez brièvement} votre réponse. (1 phrase)
+    \begin{solution}
+    \begin{itemize}
+        \item[] Calcul du Hessien toujours effectué : Non \hfill \marks[1]
+        \begin{itemize}
+            \item[] Justification : Calcul du Hessien coûteux en temps de calcul / algorithmes comme descente de gradient n'utilisent pas le Hessien / compromis coût-efficacité \hfill \marks[1]
+        \end{itemize}
+    \end{itemize}
+    \end{solution}
+\end{parts}
+
+
+\question[5] \textbf{Critères de Convergence.}
+\begin{parts}
+    \part[2] Citez \textbf{deux critères de convergence} typiquement utilisés pour arrêter une optimisation géométrique. (2 critères)
+    \begin{solution}
+    \textbf{Corrigé Indicatif et Barème Détaillé (Question 4a - 2 points)}
+    \begin{itemize}
+        \item[] Critère 1 : Gradient de l'énergie (force) \hfill \marks[1]
+        \item[] Critère 2 : Déplacement atomique OU Convergence de l'énergie \hfill \marks[1]
+        \item[] (Accepter d'autres critères pertinents mentionnés dans le cours)
+    \end{itemize}
+    \end{solution}
+    \fbox{\parbox{0.9\textwidth}{\vspace{0.5cm}}} % Boîte pour la réponse étudiant
+
+    \part[3] L'optimisation géométrique garantit-elle toujours de trouver le \textbf{minimum global} de la PES ?  \textbf{Justifiez brièvement} votre réponse. (2 phrases maximum)
+    \begin{solution}
+    \textbf{Corrigé Indicatif et Barème Détaillé (Question 4b - 3 points)}
+    \begin{itemize}
+        \item[] Garantie minimum global : Non \hfill \marks[1]
+        \begin{itemize}
+            \item[] Justification : Optimisation converge souvent vers un minimum local proche de la géométrie initiale, et non nécessairement vers le minimum global \hfill \marks[2]
+        \end{itemize}
+    \end{itemize}
+    \end{solution}
+\end{parts}
+
+
+\end{questions}
+
+\end{document}
