@@ -1,0 +1,153 @@
+\makeatletter
+\def\input@path{{./Graphics/}} % Définition du chemin d'entrée pour les graphiques
+\makeatother
+
+\documentclass[12pt,a4paper]{article} % Classe de document
+
+% Chargement des packages essentiels
+\usepackage[utf8]{inputenc} % Encodage UTF-8
+\usepackage[french]{babel} % Support de la langue française
+\usepackage{graphicx, amsthm, mathtools, amsfonts, amssymb, physics, longtable, mathrsfs} % Packages pour les graphiques et mathématiques
+
+% Divers Box en couleur avec le package tcolorbox
+\usepackage[many]{tcolorbox}
+\usepackage{varioref}
+%
+% Définition avec caption et label=df:
+\newtcbtheorem[number within=section]{definition}{Définition}
+{fonttitle=\bfseries\upshape, fontupper=\slshape, arc=0mm, colback=blue!3,colframe=blue!75!black,separator sign dash,breakable,beamer}{df}
+%
+\newtcbtheorem[number within=section]{example}{Exemple}
+{fonttitle=\bfseries\upshape,fontupper=\slshape, arc=0mm, colback=green!5!white,
+colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
+
+\usepackage{float} % Gère le placement des objets flottants
+\floatplacement{figure}{H} % Forces les figures à être placées exactement à l'endroit où elles apparaissent dans le texte
+
+\usepackage[svgnames,x11names,rgb,table]{xcolor} % Définit les couleurs par noms
+\usepackage{array, multicol, wrapfig, lmodern, multirow, booktabs, chemformula} % Diverses améliorations de mise en forme
+\usepackage[detect-all=true, group-minimum-digits=4]{siunitx} % Pour les unités SI
+
+\usepackage[bf, textfont={footnotesize,it}]{caption} % Personnalisation des légendes
+\usepackage{subcaption}
+
+% Configuration des marges de la page
+\usepackage[margin=2cm, a4paper]{geometry}
+
+\usepackage{fancyvrb} % Remplacement du mode verbatim qui permet une meilleure mise en forme
+%\usepackage[Export]{adjustbox} % Utilisé pour contraindre les images à une taille maximale
+%\adjustboxset{max size={0.9\linewidth}{0.9\paperheight}} % Taille maximale des images
+
+% Configuration pour hyperref
+\usepackage{hyperref} 
+\hypersetup{
+ colorlinks=true, % Colorise les liens
+ breaklinks=true, % Permet le retour à la ligne dans les liens trop longs
+ allcolors=Blue3, % Couleur des liens
+ pdfauthor={Nana Engo}, % Auteur du document PDF
+ pdfsubject={Chimie quantique et VQE}, % Sujet du document
+ pdftitle={PHY4268 - Qubit Hamiltonian V25.04}, % Titre du document
+ bookmarksopen=true % Ouvre les signets PDF par défaut
+}
+
+\usepackage{cleveref} % Améliore la gestion des références croisées
+
+\frenchbsetup{StandardLayout=true} % Configuration du layout français
+\numberwithin{equation}{section} % Numérotation des équations par section
+\numberwithin{figure}{section} % Numérotation des figures par section
+\numberwithin{table}{section} % Numérotation des tables par section
+
+\setcounter{secnumdepth}{3} % Pour inclure les sous-sections
+\renewcommand{\thesection}{\arabic{section}} % Numérotation des sections
+%
+\newcommand{\tcb}[1]{\textcolor{blue}{#1}} % textcolor{blue}{#1}
+\newcommand{\tcr}[1]{\textcolor{red}{#1}} % textcolor{red}{#1}
+% Titre du document
+\title{\vspace*{4cm}
+\Huge\tcb{Chapter 2 - Hamiltonien Qubit}
+\vspace*{5cm}}
+
+\author{
+\begin{tabular}{lr}
+ \textbf{Nana Engo} & \textbf{Tchapet Njafa}\\
+ {\small serge.nana-engo@facsciences-uy1.cm} &\hspace*{2em}
+ {\small jean-pierre.tchapet@facsciences-uy1.cm}
+\end{tabular}\\[3em] % Espace entre les auteurs et la filiation
+\textit{Quantum Simulation Group}\\
+ \textit{Department of Physics} \\ 
+ \textit{Faculty of Science} \\ 
+ \textit{University of Yaoundé I}
+}
+\date{\vspace*{3cm}April 2025} % Date du document
+
+% Introduction
+\section*{Introduction}
+
+Ce chapitre est dédié aux étudiants du cycle master en physique et a pour objectif de présenter les bases théoriques nécessaires pour établir une correspondance entre les opérateurs fermioniques (Hamiltonien en seconde quantification) et les opérateurs qubits (Hamiltonien Qubit). Cette transformation est essentielle pour la simulation quantique des systèmes moléculaires sur des calculateurs quantiques. Nous aborderons les concepts fondamentaux tels que la génération des intégrales moléculaires, la représentation nombre d'occupation, ainsi que les mappings fermion-qubit comme les transformations de Jordan-Wigner, de parité et de Bravyi-Kitaev.
+
+À la fin de ce chapitre, l'apprenant sera capable :
+\begin{itemize}
+    \item de comprendre le principe d'encodage d'un problème électronique en seconde quantification sur un calculateur quantique ;
+    \item de transformer un Hamiltonien moléculaire en première quantification en un Hamiltonien fermionique ;
+    \item de convertir un Hamiltonien fermionique en un Hamiltonien Qubit.
+\end{itemize}
+
+% Section principale
+\section{Hamiltonien moléculaire fermionique}
+
+L'Hamiltonien moléculaire est exprimé dans la base des orbitales moléculaires (OM) obtenues par la méthode Hartree-Fock (HF). Il s'écrit sous la forme suivante :
+\begin{equation}
+H_{\text{elec}} = \sum_{pq} h_{pq} a_p^\dagger a_q + \frac{1}{2} \sum_{pqrs} h_{pqrs} a_p^\dagger a_q^\dagger a_r a_s,
+\end{equation}
+où :
+\begin{itemize}
+    \item $a_p^\dagger$ et $a_q$ sont respectivement les opérateurs de création et d'annihilation d'électrons ;
+    \item $h_{pq}$ représente les intégrales à un électron ;
+    \item $h_{pqrs}$ représente les intégrales à deux électrons.
+\end{itemize}
+
+Les détails mathématiques des intégrales à un et deux électrons sont donnés par :
+\begin{align}
+h_{pq} &= \int \phi_p^*(r) \left( -\frac{\nabla^2}{2} - \sum_I \frac{Z_I}{|\mathbf{r}_i - \mathbf{R}_I|} \right) \phi_q(r) d^3r,\\
+h_{pqrs} &= \int \frac{\phi_p^*(r_1) \phi_q^*(r_2) \phi_r(r_2) \phi_s(r_1)}{|\mathbf{r}_1 - \mathbf{r}_2|} d^3r_1 d^3r_2.
+\end{align}
+
+% Figure 1 : Schéma VQE
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Graphics/VQE_Flowchart_Tuto2.jpeg}
+    \caption{\textit{Schéma illustrant le flux de travail du Variational Quantum Eigensolver (VQE). Les parties rouges indiquent les étapes clés liées à la transformation des Hamiltoniens.}}
+    \label{fig:VQE_flowchart}
+\end{figure}
+
+% Section sur le mapping qubit
+\section{Hamiltonien Qubit}
+
+Pour simuler l'Hamiltonien moléculaire sur un calculateur quantique, il est nécessaire de convertir les opérateurs fermioniques en opérateurs qubits. Cette conversion peut être réalisée à l'aide des transformations suivantes :
+\begin{itemize}
+    \item La transformation de Jordan-Wigner (JWT) ;
+    \item La transformation de parité (PT) ;
+    \item La transformation de Bravyi-Kitaev (BKT).
+\end{itemize}
+
+La décomposition en termes d'opérateurs de Pauli est essentielle dans ce contexte. Par exemple, tout opérateur Hermitien peut être exprimé comme une combinaison linéaire des matrices $\{\mathbb{I}, X, Y, Z\}$ :
+\begin{equation}
+H = \sum_j w_j P_j,
+\end{equation}
+où $P_j$ représente un produit tensoriel d'opérateurs de Pauli agissant sur différents qubits.
+
+% Exemple illustratif
+Considérons un exemple simple où l'Hamiltonien fermionique est transformé en termes d'opérateurs qubits via la transformation JWT. Les détails mathématiques sont laissés en exercice pour l'apprenant.
+
+% Conclusion
+\section*{Conclusion}
+
+Dans ce chapitre, nous avons exploré les bases théoriques nécessaires pour établir une correspondance entre les opérateurs fermioniques et qubits. Cette étape est cruciale pour la simulation quantique des systèmes moléculaires. Les transformations telles que Jordan-Wigner, parité et Bravyi-Kitaev permettent cette conversion tout en préservant les propriétés fondamentales du système.
+
+Les concepts abordés ici serviront de fondement pour comprendre et implémenter des algorithmes quantiques comme le Variational Quantum Eigensolver (VQE). Dans le prochain chapitre, nous approfondirons l'application pratique de ces concepts dans le cadre des simulations moléculaires.
+
+\vspace*{\fill}
+
+% Fin du document
+\end{document}
+
