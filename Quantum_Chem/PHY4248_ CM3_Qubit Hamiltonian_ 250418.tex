@@ -91,6 +91,13 @@ Ce chapitre a pour objectif de présenter les bases théoriques nécessaires pou
     \item de convertir un Hamiltonien fermionique en un Hamiltonien Qubit.
 \end{itemize}
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{./Graphics/VQE_Flowchart_Tuto2.jpeg}
+    \caption{\textit{Schéma illustrant le flux de travail du Variational Quantum Eigensolver (VQE). Les parties rouges indiquent les étapes clés liées à la transformation des Hamiltoniens.}}
+    \label{fig:VQE_flowchart}
+\end{figure}
+
 \section{Hamiltonien moléculaire fermionique}
 
 Dans cette section, nous allons explorer comment l'Hamiltonien électronique d'une molécule peut être exprimé en utilisant le formalisme de la seconde quantification. Cette approche est particulièrement utile pour les calculs de chimie quantique, car elle simplifie la manipulation des opérateurs et permet de décrire les systèmes à plusieurs électrons de manière concise. Nous allons voir comment les intégrales moléculaires, qui sont des quantités fondamentales dans les calculs de structure électronique, sont générées et utilisées pour construire l'Hamiltonien.
@@ -129,13 +136,6 @@ h_{pqrs} = \int \frac{\phi^*_p(\mathbf{r}_1)  \phi^*_q(\mathbf{r}_2) \phi_r(\mat
 \end{equation}
 où $\mathbf{r}_1$ et $\mathbf{r}_2$ sont les positions des deux électrons. Ces intégrales décrivent les interactions Coulombiennes entre les électrons.
 
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\linewidth]{./Graphics/VQE_Flowchart_Tuto2.jpeg}
-    \caption{\textit{Schéma illustrant le flux de travail du Variational Quantum Eigensolver (VQE). Les parties rouges indiquent les étapes clés liées à la transformation des Hamiltoniens.}}
-    \label{fig:VQE_flowchart}
-\end{figure}
 
 \section{Hamiltonien Qubit}
 
