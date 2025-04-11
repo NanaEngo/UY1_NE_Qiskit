@@ -282,21 +282,23 @@ Pour simuler des systèmes quantiques sur des ordinateurs quantiques, il est né
 
 En simulation quantique, encoder un problème de structure électronique en seconde quantification sur un calculateur quantique revient à établir une correspondance entre les opérateurs d'échelle fermioniques et les opérateurs de Pauli. Les transformations de Jordan-Wigner (JWT), de Parité (PT) et de Bravyi-Kitaev (BKT) sont parmi les plus utilisées en calculs quantiques. Pour plus de détails, consulter J. T. Seeley, M. J. Richard, and P. J. Love, "\textit{The Bravyi-Kitaev transformation for quantum computation of electronic structure}", J. Chem. Phys. \textbf{137}, 224109 (2012).
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{./Graphics/mapping_comparison.png}
+    \caption{\textit{Comparaison des différentes transformations fermion-qubit pour un système à 4 qubits. Les couleurs représentent les types d'opérateurs Pauli impliqués.}}
+    \label{fig:mapping_compare}
+\end{figure}
+
 \subsubsection{Décomposition de Pauli}
 
-\noindent \textbf{Introduction :} \\
 Les matrices de Pauli sont un ensemble de matrices hermitiennes et unitaires qui forment une base complète pour l'espace des opérateurs agissant sur un qubit. Cela signifie que tout opérateur agissant sur un qubit peut être exprimé comme une combinaison linéaire des matrices de Pauli. Cette propriété est cruciale pour la simulation quantique, car elle permet de décomposer l'Hamiltonien électronique en termes d'opérateurs simples qui peuvent être implémentés sur les qubits.
 
-\bigskip
-
 Comme $\{\mathbb{I}, \mathtt{X}, \mathtt{Y}, \mathtt{Z}\}$ forme une base complète pour tout opérateur Hermitien 1- ou multi-qubit, l'ingrédient clé des algorithmes variationnels est de décomposer l'Hamiltonien électronique en termes de produits des matrices de Pauli :
-\begin{equation}
-\label{eq:pauli_decomposition}
+\begin{equation}\label{eq:pauli_decomposition}
 \mathtt{P}_j = \mathtt{X}_{M-1}^j \otimes \mathtt{X}_{M-2}^j \otimes \mathtt{X}_k^j \otimes \dots \otimes \mathtt{X}_0^j = \bigotimes_{i=0}^{M-1} \mathtt{X}_i^j,
 \end{equation}
 où les opérateurs de Pauli $\mathtt{X}^j \in \{\mathbb{I}, \mathtt{X}, \mathtt{Y}, \mathtt{Z}\}$ sont tels que :
-\begin{equation}
-\label{eq:pauli_algebra}
+\begin{equation}\label{eq:pauli_algebra}
 \begin{aligned}
 & \mathtt{X}^i \mathtt{X}^j = \mathbb{I} \delta_{ij} + i \varepsilon_{ijk} \mathtt{X}^k, \\
 & \varepsilon_{ijk} = \begin{cases}
@@ -307,24 +309,21 @@ où les opérateurs de Pauli $\mathtt{X}^j \in \{\mathbb{I}, \mathtt{X}, \mathtt
 \end{aligned}
 \end{equation}
 
-\begin{align}
-\label{eq:pauli_matrices}
+\begin{align}\label{eq:pauli_matrices}
 & \mathtt{X} := \ket{0}\bra{1} + \ket{1}\bra{0}, \\
 & i \mathtt{Y} := \ket{0}\bra{1} - \ket{1}\bra{0}, \\
 & \mathtt{Z} := \ket{0}\bra{0} - \ket{1}\bra{1}.
 \end{align}
 Les opérateurs de Pauli sont à la fois unitaires et Hermitiens. On a utilisé la notation de Dirac pour les opérateurs.
 On note également que :
-\begin{align}
-\label{eq:pauli_matrices_simplifiees}
+\begin{align}\label{eq:pauli_matrices_simplifiees}
 & \mathtt{X} := \kb{0}{1} + \kb{1}{0}, \\
 & i \mathtt{Y} := \kb{0}{1} - \kb{1}{0}, \\
 & \mathtt{Z} := \proj{0} - \proj{1}.
 \end{align}
 
 L'Hamiltonien total peut alors être représenté comme la combinaison linéaire de $\mathtt{P}_j$ :
-\begin{align}
-\label{eq:hamiltonian_pauli}
+\begin{align}\label{eq:hamiltonian_pauli}
 & \mathtt{H} = \sum_{j=1}^{N_k} w_j \mathtt{P}_j = \sum_{j=1}^{N_k} w_j \left( \bigotimes_{i=0}^{M-1} \mathtt{X}_i^j \right), \\
 & w_j = \langle \mathtt{H}, \mathtt{P}_j \rangle = \text{Tr}(\mathtt{H}^\dagger \mathtt{P}_j),
 \end{align}
@@ -336,11 +335,8 @@ Pour un Hamiltonien de la 2e quantification, le nombre total de chaînes de Paul
 
 Les opérateurs d'échelle qubit sont des opérateurs qui agissent localement sur les qubits et qui permettent de créer ou d'annihiler des excitations dans le système quantique. Ils sont analogues aux opérateurs de création et d'annihilation fermioniques, mais agissent sur les qubits au lieu des orbitales de spin. Dans cette section, nous allons définir ces opérateurs et examiner leurs propriétés.
 
-\bigskip
-
 Ce sont les opérateurs suivants qui agissent localement sur les qubits :
-\begin{equation}
-\label{eq:qubit_operators}
+\begin{equation}\label{eq:qubit_operators}
 \begin{array}{l|l}
 \textbf{Opérateur qubit} & \textbf{Description} \\ \hline
 \mathbb{I} := \ket{0}\bra{0} + \ket{1}\bra{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
@@ -351,8 +347,7 @@ Ce sont les opérateurs suivants qui agissent localement sur les qubits :
 \end{array}
 \end{equation}
 On a utilisé la notation de Dirac pour les opérateurs. On note également que :
-\begin{equation}
-\label{eq:qubit_operators_simplifies}
+\begin{equation}\label{eq:qubit_operators_simplifies}
 \begin{array}{l|l}
 \textbf{Opérateur qubit} & \textbf{Description} \\ \hline
 \mathbb{I} := \proj{0} + \proj{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
@@ -362,53 +357,8 @@ On a utilisé la notation de Dirac pour les opérateurs. On note également que 
 \mathtt{Q}^- \mathtt{Q}^+ := \proj{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
 \end{array}
 \end{equation}
-
 Les opérateurs qubits sont antisymétriques : $\{\mathtt{Q}^+, \mathtt{Q}^-\} = \mathtt{Q}^+ \mathtt{Q}^- + \mathtt{Q}^- \mathtt{Q}^+ = 1$ pour la même spin-orbitale, de façon similaire aux opérateurs fermioniques.
 
-\section{Hamiltonien Qubit}
-
-Pour simuler l'Hamiltonien moléculaire sur un calculateur quantique, il est nécessaire de convertir les opérateurs fermioniques en opérateurs qubits. Cette conversion peut être réalisée à l'aide des transformations suivantes :
-\begin{itemize}
-    \item La transformation de Jordan-Wigner (JWT) ;
-    \item La transformation de parité (PT) ;
-    \item La transformation de Bravyi-Kitaev (BKT).
-\end{itemize}
-
-La décomposition en termes d'opérateurs de Pauli est essentielle dans ce contexte. Par exemple, tout opérateur Hermitien peut être exprimé comme une combinaison linéaire des matrices $\{\mathbb{I}, X, Y, Z\}$ :
-\begin{equation}
-H = \sum_j w_j P_j,
-\end{equation}
-où $P_j$ représente un produit tensoriel d'opérateurs de Pauli agissant sur différents qubits.
-
-Considérons un exemple simple où l'Hamiltonien fermionique est transformé en termes d'opérateurs qubits via la transformation JWT. Les détails mathématiques sont laissés en exercice pour l'apprenant.
-
-\subsection{Correspondance fermion-qubit}\label{sec:mapping}
-
-Les trois principales transformations pour encoder les opérateurs fermioniques en qubits sont :
-
-\begin{itemize}
-    \item \textbf{Transformation de Jordan-Wigner (JWT)} : 
-    \begin{equation}
-        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k=0}^{j-1} Z_k \right) \otimes (X_j - iY_j)
-    \end{equation}
-    
-    \item \textbf{Transformation de parité (PT)} :
-    \begin{equation}
-        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k=0}^{j-1} X_k \right) \otimes (X_j - iY_j) \otimes \left(\bigotimes_{k=j+1}^{N-1} Z_k \right)
-    \end{equation}
-    
-    \item \textbf{Transformation de Bravyi-Kitaev (BKT)} :
-    \begin{equation}
-        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k \in \partial(j)} X_k \right) \otimes (X_j - iY_j)
-    \end{equation}
-\end{itemize}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.7\linewidth]{./Graphics/mapping_comparison.png}
-    \caption{\textit{Comparaison des différentes transformations fermion-qubit pour un système à 4 qubits. Les couleurs représentent les types d'opérateurs Pauli impliqués.}}
-    \label{fig:mapping_compare}
-\end{figure}
 
 \subsection{Exemple : Molécule d'hydrogène}\label{sec:H2_example}
 
