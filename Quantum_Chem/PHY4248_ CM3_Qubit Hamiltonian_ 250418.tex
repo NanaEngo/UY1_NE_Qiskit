@@ -164,6 +164,218 @@ $\mathtt{U}_{ee}$ (interaction électron-électron) \\ \hline
 
 Un des avantages importants apporté par le formalisme de seconde quantification est que la propriété d'anti-symétrie des fonctions d'état pour l'échange de fermions identiques, prise en compte manuellement dans une approche de première quantification en considérant les déterminants de Slater, est automatiquement imposée par les relations d'anti-commutation des opérateurs de création et d'annihilation. Cependant, le prix à payer est de travailler avec un nombre non fixe de particules, qui reste de toute façon une quantité conservée.
 
+\subsection{Répresentation nombre d'occupation}
+
+\noindent \textbf{Introduction :} \\
+La représentation nombre d'occupation est une manière concise de décrire l'état d'un système de fermions (comme les électrons) en spécifiant le nombre de particules présentes dans chaque orbitale de spin. Au lieu de suivre chaque électron individuellement, on se concentre sur le nombre d'électrons dans chaque état possible. Cette représentation est particulièrement utile en seconde quantification, car elle permet de manipuler facilement les opérateurs de création et d'annihilation.
+
+\bigskip
+
+En seconde quantification, le déterminant de Slater est représenté par un \textbf{vecteur nombre d'occupation}:
+\begin{equation}
+\label{eq:occupation_vector}
+\ket{f} = \ket{f_{M-1}, \dots, f_{i-1}, f_i, f_{i+1}, \dots, f_0},
+\end{equation}
+où :
+\begin{itemize}
+    \item $f_i = 1$ si le spin-orbite $\phi_i$ est occupé (c'est-à-dire qu'il contient un électron) et donc présent dans le déterminant de Slater.
+    \item $f_i = 0$ si le spin-orbite $\phi_i$ est vide (c'est-à-dire qu'il ne contient pas d'électron) et donc absent du déterminant de Slater.
+\end{itemize}
+
+Le vecteur $\ket{f_i}$ est appelé \textbf{vecteur nombre d'occupation de l'orbitale fermionique i}, parce que :
+\begin{align}
+\label{eq:occupation_states}
+& \ket{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} : \text{état vide}, \\
+& \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix} : \text{état occupé}.
+\end{align}
+
+Dans la deuxième représentation de quantification, au lieu de poser la question "*Quel électron est dans quel état?*", nous posons la question "*combien de particules y a-t-il dans chaque état?*".
+
+\subsection{Opérateurs fermioniques}
+
+\noindent \textbf{Introduction :} \\
+Les opérateurs fermioniques, en particulier les opérateurs de création ($a^\dagger$) et d'annihilation ($a$), sont des outils mathématiques essentiels pour décrire les systèmes de fermions en seconde quantification. Ils permettent de manipuler les états quantiques en ajoutant ou en supprimant des particules, tout en respectant l'antisymétrie requise par la nature fermionique des électrons. Dans cette section, nous allons définir ces opérateurs et examiner leurs propriétés fondamentales.
+
+\bigskip
+
+Les opérateurs fermioniques $a^\dagger_i$ et $a_i$ obéissent aux relations d'anticommutation fermioniques suivantes :
+\begin{align}
+\label{eq:anticommutation}
+& \{a_p, a^\dagger_q\} = a_p a^\dagger_q + a^\dagger_q a_p = \delta_{pq}, \\
+& \{a_p, a_q\} = \{a^\dagger_p, a^\dagger_q\} = 0,
+\end{align}
+où $\delta_{pq}$ est le symbole de Kronecker (égal à 1 si $p = q$ et 0 sinon).
+
+La nature fermionique des électrons implique que les fonctions d'état à plusieurs électrons doivent être antisymétriques par rapport à l'échange de particules. Cela se reflète dans la manière dont les opérateurs de création et d'annihilation agissent sur les déterminants $\ket{f}$ :
+\begin{align}
+\label{eq:fermion_operators}
+& a_i \ket{f_{M-1}, \dots, f_{i-1}, f_i, f_{i+1}, \dots, f_0} = \delta_{f_i, 1} (-1)^{\sum_{m < i} f_m} \ket{f_{M-1}, \dots, f_{i-1}, f_i \oplus 1, f_{i+1}, \dots, f_0}, \\
+& a^\dagger_i \ket{f_{M-1}, \dots, f_{i-1}, f_i, f_{i+1}, \dots, f_0} = \delta_{f_i, 0} (-1)^{\sum_{m < i} f_m} \ket{f_{M-1}, \dots, f_{i-1}, f_i \oplus 1, f_{i+1}, \dots, f_0}, \\
+& a \ket{0} = a^\dagger \ket{1} = 0.
+\end{align}
+où :
+\begin{itemize}
+    \item Le terme de phase $p_i = (-1)^{\sum_{m < i} f_m}$ désigne la parité qu'impose l'anti-symétrie d'échange des fermions.
+        \begin{itemize}
+            \item $p_i = -1$ si le nombre d'électrons est impair dans les orbitales de spin d'indice inférieur à $i$.
+            \item $p_i = 1$ si le nombre d'électrons est pair dans les orbitales de spin d'indice inférieur à $i$.
+        \end{itemize}
+    \item Le symbole $\oplus$ représente l'addition modulo 2, c'est-à-dire $1 \oplus 1 = 0$ et $0 \oplus 1 = 1$.
+    \item L'opérateur de création $a^\dagger_i$ ajoute un électron dans une orbitale inoccupée $i$ (ou dans $\ket{f_i}$).
+    \item L'opérateur d'annihilation $a_i$ supprime un électron dans une orbitale occupée $i$ (ou en $\ket{f_i}$).
+    \item $a_i^2 = (a^\dagger_i)^2 = 0$ pour tout $i$. On ne peut pas créer ou anéantir un fermion dans le même mode deux fois.
+\end{itemize}
+
+\noindent \textbf{Exemples :} \\
+Par exemple :
+\begin{align}
+\label{eq:fermion_example}
+& a^\dagger_1 \ket{0}_1 = \ket{1}_1, \\
+& a^\dagger_1 \ket{1}_1 = (a^\dagger_i)^2 \ket{0}_1 = 0, \\
+& a_1 \ket{1}_1 = \ket{0}_1, \\
+& a_1 \ket{0}_1 = a_1^2 \ket{1}_1 = 0.
+\end{align}
+Notez qu'ici $a^\dagger_1 \ket{1}_1 = 0$ et $a_1 \ket{0}_1 = 0$ signifient le vecteur nul (zéro) et non $\ket{0}_1$.
+
+En utilisant également de tels opérateurs, nous pouvons exprimer :
+\begin{equation}
+\label{eq:example_expression}
+\ket{0} \ket{1} \ket{1} \ket{0} = a^\dagger_1 a^\dagger_2 \ket{0}^{\otimes 4}.
+\end{equation}
+
+L'opérateur d'occupation orbitale est donné par :
+\begin{align}
+\label{eq:occupation_operator}
+& n_i = a^\dagger_i a_i, \\
+& n_i \ket{f_{M-1}, \dots, f_i, \dots, f_0} = f_i \ket{f_{M-1}, \dots, f_i, \dots, f_0},
+\end{align}
+et il compte le nombre d'électrons dans une orbitale donnée, c'est-à-dire :
+\begin{align}
+\label{eq:occupation_number}
+& n_i \ket{0}_i = 0, \\
+& n_i \ket{1}_i = \ket{1}_i.
+\end{align}
+
+\subsection{Exercise}
+
+\noindent \textbf{Enoncé :} \\
+Dans l'\textbf{Exemple d'illustration} ci-dessus, nous avons considéré un système fictif décrit par des orbitales de spin $\ket{A_\uparrow}$, $\ket{A_\downarrow}$, $\ket{B_\uparrow}$, $\ket{B_\downarrow}$ étiquetées comme suit :
+\begin{align}
+\label{eq:spin_orbitals}
+& \ket{A_\uparrow} = \ket{00} = \ket{\mathbf{0}}, \\
+& \ket{A_\downarrow} = \ket{01} = \ket{\mathbf{1}}, \\
+& \ket{B_\uparrow} = \ket{10} = \ket{\mathbf{2}}, \\
+& \ket{B_\downarrow} = \ket{11} = \ket{\mathbf{3}}.
+\end{align}
+Nous supposons que l'état Hartree-Fock pour ce système \textbf{a les deux électrons occupant les orbitales $\ket{A}$}. Nous stockons les occupations des orbitales de spin $\ket{A_\uparrow}$, $\ket{A_\downarrow}$, $\ket{B_\uparrow}$, $\ket{B_\downarrow}$ que nous ordonnons comme $\ket{f_{B_\downarrow}, f_{B_\uparrow}, f_{A_\downarrow}, f_{A_\uparrow}}$, avec $f_i = 0, 1$ (dans l'espace de Fock fermionique).
+
+\begin{enumerate}
+    \item Écrivez, dans l'espace de Fock fermionique, l'état Hartree-Fock $\ket{\Psi_{\rm HF}}$, c'est-à-dire la correspondance du déterminant de Slater antisymétrisé obtenu dans l'\textbf{Exemple d'illustration}.
+    \begin{equation}
+    \label{eq:hf_state}
+    \ket{\Psi_{\rm HF}} = \ket{0011}.
+    \end{equation}
+    \item Écrivez, dans l'espace de Fock fermionique, la fonction d'état $s_z = 0$.
+    \begin{equation}
+    \label{eq:sz_state}
+    \ket{\Psi_{\rm HF}} = \alpha \ket{0011} + \beta \ket{1100} + \ket{1001} + \ket{0101}.
+    \end{equation}
+\end{enumerate}
+
+\section{Hamiltonien Qubit}
+
+\subsection{Correspondance (mapping) fermion-qubit}
+
+\noindent \textbf{Introduction :} \\
+Pour simuler des systèmes quantiques sur des ordinateurs quantiques, il est nécessaire de transformer les opérateurs fermioniques, qui décrivent les électrons dans les molécules, en opérateurs qubit, qui peuvent être implémentés sur les qubits des ordinateurs quantiques. Cette transformation est connue sous le nom de "mapping fermion-qubit". Dans cette section, nous allons explorer les principales méthodes de mapping fermion-qubit, telles que les transformations de Jordan-Wigner, de parité et de Bravyi-Kitaev.
+
+\bigskip
+
+En simulation quantique, encoder un problème de structure électronique en seconde quantification sur un calculateur quantique revient à établir une correspondance entre les opérateurs d'échelle fermioniques et les opérateurs de Pauli. Les transformations de Jordan-Wigner (JWT), de Parité (PT) et de Bravyi-Kitaev (BKT) sont parmi les plus utilisées en calculs quantiques. Pour plus de détails, consulter J. T. Seeley, M. J. Richard, and P. J. Love, "\textit{The Bravyi-Kitaev transformation for quantum computation of electronic structure}", J. Chem. Phys. \textbf{137}, 224109 (2012).
+
+\subsubsection{Décomposition de Pauli}
+
+\noindent \textbf{Introduction :} \\
+Les matrices de Pauli sont un ensemble de matrices hermitiennes et unitaires qui forment une base complète pour l'espace des opérateurs agissant sur un qubit. Cela signifie que tout opérateur agissant sur un qubit peut être exprimé comme une combinaison linéaire des matrices de Pauli. Cette propriété est cruciale pour la simulation quantique, car elle permet de décomposer l'Hamiltonien électronique en termes d'opérateurs simples qui peuvent être implémentés sur les qubits.
+
+\bigskip
+
+Comme $\{\mathbb{I}, \mathtt{X}, \mathtt{Y}, \mathtt{Z}\}$ forme une base complète pour tout opérateur Hermitien 1- ou multi-qubit, l'ingrédient clé des algorithmes variationnels est de décomposer l'Hamiltonien électronique en termes de produits des matrices de Pauli :
+\begin{equation}
+\label{eq:pauli_decomposition}
+\mathtt{P}_j = \mathtt{X}_{M-1}^j \otimes \mathtt{X}_{M-2}^j \otimes \mathtt{X}_k^j \otimes \dots \otimes \mathtt{X}_0^j = \bigotimes_{i=0}^{M-1} \mathtt{X}_i^j,
+\end{equation}
+où les opérateurs de Pauli $\mathtt{X}^j \in \{\mathbb{I}, \mathtt{X}, \mathtt{Y}, \mathtt{Z}\}$ sont tels que :
+\begin{equation}
+\label{eq:pauli_algebra}
+\begin{aligned}
+& \mathtt{X}^i \mathtt{X}^j = \mathbb{I} \delta_{ij} + i \varepsilon_{ijk} \mathtt{X}^k, \\
+& \varepsilon_{ijk} = \begin{cases}
++1, & \text{pour les permutations circulaires droites de } (i, j, k) \\
+-1, & \text{pour les permutations circulaires gauches de } (i, j, k) \\
+0, & \text{sinon}
+\end{cases}
+\end{aligned}
+\end{equation}
+
+\begin{align}
+\label{eq:pauli_matrices}
+& \mathtt{X} := \ket{0}\bra{1} + \ket{1}\bra{0}, \\
+& i \mathtt{Y} := \ket{0}\bra{1} - \ket{1}\bra{0}, \\
+& \mathtt{Z} := \ket{0}\bra{0} - \ket{1}\bra{1}.
+\end{align}
+Les opérateurs de Pauli sont à la fois unitaires et Hermitiens. On a utilisé la notation de Dirac pour les opérateurs.
+On note également que :
+\begin{align}
+\label{eq:pauli_matrices_simplifiees}
+& \mathtt{X} := \kb{0}{1} + \kb{1}{0}, \\
+& i \mathtt{Y} := \kb{0}{1} - \kb{1}{0}, \\
+& \mathtt{Z} := \proj{0} - \proj{1}.
+\end{align}
+
+L'Hamiltonien total peut alors être représenté comme la combinaison linéaire de $\mathtt{P}_j$ :
+\begin{align}
+\label{eq:hamiltonian_pauli}
+& \mathtt{H} = \sum_{j=1}^{N_k} w_j \mathtt{P}_j = \sum_{j=1}^{N_k} w_j \left( \bigotimes_{i=0}^{M-1} \mathtt{X}_i^j \right), \\
+& w_j = \langle \mathtt{H}, \mathtt{P}_j \rangle = \text{Tr}(\mathtt{H}^\dagger \mathtt{P}_j),
+\end{align}
+où $w_j$ sont les poids de la chaîne de Pauli $\mathtt{P}_j$, $i$ indique sur quel qubit l'opérateur agit, et $j$ désigne le terme dans l'Hamiltonien.
+
+Pour un Hamiltonien de la 2e quantification, le nombre total de chaînes de Pauli $N_k$ dépend du nombre de termes $h_{pq}$ à 1-électron et $h_{pqrs}$ à 2-électrons.
+
+\subsubsection{Opérateurs d'échelle qubit}
+
+\noindent \textbf{Introduction :} \\
+Les opérateurs d'échelle qubit sont des opérateurs qui agissent localement sur les qubits et qui permettent de créer ou d'annihiler des excitations dans le système quantique. Ils sont analogues aux opérateurs de création et d'annihilation fermioniques, mais agissent sur les qubits au lieu des orbitales de spin. Dans cette section, nous allons définir ces opérateurs et examiner leurs propriétés.
+
+\bigskip
+
+Ce sont les opérateurs suivants qui agissent localement sur les qubits :
+\begin{equation}
+\label{eq:qubit_operators}
+\begin{array}{l|l}
+\textbf{Opérateur qubit} & \textbf{Description} \\ \hline
+\mathbb{I} := \ket{0}\bra{0} + \ket{1}\bra{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
+\mathtt{Q}^- := \ket{0}\bra{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
+\mathtt{Q}^+ := \ket{1}\bra{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
+\mathtt{Q}^+ \mathtt{Q}^- := \ket{1}\bra{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
+\mathtt{Q}^- \mathtt{Q}^+ := \ket{0}\bra{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
+\end{array}
+\end{equation}
+On a utilisé la notation de Dirac pour les opérateurs. On note également que :
+\begin{equation}
+\label{eq:qubit_operators_simplifies}
+\begin{array}{l|l}
+\textbf{Opérateur qubit} & \textbf{Description} \\ \hline
+\mathbb{I} := \proj{0} + \proj{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
+\mathtt{Q}^- := \kb{0}{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
+\mathtt{Q}^+ := \kb{1}{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
+\mathtt{Q}^+ \mathtt{Q}^- := \proj{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
+\mathtt{Q}^- \mathtt{Q}^+ := \proj{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
+\end{array}
+\end{equation}
+
+Les opérateurs qubits sont antisymétriques : $\{\mathtt{Q}^+, \mathtt{Q}^-\} = \mathtt{Q}^+ \mathtt{Q}^- + \mathtt{Q}^- \mathtt{Q}^+ = 1$ pour la même spin-orbitale, de façon similaire aux opérateurs fermioniques.
 
 \section{Hamiltonien Qubit}
 
