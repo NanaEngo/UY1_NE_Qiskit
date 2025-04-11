@@ -169,8 +169,7 @@ Un des avantages importants apporté par le formalisme de seconde quantification
 La représentation nombre d'occupation est une manière concise de décrire l'état d'un système de fermions (comme les électrons) en spécifiant le nombre de particules présentes dans chaque orbitale de spin. Au lieu de suivre chaque électron individuellement, on se concentre sur le nombre d'électrons dans chaque état possible. Cette représentation est particulièrement utile en seconde quantification, car elle permet de manipuler facilement les opérateurs de création et d'annihilation.
 
 En seconde quantification, le déterminant de Slater est représenté par un \textbf{vecteur nombre d'occupation}:
-\begin{equation}
-\label{eq:occupation_vector}
+\begin{equation}\label{eq:occupation_vector}
 \ket{f} = \ket{f_{M-1}, \dots, f_{i-1}, f_i, f_{i+1}, \dots, f_0},
 \end{equation}
 où :
@@ -186,14 +185,11 @@ Le vecteur $\ket{f_i}$ est appelé \textbf{vecteur nombre d'occupation de l'orbi
 & \ket{1} = \begin{pmatrix} 0 \\ 1 \end{pmatrix} : \text{état occupé}.
 \end{align}
 
-Dans la deuxième représentation de quantification, au lieu de poser la question "*Quel électron est dans quel état?*", nous posons la question "*combien de particules y a-t-il dans chaque état?*".
+Dans la deuxième représentation de quantification, au lieu de poser la question \textit{Quel électron est dans quel état?}, nous posons la question \textit{combien de particules y a-t-il dans chaque état?}.
 
 \subsection{Opérateurs fermioniques}
 
-\noindent \textbf{Introduction :} \\
 Les opérateurs fermioniques, en particulier les opérateurs de création ($a^\dagger$) et d'annihilation ($a$), sont des outils mathématiques essentiels pour décrire les systèmes de fermions en seconde quantification. Ils permettent de manipuler les états quantiques en ajoutant ou en supprimant des particules, tout en respectant l'antisymétrie requise par la nature fermionique des électrons. Dans cette section, nous allons définir ces opérateurs et examiner leurs propriétés fondamentales.
-
-\bigskip
 
 Les opérateurs fermioniques $a^\dagger_i$ et $a_i$ obéissent aux relations d'anticommutation fermioniques suivantes :
 \begin{align}
