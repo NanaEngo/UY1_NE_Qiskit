@@ -80,7 +80,6 @@ colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
 }
 \date{\vspace*{3cm}April 2025} % Date du document
 
-% Introduction
 \section*{Introduction}
 
 Ce chapitre a pour objectif de présenter les bases théoriques nécessaires pour établir une correspondance entre les opérateurs fermioniques (Hamiltonien en seconde quantification) et les opérateurs qubits (Hamiltonien Qubit). Cette transformation est essentielle pour la simulation quantique des systèmes moléculaires sur des calculateurs quantiques. Nous abordons les concepts fondamentaux tels que la génération des intégrales moléculaires, la représentation nombre d'occupation, ainsi que les mappings fermion-qubit comme les transformations de Jordan-Wigner, de parité et de Bravyi-Kitaev.
@@ -92,19 +91,48 @@ Ce chapitre a pour objectif de présenter les bases théoriques nécessaires pou
     \item de convertir un Hamiltonien fermionique en un Hamiltonien Qubit.
 \end{itemize}
 
-% Section principale
 \section{Hamiltonien moléculaire fermionique}
 
-L'Hamiltonien moléculaire est exprimé dans la base des orbitales moléculaires (OM) obtenues par la méthode Hartree-Fock (HF). Il s'écrit sous la forme suivante :
-\begin{equation}
-H_{\text{elec}} = \sum_{pq} h_{pq} a_p^\dagger a_q + \frac{1}{2} \sum_{pqrs} h_{pqrs} a_p^\dagger a_q^\dagger a_r a_s,
+Dans cette section, nous allons explorer comment l'Hamiltonien électronique d'une molécule peut être exprimé en utilisant le formalisme de la seconde quantification. Cette approche est particulièrement utile pour les calculs de chimie quantique, car elle simplifie la manipulation des opérateurs et permet de décrire les systèmes à plusieurs électrons de manière concise. Nous allons voir comment les intégrales moléculaires, qui sont des quantités fondamentales dans les calculs de structure électronique, sont générées et utilisées pour construire l'Hamiltonien.
+
+\subsection{Génération des intégrales moléculaires}
+
+L'Hamiltonien électronique est exprimé dans la base des solutions de la méthode Hartree-Fock (HF), également appelées Orbitales Moléculaires (OM). Rappelons que la méthode HF est une méthode variationnelle qui permet d'approximer la fonction d'état électronique d'un système moléculaire en considérant que chaque électron se déplace dans un champ moyen créé par les autres électrons. Les orbitales moléculaires obtenues par cette méthode forment une base orthonormée qui peut être utilisée pour exprimer l'Hamiltonien électronique.
+
+L'Hamiltonien s'écrit :
+\begin{equation}\label{eq:H_elec}
+\mathtt{H}_{\rm elec}=\sum_{pq} h_{pq} a^{\dagger}_p a_q + \frac12 \sum_{pqrs} h_{pqrs}  a^{\dagger}_p a^{\dagger}_q a_r  a_s,
 \end{equation}
 où :
 \begin{itemize}
-    \item $a_p^\dagger$ et $a_q$ sont respectivement les opérateurs de création et d'annihilation d'électrons ;
-    \item $h_{pq}$ représente les intégrales à un électron ;
-    \item $h_{pqrs}$ représente les intégrales à deux électrons.
+    \item $a^{\dagger}_p$ est l'\textbf{opérateur de création} d'un électron dans le spin-orbite $p$. Cet opérateur ajoute un électron à l'orbitale de spin $p$;
+    \item $a_q$ est l'\textbf{opérateur d'annihilation} d'un électron dans le spin-orbite $q$. Cet opérateur supprime un électron de l'orbitale de spin $q$;
+    \item $h_{pq}$ sont les \textbf{intégrales à un électron}, qui décrivent l'énergie cinétique de l'électron et son interaction avec le potentiel créé par les noyaux atomiques;
+    \item $h_{pqrs}$ sont les \textbf{intégrales à deux électrons}, qui décrivent l'interaction coulombienne entre les électrons.
 \end{itemize}
+
+Les intégrales à un électron sont données par :
+\begin{equation}\label{eq:h_pq}
+h_{pq} = \int \phi^*_p(\mathbf{r}) \left( -\frac{1}{2} \nabla^2 - \sum_{I} \frac{Z_I}{|\mathbf{r}-\mathbf{R}_I|} \right)   \phi_q(\mathbf{r})d\mathbf{r},
+\end{equation}
+où :
+\begin{itemize}
+    \item $\phi_p(\mathbf{r})$ est l'orbitale moléculaire $p$ au point $\mathbf{r}$;
+    \item $Z_I$ est la charge du noyau $I$;
+    \item $\mathbf{R}_I$ est la position du noyau $I$.
+\end{itemize}
+Ces intégrales décrivent l’énergie cinétique des électrons individuels et leurs interactions Coulombiennes avec les champs électriques du noyau.
+
+Les intégrales à deux électrons sont données par :
+\begin{equation}\label{eq:h_pqrs}
+h_{pqrs} = \int \frac{\phi^*_p(\mathbf{r}_1)  \phi^*_q(\mathbf{r}_2) \phi_r(\mathbf{r}_2)  \phi_s(\mathbf{r}_1)}{|\mathbf{r}_1-\mathbf{r}_2|}d\mathbf{r}_1d\mathbf{r}_2,
+\end{equation}
+où :
+\begin{itemize}
+    \item $\mathbf{r}_1$ et $\mathbf{r}_2$ sont les positions des deux électrons.
+\end{itemize}
+Ces intégrales décrivent les interactions Coulombiennes entre les électrons.
+
 
 Les détails mathématiques des intégrales à un et deux électrons sont donnés par :
 \begin{align}
@@ -112,7 +140,6 @@ h_{pq} &= \int \phi_p^*(r) \left( -\frac{\nabla^2}{2} - \sum_I \frac{Z_I}{|\math
 h_{pqrs} &= \int \frac{\phi_p^*(r_1) \phi_q^*(r_2) \phi_r(r_2) \phi_s(r_1)}{|\mathbf{r}_1 - \mathbf{r}_2|} d^3r_1 d^3r_2.
 \end{align}
 
-% Figure 1 : Schéma VQE
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{./Graphics/VQE_Flowchart_Tuto2.jpeg}
@@ -120,7 +147,6 @@ h_{pqrs} &= \int \frac{\phi_p^*(r_1) \phi_q^*(r_2) \phi_r(r_2) \phi_s(r_1)}{|\ma
     \label{fig:VQE_flowchart}
 \end{figure}
 
-% Section sur le mapping qubit
 \section{Hamiltonien Qubit}
 
 Pour simuler l'Hamiltonien moléculaire sur un calculateur quantique, il est nécessaire de convertir les opérateurs fermioniques en opérateurs qubits. Cette conversion peut être réalisée à l'aide des transformations suivantes :
@@ -136,8 +162,95 @@ H = \sum_j w_j P_j,
 \end{equation}
 où $P_j$ représente un produit tensoriel d'opérateurs de Pauli agissant sur différents qubits.
 
-% Exemple illustratif
 Considérons un exemple simple où l'Hamiltonien fermionique est transformé en termes d'opérateurs qubits via la transformation JWT. Les détails mathématiques sont laissés en exercice pour l'apprenant.
+
+\subsection{Correspondance fermion-qubit}\label{sec:mapping}
+
+Les trois principales transformations pour encoder les opérateurs fermioniques en qubits sont :
+
+\begin{itemize}
+    \item \textbf{Transformation de Jordan-Wigner (JWT)} : 
+    \begin{equation}
+        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k=0}^{j-1} Z_k \right) \otimes (X_j - iY_j)
+    \end{equation}
+    
+    \item \textbf{Transformation de parité (PT)} :
+    \begin{equation}
+        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k=0}^{j-1} X_k \right) \otimes (X_j - iY_j) \otimes \left(\bigotimes_{k=j+1}^{N-1} Z_k \right)
+    \end{equation}
+    
+    \item \textbf{Transformation de Bravyi-Kitaev (BKT)} :
+    \begin{equation}
+        a_j^\dagger \mapsto \frac{1}{2} \left(\bigotimes_{k \in \partial(j)} X_k \right) \otimes (X_j - iY_j)
+    \end{equation}
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\linewidth]{./Graphics/mapping_comparison.png}
+    \caption{\textit{Comparaison des différentes transformations fermion-qubit pour un système à 4 qubits. Les couleurs représentent les types d'opérateurs Pauli impliqués.}}
+    \label{fig:mapping_compare}
+\end{figure}
+
+\subsection{Exemple : Molécule d'hydrogène}\label{sec:H2_example}
+
+Considérons la molécure H$_2$ dans une base STO-3G. L'Hamiltonien fermionique se réduit à :
+
+\begin{equation}
+H = -1.05\ \mathbb{I} + 0.79\ Z_0 + 0.79\ Z_1 + 0.60\ Z_0Z_1 + 0.20\ Y_0Y_1
+\end{equation}
+
+\begin{table}[h!]
+    \centering
+    \caption{Comparaison des mappings pour H$_2$ (6 qubits)}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Métrique} & JWT & PT & BKT \\
+        \midrule
+        Nombre de termes & 14 & 11 & 9 \\
+        Profondeur CNOT & 56 & 48 & 32 \\
+        Fidélité & 0.992 & 0.994 & 0.997 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:H2_comparison}
+\end{table}
+
+% Section : Implémentation quantique
+\section{Implémentation sur calculateur quantique}\label{sec:implementation}
+
+Le circuit quantique typique pour la simulation VQE comprend trois étapes clés :
+
+\begin{enumerate}
+    \item \textbf{Encodage de l'état} : Préparation de l'état Hartree-Fock
+    \item \textbf{Ansatz} : Circuit paramétrique (ex: UCCSD)
+    \item \textbf{Mesure} : Estimation des valeurs moyennes des termes de Pauli
+\end{enumerate}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{./Graphics/VQE_circuit.png}
+    \caption{\textit{Circuit quantique complet pour la simulation VQE de H$_2$. Les parties en rouge montrent l'ansatz UCCSD, et les mesures en bleu correspondent aux termes de Pauli.}}
+    \label{fig:VQE_circuit}
+\end{figure}
+
+
+\section*{Conclusion}
+
+Ce chapitre a présenté les fondements théoriques et pratiques de la conversion des Hamiltoniens moléculaires en formalismes adaptés aux calculateurs quantiques. Les points clés à retenir sont :
+
+\begin{itemize}
+    \item La seconde quantification permet une description compacte des systèmes électroniques
+    \item Les mappings fermion-qubit préservent les relations d'anticommutation
+    \item Le choix du mapping influence directement les performances du calcul quantique
+\end{itemize}
+
+Ces concepts seront mis en pratique dans le prochain chapitre à travers l'implémentation complète d'un algorithme VQE pour la molécure de H$_2$ sur un simulateur quantique.
+
+% Exercices
+\section*{Exercices}
+
+\begin{example}{Application de la JWT}{ex_jwt}
+Convertir l'opérateur fermionique $a_2^\dagger a
 
 % Conclusion
 \section*{Conclusion}
