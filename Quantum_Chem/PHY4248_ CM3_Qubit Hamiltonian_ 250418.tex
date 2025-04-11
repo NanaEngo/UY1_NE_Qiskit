@@ -146,12 +146,9 @@ Les orbitales moléculaires ($\phi_u$) peuvent être occupées ou virtuelles (in
 
 Cependant, dans ce qui suit, nous travaillons en fait avec des \textbf{orbitales de spin}, qui sont associées à un spin up ($\alpha$) ou spin down ($\beta$). Ces deux spins sont également communément désignés par $\alpha$ et $\beta$, respectivement. Ainsi, les orbitales de spin peuvent contenir un électron ou être inoccupées.
 
-\bigskip
+Le \Cref{tab:1_2_Quant} résume les correspondances entre les éléments du Hamiltonien moléculaire dans les formalismes de première et seconde quantification.
 
-\noindent \textbf{Tableau : Correspondance Première et Seconde Quantification} \\
-Le tableau ci-dessous résume les correspondances entre les éléments du Hamiltonien moléculaire dans les formalismes de première et seconde quantification.
-
-\begin{center}
+\begin{table}
 \begin{tabular}{|l|l|l|}\hline
 \textbf{Approximation BO}  &  \textbf{Combinaison en 2e quantification} &  \textbf{Description} \\ \hline
 $-\frac12\sum_i\nabla^2_i$ & $-\frac12\sum_{p,q}\langle p|\nabla^2_p|q\rangle a^\dagger_p a_q$ & $\mathtt{T}_e$ (énergie cinétique) \\ \hline
@@ -161,12 +158,12 @@ $\sum_{i,j>i}\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}$ &
 $\sum_{p,q,r,s}\langle pq \big|\frac{1}{|\mathbf{r}_i-\mathbf{r}_j|}\big|rs\rangle a^\dagger_p a^\dagger_q a_r a_s$ & 
 $\mathtt{U}_{ee}$ (interaction électron-électron) \\ \hline
 \end{tabular}
-\end{center}
+\caption{Correspondance Première et Seconde Quantification}
+\label{tab:1_2_Quant}
+\end{table}
 
-\bigskip
+Un des avantages importants apporté par le formalisme de seconde quantification est que la propriété d'anti-symétrie des fonctions d'état pour l'échange de fermions identiques, prise en compte manuellement dans une approche de première quantification en considérant les déterminants de Slater, est automatiquement imposée par les relations d'anti-commutation des opérateurs de création et d'annihilation. Cependant, le prix à payer est de travailler avec un nombre non fixe de particules, qui reste de toute façon une quantité conservée.
 
-\noindent \textbf{Avantages de la Seconde Quantification :} \\
-Un des avantages importants apporté par le formalisme de seconde quantification est que la propriété d'anti-symétrie des fonctions d'état pour l'échange de fermions identiques, prise en compte manuellement dans une approche de première quantification en considérant les déterminants de Slater, est automatiquement imposée par les relations d'anti-commutation des opérateurs de création et d'annihilation.  Cependant, le prix à payer est de travailler avec un nombre non fixe de particules, qui reste de toute façon une quantité conservée.
 
 \section{Hamiltonien Qubit}
 
