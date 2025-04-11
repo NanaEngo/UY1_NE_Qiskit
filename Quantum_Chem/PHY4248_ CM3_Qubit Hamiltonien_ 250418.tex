@@ -86,19 +86,6 @@ colframe=green!55!black,separator sign dash,breakable,beamer}{exp}
 \newpage
 \section{Introduction}
 
-Dans le chapitre précédent, nous avons jeté les bases théoriques de la chimie quantique, en explorant l'équation de Schrödinger, l'approximation de Born-Oppenheimer, et la méthode Hartree-Fock. Ces outils conceptuels nous permettent en principe de décrire le monde moléculaire à l'échelle quantique. Cependant, pour passer de la théorie à la pratique et modéliser des molécules \textit{réelles}, il est important d'aborder des aspects plus concrets et techniques.
-
-\textbf{L'optimisation de la structure géométrique} est une étape primordiale en modélisation moléculaire. En effet, la prédiction de propriétés physico-chimiques ne peut être envisagée que sur des structures moléculaires représentatives de la réalité. Un grand principe de la nature est de toujours minimiser l'énergie totale d'un système, et en conséquence, les conformations des molécules dans un système réel sont distribuées autour du minimum global de l'énergie potentielle. L'optimisation de la structure géométrique permet donc d'ajuster la structure moléculaire afin de déterminer la configuration électronique la plus stable, condition essentielle pour obtenir une bonne concordance entre les calculs théoriques et les mesures expérimentales.
-
-Ce chapitre constitue un \textit{premier pas essentiel vers la modélisation moléculaire computationnelle}. Nous explorons comment, concrètement, on représente les molécules dans un ordinateur, et quelles sont les stratégies pour calculer leurs propriétés avec une précision raisonnable.
-
-\begin{enumerate}
- \item \textbf{Représentation des molécules.} Nous examinons les différents systèmes de coordonnées utilisés pour décrire la géométrie moléculaire, en particulier les \textbf{coordonnées cartésiennes (XYZ)} et les \textbf{coordonnées internes (Matrice Z)}. Nous explorons également le format \textbf{SMILES}, une notation textuelle puissante pour représenter la connectivité moléculaire.
- 
- \item \textbf{Méthodes d'optimisation géométrique.} Nous détaillons le principe de l'optimisation géométrique, qui vise à trouver les structures moléculaires d'énergie minimale en explorant la \textbf{Surface d'Énergie Potentielle (PES)}. Nous présentons l'algorithme général d'optimisation, les ingrédients nécessaires (énergie, gradient, Hessien), et les critères de convergence.
-\end{enumerate}
-
-\noindent En maîtrisant ces aspects fondamentaux, vous disposez des outils essentiels pour explorer le vaste champ de la modélisation moléculaire et pour aborder, dans les chapitres suivants, des méthodes de calcul et d'analyse plus avancées.
 
 \section{Hamiltonien moléculaire fermionique}
 
