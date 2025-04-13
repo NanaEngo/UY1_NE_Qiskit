@@ -295,10 +295,10 @@ Les matrices de Pauli sont un ensemble de matrices hermitiennes et unitaires qui
 
 Comme $\{\mathbb{I}, \mathtt{X}, \mathtt{Y}, \mathtt{Z}\}$,
 \begin{align}\label{eq:pauli_matrices}
-& \mathbb{I} := \proj{0} + \proj{1},\\
+& \mathbb{I} := \op{0} + \op{1},\\
 & \mathtt{X} := \ket{0}\bra{1} + \ket{1}\bra{0}, \\
 & i \mathtt{Y} := \ket{0}\bra{1} - \ket{1}\bra{0}, \\
-& \mathtt{Z} := \proj{0} - \proj{1}.
+& \mathtt{Z} := \op{0} - \op{1}.
 \end{align}
  forme une base complète pour tout opérateur Hermitien 1- ou multi-qubit, l'ingrédient clé des algorithmes variationnels est de décomposer l'Hamiltonien électronique en termes de produits des matrices de Pauli :
 \begin{equation}\label{eq:pauli_decomposition}
@@ -346,24 +346,150 @@ On a utilisé la notation de Dirac pour les opérateurs. On note également que 
 \begin{equation}\label{eq:qubit_operators_simplifies}
 \begin{array}{l|l}
 \textbf{Opérateur qubit} & \textbf{Description} \\ \hline
-\mathbb{I} := \proj{0} + \proj{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
-\mathtt{Q}^- := \kb{0}{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac12(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
-\mathtt{Q}^+ := \kb{1}{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac12(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
-\mathtt{Q}^+ \mathtt{Q}^- := \proj{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac12(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
-\mathtt{Q}^- \mathtt{Q}^+ := \proj{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac12(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
+\mathbb{I} := \op{0} + \op{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
+\mathtt{Q}^- := \op{0}{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac12(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
+\mathtt{Q}^+ := \op{1}{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac12(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
+\mathtt{Q}^+ \mathtt{Q}^- := \op{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac12(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
+\mathtt{Q}^- \mathtt{Q}^+ := \op{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac12(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
 \end{array}
 \end{equation}
 Les opérateurs qubits sont antisymétriques : $\{\mathtt{Q}^+, \mathtt{Q}^-\} = \mathtt{Q}^+ \mathtt{Q}^- + \mathtt{Q}^- \mathtt{Q}^+ = 1$ pour la même spin-orbitale, de façon similaire aux opérateurs fermioniques.
 
-\begin{remarque}{}{}
-On note que $\kb{j}{i}$ signifie que l'état initial est $\ket{i}$ et l'état final est $\ket{j}$. C'est ainsi que 
+\begin{remark}{}{}
+On note que $\op{j}{i}$ signifie que l'état initial est $\ket{i}$ et l'état final est $\ket{j}$. C'est ainsi que 
 \begin{itemize}
-\item $\mathtt{Q}^-\ket{1}=\ket{0}$ et $\mathtt{Q}^-\ket{0}=0$ signifie que $\mathtt{Q}^-=\kb{0}{1}=\frac12(\mathtt{X} + i\mathtt{Y}) $ ;
+\item $\mathtt{Q}^-\ket{1}=\ket{0}$ et $\mathtt{Q}^-\ket{0}=0$ signifie que $\mathtt{Q}^-=\op{0}{1}=\frac12(\mathtt{X} + i\mathtt{Y}) $ ;
 
-\item  $\mathtt{Q}^+\ket{0}=\ket{1}$ et $\mathtt{Q}^+\ket{1}=0$ signifie que $\mathtt{Q}^+=\kb{1}{0}=\frac12(\mathtt{X} - i\mathtt{Y}) $ .
+\item  $\mathtt{Q}^+\ket{0}=\ket{1}$ et $\mathtt{Q}^+\ket{1}=0$ signifie que $\mathtt{Q}^+=\op{1}{0}=\frac12(\mathtt{X} - i\mathtt{Y}) $ .
 \end{itemize}
-\end{remarque}
+\end{remark}
 
+\subsection{Transformation de Jordan-Wigner (JWT)}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Graphics/jw_mapping.png}
+    \caption{Schéma illustrant le mapping de Jordan-Wigner. Les occupations orbitales sont directement encodées dans les qubits, avec des opérateurs de création/annihilation impliquant des chaînes de portes Pauli-Z.}
+    \label{fig:jw_mapping}
+\end{figure}
+
+La JWT encode directement l'occupation de chaque spin-orbite dans un qubit :
+\begin{align}
+&\ket{f_{M-1},\dots,f_k,\dots, f_1,f_0} \rightarrow \ket{q_{M-1},\dots,q_k,\dots, q_1, q_0}, 
+&q_k := f_k \in \{0, 1\}
+\end{align}
+Les opérateurs fermioniques se transforment en :
+\begin{align}
+a_k^\dagger &\mapsto \frac12(\mathtt{X}_k - i\mathtt{Y}_k) \otimes \bigotimes_{m=0}^{k-1} \mathtt{Z}_m \label{eq:jwt_creation} \\
+a_k &\mapsto \frac12(\mathtt{X}_k + i\mathtt{Y}_k) \otimes \bigotimes_{m=0}^{k-1} \mathtt{Z}_m \label{eq:jwt_annihilation}
+\end{align}
+Par exemple, puisque $\mathtt{Z}_k^2=\mathbb{I}_k$, on a
+
+\begin{table}[h!]
+    \centering
+    \caption{Correspondance JWT pour un système à 4 orbitales}
+    \begin{tabular}{l|l}
+        \toprule
+        \textbf{Fermion} & \textbf{Qubit} \\
+        \midrule
+        $a_0^\dagger$ & $\mathtt{Q}_0^+$ \\
+        $a_1^\dagger$ & $\mathtt{Q}_1^+ \mathtt{Z}_0$ \\
+        $a_2^\dagger$ & $\mathtt{Q}_2^+ \mathtt{Z}_1 \mathtt{Z}_0$ \\
+        $a_3^\dagger$ & $\mathtt{Q}_3^+ \mathtt{Z}_2 \mathtt{Z}_1 \mathtt{Z}_0$ \\
+        $n_k$ & $\frac12(\mathbb{I} - \mathtt{Z}_k)$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:jwt_mapping}
+\end{table}
+
+
+\subsection{Transformation de parité}
+
+Cette transformation encode la parité cumulative des occupations orbitales :
+\begin{align}
+&\ket{f_{M-1},\dots,f_k,\dots, f_1,f_0} \mapsto \ket{\mathbf{p}} , \qquad p_k = \sum_{j=k}^0 q_j \pmod 2 = q_k\oplus\dots\oplus q_0\\
+& \ad_k \mapsto \mathtt{X}_{M-1} \otimes \dots \otimes \mathtt{X}_{k+1} \otimes
+\frac12(\mathtt{X}_k\otimes \mathtt{Z}_{k-1} - i \mathtt{Y}_k)\equiv \mathtt{X}_{M-1} \otimes \dots \otimes \mathtt{X}_{k+1} \otimes \mathtt{P}_k^+,\\
+& a_k \mapsto \mathtt{X}_{M-1} \otimes \dots \otimes \mathtt{X}_{k+1} \otimes
+\frac12(\mathtt{X}_k\otimes \mathtt{Z}_{k-1} + i \mathtt{Y}_k)\equiv \mathtt{X}_{M-1} \otimes \dots \otimes \mathtt{X}_{k+1} \otimes \mathtt{P}_k^-,\\
+&\mathtt{P}_k^\pm =Q^\pm_k \otimes \op{0}_{k-1} - Q^\mp_k \otimes \op{1}_{k-1} .
+\end{align}
+
+\begin{table}[h!]
+    \centering
+    \caption{Matrice de transformation de parité pour 8 orbitales}
+    \begin{tabular}{c|c}
+        \toprule
+        Occupation & Parité \\
+        \midrule
+        $|10100111\rangle$ & $|10011101\rangle$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:parity_example}
+\end{table}
+
+La matrice de transformation $\pi_n$ s'écrit :
+\begin{equation}
+\pi_8 = \begin{pmatrix}
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
+\end{pmatrix}
+\end{equation}
+
+\subsection{Transformation de Bravyi-Kitaev (BKT)}
+
+Cette transformation hybride optimise la localité des opérations :
+\begin{align}
+b_k &= \sum_{m=0}^k B_{km} f_m \mod 2 \\
+B_4 &= \begin{pmatrix}
+1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 
+\end{pmatrix}
+\end{align}
+
+\begin{table}[h!]
+    \centering
+    \caption{Exemple de transformation BKT pour 8 orbitales}
+    \begin{tabular}{c|c}
+        \toprule
+        Occupation & BKT \\
+        \midrule
+        $|10100111\rangle$ & $|10101101\rangle$ \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:bkt_example}
+\end{table}
+
+Les opérateurs deviennent :
+\begin{align}
+a_0^\dagger &\mapsto \mathtt{X}_3\mathtt{X}_1\mathtt{Q}_0^+ \\
+a_1^\dagger &\mapsto \mathtt{X}_3(\mathtt{Q}_1^+\op{0}_0 - \mathtt{Q}_1^-\op{1}_0) \\
+n_3 &\mapsto \frac12(\mathbb{I} - \mathtt{Z}_3\mathtt{Z}_2\mathtt{Z}_1)
+\end{align}
+
+\subsubsection{Comparaison des transformations}
+\begin{table}[h!]
+    \centering
+    \caption{Comparaison des mappings fermion-qubit}
+    \begin{tabular}{l |c| c| c}
+        \toprule
+        \textbf{Métrique} & JWT & Parité & BKT \\
+        \midrule
+        Longueur moyenne des chaînes Pauli & $\mathcal{O}(N)$ & $\mathcal{O}(\log N)$ & $\mathcal{O}(1)$ \\
+        Complexité des mesures & Haute & Moyenne & Basse \\
+        Préservation de la localité & Non & Partielle & Oui \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:mapping_comparison}
+\end{table}
 
 
 \subsection{Exemple : Molécule d'hydrogène}\label{sec:H2_example}
