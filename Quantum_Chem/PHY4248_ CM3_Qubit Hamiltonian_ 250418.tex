@@ -415,32 +415,81 @@ Cette transformation encode la parité cumulative des occupations orbitales :
 &\mathtt{P}_k^\pm =Q^\pm_k \otimes \op{0}_{k-1} - Q^\mp_k \otimes \op{1}_{k-1} .
 \end{align}
 
-\begin{table}[h!]
-    \centering
-    \caption{Matrice de transformation de parité pour 8 orbitales}
-    \begin{tabular}{c|c}
-        \toprule
-        Occupation & Parité \\
-        \midrule
-        $|10100111\rangle$ & $|10011101\rangle$ \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:parity_example}
-\end{table}
+Afin de définir les transformations entre les bases, nous considérerons en termes de correspondance entre chaînes de bits. Pour
+toutes les transformations que nous considérons, qui ne font intervenir que des sommes de bits $\mod 2$, il est possible de représenter leur action par matrices agissant sur le vecteur de valeurs binaires correspondant à un état de base logique donné. La correspondance à la base de parité est donnée par :
+$$ p_k = \sum_j [ \pi_n]_{kj}\ f_j,$$
+où $n$ est le nombre d'orbitales. $\pi_n$ est la matrice $(n\times n)$ suivant
+\begin{align}
+ & [\pi_n]_{kj} =  
+  \begin{cases}
+    1 & \quad k < j \\
+    0 & \quad k \geq j\\
+  \end{cases} ,
+  &  \pi_n = 
+ \begin{pmatrix}
+  1 & 1 & \cdots & 1 \\
+  0 & 1 & \cdots & 1 \\
+  \vdots  & \vdots  & \ddots & \vdots  \\
+  0 & 0 & \cdots & 1
+ \end{pmatrix}
+\end{align}
+Soulignons que nous indexons la matrice $\pi_n$ à partir du coin inférieur droit, par souci de cohérence avec notre schéma de numérotation orbitale. 
 
-La matrice de transformation $\pi_n$ s'écrit :
+Par exemple, pour changer l'état de base du numéro d'occupation $|1 0 1 0 0 1 1 1\rangle$ en son état de base de parité correspondant $|1 0 0 1 1 1 0 1\rangle$, nous agissons avec la matrice $\pi_8$ sur la chaîne de bits appropriée :
 \begin{equation}
-\pi_8 = \begin{pmatrix}
-1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
-0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
-0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\
-0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
-0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
-0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
-0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
-\end{pmatrix}
+    \begin{matrix}
+& \begin{matrix}f_7 & f_6 & f_5 & f_4 & f_3 & f_2 & f_1 & f_0 \end{matrix} \\
+\begin{matrix}p_7\\p_6\\p_5\\p_4\\p_3\\p_2\\p_1\\p_0\end{matrix}&
+\begin{pmatrix} 1_{\phantom{7}} & 1_{\phantom{6}} & 1_{\phantom{5}} & 1_{\phantom{4}} & 1_{\phantom{3}} & 1_{\phantom{2}} & 1_{\phantom{1}} & 1_{\phantom{0}} \\
+               0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 \\
+               0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\
+               0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
+ \end{pmatrix}
+\end{matrix}
+\begin{pmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+  0 \\
+  1 \\
+  1 \\
+  1\\
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+  1 \\
+  0 \\
+  0 \\
+  1 \\
+  1 \\
+  1 \\
+  0 \\
+  1\\
+ \end{pmatrix}
 \end{equation}
+
+Le tableau suivant donne quelques exemples de la transformation de parité.
+$$
+\begin{array}{l|l}
+\textbf{Fermion} & \textbf{Qubit} \\ \hline
+a\ket{0001}+b\ket{0010}+c\ket{0100}+d\ket{1000} & a\ket{1111}+b\ket{1110}+c\ket{1100}+d\ket{1000}  \\
+a_0 ,\quad a_1 ,\quad a_2 ,\quad a_3 &
+\begin{split}
+&\mathtt{X}_3\mathtt{X}_2\mathtt{X}_1Q^-_0 ,\quad \mathtt{X}_3\mathtt{X}_2\big( Q^-_1\op{0}_0 - Q^+_1\op{1}_0 \big) ,\\ &\mathtt{X}_3\big( Q^-_2\op{0}_1 - Q^+_2\op{1}_1 \big) ,\quad Q^-_3\op{0}_2 - Q^+_3\op{1}_2
+\end{split} \\
+a^\dagger_0 ,\quad a^\dagger_1 ,\quad a^\dagger_2 ,\quad a^\dagger_3 &
+\begin{split}
+& \mathtt{X}_3\mathtt{X}_2\mathtt{X}_1Q^+_0 ,\quad \mathtt{X}_3\mathtt{X}_2\big( Q^+_1\op{0}_0 - Q^-_1\op{1}_0 \big) ,\\ &\mathtt{X}_3\big( Q^+_2\op{0}_1 - Q^-_2\op{1}_1 \big) ,\quad Q^+_3\op{0}_2 - Q^-_3\op{1}_2 
+\end{split}\\
+n_k = a^\dagger_k a_k & \op{1}_{k=0}=\frac12(\mathbb{I} - \mathtt{Z}_0) ,\quad  \frac12(\mathbb{I} - \mathtt{Z}_k\mathtt{Z}_{k-1})_{k=1,2,3}\\\hline
+\end{array}
+$$
+
 
 \subsection{Transformation de Bravyi-Kitaev (BKT)}
 
