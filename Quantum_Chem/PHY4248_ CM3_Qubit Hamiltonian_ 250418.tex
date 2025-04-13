@@ -493,36 +493,81 @@ $$
 
 \subsection{Transformation de Bravyi-Kitaev (BKT)}
 
-Cette transformation hybride optimise la localité des opérations :
+Cette transformation combine la localité des nombres d'occupation et celle des parités, afin d'établir une correspondance entre les opérateurs de création et de destruction fermioniques et les opérateurs qubits sur $\mathcal{O}(\log_2M)$. Pour ce faire, elle fait correspondre les états du nombre d'occupations à des chaînes binaires définies de manière appropriée,
 \begin{align}
-b_k &= \sum_{m=0}^k B_{km} f_m \mod 2 \\
-B_4 &= \begin{pmatrix}
-1 & 1 & 1 & 1 \\
-0 & 1 & 0 & 0 \\
-0 & 0 & 1 & 1 \\
-0 & 0 & 0 & 1 
-\end{pmatrix}
+    &\ket{f_{M-1},\dots,f_k,\dots, f_1,f_0}\mapsto \ket{\mathbf{b}} , &&b_k = \sum_{j=0}^k B_{kj} \, f_j \, \pmod 2,\\
+    &B_1 = [1], &&B_{2^{x+1}}= \begin{pmatrix} B_{2^x} & \mathtt{A}\\ \mathbb{O} & B_{2^x}\end{pmatrix} ,
+\end{align}
+où la matrice binaire $B$ $M \times M$ a la structure d'un arbre binaire, $\mathbf{A}$ est une matrice $(2^x \times 2^x)$ de 0, la rangée supérieure étant remplie de 1, et $\mathbb{O}$ est une matrice zéro $(2^x \times 2^x)$. À titre d'exemple, lorsque $M = 2,4$ ($x=0,1$), la matrice $B_{kj}$ est la suivante
+\begin{align}
+    &\mathtt{B}_2 = \begin{pmatrix}1 & 1\\0 & 1 \end{pmatrix}
+    &\mathtt{B}_4 = \left(\begin{array}{cc|cc}
+    1 & 1 & 1 & 1 \\
+    0 & 1 & 0 & 0 \\\hline
+    0 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 
+ \end{array}\right)
 \end{align}
 
-\begin{table}[h!]
-    \centering
-    \caption{Exemple de transformation BKT pour 8 orbitales}
-    \begin{tabular}{c|c}
-        \toprule
-        Occupation & BKT \\
-        \midrule
-        $|10100111\rangle$ & $|10101101\rangle$ \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:bkt_example}
-\end{table}
+Par exemple, pour changer l'état de base du numéro d'occupation $|1 0 1 0 0 1 1 1\rangle$ en son état de base de BK correspondant $|1 0 1 0 1 1 0 1\rangle$, nous agissons avec la matrice $\pi_8$ sur la chaîne de bits appropriée :
+\begin{equation}
+    \begin{matrix}
+& \begin{matrix}f_7 & f_6 & f_5 & f_4 & f_3 & f_2 & f_1 & f_0 \end{matrix} \\
+\begin{matrix}b_7\\b_6\\b_5\\b_4\\b_3\\b_2\\b_1\\b_0\end{matrix}&
+\begin{pmatrix} 1_{\phantom{7}} & 1_{\phantom{6}} & 1_{\phantom{5}} & 1_{\phantom{4}} & 1_{\phantom{3}} & 1_{\phantom{2}} & 1_{\phantom{1}} & 1_{\phantom{0}} \\
+               0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+               0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 1 & 1 & 0 & 0 & 0 & 0  \\
+               0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+               0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+               0 & 0 & 0 & 0 & 0 & 0 & 1 & 1  \\
+               0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 
+ \end{pmatrix}
+\end{matrix}
+\begin{pmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+  0 \\
+  1 \\
+  1 \\
+  1\\
+ \end{pmatrix}
+ =
+ \begin{pmatrix}
+  1 \\
+  0 \\
+  1 \\
+  0 \\
+  1 \\
+  1 \\
+  0 \\
+  1\\
+ \end{pmatrix}
+\end{equation}
+Puisqu'elle ne nécessite que $\mathcal{O}(\log_2 M)$ opérateurs qubits, \textbf{les transformations BK permettent un codage plus économique des opérateurs fermioniques en opérateurs qubits}, avec un coût réduit pour les  mesures et les circuits quantiques. Mais elle ne s'applique que sur des  systèmes de $N$ est pair, c'est-à-dire $N=2^m$.
 
-Les opérateurs deviennent :
-\begin{align}
-a_0^\dagger &\mapsto \mathtt{X}_3\mathtt{X}_1\mathtt{Q}_0^+ \\
-a_1^\dagger &\mapsto \mathtt{X}_3(\mathtt{Q}_1^+\op{0}_0 - \mathtt{Q}_1^-\op{1}_0) \\
-n_3 &\mapsto \frac12(\mathbb{I} - \mathtt{Z}_3\mathtt{Z}_2\mathtt{Z}_1)
-\end{align}
+Le tableau suivant donne quelques exemples de la transformation BK.
+$$
+\begin{array}{l|l}
+\textbf{Fermion} & \textbf{Qubit} \\ \hline
+a\ket{0001}+b\ket{0010}+c\ket{0100}+d\ket{1000} & a\ket{1011}+b\ket{1010}+c\ket{1100}+d\ket{1000}  \\
+a_0 ,\quad a_1 ,\quad a_2 ,\quad a_3 &
+\begin{aligned}
+&\mathtt{X}_3\mathtt{X}_1Q^-_0 ,\quad \mathtt{X}_3\big( Q^-_1\proj{0}_0 - Q^+_1\proj{1}_0 \big) ,\\ &\mathtt{X}_3Q^-_2\mathtt{Z}_1 ,\quad 
+\frac12\Big(Q^-_3(\mathbb{I} + \mathtt{Z_2Z_1}) -  Q^+_3(\mathbb{I} - \mathtt{Z_2Z_1})\Big)
+\end{aligned} \\
+\ad_0 ,\quad \ad_1 ,\quad \ad_2 ,\quad \ad_3 &
+\begin{aligned}
+&\mathtt{X}_3\mathtt{X}_1Q^+_0 ,\quad \mathtt{X}_3\big( Q^+_1\proj{0}_0 - Q^-_1\proj{1}_0 \big) ,\\ &\mathtt{X}_3Q^+_2\mathtt{Z}_1 ,\quad 
+\frac12\Big(Q^+_3(\mathbb{I} + \mathtt{Z_2Z_1}) -  Q^-_3(\mathbb{I} - \mathtt{Z_2Z_1})\Big)
+\end{aligned} \\
+n_k = \ad_k a_k & \proj{1}_{k=0,2} ,\quad  \frac12(\mathbb{I} - \mathtt{Z}_1\mathtt{Z}_{0})_{k=1},
+\quad  \frac12(\mathbb{I} - \mathtt{Z}_2\mathtt{Z}_1\mathtt{Z}_{0})_{k=3}
+\\\hline
+\end{array}
+$$
 
 \subsubsection{Comparaison des transformations}
 \begin{table}[h!]
