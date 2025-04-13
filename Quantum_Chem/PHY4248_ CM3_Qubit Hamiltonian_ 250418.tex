@@ -120,7 +120,7 @@ où :
 
 Les intégrales à un électron sont données par :
 \begin{equation}\label{eq:h_pq}
-h_{pq} = \int \phi^*_p(\mathbf{r}) \left( -\frac{1}{2} \nabla^2 - \sum_{I} \frac{Z_I}{|\mathbf{r}-\mathbf{R}_I|} \right)   \phi_q(\mathbf{r})d\mathbf{r},
+h_{pq} = \int \phi^*_p(\mathbf{r}) \left( -\frac12 \nabla^2 - \sum_{I} \frac{Z_I}{|\mathbf{r}-\mathbf{R}_I|} \right)   \phi_q(\mathbf{r})d\mathbf{r},
 \end{equation}
 où :
 \begin{itemize}
@@ -336,10 +336,10 @@ Ce sont les opérateurs suivants qui agissent localement sur les qubits :
 \begin{array}{l|l}
 \textbf{Opérateur qubit} & \textbf{Description} \\ \hline
 \mathbb{I} := \ket{0}\bra{0} + \ket{1}\bra{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
-\mathtt{Q}^- := \ket{0}\bra{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
-\mathtt{Q}^+ := \ket{1}\bra{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
-\mathtt{Q}^+ \mathtt{Q}^- := \ket{1}\bra{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
-\mathtt{Q}^- \mathtt{Q}^+ := \ket{0}\bra{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
+\mathtt{Q}^- := \ket{0}\bra{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac12(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
+\mathtt{Q}^+ := \ket{1}\bra{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac12(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
+\mathtt{Q}^+ \mathtt{Q}^- := \ket{1}\bra{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac12(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
+\mathtt{Q}^- \mathtt{Q}^+ := \ket{0}\bra{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac12(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
 \end{array}
 \end{equation}
 On a utilisé la notation de Dirac pour les opérateurs. On note également que :
@@ -347,20 +347,30 @@ On a utilisé la notation de Dirac pour les opérateurs. On note également que 
 \begin{array}{l|l}
 \textbf{Opérateur qubit} & \textbf{Description} \\ \hline
 \mathbb{I} := \proj{0} + \proj{1} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & \text{Identité} \\
-\mathtt{Q}^- := \kb{0}{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
-\mathtt{Q}^+ := \kb{1}{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac{1}{2}(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
-\mathtt{Q}^+ \mathtt{Q}^- := \proj{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac{1}{2}(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
-\mathtt{Q}^- \mathtt{Q}^+ := \proj{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac{1}{2}(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
+\mathtt{Q}^- := \kb{0}{1} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \frac12(\mathtt{X} + i\mathtt{Y}) & \text{Annihilation} \\
+\mathtt{Q}^+ := \kb{1}{0} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} = \frac12(\mathtt{X} - i\mathtt{Y}) & \text{Création} \\
+\mathtt{Q}^+ \mathtt{Q}^- := \proj{1} = \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = \frac12(\mathbb{I} - \mathtt{Z}) & \text{Un nombre (particule)} \\
+\mathtt{Q}^- \mathtt{Q}^+ := \proj{0} = \begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} = \frac12(\mathbb{I} + \mathtt{Z}) & \text{Zéro nombre (trou)} \\ \hline
 \end{array}
 \end{equation}
 Les opérateurs qubits sont antisymétriques : $\{\mathtt{Q}^+, \mathtt{Q}^-\} = \mathtt{Q}^+ \mathtt{Q}^- + \mathtt{Q}^- \mathtt{Q}^+ = 1$ pour la même spin-orbitale, de façon similaire aux opérateurs fermioniques.
+
+\begin{remarque}{}{}
+On note que $\kb{j}{i}$ signifie que l'état initial est $\ket{i}$ et l'état final est $\ket{j}$. C'est ainsi que 
+\begin{itemize}
+\item $\mathtt{Q}^-\ket{1}=\ket{0}$ et $\mathtt{Q}^-\ket{0}=0$ signifie que $\mathtt{Q}^-=\kb{0}{1}=\frac12(\mathtt{X} + i\mathtt{Y}) $ ;
+
+\item  $\mathtt{Q}^+\ket{0}=\ket{1}$ et $\mathtt{Q}^+\ket{1}=0$ signifie que $\mathtt{Q}^+=\kb{1}{0}=\frac12(\mathtt{X} - i\mathtt{Y}) $ .
+\end{itemize}
+\end{remarque}
+
 
 
 \subsection{Exemple : Molécule d'hydrogène}\label{sec:H2_example}
 
 Considérons la molécure H$_2$ dans une base STO-3G. L'Hamiltonien fermionique se réduit à :
 \begin{equation}
-H = -1.05\ \mathbb{I} + 0.79\ Z_0 + 0.79\ Z_1 + 0.60\ Z_0Z_1 + 0.20\ Y_0Y_1
+H = -1.05\ \mathbb{I} + 0.79\mathtt{Z}_0 + 0.79\mathtt{Z}_1 + 0.60\mathtt{Z}_0Z_1 + 0.20\mathtt{Y}_0\mathtt{Y}_1
 \end{equation}
 
 \begin{table}[h!]
