@@ -570,6 +570,7 @@ n_k = \ad_k a_k & \proj{1}_{k=0,2} ,\quad  \frac12(\mathbb{I} - \mathtt{Z}_1\mat
 $$
 
 \subsubsection{Comparaison des transformations}
+
 \begin{table}[h!]
     \centering
     \caption{Comparaison des mappings fermion-qubit}
@@ -608,30 +609,33 @@ H = -1.05\ \mathbb{I} + 0.79\mathtt{Z}_0 + 0.79\mathtt{Z}_1 + 0.60\mathtt{Z}_0Z_
     \label{tab:H2_comparison}
 \end{table}
 
-% Section : Implémentation quantique
-\section{Implémentation sur calculateur quantique}\label{sec:implementation}
-
-Le circuit quantique typique pour la simulation VQE comprend trois étapes clés :
-
-\begin{enumerate}
-    \item \textbf{Encodage de l'état} : Préparation de l'état Hartree-Fock
-    \item \textbf{Ansatz} : Circuit paramétrique (ex: UCCSD)
-    \item \textbf{Mesure} : Estimation des valeurs moyennes des termes de Pauli
-\end{enumerate}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.9\linewidth]{./Graphics/VQE_circuit.png}
-    \caption{\textit{Circuit quantique complet pour la simulation VQE de H$_2$. Les parties en rouge montrent l'ansatz UCCSD, et les mesures en bleu correspondent aux termes de Pauli.}}
-    \label{fig:VQE_circuit}
-\end{figure}
-
 
 
 \section*{Exercices}
 
-\begin{example}{Application de la JWT}{ex_jwt}
-Convertir l'opérateur fermionique $a_2^\dagger a
+\begin{enumerate}
+\item Which of the following terms is neglected in the BO approximation?
+\begin{enumerate}
+\item Electronic kinetic energy operator.
+\item Nuclear kinetic energy operator.
+\item Potential energy between the electrons and nuclei. It is the sum of all electron-nucleus Coulomb interactions.
+\item Potential energy operator arising from electron-electron Coulomb repulsions.
+\end{enumerate}
+    
+\item The Slater determinant state function is antisymmetric with respect to: 
+\begin{enumerate}
+\item the exchange of two electrons (permutation of two rows) 
+\item with respect to the exchange of two spin orbitals (permutation of two columns)
+\item both the above?
+\end{enumerate}
+
+\item Name three fermion to qubit transformations currently supported by Qiskit Nature.
+
+\item Name two fermion to qubit transformations that simulates a system of electrons with the same number of qubits as electrons.
+
+\item For which transformation does the resulting Hamiltonian commute with the number spin up and number spin down operators which can be used to taper off two qubits?
+\end{enumerate}
+
 
 \section*{Conclusion}
 
